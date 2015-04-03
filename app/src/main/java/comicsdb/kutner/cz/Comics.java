@@ -1,4 +1,4 @@
-package comicsdb.kutner.cz.comicsdbclient;
+package comicsdb.kutner.cz;
 
 /**
  * Created by Lukas.Kutner on 24.3.2015.
@@ -14,12 +14,9 @@ public class Comics {
         super();
     }
 
-    public Comics(String title, String url, String published, Integer voteCount, Integer rating) {
+    public Comics(String title, String url) {
         this.title = title;
         this.url = url;
-        this.published = published;
-        this.voteCount = voteCount;
-        this.rating = rating;
     }
 
     @Override

@@ -4,6 +4,8 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/list_item_comics_textview"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:onClick="listItemOnClick"
+    android:clickable="true">
 
 </TextView>

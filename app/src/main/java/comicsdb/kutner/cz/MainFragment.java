@@ -1,4 +1,4 @@
-package comicsdb.kutner.cz.comicsdbclient;
+package comicsdb.kutner.cz;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cz.kutner.comicsdbclient.comicsdbclient.R;
+
 /**
  * Created by Lukas.Kutner on 24.3.2015.
  */
@@ -29,8 +31,6 @@ public class MainFragment extends Fragment {
 
     public MainFragment() {
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class MainFragment extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-                FetchComicsListTask task2 = new FetchComicsListTask();
-                task2.execute(query);
+                FetchComicsListTask task = new FetchComicsListTask();
+                task.execute(query);
                 return true;
             }
 
@@ -82,7 +82,15 @@ public class MainFragment extends Fragment {
                         getActivity(), // The current context (this activity)
                         R.layout.list_item_comics, // The name of the layout ID.
                         R.id.list_item_comics_textview, // The ID of the textview to populate.
-                        comicsList);
+                        comicsList) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        view.setTag(this.getItem(position).getUrl());
+                        return view;
+                    }
+                };
+
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setAdapter(mComicsAdapter);
@@ -123,7 +131,9 @@ public class MainFragment extends Fragment {
                     String year = columns.get(1).text();
                     String rating = columns.get(3).text();
                     if (rating.isEmpty()) {rating = "0";};
-                    Comics comics = new Comics(title, url, year, 0, Integer.valueOf(rating));
+                    Comics comics = new Comics(title, url);
+                    comics.setPublished(year);
+                    comics.setRating(Integer.valueOf(rating));
                     result.add(comics);
                 }
             } catch (Exception e) {
@@ -160,9 +170,9 @@ public class MainFragment extends Fragment {
                 new_comics.next();
                 while (new_comics.hasNext()) {
                     Element a = new_comics.next();
-                    String new_title = a.text();
-                    String new_url = a.attr("href");
-                    Comics comics = new Comics(new_title, new_url, "", 0, 0);
+                    String title = a.text();
+                    String url = a.attr("href");
+                    Comics comics = new Comics(title, url);
                     result.add(comics);
                 }
             } catch (Exception e) {

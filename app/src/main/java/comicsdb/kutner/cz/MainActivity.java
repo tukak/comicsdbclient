@@ -1,20 +1,24 @@
-package comicsdb.kutner.cz.comicsdbclient;
+package comicsdb.kutner.cz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class MainActivity extends ActionBarActivity {
-
+    public final static String COMICS_URL = "cz.kutner.comicsdbclient.comicsdbclient.comics_url";
+    private final String LOG_TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MainFragment frag = new MainFragment();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, frag)
+                    .add(R.id.container, new MainFragment())
                     .commit();
         }
     }
@@ -40,5 +44,11 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void listItemOnClick(View v) {
+        Intent intent = new Intent(this, ComicsDetailActivity.class);
+        intent.putExtra(COMICS_URL, v.getTag().toString());
+        startActivity(intent);
     }
 }
