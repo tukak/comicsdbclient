@@ -1,6 +1,9 @@
 package comicsdb.kutner.cz;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -15,6 +19,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Parser;
+
+import java.io.InputStream;
+import java.net.URI;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -78,6 +85,7 @@ public class ComicsDetailFragment extends Fragment {
                 TextView notes = (TextView) myActivity.findViewById(R.id.notes);
                 TextView authors = (TextView) myActivity.findViewById(R.id.authors);
                 TextView series = (TextView) myActivity.findViewById(R.id.series);
+                ImageView cover = (ImageView) myActivity.findViewById(R.id.cover);
 
                 name.setText(result.getName());
                 rating.setText(result.getRating().toString());
@@ -99,7 +107,7 @@ public class ComicsDetailFragment extends Fragment {
                 notes.setText(result.getNotes());
                 authors.setText(result.getAuthors());
                 series.setText(result.getSeries());
-
+                cover.setImageBitmap(result.getCover());
             }
         }
 
@@ -119,6 +127,10 @@ public class ComicsDetailFragment extends Fragment {
                 comics.setRating(Integer.valueOf(rating));
                 String votes = rating_and_count.substring(rating_and_count.indexOf('(') + 1, rating_and_count.indexOf(')'));
                 comics.setVoteCount(Integer.valueOf(votes));
+                String coverURI = doc.select("img[title=Obálka]").attr("src");
+                InputStream in = new java.net.URL(coverURI).openStream();
+                Bitmap cover = BitmapFactory.decodeStream(in);
+                comics.setCover(cover);
                 for (Element titulek : doc.select(".titulek")) {
                     String title_name = titulek.text().substring(0, titulek.text().length() - 1);
                     Node title_value = titulek.nextSibling();

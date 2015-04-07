@@ -1,5 +1,8 @@
 package comicsdb.kutner.cz;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 /**
  * Created by Lukas.Kutner on 24.3.2015.
  */
@@ -24,6 +27,16 @@ public class Comics {
     private String notes;
     private String authors;
     private String series;
+
+    public Bitmap getCover() {
+        return cover;
+    }
+
+    public void setCover(Bitmap cover) {
+        this.cover = cover;
+    }
+
+    private Bitmap cover;
 
     public String getSeries() {
         return series;
