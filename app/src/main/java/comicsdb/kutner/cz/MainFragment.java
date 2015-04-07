@@ -16,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -113,7 +114,8 @@ public class MainFragment extends Fragment {
             Document doc;
             List<Comics> result = new ArrayList<Comics>();
             try {
-                doc = Jsoup.connect("http://comicsdb.cz/search.php?searchfor=" + params[0]).get();
+                String searchText = Normalizer.normalize(params[0], Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                doc = Jsoup.connect("http://comicsdb.cz/search.php?searchfor=" + searchText).get();
                 Element table = doc.select("table[summary=Přehled comicsů]").first();
                 for (Element row : table.select("tbody tr")) {
                     Elements columns = row.select("td");

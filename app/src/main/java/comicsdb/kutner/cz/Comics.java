@@ -4,32 +4,168 @@ package comicsdb.kutner.cz;
  * Created by Lukas.Kutner on 24.3.2015.
  */
 public class Comics {
-    private String title;
+    private String name;
     private String url;
     private String published;
     private Integer voteCount;
     private Integer rating;
+    private String genre;
+    private String publisher;
+    private String ISSN;
+    private String issueNumber;
+    private String binding;
+    private String format;
+    private String pagesCount;
+    private String print;
+    private String originalName;
+    private String originalPublisher;
+    private String price;
+    private String description;
+    private String notes;
+    private String authors;
+    private String series;
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
 
     public Comics() {
         super();
     }
 
-    public Comics(String title, String url) {
-        this.title = title;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getISSN() {
+        return ISSN;
+    }
+
+    public void setISSN(String ISSN) {
+        this.ISSN = ISSN;
+    }
+
+    public String getBinding() {
+        return binding;
+    }
+
+    public void setBinding(String binding) {
+        this.binding = binding;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getIssueNumber() {
+        return issueNumber;
+    }
+
+    public void setIssueNumber(String issueNumber) {
+        this.issueNumber = issueNumber;
+    }
+
+    public String getPagesCount() {
+        return pagesCount;
+    }
+
+    public void setPagesCount(String pagesCount) {
+        this.pagesCount = pagesCount;
+    }
+
+    public String getPrint() {
+        return print;
+    }
+
+    public void setPrint(String print) {
+        this.print = print;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getOriginalPublisher() {
+        return originalPublisher;
+    }
+
+    public void setOriginalPublisher(String originalPublisher) {
+        this.originalPublisher = originalPublisher;
+    }
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
+    }
+
+    public String getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(String authors) {
+        this.authors = authors;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Comics(String name, String url) {
+        this.name = name;
         this.url = url;
     }
 
     @Override
     public String toString() {
-        return this.title + " - " + published + "\n" + rating;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        return this.name + " - " + published + "\n" + rating;
     }
 
     public String getUrl() {
