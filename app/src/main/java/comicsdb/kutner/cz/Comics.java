@@ -174,11 +174,19 @@ public class Comics {
     public Comics(String name, String url) {
         this.name = name;
         this.url = url;
+        this.rating = 0;
     }
 
     @Override
     public String toString() {
-        return this.name + " - " + published + "\n" + rating;
+        String printableName = this.name;
+        if (published != null) {
+            printableName += " - " + published;
+        }
+        if (rating > 0) {
+            printableName += "\n" + rating;
+        }
+        return printableName;
     }
 
     public String getUrl() {

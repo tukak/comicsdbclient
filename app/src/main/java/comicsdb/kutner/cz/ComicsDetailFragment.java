@@ -18,6 +18,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Parser;
 
 import java.io.InputStream;
@@ -89,24 +90,24 @@ public class ComicsDetailFragment extends Fragment {
 
                 name.setText(result.getName());
                 rating.setText(result.getRating().toString());
-                description.setText(result.getDescription());
-                url.setText(result.getUrl());
+                //description.setText(result.getDescription());
+                //url.setText(result.getUrl());
                 published.setText(result.getPublished());
                 voteCount.setText(result.getVoteCount().toString());
                 genre.setText(result.getGenre());
                 publisher.setText(result.getPublisher());
-                ISSN.setText(result.getISSN());
-                issueNumber.setText(result.getIssueNumber());
-                binding.setText(result.getBinding());
-                format.setText(result.getFormat());
-                pagesCount.setText(result.getPagesCount());
-                print.setText(result.getPrint());
-                originalName.setText(result.getOriginalName());
-                originalPublisher.setText(result.getOriginalPublisher());
-                price.setText(result.getPrice());
-                notes.setText(result.getNotes());
-                authors.setText(result.getAuthors());
-                series.setText(result.getSeries());
+                //ISSN.setText(result.getISSN());
+                //issueNumber.setText(result.getIssueNumber());
+                //binding.setText(result.getBinding());
+                //format.setText(result.getFormat());
+                //pagesCount.setText(result.getPagesCount());
+                //print.setText(result.getPrint());
+                //originalName.setText(result.getOriginalName());
+                //originalPublisher.setText(result.getOriginalPublisher());
+                //price.setText(result.getPrice());
+                //notes.setText(result.getNotes());
+                //authors.setText(result.getAuthors());
+                //series.setText(result.getSeries());
                 cover.setImageBitmap(result.getCover());
             }
         }
@@ -123,23 +124,35 @@ public class ComicsDetailFragment extends Fragment {
                 comics.setName(Parser.unescapeEntities(name, false));
                 // rating - #rating_block - vrací Celkové hodnocení 67% (26) 1 2 3 4 5
                 String rating_and_count = doc.select("#rating_block h2").first().nextSibling().toString();
-                String rating = rating_and_count.substring(1, rating_and_count.indexOf('%'));
-                comics.setRating(Integer.valueOf(rating));
-                String votes = rating_and_count.substring(rating_and_count.indexOf('(') + 1, rating_and_count.indexOf(')'));
-                comics.setVoteCount(Integer.valueOf(votes));
-                String coverURI = doc.select("img[title=Obálka]").attr("src");
-                InputStream in = new java.net.URL(coverURI).openStream();
-                Bitmap cover = BitmapFactory.decodeStream(in);
-                comics.setCover(cover);
+                if (rating_and_count.contains("%")) {
+                    String rating = rating_and_count.substring(1, rating_and_count.indexOf('%'));
+                    comics.setRating(Integer.valueOf(rating));
+                    String votes = rating_and_count.substring(rating_and_count.indexOf('(') + 1, rating_and_count.indexOf(')'));
+                    comics.setVoteCount(Integer.valueOf(votes));
+                } else {
+                    comics.setRating(0);
+                    comics.setVoteCount(0);
+                }
+                String coverURI = doc.select("img[title=Obálka]").first().attr("src");
+                if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
+                    coverURI = "http://comicsdb.cz/" + coverURI;
+                }
+                InputStream in = null;
+                if (!coverURI.isEmpty()) {
+                    in = new java.net.URL(coverURI).openStream();
+                    Bitmap cover = BitmapFactory.decodeStream(in);
+                    comics.setCover(cover);
+                }
                 for (Element titulek : doc.select(".titulek")) {
                     String title_name = titulek.text().substring(0, titulek.text().length() - 1);
                     Node title_value = titulek.nextSibling();
                     switch (title_name) {
                         case "Žánr":
-                            comics.setGenre(Parser.unescapeEntities(title_value.toString().replaceAll("&nbsp;", " "), false));
+                            String genre = title_value.toString().replaceAll("&nbsp;", " ");
+                            comics.setGenre(Parser.unescapeEntities(genre.substring(1, genre.length() - 1), false));
                             break;
                         case "Vydal":
-                            comics.setPublisher(Parser.unescapeEntities(title_value.nextSibling().toString(), false));
+                            comics.setPublisher(Parser.unescapeEntities(Jsoup.parse(title_value.nextSibling().outerHtml()).text(), false));
                             break;
                         case "Rok a měsíc vydání":
                             comics.setPublished(Parser.unescapeEntities(title_value.toString(), false));
@@ -184,6 +197,7 @@ public class ComicsDetailFragment extends Fragment {
                                 }
                             }
                             comics.setDescription(Parser.unescapeEntities(description, false));
+                            Log.i(LOG_TAG, "Description - " + comics.getDescription());
                             break;
                         case "Poznámky":
                             String notes = "";
@@ -204,9 +218,13 @@ public class ComicsDetailFragment extends Fragment {
                             sibling = title_value.nextSibling();
                             while (true) {
                                 if (!sibling.toString().startsWith("<br")) {
-                                    authors += sibling.toString();
+                                    authors += Jsoup.parse(sibling.outerHtml()).text();
+                                    authors += "\n";
                                 }
                                 sibling = sibling.nextSibling();
+                                if (sibling == null) {
+                                    break;
+                                }
                                 if (sibling.toString().startsWith("<span")) {
                                     break;
                                 }
