@@ -69,19 +69,13 @@ public class ComicsDetailFragment extends Fragment {
                 TextView name = (TextView) myActivity.findViewById(R.id.name);
                 TextView rating = (TextView) myActivity.findViewById(R.id.rating);
                 TextView description = (TextView) myActivity.findViewById(R.id.description);
-                TextView url = (TextView) myActivity.findViewById(R.id.url);
-                TextView published = (TextView) myActivity.findViewById(R.id.published);
-                TextView voteCount = (TextView) myActivity.findViewById(R.id.voteCount);
                 TextView genre = (TextView) myActivity.findViewById(R.id.genre);
                 TextView publisher = (TextView) myActivity.findViewById(R.id.publisher);
-                TextView ISSN = (TextView) myActivity.findViewById(R.id.ISSN);
                 TextView issueNumber = (TextView) myActivity.findViewById(R.id.issueNumber);
                 TextView binding = (TextView) myActivity.findViewById(R.id.binding);
                 TextView format = (TextView) myActivity.findViewById(R.id.format);
                 TextView pagesCount = (TextView) myActivity.findViewById(R.id.pagesCount);
-                TextView print = (TextView) myActivity.findViewById(R.id.print);
                 TextView originalName = (TextView) myActivity.findViewById(R.id.originalName);
-                TextView originalPublisher = (TextView) myActivity.findViewById(R.id.originalPublisher);
                 TextView price = (TextView) myActivity.findViewById(R.id.price);
                 TextView notes = (TextView) myActivity.findViewById(R.id.notes);
                 TextView authors = (TextView) myActivity.findViewById(R.id.authors);
@@ -89,25 +83,23 @@ public class ComicsDetailFragment extends Fragment {
                 ImageView cover = (ImageView) myActivity.findViewById(R.id.cover);
 
                 name.setText(result.getName());
-                rating.setText(result.getRating().toString());
-                //description.setText(result.getDescription());
-                //url.setText(result.getUrl());
-                published.setText(result.getPublished());
-                voteCount.setText(result.getVoteCount().toString());
+                if (result.getRating() > 0) {
+                    rating.setText(result.getRating().toString() + "% (" + result.getVoteCount().toString() + ")");
+                } else {
+                    rating.setText("< 5 hodnocení");
+                }
+                description.setText(result.getDescription());
                 genre.setText(result.getGenre());
-                publisher.setText(result.getPublisher());
-                //ISSN.setText(result.getISSN());
-                //issueNumber.setText(result.getIssueNumber());
-                //binding.setText(result.getBinding());
-                //format.setText(result.getFormat());
-                //pagesCount.setText(result.getPagesCount());
-                //print.setText(result.getPrint());
-                //originalName.setText(result.getOriginalName());
-                //originalPublisher.setText(result.getOriginalPublisher());
-                //price.setText(result.getPrice());
-                //notes.setText(result.getNotes());
-                //authors.setText(result.getAuthors());
-                //series.setText(result.getSeries());
+                publisher.setText(result.getPublisher() + " - " + result.getPublished());
+                issueNumber.setText("Vydání: " + result.getIssueNumber() + " tisk: " + result.getPrint());
+                binding.setText("Vazba: " + result.getBinding());
+                format.setText("Formát: " + result.getFormat());
+                pagesCount.setText("Počet stran: " + result.getPagesCount());
+                originalName.setText("Původně: " + result.getOriginalName() + " - " + result.getOriginalPublisher());
+                price.setText("Cena: " + result.getPrice());
+                notes.setText(result.getNotes());
+                authors.setText(result.getAuthors());
+                series.setText(result.getSeries());
                 cover.setImageBitmap(result.getCover());
             }
         }
@@ -232,7 +224,7 @@ public class ComicsDetailFragment extends Fragment {
                             comics.setAuthors(Parser.unescapeEntities(authors, false));
                             break;
                         case "Série":
-                            comics.setSeries(Parser.unescapeEntities(title_value.toString(), false));
+                            comics.setSeries(Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false));
                             break;
                     }
                 }
