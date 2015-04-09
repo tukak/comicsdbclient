@@ -1,9 +1,8 @@
-package comicsdb.kutner.cz;
+package cz.kutner.comicsdb;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,11 +17,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Parser;
 
 import java.io.InputStream;
-import java.net.URI;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -80,6 +77,7 @@ public class ComicsDetailFragment extends Fragment {
                 TextView notes = (TextView) myActivity.findViewById(R.id.notes);
                 TextView authors = (TextView) myActivity.findViewById(R.id.authors);
                 TextView series = (TextView) myActivity.findViewById(R.id.series);
+                TextView comments = (TextView) myActivity.findViewById(R.id.comments);
                 ImageView cover = (ImageView) myActivity.findViewById(R.id.cover);
 
                 name.setText(result.getName());
@@ -95,12 +93,22 @@ public class ComicsDetailFragment extends Fragment {
                 binding.setText("Vazba: " + result.getBinding());
                 format.setText("Formát: " + result.getFormat());
                 pagesCount.setText("Počet stran: " + result.getPagesCount());
-                originalName.setText("Původně: " + result.getOriginalName() + " - " + result.getOriginalPublisher());
+                originalName.setText("Původně: " + result.getOriginalName());
+                if (result.getOriginalPublisher() != null) {
+                    originalName.setText(originalName.getText() + " - " + result.getOriginalPublisher());
+                }
                 price.setText("Cena: " + result.getPrice());
                 notes.setText(result.getNotes());
                 authors.setText(result.getAuthors());
                 series.setText(result.getSeries());
                 cover.setImageBitmap(result.getCover());
+                for (Comment comment : result.getComments()) {
+                    comments.setText(comments.getText() + comment.getNick());
+                    if (comment.getStars() > 0) {
+                        comments.setText(comments.getText() + " - " + comment.getStars().toString() + "/5");
+                    }
+                    comments.setText(comments.getText() + "\n" + comment.getText() + "\n\n");
+                }
             }
         }
 
@@ -210,7 +218,12 @@ public class ComicsDetailFragment extends Fragment {
                             sibling = title_value.nextSibling();
                             while (true) {
                                 if (!sibling.toString().startsWith("<br")) {
-                                    authors += Jsoup.parse(sibling.outerHtml()).text();
+                                    if (sibling.toString().startsWith("[")) {
+                                        authors += Jsoup.parse(sibling.outerHtml()).text();
+                                        authors += " ";
+                                        sibling = sibling.nextSibling();
+                                        authors += Jsoup.parse(sibling.outerHtml()).text();
+                                    }
                                     authors += "\n";
                                 }
                                 sibling = sibling.nextSibling();
@@ -227,6 +240,15 @@ public class ComicsDetailFragment extends Fragment {
                             comics.setSeries(Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false));
                             break;
                     }
+                }
+                for (Element comment : doc.select("div#prispevek")) {
+                    String nick = comment.select("span.prispevek-nick").first().text();
+                    Integer stars = comment.select("img.star").size();
+                    for (Element remove : comment.select("span,img")) {
+                        remove.remove();
+                    }
+                    String commentText = comment.text().replace("| ", "");
+                    comics.addComment(new Comment(nick, stars, commentText));
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block

@@ -1,4 +1,4 @@
-package comicsdb.kutner.cz;
+package cz.kutner.comicsdb;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
