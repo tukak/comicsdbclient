@@ -176,6 +176,17 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignRight="@+id/issueNumber"
                     android:layout_alignEnd="@+id/issueNumber" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="URL"
+                    android:id="@+id/url"
+                    android:layout_below="@+id/format"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:autoLink="web" />
             </RelativeLayout>
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

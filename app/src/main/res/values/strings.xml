@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ComicsDB client</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_about">O aplikaci</string>
     <string name="comics_name_search_hint">Jméno comisu</string>
-    <string name="search_button">Hledej</string>
 </resources>

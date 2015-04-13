@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,6 +80,7 @@ public class ComicsDetailFragment extends Fragment {
                 TextView series = (TextView) myActivity.findViewById(R.id.series);
                 TextView comments = (TextView) myActivity.findViewById(R.id.comments);
                 ImageView cover = (ImageView) myActivity.findViewById(R.id.cover);
+                TextView URL = (TextView) myActivity.findViewById(R.id.url);
 
                 name.setText(result.getName());
                 if (result.getRating() > 0) {
@@ -86,19 +88,23 @@ public class ComicsDetailFragment extends Fragment {
                 } else {
                     rating.setText("< 5 hodnocení");
                 }
-                description.setText(result.getDescription());
                 genre.setText(result.getGenre());
                 publisher.setText(result.getPublisher() + " - " + result.getPublished());
                 issueNumber.setText("Vydání: " + result.getIssueNumber() + " tisk: " + result.getPrint());
                 binding.setText("Vazba: " + result.getBinding());
                 format.setText("Formát: " + result.getFormat());
                 pagesCount.setText("Počet stran: " + result.getPagesCount());
-                originalName.setText("Původně: " + result.getOriginalName());
-                if (result.getOriginalPublisher() != null) {
-                    originalName.setText(originalName.getText() + " - " + result.getOriginalPublisher());
+                if (result.getOriginalName() != null) {
+                    originalName.setText("Původně: " + result.getOriginalName());
+                    if (result.getOriginalPublisher() != null) {
+                        originalName.setText(originalName.getText() + " - " + result.getOriginalPublisher());
+                    }
+                } else {
+                    originalName.setText("");
                 }
                 price.setText("Cena: " + result.getPrice());
                 notes.setText(result.getNotes());
+                description.setText(result.getDescription());
                 authors.setText(result.getAuthors());
                 series.setText(result.getSeries());
                 cover.setImageBitmap(result.getCover());
@@ -109,6 +115,7 @@ public class ComicsDetailFragment extends Fragment {
                     }
                     comments.setText(comments.getText() + "\n" + comment.getText() + "\n\n");
                 }
+                URL.setText(result.getUrl());
             }
         }
 
@@ -118,7 +125,9 @@ public class ComicsDetailFragment extends Fragment {
             try {
                 Document doc;
                 Node sibling;
-                doc = Jsoup.connect("http://comicsdb.cz/" + params[0]).get();
+                String url = "http://comicsdb.cz/" + params[0];
+                comics.setUrl(url);
+                doc = Jsoup.connect(url).get();
                 // title - H5
                 String name = doc.select("H5").text();
                 comics.setName(Parser.unescapeEntities(name, false));
@@ -197,7 +206,6 @@ public class ComicsDetailFragment extends Fragment {
                                 }
                             }
                             comics.setDescription(Parser.unescapeEntities(description, false));
-                            Log.i(LOG_TAG, "Description - " + comics.getDescription());
                             break;
                         case "Poznámky":
                             String notes = "";
@@ -216,6 +224,12 @@ public class ComicsDetailFragment extends Fragment {
                         case "Autoři":
                             String authors = "";
                             sibling = title_value.nextSibling();
+                            authors += Jsoup.parse(sibling.outerHtml()).text();
+                            authors += " ";
+                            sibling = sibling.nextSibling();
+                            authors += Jsoup.parse(sibling.outerHtml()).text();
+                            authors += "\n";
+                            sibling = sibling.nextSibling();
                             while (true) {
                                 if (!sibling.toString().startsWith("<br")) {
                                     if (sibling.toString().startsWith("[")) {
