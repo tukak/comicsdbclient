@@ -19,6 +19,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
 
 import java.io.InputStream;
 
@@ -30,6 +31,11 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 
 public class ComicsDetailFragment extends Fragment {
+
+    private <T> T nvl(T a, T b) {
+        return (a == null) ? b : a;
+    }
+
     private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
 
     public ComicsDetailFragment() {
@@ -88,12 +94,12 @@ public class ComicsDetailFragment extends Fragment {
                 } else {
                     rating.setText("< 5 hodnocení");
                 }
-                genre.setText(result.getGenre());
+                genre.setText(nvl(result.getGenre(), ""));
                 publisher.setText(result.getPublisher() + " - " + result.getPublished());
-                issueNumber.setText("Vydání: " + result.getIssueNumber() + " tisk: " + result.getPrint());
-                binding.setText("Vazba: " + result.getBinding());
-                format.setText("Formát: " + result.getFormat());
-                pagesCount.setText("Počet stran: " + result.getPagesCount());
+                issueNumber.setText("Vydání: " + nvl(result.getIssueNumber(), "") + " tisk: " + nvl(result.getPrint(), ""));
+                binding.setText("Vazba: " + nvl(result.getBinding(), ""));
+                format.setText("Formát: " + nvl(result.getFormat(), ""));
+                pagesCount.setText("Počet stran: " + nvl(result.getPagesCount(), ""));
                 if (result.getOriginalName() != null) {
                     originalName.setText("Původně: " + result.getOriginalName());
                     if (result.getOriginalPublisher() != null) {
@@ -102,7 +108,7 @@ public class ComicsDetailFragment extends Fragment {
                 } else {
                     originalName.setText("");
                 }
-                price.setText("Cena: " + result.getPrice());
+                price.setText("Cena: " + nvl(result.getPrice(), ""));
                 notes.setText(result.getNotes());
                 description.setText(result.getDescription());
                 authors.setText(result.getAuthors());
@@ -142,16 +148,20 @@ public class ComicsDetailFragment extends Fragment {
                     comics.setRating(0);
                     comics.setVoteCount(0);
                 }
-                String coverURI = doc.select("img[title=Obálka]").first().attr("src");
-                if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
-                    coverURI = "http://comicsdb.cz/" + coverURI;
+                Elements coverElements = doc.select("img[title=Obálka]");
+                if (coverElements.size() > 0) {
+                    String coverURI = doc.select("img[title=Obálka]").first().attr("src");
+                    if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
+                        coverURI = "http://comicsdb.cz/" + coverURI;
+                    }
+                    InputStream in = null;
+                    if (!coverURI.isEmpty()) {
+                        in = new java.net.URL(coverURI).openStream();
+                        Bitmap cover = BitmapFactory.decodeStream(in);
+                        comics.setCover(cover);
+                    }
                 }
-                InputStream in = null;
-                if (!coverURI.isEmpty()) {
-                    in = new java.net.URL(coverURI).openStream();
-                    Bitmap cover = BitmapFactory.decodeStream(in);
-                    comics.setCover(cover);
-                }
+
                 for (Element titulek : doc.select(".titulek")) {
                     String title_name = titulek.text().substring(0, titulek.text().length() - 1);
                     Node title_value = titulek.nextSibling();

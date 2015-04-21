@@ -183,10 +183,12 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="URL"
                     android:id="@+id/url"
-                    android:layout_below="@+id/format"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:autoLink="web" />
+                    android:autoLink="web"
+                    android:layout_below="@+id/format"
+                    android:layout_toStartOf="@+id/cover"
+                    android:layout_toLeftOf="@+id/cover" />
             </RelativeLayout>
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -238,6 +240,7 @@
                     android:layout_below="@+id/authors"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
+                    android:autoLink="web"
                     android:hint="Komentáře" />
 
 
