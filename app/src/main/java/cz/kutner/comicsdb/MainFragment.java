@@ -53,7 +53,8 @@ public class MainFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 FetchComicsListTask task = new FetchComicsListTask();
-                task.execute(query);
+                String searchText = Normalizer.normalize(query, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                task.execute("http://comicsdb.cz/search.php?searchfor=" + searchText);
                 return true;
             }
 
@@ -72,8 +73,9 @@ public class MainFragment extends Fragment {
         searchView.setOnQueryTextListener(queryTextListener);
         searchView.setOnCloseListener(closeListener);
 
-        FetchNewComicsListTask task = new FetchNewComicsListTask();
-        task.execute();
+        //načteme nové
+        FetchComicsListTask task = new FetchComicsListTask();
+        task.execute("http://comicsdb.cz/comicslist.php");
 
         // Now that we have some dummy forecast data, create an ArrayAdapter.
         // The ArrayAdapter will take data from a source (like our dummy forecast) and
@@ -111,25 +113,7 @@ public class MainFragment extends Fragment {
 
         @Override
         protected List<Comics> doInBackground(String... params) {
-            String searchText = Normalizer.normalize(params[0], Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-            return Utils.getComicsListFromURL("http://comicsdb.cz/search.php?searchfor=" + searchText);
-        }
-    }
-
-    public class FetchNewComicsListTask extends AsyncTask<String, Void, List<Comics>> {
-        private final String LOG_TAG = FetchNewComicsListTask.class.getSimpleName();
-
-        @Override
-        protected void onPostExecute(List<Comics> result) {
-            if (result != null) {
-                mComicsAdapter.clear();
-                mComicsAdapter.addAll(result);
-            }
-        }
-
-        @Override
-        protected List<Comics> doInBackground(String... params) {
-            return Utils.getComicsListFromURL("http://comicsdb.cz/comicslist.php");
+            return Utils.getComicsListFromURL(params[0]);
         }
     }
 }
