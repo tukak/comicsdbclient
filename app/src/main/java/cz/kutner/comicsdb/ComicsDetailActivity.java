@@ -1,9 +1,15 @@
 package cz.kutner.comicsdb;
 
-import android.support.v4.app.Fragment;
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.widget.SearchView;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -14,6 +20,9 @@ public class ComicsDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Detail");
+        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         String url = intent.getStringExtra(MainActivity.COMICS_URL);
         Fragment fragment = new ComicsDetailFragment();
@@ -25,5 +34,20 @@ public class ComicsDetailActivity extends ActionBarActivity {
                     .add(R.id.container, fragment)
                     .commit();
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        SearchView searchView =
+                (SearchView) toolbar.findViewById(R.id.searchView);
+        ComponentName cn = new ComponentName(this, ComicsSearchActivity.class);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
+
+        return true;
     }
 }

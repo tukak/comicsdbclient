@@ -10,4 +10,6 @@
     <string name="about_first">Neoficiální klient pro Android na prohlížení <a href="http://comicsdb.cz/">ComicsDB</a>. Veškeré zobrazované údaje pocházejí z <a href="http://comicsdb.cz/">ComicsDB</a>.</string>
     <string name="about_donate">Pokud chcete přispět na samotnou <a href="http://comicsdb.cz/">ComicsDB</a>, můžete <a href="http://comicsdb.cz/donate.php">zde</a>.</string>
     <string name="about_signature">Lukáš Kutner (tukak)</string>
+    <string name="title_activity_comics_search">ComicsSearchActivity</string>
+    <string name="hello_world">Hello world!</string>
 </resources>
