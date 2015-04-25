@@ -114,6 +114,7 @@ public class ComicsDetailFragment extends Fragment {
                 authors.setText(result.getAuthors());
                 series.setText(result.getSeries());
                 cover.setImageBitmap(result.getCover());
+                comments.setText("Komentáře a hodnocení:\n\n");
                 for (Comment comment : result.getComments()) {
                     comments.setText(comments.getText() + comment.getNick());
                     if (comment.getStars() > 0) {
