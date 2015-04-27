@@ -23,6 +23,8 @@ import org.jsoup.select.Elements;
 
 import java.io.InputStream;
 
+import cz.kutner.comicsdb.Utils.*;
+
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -31,10 +33,6 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 
 public class ComicsDetailFragment extends Fragment {
-
-    private <T> T nvl(T a, T b) {
-        return (a == null) ? b : a;
-    }
 
     private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
 
@@ -94,12 +92,12 @@ public class ComicsDetailFragment extends Fragment {
                 } else {
                     rating.setText("< 5 hodnocení");
                 }
-                genre.setText(nvl(result.getGenre(), ""));
+                genre.setText(Utils.nvl(result.getGenre(), ""));
                 publisher.setText(result.getPublisher() + " - " + result.getPublished());
-                issueNumber.setText("Vydání: " + nvl(result.getIssueNumber(), "") + " tisk: " + nvl(result.getPrint(), ""));
-                binding.setText("Vazba: " + nvl(result.getBinding(), ""));
-                format.setText("Formát: " + nvl(result.getFormat(), ""));
-                pagesCount.setText("Počet stran: " + nvl(result.getPagesCount(), ""));
+                issueNumber.setText("Vydání: " + Utils.nvl(result.getIssueNumber(), "") + " tisk: " + Utils.nvl(result.getPrint(), ""));
+                binding.setText("Vazba: " + Utils.nvl(result.getBinding(), ""));
+                format.setText("Formát: " + Utils.nvl(result.getFormat(), ""));
+                pagesCount.setText("Počet stran: " + Utils.nvl(result.getPagesCount(), ""));
                 if (result.getOriginalName() != null) {
                     originalName.setText("Původně: " + result.getOriginalName());
                     if (result.getOriginalPublisher() != null) {
@@ -108,7 +106,7 @@ public class ComicsDetailFragment extends Fragment {
                 } else {
                     originalName.setText("");
                 }
-                price.setText("Cena: " + nvl(result.getPrice(), ""));
+                price.setText("Cena: " + Utils.nvl(result.getPrice(), ""));
                 notes.setText(result.getNotes());
                 description.setText(result.getDescription());
                 authors.setText(result.getAuthors());

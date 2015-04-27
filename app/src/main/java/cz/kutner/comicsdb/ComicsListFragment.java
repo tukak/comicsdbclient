@@ -3,6 +3,9 @@ package cz.kutner.comicsdb;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +25,8 @@ public class ComicsListFragment extends Fragment {
 
     private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
     List<Comics> comicsList = new ArrayList<Comics>();
-    ArrayAdapter<Comics> mComicsAdapter;
-
+    RecyclerView rv;
+    ComicsListRVAdapter adapter = new ComicsListRVAdapter(comicsList);
     public ComicsListFragment() {
     }
 
@@ -41,23 +44,10 @@ public class ComicsListFragment extends Fragment {
             task.execute("http://comicsdb.cz/comicslist.php");
         }
 
-        mComicsAdapter =
-                new ArrayAdapter<Comics>(
-                        getActivity(), // The current context (this activity)
-                        R.layout.list_item_comics, // The name of the layout ID.
-                        R.id.list_item_comics_textview, // The ID of the textview to populate.
-                        comicsList) {
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
-                        View view = super.getView(position, convertView, parent);
-                        view.setTag(this.getItem(position).getUrl());
-                        return view;
-                    }
-                };
-
-        // Get a reference to the ListView, and attach this adapter to it.
-        ListView listView = (ListView) rootView.findViewById(R.id.comics_list_view);
-        listView.setAdapter(mComicsAdapter);
+        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.comics_recycler_view);
+        LinearLayoutManager llm = new LinearLayoutManager(rootView.getContext());
+        rv.setLayoutManager(llm);
+        rv.setAdapter(adapter);
         return rootView;
     }
 
@@ -67,8 +57,9 @@ public class ComicsListFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Comics> result) {
             if (result != null) {
-                mComicsAdapter.clear();
-                mComicsAdapter.addAll(result);
+                Log.i(LOG_TAG, "Máme data");
+                adapter.setComicsList(result);
+                adapter.notifyDataSetChanged();
             }
         }
 

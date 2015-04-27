@@ -6,11 +6,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context=".ComicsListFragment">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/comics_list_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/comics_recycler_view" />
 
 </RelativeLayout>
