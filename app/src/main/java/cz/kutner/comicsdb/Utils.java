@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
