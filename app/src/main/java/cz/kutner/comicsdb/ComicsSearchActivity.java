@@ -35,7 +35,7 @@ public class ComicsSearchActivity extends ActionBarActivity {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Fragment fragment = new ComicsSearchFragment();
+            Fragment fragment = new ComicsListFragment();
             Bundle args = new Bundle();
             args.putString("query", query);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

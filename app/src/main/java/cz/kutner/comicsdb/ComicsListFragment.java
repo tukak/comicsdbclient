@@ -1,57 +1,46 @@
 package cz.kutner.comicsdb;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
- * Created by Lukas.Kutner on 24.3.2015.
+ * Created by lukas.kutner on 27.4.2015.
  */
-public class MainFragment extends Fragment {
+public class ComicsListFragment extends Fragment {
+
+    private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
+    List<Comics> comicsList = new ArrayList<Comics>();
     ArrayAdapter<Comics> mComicsAdapter;
-    private final String LOG_TAG = MainFragment.class.getSimpleName();
 
-    public MainFragment() {
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public ComicsListFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        List<Comics> comicsList = new ArrayList<Comics>();
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        //načteme nové
+        View rootView = inflater.inflate(R.layout.fragment_comics_list, container, false);
         FetchComicsListTask task = new FetchComicsListTask();
-        task.execute("http://comicsdb.cz/comicslist.php");
+        Bundle args = this.getArguments();
+        if (args != null && args.containsKey("query")) { //neco vyhledavame
+            String searchText = args.getString("query");
+            searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+            task.execute("http://comicsdb.cz/search.php?searchfor=" + searchText);
+        } else { //zobrazujeme nejnovější
+            task.execute("http://comicsdb.cz/comicslist.php");
+        }
 
-        // Now that we have some dummy forecast data, create an ArrayAdapter.
-        // The ArrayAdapter will take data from a source (like our dummy forecast) and
-        // use it to populate the ListView it's attached to.
         mComicsAdapter =
                 new ArrayAdapter<Comics>(
                         getActivity(), // The current context (this activity)
@@ -67,7 +56,7 @@ public class MainFragment extends Fragment {
                 };
 
         // Get a reference to the ListView, and attach this adapter to it.
-        ListView listView = (ListView) rootView.findViewById(R.id.listView);
+        ListView listView = (ListView) rootView.findViewById(R.id.comics_list_view);
         listView.setAdapter(mComicsAdapter);
         return rootView;
     }
@@ -89,3 +78,5 @@ public class MainFragment extends Fragment {
         }
     }
 }
+
+
