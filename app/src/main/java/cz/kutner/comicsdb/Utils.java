@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -8,19 +7,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.net.URI;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lukas.kutner on 21.4.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 21.4.2015.
  */
-public class Utils {
+class Utils {
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
     public static List<Comics> getComicsListFromURL(String uri) {
-        List<Comics> result = new ArrayList<Comics>();
+        List<Comics> result = new ArrayList<>();
         Document doc;
         try {
             doc = Jsoup.connect(uri).get();

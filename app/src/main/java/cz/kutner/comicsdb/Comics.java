@@ -1,12 +1,11 @@
 package cz.kutner.comicsdb;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
 
 import java.util.ArrayList;
 
 /**
- * Created by Lukas.Kutner on 24.3.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 24.3.2015.
  */
 public class Comics {
     private String name;
@@ -51,7 +50,7 @@ public class Comics {
 
     public Comics() {
         super();
-        this.comments = new ArrayList<Comment>();
+        this.comments = new ArrayList<>();
     }
 
     public String getName() {
@@ -178,7 +177,7 @@ public class Comics {
         this.name = name;
         this.url = url;
         this.rating = 0;
-        this.comments = new ArrayList<Comment>();
+        this.comments = new ArrayList<>();
     }
 
     public String getUrl() {

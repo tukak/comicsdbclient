@@ -5,19 +5,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.support.v7.widget.Toolbar;
-import android.view.ViewGroup;
 import android.widget.SearchView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -70,11 +62,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void listItemOnClick(View v) {
-        Intent intent = new Intent(this, ComicsDetailActivity.class);
-        intent.putExtra(COMICS_URL, v.getTag().toString());
-        startActivity(intent);
-    }
-
 }

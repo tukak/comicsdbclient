@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -19,14 +16,13 @@ import java.util.List;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
- * Created by lukas.kutner on 27.4.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
  */
 public class ComicsListFragment extends Fragment {
 
     private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
-    List<Comics> comicsList = new ArrayList<Comics>();
-    RecyclerView rv;
-    ComicsListRVAdapter adapter = new ComicsListRVAdapter(comicsList);
+    private List<Comics> comicsList = new ArrayList<>();
+    private ComicsListRVAdapter adapter = new ComicsListRVAdapter(comicsList);
     public ComicsListFragment() {
     }
 
@@ -51,7 +47,7 @@ public class ComicsListFragment extends Fragment {
         return rootView;
     }
 
-    public class FetchComicsListTask extends AsyncTask<String, Void, List<Comics>> {
+    private class FetchComicsListTask extends AsyncTask<String, Void, List<Comics>> {
         private final String LOG_TAG = FetchComicsListTask.class.getSimpleName();
 
         @Override

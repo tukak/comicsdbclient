@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +22,10 @@ import org.jsoup.select.Elements;
 
 import java.io.InputStream;
 
-import cz.kutner.comicsdb.Utils.*;
-
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
- * Created by lukas.kutner on 31.3.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 31.3.2015.
  */
 
 
@@ -37,11 +34,6 @@ public class ComicsDetailFragment extends Fragment {
     private final String LOG_TAG = ComicsDetailFragment.class.getSimpleName();
 
     public ComicsDetailFragment() {
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -153,9 +145,8 @@ public class ComicsDetailFragment extends Fragment {
                     if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
                         coverURI = "http://comicsdb.cz/" + coverURI;
                     }
-                    InputStream in = null;
                     if (!coverURI.isEmpty()) {
-                        in = new java.net.URL(coverURI).openStream();
+                        InputStream in = new java.net.URL(coverURI).openStream();
                         Bitmap cover = BitmapFactory.decodeStream(in);
                         comics.setCover(cover);
                     }

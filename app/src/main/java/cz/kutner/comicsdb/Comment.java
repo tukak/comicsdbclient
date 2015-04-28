@@ -1,9 +1,9 @@
 package cz.kutner.comicsdb;
 
 /**
- * Created by lukas.kutner on 9.4.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 9.4.2015.
  */
-public class Comment {
+class Comment {
     private String nick;
     private Integer stars;
     private String text;

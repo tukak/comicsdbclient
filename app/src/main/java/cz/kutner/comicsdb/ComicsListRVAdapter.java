@@ -3,7 +3,6 @@ package cz.kutner.comicsdb;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -46,7 +44,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         }
     }
 
-    List<Comics> comics;
+    private List<Comics> comics;
 
     ComicsListRVAdapter(List<Comics> comics) {
         this.comics = comics;
@@ -65,8 +63,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
     @Override
     public ComicsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_comics, viewGroup, false);
-        ComicsViewHolder pvh = new ComicsViewHolder(v);
-        return pvh;
+        return new ComicsViewHolder(v);
     }
 
     @Override
@@ -82,8 +79,4 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         comicsViewHolder.Url = comics.get(i).getUrl();
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
 }

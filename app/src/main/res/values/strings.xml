@@ -3,13 +3,11 @@
     <string name="action_about">O aplikaci</string>
     <string name="comics_name_search_hint">Jméno comisu</string>
     <string name="title_activity_about">O aplikaci</string>
-
-    <string name="action_settings">Settings</string>
     <string name="about_email">Chyby můžete hlásit na emailu <a href="mailto:lukas@kutner.cz">lukas@kutner.cz</a>.</string>
     <string name="about_free">Aplikace je a bude poskytována zdarma, bez reklam a bez nákupů v aplikaci. Je vytvářena ve volném čase a je poskytována bez jakýchkoliv záruk.</string>
     <string name="about_first">Neoficiální klient pro Android na prohlížení <a href="http://comicsdb.cz/">ComicsDB</a>. Veškeré zobrazované údaje pocházejí z <a href="http://comicsdb.cz/">ComicsDB</a>.</string>
     <string name="about_donate">Pokud chcete přispět na samotnou <a href="http://comicsdb.cz/">ComicsDB</a>, můžete <a href="http://comicsdb.cz/donate.php">zde</a>.</string>
     <string name="about_signature">Lukáš Kutner (tukak)</string>
     <string name="title_activity_comics_search">ComicsSearchActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="cover_content_description">Obálka</string>
 </resources>

@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,239 +6,227 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:id="@+id/scrollView"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
 
-
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity$PlaceholderFragment">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="fill_parent"
+
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:context=".MainActivity$PlaceholderFragment"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:id="@+id/cover"
+                android:minWidth="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:minHeight="200dp"
+                android:contentDescription="@string/cover_content_description" />
 
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cover"
-                    android:minWidth="100dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:minHeight="200dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:hint="Jméno comicsu"
-                    android:id="@+id/name"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/cover"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:paddingEnd="5dp"
-                    android:textColor="#808080" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:hint="Žánr"
-                    android:id="@+id/genre"
-                    android:layout_below="@+id/name"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:hint="Hodnocení"
-                    android:id="@+id/rating"
-                    android:layout_alignLeft="@+id/cover"
-                    android:layout_below="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:hint="Vydavatel"
-                    android:id="@+id/publisher"
-                    android:layout_below="@+id/genre"
-                    android:layout_alignLeft="@+id/genre"
-                    android:layout_alignStart="@+id/genre"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Počet stránek"
-                    android:id="@+id/pagesCount"
-                    android:layout_below="@+id/publisher"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Cena"
-                    android:id="@+id/price"
-                    android:layout_below="@+id/pagesCount"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignRight="@+id/series"
-                    android:layout_alignEnd="@+id/series" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Původní název"
-                    android:id="@+id/originalName"
-                    android:layout_below="@+id/series"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Vazba"
-                    android:id="@+id/binding"
-                    android:layout_below="@+id/originalName"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Série"
-                    android:id="@+id/series"
-                    android:layout_below="@+id/price"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/cover"
-                    android:layout_toStartOf="@+id/cover" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Vydání"
-                    android:id="@+id/issueNumber"
-                    android:layout_below="@+id/binding"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignRight="@+id/binding"
-                    android:layout_alignEnd="@+id/binding" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Format"
-                    android:id="@+id/format"
-                    android:layout_below="@+id/issueNumber"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignRight="@+id/issueNumber"
-                    android:layout_alignEnd="@+id/issueNumber" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="URL"
-                    android:id="@+id/url"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:autoLink="web"
-                    android:layout_below="@+id/format"
-                    android:layout_toStartOf="@+id/cover"
-                    android:layout_toLeftOf="@+id/cover" />
-            </RelativeLayout>
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:context=".MainActivity$PlaceholderFragment"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:hint="Jméno comicsu"
+                android:id="@+id/name"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/cover"
+                android:layout_toLeftOf="@+id/cover"
+                android:paddingEnd="5dp"
+                android:textColor="#808080" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/description"
-                    android:hint="Popis"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Žánr"
+                android:id="@+id/genre"
+                android:layout_below="@+id/name"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Poznámky"
-                    android:id="@+id/notes"
-                    android:layout_below="@+id/description"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:hint="Hodnocení"
+                android:id="@+id/rating"
+                android:layout_alignLeft="@+id/cover"
+                android:layout_below="@+id/cover" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Autoři"
-                    android:id="@+id/authors"
-                    android:layout_below="@+id/notes"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Vydavatel"
+                android:id="@+id/publisher"
+                android:layout_below="@+id/genre"
+                android:layout_alignLeft="@+id/genre"
+                android:layout_alignStart="@+id/genre"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/comments"
-                    android:layout_below="@+id/authors"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:autoLink="web"
-                    android:hint="Komentáře" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Počet stránek"
+                android:id="@+id/pagesCount"
+                android:layout_below="@+id/publisher"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Cena"
+                android:id="@+id/price"
+                android:layout_below="@+id/pagesCount"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/series"
+                android:layout_alignEnd="@+id/series" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Původní název"
+                android:id="@+id/originalName"
+                android:layout_below="@+id/series"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Vazba"
+                android:id="@+id/binding"
+                android:layout_below="@+id/originalName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Série"
+                android:id="@+id/series"
+                android:layout_below="@+id/price"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/cover"
+                android:layout_toStartOf="@+id/cover" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Vydání"
+                android:id="@+id/issueNumber"
+                android:layout_below="@+id/binding"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/binding"
+                android:layout_alignEnd="@+id/binding" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Format"
+                android:id="@+id/format"
+                android:layout_below="@+id/issueNumber"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/issueNumber"
+                android:layout_alignEnd="@+id/issueNumber" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="URL"
+                android:id="@+id/url"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:autoLink="web"
+                android:layout_below="@+id/format"
+                android:layout_toStartOf="@+id/cover"
+                android:layout_toLeftOf="@+id/cover" />
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity$PlaceholderFragment">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/description"
+                android:hint="Popis"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Poznámky"
+                android:id="@+id/notes"
+                android:layout_below="@+id/description"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Autoři"
+                android:id="@+id/authors"
+                android:layout_below="@+id/notes"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/comments"
+                android:layout_below="@+id/authors"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:autoLink="web"
+                android:hint="Komentáře" />
 
 
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
