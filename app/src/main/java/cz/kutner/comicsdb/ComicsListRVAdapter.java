@@ -73,7 +73,12 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
     public void onBindViewHolder(ComicsViewHolder comicsViewHolder, int i) {
         comicsViewHolder.comicsName.setText(comics.get(i).getName());
         comicsViewHolder.publishedDate.setText(comics.get(i).getPublished());
-        comicsViewHolder.rating.setText(Utils.nvl(comics.get(i).getRating().toString(), ""));
+        if (comics.get(i).getRating() > 0) {
+            comicsViewHolder.rating.setText(comics.get(i).getRating().toString());
+        } else {
+            comicsViewHolder.rating.setText(" ");
+
+        }
         comicsViewHolder.Url = comics.get(i).getUrl();
     }
 
