@@ -49,7 +49,6 @@ public class Comics {
         this.series = series;
     }
 
-
     public Comics() {
         super();
         this.comments = new ArrayList<Comment>();
@@ -180,18 +179,6 @@ public class Comics {
         this.url = url;
         this.rating = 0;
         this.comments = new ArrayList<Comment>();
-    }
-
-    @Override
-    public String toString() {
-        String printableName = this.name;
-        if (published != null) {
-            printableName += " - " + published;
-        }
-        if (rating > 0) {
-            printableName += "\n" + rating;
-        }
-        return printableName;
     }
 
     public String getUrl() {
