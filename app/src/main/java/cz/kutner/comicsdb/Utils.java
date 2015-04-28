@@ -43,7 +43,6 @@ public class Utils {
                 if (rating.isEmpty()) {
                     rating = "0";
                 }
-                ;
                 Comics comics = new Comics(title, url);
                 comics.setPublished(year);
                 comics.setRating(Integer.valueOf(rating));

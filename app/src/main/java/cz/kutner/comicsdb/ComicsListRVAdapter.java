@@ -1,7 +1,9 @@
 package cz.kutner.comicsdb;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +15,19 @@ import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
- * Created by lukas.kutner on 27.4.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
  */
 public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapter.ComicsViewHolder> {
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
+        private final String LOG_TAG = ComicsViewHolder.class.getSimpleName();
+        public final static String COMICS_URL = "cz.kutner.comicsdbclient.comicsdbclient.comics_url";
+
         CardView cv;
         TextView comicsName;
         TextView publishedDate;
         TextView rating;
+        String Url;
 
         ComicsViewHolder(View itemView) {
             super(itemView);
@@ -29,6 +35,14 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
             comicsName = (TextView) itemView.findViewById(R.id.comics_name);
             publishedDate = (TextView) itemView.findViewById(R.id.comics_published);
             rating = (TextView) itemView.findViewById(R.id.comics_rating);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ComicsDetailActivity.class);
+                    intent.putExtra(COMICS_URL, Url);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -60,6 +74,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         comicsViewHolder.comicsName.setText(comics.get(i).getName());
         comicsViewHolder.publishedDate.setText(comics.get(i).getPublished());
         comicsViewHolder.rating.setText(Utils.nvl(comics.get(i).getRating().toString(), ""));
+        comicsViewHolder.Url = comics.get(i).getUrl();
     }
 
     @Override

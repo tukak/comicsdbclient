@@ -57,7 +57,6 @@ public class ComicsListFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Comics> result) {
             if (result != null) {
-                Log.i(LOG_TAG, "Máme data");
                 adapter.setComicsList(result);
                 adapter.notifyDataSetChanged();
             }

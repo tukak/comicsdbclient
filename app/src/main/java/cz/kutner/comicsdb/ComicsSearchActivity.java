@@ -18,7 +18,6 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class ComicsSearchActivity extends ActionBarActivity {
     private final String LOG_TAG = ComicsSearchActivity.class.getSimpleName();
-    public final static String COMICS_URL = "cz.kutner.comicsdbclient.comicsdbclient.comics_url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +75,5 @@ public class ComicsSearchActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void listItemOnClick(View v) {
-        Intent intent = new Intent(this, ComicsDetailActivity.class);
-        intent.putExtra(COMICS_URL, v.getTag().toString());
-        startActivity(intent);
     }
 }
