@@ -49,7 +49,6 @@ public class Utils {
                 result.add(comics);
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             Log.e(LOG_TAG, e.getMessage(), e);
         }
         return result;

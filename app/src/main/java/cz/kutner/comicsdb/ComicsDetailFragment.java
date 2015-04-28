@@ -274,7 +274,6 @@ public class ComicsDetailFragment extends Fragment {
                     comics.addComment(new Comment(nick, stars, commentText));
                 }
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 Log.e(LOG_TAG, e.getMessage(), e);
             }
             return comics;
