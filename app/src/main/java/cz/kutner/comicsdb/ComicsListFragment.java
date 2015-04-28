@@ -35,9 +35,9 @@ public class ComicsListFragment extends Fragment {
         if (args != null && args.containsKey("query")) { //neco vyhledavame
             String searchText = args.getString("query");
             searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-            task.execute("http://comicsdb.cz/search.php?searchfor=" + searchText);
+            task.execute(getString(R.string.url_comics_search) + searchText);
         } else { //zobrazujeme nejnovější
-            task.execute("http://comicsdb.cz/comicslist.php");
+            task.execute(getString(R.string.url_comics_list_new));
         }
 
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.comics_recycler_view);

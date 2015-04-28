@@ -14,7 +14,7 @@ import android.widget.SearchView;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class MainActivity extends ActionBarActivity {
-    public final static String COMICS_URL = "cz.kutner.comicsdbclient.comicsdbclient.comics_url";
+    public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
     public final static String SEARCH_QUERY = "cz.kutner.comicsdbclient.comicsdbclient.search_query";
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     @Override

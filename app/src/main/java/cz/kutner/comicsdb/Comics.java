@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Comics {
     private String name;
-    private String url;
+    private Integer id;
     private String published;
     private Integer voteCount;
     private Integer rating;
@@ -173,19 +173,19 @@ public class Comics {
         this.notes = notes;
     }
 
-    public Comics(String name, String url) {
+    public Comics(String name, Integer id) {
         this.name = name;
-        this.url = url;
+        this.id = id;
         this.rating = 0;
         this.comments = new ArrayList<>();
     }
 
-    public String getUrl() {
-        return url;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPublished() {

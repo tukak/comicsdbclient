@@ -19,13 +19,13 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = ComicsViewHolder.class.getSimpleName();
-        public final static String COMICS_URL = "cz.kutner.comicsdbclient.comicsdbclient.comics_url";
+        public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
 
         CardView cv;
         TextView comicsName;
         TextView publishedDate;
         TextView rating;
-        String Url;
+        Integer comicsId;
 
         ComicsViewHolder(View itemView) {
             super(itemView);
@@ -37,7 +37,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), ComicsDetailActivity.class);
-                    intent.putExtra(COMICS_URL, Url);
+                    intent.putExtra(COMICS_ID, comicsId);
                     v.getContext().startActivity(intent);
                 }
             });
@@ -76,7 +76,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
             comicsViewHolder.rating.setText(" ");
 
         }
-        comicsViewHolder.Url = comics.get(i).getUrl();
+        comicsViewHolder.comicsId = comics.get(i).getId();
     }
 
 }

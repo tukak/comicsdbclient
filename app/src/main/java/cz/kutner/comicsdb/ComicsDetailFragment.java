@@ -41,13 +41,13 @@ public class ComicsDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.comics_detail, container, false);
         Bundle args = this.getArguments();
-        String url = args.getString("url");
+        Integer id = args.getInt("id");
         FetchComicsDetail task = new FetchComicsDetail(this.getActivity());
-        task.execute(url);
+        task.execute(id);
         return rootView;
     }
 
-    public class FetchComicsDetail extends AsyncTask<String, Void, Comics> {
+    public class FetchComicsDetail extends AsyncTask<Integer, Void, Comics> {
         private final String LOG_TAG = FetchComicsDetail.class.getSimpleName();
 
         Activity myActivity;
@@ -112,18 +112,19 @@ public class ComicsDetailFragment extends Fragment {
                     }
                     comments.setText(comments.getText() + "\n" + comment.getText() + "\n\n");
                 }
-                URL.setText(result.getUrl());
+                Log.i(LOG_TAG, result.getId().toString());
+                URL.setText(getString(R.string.url_comics_detail) + result.getId().toString());
             }
         }
 
         @Override
-        protected Comics doInBackground(String... params) {
+        protected Comics doInBackground(Integer... params) {
             Comics comics = new Comics();
             try {
                 Document doc;
                 Node sibling;
-                String url = "http://comicsdb.cz/" + params[0];
-                comics.setUrl(url);
+                String url = getString(R.string.url_comics_detail) + params[0].toString();
+                comics.setId(params[0]);
                 doc = Jsoup.connect(url).get();
                 // title - H5
                 String name = doc.select("H5").text();

@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -9,6 +10,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.4.2015.
@@ -34,13 +37,13 @@ class Utils {
 		        7   <th scope="col" title="Datum vložení">VLOŽENO</th>
 		        8    <th scope="col" title="Datum aktualizace">AKTUAL</th> */
                 String title = columns.get(0).select("a").first().text();
-                String url = columns.get(0).select("a").first().attr("href");
+                Integer id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")); //gets the id in the end of the url
                 String year = columns.get(1).text();
                 String rating = columns.get(3).text();
                 if (rating.isEmpty()) {
                     rating = "0";
                 }
-                Comics comics = new Comics(title, url);
+                Comics comics = new Comics(title, id);
                 comics.setPublished(year);
                 comics.setRating(Integer.valueOf(rating));
                 result.add(comics);

@@ -25,10 +25,10 @@ public class ComicsDetailActivity extends ActionBarActivity {
         toolbar.setTitle("Detail");
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        String url = intent.getStringExtra(MainActivity.COMICS_URL);
+        Integer id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
         Fragment fragment = new ComicsDetailFragment();
         Bundle args = new Bundle();
-        args.putString("url", url);
+        args.putInt("id", id);
         fragment.setArguments(args);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
