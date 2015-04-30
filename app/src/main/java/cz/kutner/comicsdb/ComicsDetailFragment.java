@@ -39,16 +39,18 @@ public class ComicsDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.comics_detail, container, false);
+        View rootView = inflater.inflate(R.layout.loading, container, false);
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
         FetchComicsDetail task = new FetchComicsDetail(this.getActivity());
+        task.setViewGroup(container);
         task.execute(id);
         return rootView;
     }
 
     public class FetchComicsDetail extends AsyncTask<Integer, Void, Comics> {
         private final String LOG_TAG = FetchComicsDetail.class.getSimpleName();
+        private ViewGroup container;
 
         Activity myActivity;
 
@@ -56,10 +58,17 @@ public class ComicsDetailFragment extends Fragment {
             this.myActivity = activity;
         }
 
+        protected void setViewGroup(ViewGroup container) {
+            this.container = container;
+        }
 
         @Override
         protected void onPostExecute(Comics result) {
             if (result != null) {
+                LayoutInflater inflater = myActivity.getLayoutInflater();
+                View view = inflater.inflate(R.layout.comics_detail, container, false);
+                container.removeAllViews();
+                container.addView(view);
                 TextView name = (TextView) myActivity.findViewById(R.id.name);
                 TextView rating = (TextView) myActivity.findViewById(R.id.rating);
                 TextView description = (TextView) myActivity.findViewById(R.id.description);
