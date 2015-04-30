@@ -3,7 +3,6 @@ package cz.kutner.comicsdb;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -42,50 +41,39 @@ public class ComicsDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.loading, container, false);
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
-        FetchComicsDetail task = new FetchComicsDetail(this.getActivity());
-        task.setViewGroup(container);
+        FetchComicsDetail task = new FetchComicsDetail(this.getActivity(), R.layout.comics_detail, container);
         task.execute(id);
         return rootView;
     }
 
-    public class FetchComicsDetail extends AsyncTask<Integer, Void, Comics> {
+    public class FetchComicsDetail extends FetchLoadingAsyncTask<Integer, Void, Comics> {
         private final String LOG_TAG = FetchComicsDetail.class.getSimpleName();
-        private ViewGroup container;
 
-        Activity myActivity;
-
-        public FetchComicsDetail(Activity activity) {
-            this.myActivity = activity;
-        }
-
-        protected void setViewGroup(ViewGroup container) {
-            this.container = container;
+        public FetchComicsDetail(Activity activity, Integer successLayout, ViewGroup container) {
+            super(activity, successLayout, container);
         }
 
         @Override
         protected void onPostExecute(Comics result) {
             if (result != null) {
-                LayoutInflater inflater = myActivity.getLayoutInflater();
-                View view = inflater.inflate(R.layout.comics_detail, container, false);
-                container.removeAllViews();
-                container.addView(view);
-                TextView name = (TextView) myActivity.findViewById(R.id.name);
-                TextView rating = (TextView) myActivity.findViewById(R.id.rating);
-                TextView description = (TextView) myActivity.findViewById(R.id.description);
-                TextView genre = (TextView) myActivity.findViewById(R.id.genre);
-                TextView publisher = (TextView) myActivity.findViewById(R.id.publisher);
-                TextView issueNumber = (TextView) myActivity.findViewById(R.id.issueNumber);
-                TextView binding = (TextView) myActivity.findViewById(R.id.binding);
-                TextView format = (TextView) myActivity.findViewById(R.id.format);
-                TextView pagesCount = (TextView) myActivity.findViewById(R.id.pagesCount);
-                TextView originalName = (TextView) myActivity.findViewById(R.id.originalName);
-                TextView price = (TextView) myActivity.findViewById(R.id.price);
-                TextView notes = (TextView) myActivity.findViewById(R.id.notes);
-                TextView authors = (TextView) myActivity.findViewById(R.id.authors);
-                TextView series = (TextView) myActivity.findViewById(R.id.series);
-                TextView comments = (TextView) myActivity.findViewById(R.id.comments);
-                ImageView cover = (ImageView) myActivity.findViewById(R.id.cover);
-                TextView URL = (TextView) myActivity.findViewById(R.id.url);
+                super.onPostExecute(result);
+                TextView name = (TextView) activity.findViewById(R.id.name);
+                TextView rating = (TextView) activity.findViewById(R.id.rating);
+                TextView description = (TextView) activity.findViewById(R.id.description);
+                TextView genre = (TextView) activity.findViewById(R.id.genre);
+                TextView publisher = (TextView) activity.findViewById(R.id.publisher);
+                TextView issueNumber = (TextView) activity.findViewById(R.id.issueNumber);
+                TextView binding = (TextView) activity.findViewById(R.id.binding);
+                TextView format = (TextView) activity.findViewById(R.id.format);
+                TextView pagesCount = (TextView) activity.findViewById(R.id.pagesCount);
+                TextView originalName = (TextView) activity.findViewById(R.id.originalName);
+                TextView price = (TextView) activity.findViewById(R.id.price);
+                TextView notes = (TextView) activity.findViewById(R.id.notes);
+                TextView authors = (TextView) activity.findViewById(R.id.authors);
+                TextView series = (TextView) activity.findViewById(R.id.series);
+                TextView comments = (TextView) activity.findViewById(R.id.comments);
+                ImageView cover = (ImageView) activity.findViewById(R.id.cover);
+                TextView URL = (TextView) activity.findViewById(R.id.url);
 
                 name.setText(result.getName());
                 if (result.getRating() > 0) {
