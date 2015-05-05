@@ -38,7 +38,7 @@ public class ComicsDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.loading, container, false);
+        View rootView = new View(getActivity());
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
         FetchComicsDetail task = new FetchComicsDetail(this.getActivity(), R.layout.comics_detail, container);

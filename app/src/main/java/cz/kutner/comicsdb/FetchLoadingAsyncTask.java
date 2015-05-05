@@ -70,6 +70,11 @@ abstract class FetchLoadingAsyncTask<Params, Progress, Result>
             this.cancel(true);
             //TODO nemaze se nacitaci kolecko
             //TODO opakování akce
+        } else {
+            LayoutInflater inflater = activity.getLayoutInflater();
+            View view = inflater.inflate(R.layout.loading, container, false);
+            container.removeAllViews();
+            container.addView(view);
         }
     }
 }

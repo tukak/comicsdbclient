@@ -30,8 +30,7 @@ public class ComicsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.loading, container, false);
-        //TODO přeunout do async loading tasku
+        View rootView = new View(getActivity());
         FetchComicsListTask task = new FetchComicsListTask(this.getActivity(), R.layout.fragment_comics_list, container);
         Bundle args = this.getArguments();
         if (args != null && args.containsKey("query")) { //neco vyhledavame
