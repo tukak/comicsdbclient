@@ -14,5 +14,6 @@
     <string name="url_comics_detail">http://comicsdb.cz/comics.php?id=</string>
     <string name="url_comics_search">http://comicsdb.cz/search.php?searchfor=</string>
     <string name="url_comics_list_new">http://comicsdb.cz/comicslist.php</string>
+    <string name="loading_error">Nepodařilo se načíst data. Jste připojeni k Internetu?</string>
 
 </resources>
