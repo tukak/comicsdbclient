@@ -22,7 +22,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class ComicsDetailFragment extends Fragment {
 
-    private String LOG_TAG = this.getClass().getSimpleName();
+    private String LOG_TAG = getClass().getSimpleName();
     private ViewGroup container;
 
     public ComicsDetailFragment() {

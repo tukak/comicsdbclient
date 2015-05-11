@@ -21,7 +21,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 11.5.2015.
  */
 public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
-    private String LOG_TAG = this.getClass().getSimpleName();
+    private String LOG_TAG = getClass().getSimpleName();
     private Context context;
 
     public FetchComicsDetailTask(Context context) {

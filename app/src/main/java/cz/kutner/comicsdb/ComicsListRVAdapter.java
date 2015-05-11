@@ -18,7 +18,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapter.ComicsViewHolder> {
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = ComicsViewHolder.class.getSimpleName();
+        private final String LOG_TAG = getClass().getSimpleName();
         public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
 
         CardView cv;

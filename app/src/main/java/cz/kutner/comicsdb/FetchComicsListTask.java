@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class FetchComicsListTask
         extends AsyncTask<String, Void, List<Comics>> {
-    private String LOG_TAG = this.getClass().getSimpleName();
+    private String LOG_TAG = getClass().getSimpleName();
 
     @Override
     protected void onPostExecute(List<Comics> result) {

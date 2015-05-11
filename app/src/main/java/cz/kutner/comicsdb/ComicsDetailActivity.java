@@ -15,7 +15,7 @@ import android.widget.SearchView;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class ComicsDetailActivity extends ActionBarActivity {
-    private final String LOG_TAG = MainActivity.class.getSimpleName();
+    private final String LOG_TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
