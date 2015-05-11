@@ -54,7 +54,7 @@ public class ComicsDetailFragment extends Fragment {
     private void loadComicsDetail() {
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
-        FetchComicsDetailTask task = new FetchComicsDetailTask();
+        FetchComicsDetailTask task = new FetchComicsDetailTask(this.getActivity().getApplicationContext());
         task.execute(id);
         EventBus.getInstance().register(this);
     }

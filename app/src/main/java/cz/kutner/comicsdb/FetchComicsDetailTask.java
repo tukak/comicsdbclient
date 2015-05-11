@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -21,6 +22,11 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
  */
 public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
     private String LOG_TAG = this.getClass().getSimpleName();
+    private Context context;
+
+    public FetchComicsDetailTask(Context context) {
+        this.context = context.getApplicationContext();
+    }
 
     @Override
     protected void onPostExecute(Comics result) {
@@ -33,8 +39,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
         try {
             Document doc;
             Node sibling;
-            //TODO Parametrizovat cestu
-            String url = "http://comicsdb.cz/comics.php?id=" + params[0].toString();
+            String url = context.getString(R.string.url_comics_detail) + params[0].toString();
             comics.setId(params[0]);
             doc = Jsoup.connect(url).get();
             // title - H5
