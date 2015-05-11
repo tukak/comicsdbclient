@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -58,5 +59,27 @@ class Utils {
 
     public static <T> T nvl(T a, T b) {
         return (a == null) ? b : a;
+    }
+
+    public static boolean isConnected(Activity activity) {
+        boolean connected = false;
+        ConnectivityManager cm = (ConnectivityManager) activity.getApplicationContext().getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            connected = true;
+        }
+
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            connected = true;
+        }
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            connected = true;
+        }
+        return connected;
     }
 }
