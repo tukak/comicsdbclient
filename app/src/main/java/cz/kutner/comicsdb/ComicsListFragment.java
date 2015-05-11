@@ -75,7 +75,6 @@ public class ComicsListFragment extends Fragment {
 
     @Subscribe
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
-        Log.i(LOG_TAG, "Máme ho tady");
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
