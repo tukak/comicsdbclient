@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 
 import java.io.InputStream;
 
+import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.model.Comics;
@@ -67,9 +68,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                     coverURI = "http://comicsdb.cz/" + coverURI;
                 }
                 if (!coverURI.isEmpty()) {
-                    InputStream in = new java.net.URL(coverURI).openStream();
-                    Bitmap cover = BitmapFactory.decodeStream(in);
-                    comics.setCover(cover);
+                    comics.setCover(Utils.getFromCacheOrDownload(coverURI));
                 }
             }
 
@@ -191,9 +190,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                     if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
                         iconUrl = "http://comicsdb.cz/" + iconUrl;
                     }
-                    InputStream in = new java.net.URL(iconUrl).openStream();
-                    Bitmap icon = BitmapFactory.decodeStream(in);
-                    commentObject.setIcon(icon);
+                    commentObject.setIcon(Utils.getFromCacheOrDownload(iconUrl));
                 }
                 comics.addComment(commentObject);
             }

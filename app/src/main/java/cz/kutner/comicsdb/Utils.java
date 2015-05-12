@@ -2,6 +2,8 @@ package cz.kutner.comicsdb;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -11,6 +13,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,5 +85,15 @@ public class Utils {
             connected = true;
         }
         return connected;
+    }
+
+    public static Bitmap getFromCacheOrDownload(String url) throws IOException {
+        Bitmap result = (Bitmap) Cache.getInstance().getLru().get(url);
+        if (result == null) {
+            InputStream in = new java.net.URL(url).openStream();
+            result = BitmapFactory.decodeStream(in);
+            Cache.getInstance().getLru().put(url, result);
+        }
+        return result;
     }
 }
