@@ -13,7 +13,7 @@ public class Cache {
 
     private Cache() {
 
-        lru = new LruCache<Object, Object>(1024);
+        lru = new LruCache<>(1024);
 
     }
 

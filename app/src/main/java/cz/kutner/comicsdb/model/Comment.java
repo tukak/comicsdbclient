@@ -19,12 +19,12 @@ public class Comment {
         this.time = time;
     }
 
-    public String getTime() {
-        return time;
+    public void setIcon(Bitmap icon) {
+        this.icon = icon;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public String getTime() {
+        return time;
     }
 
     public Bitmap getIcon() {
@@ -32,24 +32,12 @@ public class Comment {
         return icon;
     }
 
-    public void setIcon(Bitmap icon) {
-        this.icon = icon;
-    }
-
     public String getNick() {
         return nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public Integer getStars() {
         return stars;
-    }
-
-    public void setStars(Integer stars) {
-        this.stars = stars;
     }
 
     public String getText() {

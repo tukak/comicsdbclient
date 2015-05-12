@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <view
-        android:layout_width="80px"
-        android:layout_height="80px"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         class="cz.kutner.comicsdb.ext.MaterialProgressBar"
         android:id="@+id/view"
         android:layout_centerInParent="true" />

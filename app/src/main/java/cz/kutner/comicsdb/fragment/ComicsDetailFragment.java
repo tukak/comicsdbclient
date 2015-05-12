@@ -130,6 +130,7 @@ public class ComicsDetailFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
+        rv.setHasFixedSize(true);
         //TODO nastavit minimální výšku
     }
 }

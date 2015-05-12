@@ -12,14 +12,11 @@ import android.widget.Button;
 import com.squareup.otto.Subscribe;
 
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
-import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsListTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -29,8 +26,6 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public class ComicsListFragment extends Fragment {
 
     private final String LOG_TAG = getClass().getSimpleName();
-    private List<Comics> comicsList = new ArrayList<>();
-    private ComicsListRVAdapter adapter = new ComicsListRVAdapter(comicsList);
     private ViewGroup container;
 
     public ComicsListFragment() {
@@ -84,10 +79,10 @@ public class ComicsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        ComicsListRVAdapter adapter = new ComicsListRVAdapter(event.getResult());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
-        adapter.setComicsList(event.getResult());
-        adapter.notifyDataSetChanged();
+        rv.setHasFixedSize(true);
         container.removeAllViews();
         container.addView(view);
     }

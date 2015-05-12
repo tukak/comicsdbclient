@@ -1,8 +1,6 @@
 package cz.kutner.comicsdb.task;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -12,8 +10,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
-
-import java.io.InputStream;
 
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
@@ -185,7 +181,6 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                 }
                 String commentText = comment.text().replace("| ", "");
                 Comment commentObject = new Comment(nick, stars, commentText, time);
-                //TODO cachovat obrázky
                 if (!iconUrl.isEmpty()) {
                     if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
                         iconUrl = "http://comicsdb.cz/" + iconUrl;

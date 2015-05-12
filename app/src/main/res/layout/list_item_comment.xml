@@ -37,7 +37,9 @@
                 tools:text="Jméno"
                 android:id="@+id/commentNick"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/nickIcon" />
+                android:layout_toRightOf="@+id/nickIcon"
+                android:layout_toLeftOf="@+id/commentRatingBar"
+                android:layout_toStartOf="@+id/commentRatingBar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,7 +49,9 @@
                 android:id="@+id/commentTime"
                 android:layout_below="@+id/commentNick"
                 android:layout_alignLeft="@+id/commentNick"
-                android:layout_alignStart="@+id/commentNick" />
+                android:layout_alignStart="@+id/commentNick"
+                android:layout_alignRight="@+id/commentNick"
+                android:layout_alignEnd="@+id/commentNick" />
 
 
             <RatingBar
