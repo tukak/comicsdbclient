@@ -62,7 +62,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
             }
             Elements coverElements = doc.select("img[title=Obálka]");
             if (coverElements.size() > 0) {
-                String coverURI = doc.select("img[title=Obálka]").first().attr("src");
+                String coverURI = coverElements.first().attr("src");
                 if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
                     coverURI = "http://comicsdb.cz/" + coverURI;
                 }
@@ -178,12 +178,21 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
             }
             for (Element comment : doc.select("div#prispevek")) {
                 String nick = comment.select("span.prispevek-nick").first().text();
+                String time = comment.select("span.prispevek-cas").first().text();
                 Integer stars = comment.select("img.star").size();
+                String iconUrl = comment.select("div#prispevek-icon").select("img").first().attr("src");
                 for (Element remove : comment.select("span,img")) {
                     remove.remove();
                 }
                 String commentText = comment.text().replace("| ", "");
-                comics.addComment(new Comment(nick, stars, commentText));
+                Comment commentObject = new Comment(nick, stars, commentText, time);
+                Log.i(LOG_TAG, iconUrl);
+                if (!iconUrl.isEmpty()) {
+                    InputStream in = new java.net.URL(iconUrl).openStream();
+                    Bitmap icon = BitmapFactory.decodeStream(in);
+                    commentObject.setIcon(icon);
+                }
+                comics.addComment(commentObject);
             }
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage(), e);

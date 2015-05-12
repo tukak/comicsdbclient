@@ -14,10 +14,11 @@ public class Comment {
 
     //TODO nastavit čas do příspěvku
     //TODO načítat obrázky
-    public Comment(String nick, Integer stars, String text) {
+    public Comment(String nick, Integer stars, String text, String time) {
         this.nick = nick;
         this.stars = stars;
         this.text = text;
+        this.time = time;
     }
 
     public String getTime() {

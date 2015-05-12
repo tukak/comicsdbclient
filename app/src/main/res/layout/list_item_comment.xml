@@ -16,35 +16,46 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/nickIcon"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:maxHeight="50dp"
                 android:maxWidth="40dp"
                 android:minHeight="50dp"
                 android:minWidth="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                tools:text="Jméno, datum"
-                android:id="@+id/commentNameDate"
+                tools:text="Jméno"
+                android:id="@+id/commentNick"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/nickIcon"
-                android:layout_toLeftOf="@+id/commentRatingBar"
-                android:layout_toStartOf="@+id/commentRatingBar" />
+                android:layout_toRightOf="@+id/nickIcon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="Čas"
+                android:id="@+id/commentTime"
+                android:layout_alignBaseline="@+id/commentNick"
+                android:layout_toRightOf="@+id/commentNick"
+                android:layout_toEndOf="@+id/commentNick" />
+
 
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/commentRatingBar"
                 style="?android:attr/ratingBarStyleSmall"
-                android:layout_alignParentTop="true"
+                android:layout_alignTop="@+id/commentNick"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -55,8 +66,8 @@
                 tools:text="Vlastní text komentáře, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí"
                 android:id="@+id/commentText"
                 android:layout_below="@+id/commentRatingBar"
-                android:layout_alignLeft="@+id/commentNameDate"
-                android:layout_alignStart="@+id/commentNameDate"
+                android:layout_alignLeft="@+id/commentNick"
+                android:layout_alignStart="@+id/commentNick"
                 android:paddingTop="5dp" />
 
         </RelativeLayout>

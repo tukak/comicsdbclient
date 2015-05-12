@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,17 +27,19 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
     public static class CommentsViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = getClass().getSimpleName();
 
-        TextView commentNameDate;
+        TextView commentNick;
+        TextView commentTime;
         TextView commentText;
         RatingBar commentRatingBar;
-        ImageButton nickIcon;
+        ImageView nickIcon;
 
         CommentsViewHolder(View itemView) {
             super(itemView);
-            commentNameDate = (TextView) itemView.findViewById(R.id.commentNameDate);
+            commentNick = (TextView) itemView.findViewById(R.id.commentNick);
+            commentTime = (TextView) itemView.findViewById(R.id.commentTime);
             commentText = (TextView) itemView.findViewById(R.id.commentText);
             commentRatingBar = (RatingBar) itemView.findViewById(R.id.commentRatingBar);
-            nickIcon = (ImageButton) itemView.findViewById(R.id.nickIcon);
+            nickIcon = (ImageView) itemView.findViewById(R.id.nickIcon);
         }
     }
 
@@ -64,8 +67,10 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
 
     @Override
     public void onBindViewHolder(CommentsViewHolder commentsViewHolder, int i) {
-        commentsViewHolder.commentNameDate.setText(comments.get(i).getNick() + " - " + comments.get(i).getTime());
+        commentsViewHolder.commentNick.setText(comments.get(i).getNick() + "|");
+        commentsViewHolder.commentTime.setText(comments.get(i).getTime());
         commentsViewHolder.commentText.setText(comments.get(i).getText());
         commentsViewHolder.commentRatingBar.setRating(comments.get(i).getStars());
+        commentsViewHolder.nickIcon.setImageBitmap(comments.get(i).getIcon());
     }
 }
