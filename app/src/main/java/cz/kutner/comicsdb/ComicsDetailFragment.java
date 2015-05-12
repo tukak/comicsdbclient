@@ -3,6 +3,8 @@ package cz.kutner.comicsdb;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +89,6 @@ public class ComicsDetailFragment extends Fragment {
         TextView notes = (TextView) activity.findViewById(R.id.notes);
         TextView authors = (TextView) activity.findViewById(R.id.authors);
         TextView series = (TextView) activity.findViewById(R.id.series);
-        TextView comments = (TextView) activity.findViewById(R.id.comments);
         ImageView cover = (ImageView) activity.findViewById(R.id.cover);
         TextView URL = (TextView) activity.findViewById(R.id.url);
 
@@ -117,15 +118,13 @@ public class ComicsDetailFragment extends Fragment {
         authors.setText(result.getAuthors());
         series.setText(result.getSeries());
         cover.setImageBitmap(result.getCover());
-        comments.setText("Komentáře a hodnocení:\n\n");
-        for (Comment comment : result.getComments()) {
-            comments.setText(comments.getText() + comment.getNick());
-            if (comment.getStars() > 0) {
-                comments.setText(comments.getText() + " - " + comment.getStars().toString() + "/5");
-            }
-            comments.setText(comments.getText() + "\n" + comment.getText() + "\n\n");
-        }
-        Log.i(LOG_TAG, result.getId().toString());
         URL.setText(getString(R.string.url_comics_detail) + result.getId().toString());
+
+        CommentsRVAdapter adapter = new CommentsRVAdapter(result.getComments());
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.comments_recycler_view);
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        rv.setLayoutManager(llm);
+        rv.setAdapter(adapter);
+        //TODO nastavit minimální výšku
     }
 }

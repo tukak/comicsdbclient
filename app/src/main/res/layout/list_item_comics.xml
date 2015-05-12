@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardUseCompatPadding="true"
-        android:id="@+id/cv">
+        android:id="@+id/card_view_comics">
 
         <RelativeLayout
             android:layout_width="match_parent"

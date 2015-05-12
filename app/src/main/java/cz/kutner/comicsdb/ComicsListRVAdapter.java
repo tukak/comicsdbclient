@@ -21,7 +21,6 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         private final String LOG_TAG = getClass().getSimpleName();
         public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
 
-        CardView cv;
         TextView comicsName;
         TextView publishedDate;
         TextView rating;
@@ -29,7 +28,6 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
 
         ComicsViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
             comicsName = (TextView) itemView.findViewById(R.id.comics_name);
             publishedDate = (TextView) itemView.findViewById(R.id.comics_published);
             rating = (TextView) itemView.findViewById(R.id.comics_rating);

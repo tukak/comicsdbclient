@@ -215,18 +215,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/comments"
                 android:layout_below="@+id/authors"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:autoLink="web"
-                tools:text="Komentáře" />
-
-
+                android:minHeight="500dp"
+                android:id="@+id/comments_recycler_view" />
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

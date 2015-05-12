@@ -1,5 +1,7 @@
 package cz.kutner.comicsdb;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 9.4.2015.
  */
@@ -7,11 +9,32 @@ class Comment {
     private String nick;
     private Integer stars;
     private String text;
+    private Bitmap icon;
+    private String time;
 
+    //TODO nastavit čas do příspěvku
+    //TODO načítat obrázky
     public Comment(String nick, Integer stars, String text) {
         this.nick = nick;
         this.stars = stars;
         this.text = text;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Bitmap getIcon() {
+
+        return icon;
+    }
+
+    public void setIcon(Bitmap icon) {
+        this.icon = icon;
     }
 
     public String getNick() {
