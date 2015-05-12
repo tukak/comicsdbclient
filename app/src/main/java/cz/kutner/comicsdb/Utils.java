@@ -14,12 +14,12 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.model.Comics;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.4.2015.
  */
-class Utils {
+public class Utils {
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
     public static List<Comics> getComicsListFromURL(String uri) {

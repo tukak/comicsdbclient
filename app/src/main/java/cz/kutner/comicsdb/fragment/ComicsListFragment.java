@@ -1,10 +1,9 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,12 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
+import cz.kutner.comicsdb.event.EventBus;
+import cz.kutner.comicsdb.Utils;
+import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
+import cz.kutner.comicsdb.model.Comics;
+import cz.kutner.comicsdb.task.FetchComicsListTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**

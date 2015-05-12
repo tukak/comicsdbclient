@@ -1,9 +1,13 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.task;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.List;
+
+import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
+import cz.kutner.comicsdb.event.EventBus;
+import cz.kutner.comicsdb.Utils;
+import cz.kutner.comicsdb.model.Comics;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 11.5.2015.

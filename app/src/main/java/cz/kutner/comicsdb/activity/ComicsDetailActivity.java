@@ -1,46 +1,39 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.activity;
 
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import cz.kutner.comicsdb.fragment.ComicsDetailFragment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
-public class ComicsSearchActivity extends ActionBarActivity {
+public class ComicsDetailActivity extends ActionBarActivity {
     private final String LOG_TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comics_search);
-        handleIntent(getIntent());
-    }
-
-    protected void onNewIntent(Intent intent) {
-        handleIntent(intent);
-    }
-
-    private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Fragment fragment = new ComicsListFragment();
-            Bundle args = new Bundle();
-            args.putString("query", query);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar.setTitle("Výsledek pro \"" + query + "\"");
-            setSupportActionBar(toolbar);
-            fragment.setArguments(args);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Detail");
+        setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        Integer id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
+        Fragment fragment = new ComicsDetailFragment();
+        Bundle args = new Bundle();
+        args.putInt("id", id);
+        fragment.setArguments(args);
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.search_container, fragment)
+                    .add(R.id.container, fragment)
                     .commit();
         }
     }

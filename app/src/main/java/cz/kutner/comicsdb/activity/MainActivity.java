@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.activity;
 
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.widget.SearchView;
 
+import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class MainActivity extends ActionBarActivity {

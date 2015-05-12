@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.task;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +15,10 @@ import org.jsoup.select.Elements;
 
 import java.io.InputStream;
 
+import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
+import cz.kutner.comicsdb.event.EventBus;
+import cz.kutner.comicsdb.model.Comics;
+import cz.kutner.comicsdb.model.Comment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**

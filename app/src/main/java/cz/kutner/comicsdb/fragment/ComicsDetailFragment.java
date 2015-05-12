@@ -1,11 +1,10 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,12 @@ import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
+import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
+import cz.kutner.comicsdb.event.EventBus;
+import cz.kutner.comicsdb.Utils;
+import cz.kutner.comicsdb.adapter.CommentsRVAdapter;
+import cz.kutner.comicsdb.model.Comics;
+import cz.kutner.comicsdb.task.FetchComicsDetailTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**

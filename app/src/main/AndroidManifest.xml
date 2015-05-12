@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="cz.kutner.comicsdb.MainActivity"
+            android:name="cz.kutner.comicsdb.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,27 +24,27 @@
         </activity>
 
         <activity
-            android:name="cz.kutner.comicsdb.ComicsDetailActivity"
+            android:name="cz.kutner.comicsdb.activity.ComicsDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="cz.kutner.comicsdb.MainActivity"
+            android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cz.kutner.comicsdb.MainActivity" />
+                android:value="cz.kutner.comicsdb.activity.MainActivity" />
         </activity>
 
         <activity
-            android:name="cz.kutner.comicsdb.AboutActivity"
+            android:name="cz.kutner.comicsdb.activity.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name="cz.kutner.comicsdb.ComicsSearchActivity"
+            android:name="cz.kutner.comicsdb.activity.ComicsSearchActivity"
             android:label="@string/title_activity_comics_search"
-            android:parentActivityName="cz.kutner.comicsdb.MainActivity">
+            android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cz.kutner.comicsdb.MainActivity" />
+                android:value="cz.kutner.comicsdb.activity.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
 

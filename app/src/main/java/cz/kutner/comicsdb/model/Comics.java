@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.model;
 
 import android.graphics.Bitmap;
 

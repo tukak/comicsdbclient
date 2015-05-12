@@ -1,7 +1,6 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.adapter;
 
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cz.kutner.comicsdb.activity.ComicsDetailActivity;
+import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -44,7 +45,7 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
 
     private List<Comics> comics;
 
-    ComicsListRVAdapter(List<Comics> comics) {
+    public ComicsListRVAdapter(List<Comics> comics) {
         this.comics = comics;
     }
 

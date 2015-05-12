@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.event;
 
 import com.squareup.otto.Bus;
 

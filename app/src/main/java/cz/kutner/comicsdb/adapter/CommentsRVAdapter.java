@@ -1,11 +1,10 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.adapter;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 12.5.2015.
  */
 
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cz.kutner.comicsdb.model.Comment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -42,7 +42,7 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
 
     private List<Comment> comments;
 
-    CommentsRVAdapter(List<Comment> comments) {
+    public CommentsRVAdapter(List<Comment> comments) {
         this.comments = comments;
     }
 

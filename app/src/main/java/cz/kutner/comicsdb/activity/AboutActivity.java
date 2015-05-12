@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb;
+package cz.kutner.comicsdb.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
