@@ -45,9 +45,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Čas"
                 android:id="@+id/commentTime"
-                android:layout_alignBaseline="@+id/commentNick"
-                android:layout_toRightOf="@+id/commentNick"
-                android:layout_toEndOf="@+id/commentNick" />
+                android:layout_below="@+id/commentNick"
+                android:layout_alignLeft="@+id/commentNick"
+                android:layout_alignStart="@+id/commentNick" />
 
 
             <RatingBar
@@ -65,7 +65,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Vlastní text komentáře, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí"
                 android:id="@+id/commentText"
-                android:layout_below="@+id/commentRatingBar"
+                android:layout_below="@+id/commentTime"
                 android:layout_alignLeft="@+id/commentNick"
                 android:layout_alignStart="@+id/commentNick"
                 android:paddingTop="5dp" />

@@ -67,7 +67,7 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
 
     @Override
     public void onBindViewHolder(CommentsViewHolder commentsViewHolder, int i) {
-        commentsViewHolder.commentNick.setText(comments.get(i).getNick() + "|");
+        commentsViewHolder.commentNick.setText(comments.get(i).getNick());
         commentsViewHolder.commentTime.setText(comments.get(i).getTime());
         commentsViewHolder.commentText.setText(comments.get(i).getText());
         commentsViewHolder.commentRatingBar.setRating(comments.get(i).getStars());

@@ -12,8 +12,6 @@ public class Comment {
     private Bitmap icon;
     private String time;
 
-    //TODO nastavit čas do příspěvku
-    //TODO načítat obrázky
     public Comment(String nick, Integer stars, String text, String time) {
         this.nick = nick;
         this.stars = stars;

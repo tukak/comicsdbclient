@@ -186,8 +186,11 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                 }
                 String commentText = comment.text().replace("| ", "");
                 Comment commentObject = new Comment(nick, stars, commentText, time);
-                Log.i(LOG_TAG, iconUrl);
+                //TODO cachovat obrázky
                 if (!iconUrl.isEmpty()) {
+                    if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
+                        iconUrl = "http://comicsdb.cz/" + iconUrl;
+                    }
                     InputStream in = new java.net.URL(iconUrl).openStream();
                     Bitmap icon = BitmapFactory.decodeStream(in);
                     commentObject.setIcon(icon);
