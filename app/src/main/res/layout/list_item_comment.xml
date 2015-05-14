@@ -72,6 +72,7 @@
                 android:layout_below="@+id/commentTime"
                 android:layout_alignLeft="@+id/commentNick"
                 android:layout_alignStart="@+id/commentNick"
+                android:autoLink="web"
                 android:paddingTop="5dp" />
 
         </RelativeLayout>
