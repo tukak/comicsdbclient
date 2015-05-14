@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.Utils;
-import cz.kutner.comicsdb.adapter.CommentsRVAdapter;
+import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsDetailTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
@@ -80,57 +78,11 @@ public class ComicsDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.comics_detail, container, false);
         container.removeAllViews();
         container.addView(view);
-        TextView name = (TextView) activity.findViewById(R.id.name);
-        TextView rating = (TextView) activity.findViewById(R.id.rating);
-        TextView description = (TextView) activity.findViewById(R.id.description);
-        TextView genre = (TextView) activity.findViewById(R.id.genre);
-        TextView publisher = (TextView) activity.findViewById(R.id.publisher);
-        TextView issueNumber = (TextView) activity.findViewById(R.id.issueNumber);
-        TextView binding = (TextView) activity.findViewById(R.id.binding);
-        TextView format = (TextView) activity.findViewById(R.id.format);
-        TextView pagesCount = (TextView) activity.findViewById(R.id.pagesCount);
-        TextView originalName = (TextView) activity.findViewById(R.id.originalName);
-        TextView price = (TextView) activity.findViewById(R.id.price);
-        TextView notes = (TextView) activity.findViewById(R.id.notes);
-        TextView authors = (TextView) activity.findViewById(R.id.authors);
-        TextView series = (TextView) activity.findViewById(R.id.series);
-        ImageView cover = (ImageView) activity.findViewById(R.id.cover);
-        TextView URL = (TextView) activity.findViewById(R.id.url);
-
-        name.setText(result.getName());
-        if (result.getRating() > 0) {
-            rating.setText(result.getRating().toString() + "% (" + result.getVoteCount().toString() + ")");
-        } else {
-            rating.setText("< 5 hodnocení");
-        }
-        genre.setText(Utils.nvl(result.getGenre(), ""));
-        publisher.setText(result.getPublisher() + " - " + result.getPublished());
-        issueNumber.setText("Vydání: " + Utils.nvl(result.getIssueNumber(), "") + " tisk: " + Utils.nvl(result.getPrint(), ""));
-        binding.setText("Vazba: " + Utils.nvl(result.getBinding(), ""));
-        format.setText("Formát: " + Utils.nvl(result.getFormat(), ""));
-        pagesCount.setText("Počet stran: " + Utils.nvl(result.getPagesCount(), ""));
-        if (result.getOriginalName() != null) {
-            originalName.setText("Původně: " + result.getOriginalName());
-            if (result.getOriginalPublisher() != null) {
-                originalName.setText(originalName.getText() + " - " + result.getOriginalPublisher());
-            }
-        } else {
-            originalName.setText("");
-        }
-        price.setText("Cena: " + Utils.nvl(result.getPrice(), ""));
-        notes.setText(result.getNotes());
-        description.setText(result.getDescription());
-        authors.setText(result.getAuthors());
-        series.setText(result.getSeries());
-        cover.setImageBitmap(result.getCover());
-        URL.setText(getString(R.string.url_comics_detail) + result.getId().toString());
-
-        CommentsRVAdapter adapter = new CommentsRVAdapter(result.getComments());
-        RecyclerView rv = (RecyclerView) view.findViewById(R.id.comments_recycler_view);
+        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result);
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.comments_detail_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
-        //TODO nastavit minimální výšku
     }
 }
