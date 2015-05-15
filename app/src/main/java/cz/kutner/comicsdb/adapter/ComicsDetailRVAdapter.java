@@ -8,6 +8,7 @@ package cz.kutner.comicsdb.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView series;
         ImageView cover;
         TextView URL;
+        RatingBar ratingBar;
 
         ComicsViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +83,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             series = (TextView) itemView.findViewById(R.id.series);
             cover = (ImageView) itemView.findViewById(R.id.cover);
             URL = (TextView) itemView.findViewById(R.id.url);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.comics_detail_rating_bar);
         }
     }
 
@@ -151,12 +154,17 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 vh.originalName.setText("");
             }
             vh.price.setText("Cena: " + Utils.nvl(comics.getPrice(), ""));
-            vh.notes.setText(Html.fromHtml(comics.getNotes()));
-            vh.description.setText(Html.fromHtml(comics.getDescription()));
+            if (!(comics.getNotes() == null)) {
+                vh.notes.setText(Html.fromHtml(comics.getNotes()));
+            }
+            if (!(comics.getDescription() == null)) {
+                vh.description.setText(Html.fromHtml(comics.getDescription()));
+            }
             vh.authors.setText(comics.getAuthors());
             vh.series.setText(comics.getSeries());
             vh.cover.setImageBitmap(comics.getCover());
             vh.URL.setText(context.getResources().getString(R.string.url_comics_detail) + comics.getId().toString());
+            vh.ratingBar.setRating(Math.round((float) comics.getRating() / 20));
         } else {
             i--; //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             CommentsViewHolder vh = (CommentsViewHolder) viewHolder;

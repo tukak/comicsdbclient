@@ -47,12 +47,20 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Žánr" />
 
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comics_detail_rating_bar"
+            android:layout_alignBottom="@+id/cover"
+            android:layout_alignLeft="@+id/cover"
+            style="?android:attr/ratingBarStyleSmall" />
+
         <TextView
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/cover"
-            android:layout_below="@+id/cover"
+            android:layout_below="@+id/comics_detail_rating_bar"
             android:textAppearance="?android:attr/textAppearanceMedium"
             tools:text="Hodnocení" />
 
@@ -164,6 +172,7 @@
             android:autoLink="web"
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="URL" />
+
     </RelativeLayout>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
