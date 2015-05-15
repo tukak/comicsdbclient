@@ -113,9 +113,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                         String description = "";
                         sibling = title_value.nextSibling();
                         while (true) {
-                            if (!sibling.toString().startsWith("<br")) {
-                                description += sibling.toString();
-                            }
+                            description += sibling.toString();
                             sibling = sibling.nextSibling();
                             if (sibling.toString().startsWith("<span")) {
                                 break;
@@ -127,9 +125,8 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                         String notes = "";
                         sibling = title_value.nextSibling();
                         while (true) {
-                            if (!sibling.toString().startsWith("<br")) {
-                                notes += sibling.toString();
-                            }
+
+                            notes += sibling.toString();
                             sibling = sibling.nextSibling();
                             if (sibling.toString().startsWith("<span")) {
                                 break;

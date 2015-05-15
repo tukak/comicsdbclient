@@ -6,6 +6,7 @@ package cz.kutner.comicsdb.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,8 +148,8 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 vh.originalName.setText("");
             }
             vh.price.setText("Cena: " + Utils.nvl(comics.getPrice(), ""));
-            vh.notes.setText(comics.getNotes());
-            vh.description.setText(comics.getDescription());
+            vh.notes.setText(Html.fromHtml(comics.getNotes()));
+            vh.description.setText(Html.fromHtml(comics.getDescription()));
             vh.authors.setText(comics.getAuthors());
             vh.series.setText(comics.getSeries());
             vh.cover.setImageBitmap(comics.getCover());
