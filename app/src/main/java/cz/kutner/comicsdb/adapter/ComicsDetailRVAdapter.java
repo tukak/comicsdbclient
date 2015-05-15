@@ -5,6 +5,7 @@ package cz.kutner.comicsdb.adapter;
  */
 
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -84,9 +85,11 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private Comics comics;
+    private Context context;
 
-    public ComicsDetailRVAdapter(Comics comics) {
+    public ComicsDetailRVAdapter(Comics comics, Context context) {
         this.comics = comics;
+        this.context = context;
     }
 
     public void setComics(Comics comics) {
@@ -153,8 +156,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh.authors.setText(comics.getAuthors());
             vh.series.setText(comics.getSeries());
             vh.cover.setImageBitmap(comics.getCover());
-            vh.URL.setText("http://comicsdb.cz/comics.php?id=" + comics.getId().toString());
-            //TODO getString(R.string.url_comics_detail)
+            vh.URL.setText(context.getResources().getString(R.string.url_comics_detail) + comics.getId().toString());
         } else {
             i--; //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             CommentsViewHolder vh = (CommentsViewHolder) viewHolder;

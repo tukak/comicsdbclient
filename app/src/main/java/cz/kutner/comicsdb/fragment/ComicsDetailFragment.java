@@ -78,7 +78,7 @@ public class ComicsDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.comics_detail, container, false);
         container.removeAllViews();
         container.addView(view);
-        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result);
+        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result, this.getActivity().getApplicationContext());
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.comments_detail_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
