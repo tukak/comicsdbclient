@@ -20,7 +20,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-public class CircularProgressDrawable extends Drawable
+class CircularProgressDrawable extends Drawable
         implements Animatable {
 
     private static final Interpolator ANGLE_INTERPOLATOR = new LinearInterpolator();
@@ -116,21 +116,21 @@ public class CircularProgressDrawable extends Drawable
         fBounds.bottom = bounds.bottom - mBorderWidth / 2f - .5f;
     }
 
-    public void setCurrentGlobalAngle(float currentGlobalAngle) {
+    private void setCurrentGlobalAngle(float currentGlobalAngle) {
         mCurrentGlobalAngle = currentGlobalAngle;
         invalidateSelf();
     }
 
-    public float getCurrentGlobalAngle() {
+    private float getCurrentGlobalAngle() {
         return mCurrentGlobalAngle;
     }
 
-    public void setCurrentSweepAngle(float currentSweepAngle) {
+    private void setCurrentSweepAngle(float currentSweepAngle) {
         mCurrentSweepAngle = currentSweepAngle;
         invalidateSelf();
     }
 
-    public float getCurrentSweepAngle() {
+    private float getCurrentSweepAngle() {
         return mCurrentSweepAngle;
     }
 
