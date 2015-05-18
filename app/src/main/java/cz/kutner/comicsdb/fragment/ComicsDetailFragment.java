@@ -75,7 +75,7 @@ public class ComicsDetailFragment extends Fragment {
         Comics result = event.getResult();
         Activity activity = getActivity();
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.comics_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_comics_detail, container, false);
         container.removeAllViews();
         container.addView(view);
         ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result, this.getActivity().getApplicationContext());
