@@ -4,9 +4,9 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,12 +34,10 @@ public class ComicsSearchActivity extends ActionBarActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             Fragment fragment = new ComicsListFragment();
-            Bundle args = new Bundle();
-            args.putString("query", query);
+            fragment.setArguments(getIntent().getExtras());
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             toolbar.setTitle("Výsledek pro \"" + query + "\"");
             setSupportActionBar(toolbar);
-            fragment.setArguments(args);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.search_container, fragment)
                     .commit();

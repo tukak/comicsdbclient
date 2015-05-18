@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,8 +64,8 @@ public class ComicsListFragment extends Fragment {
     private void loadComics() {
         FetchComicsListTask task = new FetchComicsListTask();
         Bundle args = this.getArguments();
-        if (args != null && args.containsKey("query")) { //neco vyhledavame
-            String searchText = args.getString("query");
+        if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
+            String searchText = args.getString(SearchManager.QUERY);
             searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             task.execute(getString(R.string.url_comics_search) + searchText);
         } else { //zobrazujeme nejnovější
