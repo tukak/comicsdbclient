@@ -32,11 +32,10 @@ public class ComicsSearchActivity extends ActionBarActivity {
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
             Fragment fragment = new ComicsListFragment();
             fragment.setArguments(getIntent().getExtras());
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar.setTitle("Výsledek pro \"" + query + "\"");
+            toolbar.setTitle("Výsledek pro \"" + intent.getStringExtra(SearchManager.QUERY) + "\"");
             setSupportActionBar(toolbar);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.search_container, fragment)
