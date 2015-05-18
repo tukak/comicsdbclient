@@ -21,7 +21,7 @@ public class ComicsDetailActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Detail");
         setSupportActionBar(toolbar);
@@ -33,7 +33,7 @@ public class ComicsDetailActivity extends ActionBarActivity {
         fragment.setArguments(args);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment)
+                    .add(R.id.detail_container, fragment)
                     .commit();
         }
     }
