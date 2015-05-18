@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import com.squareup.otto.Subscribe;
 
@@ -28,6 +30,7 @@ public class ComicsListFragment extends Fragment {
 
     private final String LOG_TAG = getClass().getSimpleName();
     private ViewGroup container;
+    private boolean searchRunning;
 
     public ComicsListFragment() {
     }
@@ -35,6 +38,7 @@ public class ComicsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i(LOG_TAG, "Načítá se fragment");
         this.container = container;
         View rootView;
         if (!Utils.isConnected(this.getActivity())) {
@@ -52,6 +56,7 @@ public class ComicsListFragment extends Fragment {
             rootView = inflater.inflate(R.layout.loading, container, false);
             loadComics();
         }
+        EventBus.getInstance().register(this);
         return rootView;
     }
 
@@ -62,20 +67,23 @@ public class ComicsListFragment extends Fragment {
     }
 
     private void loadComics() {
-        FetchComicsListTask task = new FetchComicsListTask();
-        Bundle args = this.getArguments();
-        if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
-            String searchText = args.getString(SearchManager.QUERY);
-            searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-            task.execute(getString(R.string.url_comics_search) + searchText);
-        } else { //zobrazujeme nejnovější
-            task.execute(getString(R.string.url_comics_list_new));
+        if (searchRunning == false) {
+            searchRunning = true;
+            FetchComicsListTask task = new FetchComicsListTask();
+            Bundle args = this.getArguments();
+            if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
+                String searchText = args.getString(SearchManager.QUERY);
+                searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                task.execute(getString(R.string.url_comics_search) + searchText);
+            } else { //zobrazujeme nejnovější
+                task.execute(getString(R.string.url_comics_list_new));
+            }
         }
-        EventBus.getInstance().register(this);
     }
 
     @Subscribe
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
+        searchRunning = false;
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
@@ -86,6 +94,15 @@ public class ComicsListFragment extends Fragment {
         rv.setHasFixedSize(true);
         container.removeAllViews();
         container.addView(view);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
+        sw.setQuery("", false);
+        sw.setIconified(true);
+        loadComics();
     }
 }
 
