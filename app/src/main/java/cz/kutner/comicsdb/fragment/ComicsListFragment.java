@@ -38,7 +38,6 @@ public class ComicsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "Načítá se fragment");
         this.container = container;
         View rootView;
         if (!Utils.isConnected(this.getActivity())) {
@@ -102,6 +101,7 @@ public class ComicsListFragment extends Fragment {
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
+        //TODO - pridat loadovaci kolecko
         loadComics();
     }
 }
