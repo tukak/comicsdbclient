@@ -5,7 +5,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +18,6 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 public class MainActivity extends ActionBarActivity {
     public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
-    public final static String SEARCH_QUERY = "cz.kutner.comicsdbclient.comicsdbclient.search_query";
     private final String LOG_TAG = getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

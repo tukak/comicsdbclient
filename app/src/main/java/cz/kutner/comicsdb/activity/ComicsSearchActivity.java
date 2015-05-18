@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -21,6 +23,7 @@ public class ComicsSearchActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO proc se to vola dvakrat????
         setContentView(R.layout.activity_comics_search);
         handleIntent(getIntent());
     }
@@ -32,14 +35,11 @@ public class ComicsSearchActivity extends ActionBarActivity {
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
             Fragment fragment = new ComicsListFragment();
-            Bundle args = new Bundle();
-            args.putString("query", query);
+            fragment.setArguments(getIntent().getExtras());
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar.setTitle("Výsledek pro \"" + query + "\"");
+            toolbar.setTitle("Výsledek pro \"" + intent.getStringExtra(SearchManager.QUERY) + "\"");
             setSupportActionBar(toolbar);
-            fragment.setArguments(args);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.search_container, fragment)
                     .commit();
