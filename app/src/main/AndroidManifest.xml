@@ -20,7 +20,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".ComicsSearchActivity" />
+                android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
         </activity>
 
         <activity
@@ -31,6 +31,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.activity.MainActivity" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
         </activity>
 
         <activity
@@ -47,7 +50,6 @@
                 android:value="cz.kutner.comicsdb.activity.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
