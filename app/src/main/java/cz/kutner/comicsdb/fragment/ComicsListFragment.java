@@ -101,7 +101,10 @@ public class ComicsListFragment extends Fragment {
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
-        //TODO - pridat loadovaci kolecko
+        LayoutInflater inflater = this.getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.loading, container, false);
+        container.removeAllViews();
+        container.addView(view);
         loadComics();
     }
 }
