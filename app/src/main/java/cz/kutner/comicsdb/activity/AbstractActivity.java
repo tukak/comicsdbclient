@@ -24,7 +24,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public class AbstractActivity extends ActionBarActivity {
+public abstract class AbstractActivity extends ActionBarActivity {
     final String LOG_TAG = getClass().getSimpleName();
     DrawerLayout drawerLayout;
     ListView drawerList;
