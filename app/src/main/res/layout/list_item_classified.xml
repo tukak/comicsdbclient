@@ -57,7 +57,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Čas"
                 android:id="@+id/classified_time"
-                android:layout_below="@+id/classified_category"
+                android:layout_below="@+id/classified_nick"
                 android:layout_alignLeft="@+id/classified_nick"
                 android:layout_alignStart="@+id/classified_nick"
                 android:layout_alignRight="@+id/classified_nick"

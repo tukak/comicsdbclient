@@ -57,7 +57,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Čas"
                 android:id="@+id/forum_comment_time"
-                android:layout_below="@+id/forum_comment_forum"
+                android:layout_below="@+id/forum_comment_nick"
                 android:layout_alignLeft="@+id/forum_comment_nick"
                 android:layout_alignStart="@+id/forum_comment_nick"
                 android:layout_alignRight="@+id/forum_comment_nick"
