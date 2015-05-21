@@ -23,7 +23,6 @@ public class ComicsSearchActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO proc se to vola dvakrat????
         setContentView(R.layout.activity_comics_search);
         handleIntent(getIntent());
     }
