@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
- * Created by Luk� Kutner (lukas@kutner.cz) on 21.5.2015.
+ * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
 public abstract class AbstractFragment extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
