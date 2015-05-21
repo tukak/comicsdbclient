@@ -60,9 +60,6 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
             Elements coverElements = doc.select("img[title=Obálka]");
             if (coverElements.size() > 0) {
                 String coverURI = coverElements.first().attr("src");
-                if (!coverURI.startsWith("http")) { //občas se to vrátí bez celé adresy
-                    coverURI = "http://comicsdb.cz/" + coverURI;
-                }
                 if (!coverURI.isEmpty()) {
                     comics.setCover(Utils.getFromCacheOrDownload(coverURI));
                 }
@@ -179,9 +176,6 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
                 String commentText = comment.text().replace("| ", "");
                 Comment commentObject = new Comment(nick, stars, commentText, time);
                 if (!iconUrl.isEmpty()) {
-                    if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
-                        iconUrl = "http://comicsdb.cz/" + iconUrl;
-                    }
                     commentObject.setIcon(Utils.getFromCacheOrDownload(iconUrl));
                 }
                 comics.addComment(commentObject);

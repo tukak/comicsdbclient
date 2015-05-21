@@ -33,13 +33,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Jméno"
                 android:id="@+id/forum_comment_nick"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/forum_nick_icon"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_toLeftOf="@+id/forum_comment_forum"
+                android:layout_toStartOf="@+id/forum_comment_forum" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,11 +47,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="Fórum"
                 android:id="@+id/forum_comment_forum"
-                android:layout_below="@+id/forum_comment_nick"
-                android:layout_alignLeft="@+id/forum_comment_nick"
-                android:layout_alignStart="@+id/forum_comment_nick"
-                android:layout_alignRight="@+id/forum_comment_nick"
-                android:layout_alignEnd="@+id/forum_comment_nick" />
+                android:layout_alignTop="@+id/forum_comment_nick"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:layout_width="wrap_content"

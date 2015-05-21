@@ -55,9 +55,6 @@ public class FetchClassifiedTask
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 Classified classified = new Classified(nick, time, category, text);
                 if (!iconUrl.isEmpty()) {
-                    if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
-                        iconUrl = "http://comicsdb.cz/" + iconUrl;
-                    }
                     classified.setIcon(Utils.getFromCacheOrDownload(iconUrl));
                 }
                 result.add(classified);

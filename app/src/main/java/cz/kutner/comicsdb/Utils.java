@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Base64;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -13,6 +14,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -88,11 +91,23 @@ public class Utils {
     }
 
     public static Bitmap getFromCacheOrDownload(String url) throws IOException {
-        Bitmap result = (Bitmap) Cache.getInstance().getLru().get(url);
-        if (result == null) {
-            InputStream in = new java.net.URL(url).openStream();
-            result = BitmapFactory.decodeStream(in);
-            Cache.getInstance().getLru().put(url, result);
+        //Dekodovat z base64, pokud začíná na data
+        if (!url.startsWith("http") && !url.startsWith("data")) { //občas se to vrátí bez celé adresy
+            url = "http://comicsdb.cz/" + url;
+        }
+        Bitmap result = null;
+        if (url.startsWith("http")) {
+            result = (Bitmap) Cache.getInstance().getLru().get(url);
+            if (result == null) {
+                InputStream in = new java.net.URL(url).openStream();
+                result = BitmapFactory.decodeStream(in);
+                Cache.getInstance().getLru().put(url, result);
+            }
+        } else if (url.startsWith("data")) {
+            Log.i(LOG_TAG, url);
+            String imageDataBytes = url.substring(url.indexOf(",") + 1);
+            InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes(), Base64.DEFAULT));
+            result = BitmapFactory.decodeStream(stream);
         }
         return result;
     }

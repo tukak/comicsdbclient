@@ -53,9 +53,6 @@ public class FetchForumTask
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 ForumEntry forumEntry = new ForumEntry(nick, time, forum, text);
                 if (!iconUrl.isEmpty()) {
-                    if (!iconUrl.startsWith("http")) { //občas se to vrátí bez celé adresy
-                        iconUrl = "http://comicsdb.cz/" + iconUrl;
-                    }
                     forumEntry.setIcon(Utils.getFromCacheOrDownload(iconUrl));
                 }
                 result.add(forumEntry);
