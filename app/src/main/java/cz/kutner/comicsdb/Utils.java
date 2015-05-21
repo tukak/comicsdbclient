@@ -104,7 +104,6 @@ public class Utils {
                 Cache.getInstance().getLru().put(url, result);
             }
         } else if (url.startsWith("data")) {
-            Log.i(LOG_TAG, url);
             String imageDataBytes = url.substring(url.indexOf(",") + 1);
             InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes(), Base64.DEFAULT));
             result = BitmapFactory.decodeStream(stream);
