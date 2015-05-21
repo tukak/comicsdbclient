@@ -21,7 +21,7 @@ public class ComicsDetailActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Detail");
+        getSupportActionBar().setTitle("Detail");
         Intent intent = getIntent();
         Integer id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
         Fragment fragment = new ComicsDetailFragment();

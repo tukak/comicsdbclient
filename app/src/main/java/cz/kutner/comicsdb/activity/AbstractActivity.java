@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.activity;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -29,6 +30,7 @@ public abstract class AbstractActivity extends ActionBarActivity {
     DrawerLayout drawerLayout;
     ListView drawerList;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    Class cls = this.getClass();
     // nav drawer title
     CharSequence drawerTitle;
     // used to store app title
@@ -41,7 +43,6 @@ public abstract class AbstractActivity extends ActionBarActivity {
         setContentView(R.layout.activity);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
-        appTitle = drawerTitle = getTitle();
         // Set the adapter for the list view
         drawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, getResources().getStringArray(R.array.nav_drawer_items)));
@@ -49,17 +50,13 @@ public abstract class AbstractActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(appTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(drawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -73,19 +70,28 @@ public abstract class AbstractActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
             Intent intent = null;
+            Class activity = null;
             switch (position) {
                 case 0: //comicsy
-                    intent = new Intent(view.getContext(), MainActivity.class);
+                    activity = MainActivity.class;
                     break;
                 case 1: //bazar
                     break;
                 case 2: //Forum
+                    activity = ForumActivity.class;
                     break;
                 case 3: //O aplikaci
-                    intent = new Intent(view.getContext(), AboutActivity.class);
+                    activity = AboutActivity.class;
                     break;
             }
-            view.getContext().startActivity(intent);
+            if (activity != cls) {
+                intent = new Intent(view.getContext(), activity);
+                view.getContext().startActivity(intent);
+                drawerLayout.closeDrawers();
+            } else {
+                Log.i(LOG_TAG, "Je to ta samá aktivita");
+            }
+
         }
     }
 
