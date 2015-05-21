@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -76,6 +77,7 @@ public abstract class AbstractActivity extends ActionBarActivity {
                     activity = MainActivity.class;
                     break;
                 case 1: //bazar
+                    activity = ClassifiedActivity.class;
                     break;
                 case 2: //Forum
                     activity = ForumActivity.class;
@@ -88,10 +90,7 @@ public abstract class AbstractActivity extends ActionBarActivity {
                 intent = new Intent(view.getContext(), activity);
                 view.getContext().startActivity(intent);
                 drawerLayout.closeDrawers();
-            } else {
-                Log.i(LOG_TAG, "Je to ta samá aktivita");
             }
-
         }
     }
 

@@ -63,12 +63,12 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumVie
     }
 
     @Override
-    public void onBindViewHolder(ForumViewHolder comicsViewHolder, int i) {
-        comicsViewHolder.nick.setText(entries.get(i).getNick());
-        comicsViewHolder.time.setText(entries.get(i).getTime());
-        comicsViewHolder.text.setText(Html.fromHtml(entries.get(i).getText()));
-        comicsViewHolder.icon.setImageBitmap(entries.get(i).getIcon());
-        comicsViewHolder.forum.setText(entries.get(i).getForum());
+    public void onBindViewHolder(ForumViewHolder forumViewHolder, int i) {
+        forumViewHolder.nick.setText(entries.get(i).getNick());
+        forumViewHolder.time.setText(entries.get(i).getTime());
+        forumViewHolder.text.setText(Html.fromHtml(entries.get(i).getText()));
+        forumViewHolder.icon.setImageBitmap(entries.get(i).getIcon());
+        forumViewHolder.forum.setText(entries.get(i).getForum());
     }
 
 }
