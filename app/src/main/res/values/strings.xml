@@ -17,4 +17,25 @@
     <string name="loading_error">Nepodařilo se načíst data. Jste připojeni k Internetu?</string>
     <string name="try_again_button_text">Zkusit znovu</string>
 
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Comicsy</item>
+        <item>Bazar</item>
+        <item>Forum</item>
+        <item>O aplikaci</item>
+    </string-array>
+    <!-- Nav Drawer Menu Items to be
+    <string-array name="nav_drawer_items">
+        <item >Comicsy</item>
+        <item >Série</item>
+        <item >Autoři</item>
+        <item >Vydavatelé</item>
+        <item >Komentáře</item>
+        <item >Bazar</item>
+        <item >Forum</item>
+        <item >Nastavení</item>
+        <item >O aplikaci</item>
+    </string-array>-->
+
 </resources>
