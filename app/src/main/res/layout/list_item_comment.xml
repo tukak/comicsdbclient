@@ -39,7 +39,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/nickIcon"
                 android:layout_toLeftOf="@+id/commentRatingBar"
-                android:layout_toStartOf="@+id/commentRatingBar" />
+                android:layout_toStartOf="@+id/commentRatingBar"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

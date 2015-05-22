@@ -39,7 +39,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/forum_nick_icon"
                 android:layout_toLeftOf="@+id/forum_comment_forum"
-                android:layout_toStartOf="@+id/forum_comment_forum" />
+                android:layout_toStartOf="@+id/forum_comment_forum"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
                 android:id="@+id/forum_comment_forum"
                 android:layout_alignTop="@+id/forum_comment_nick"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

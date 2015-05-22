@@ -39,7 +39,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/classified_nick_icon"
                 android:layout_toLeftOf="@+id/classified_category"
-                android:layout_toStartOf="@+id/classified_category" />
+                android:layout_toStartOf="@+id/classified_category"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
                 android:id="@+id/classified_category"
                 android:layout_alignTop="@+id/classified_nick"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
