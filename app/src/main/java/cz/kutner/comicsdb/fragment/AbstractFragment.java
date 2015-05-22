@@ -18,9 +18,11 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public abstract class AbstractFragment extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
     ViewGroup container;
+    int lastPage;
 
     public AbstractFragment() {
         EventBus.getInstance().register(this);
+        lastPage = 1;
     }
 
     @Override
@@ -57,6 +59,7 @@ public abstract class AbstractFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+//        lastPage = 1;
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
