@@ -57,7 +57,6 @@ public class ForumFragment extends AbstractFragment {
 
     @Subscribe
     public void onAsyncTaskResult(ForumResultEvent event) {
-
         searchRunning = false;
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
         if (firstLoad) {
