@@ -73,7 +73,7 @@ public class ForumFragment extends AbstractFragment {
                     totalItemCount = llm.getItemCount();
                     pastVisiblesItems = llm.findFirstVisibleItemPosition();
                     if (!loading) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 10) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 20) {
                             loading = true;
                             loadData();
                         }
