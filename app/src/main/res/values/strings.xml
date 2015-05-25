@@ -27,6 +27,13 @@
         <item>Forum</item>
         <item>O aplikaci</item>
     </string-array>
+
+    <string-array name="nav_drawer_activities">
+        <item>MainActivity</item>
+        <item>ClassifiedActivity</item>
+        <item>ForumActivity</item>
+        <item>AboutActivity</item>
+    </string-array>
     <!-- Nav Drawer Menu Items to be
     <string-array name="nav_drawer_items">
         <item >Comicsy</item>

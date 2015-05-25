@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.task;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,7 +14,6 @@ import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
@@ -23,10 +21,9 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public class FetchForumTask
         extends AsyncTask<String, Void, List<ForumEntry>> {
     private String LOG_TAG = getClass().getSimpleName();
-    private Context context;
 
-    public FetchForumTask(Context context) {
-        this.context = context.getApplicationContext();
+    public FetchForumTask() {
+
     }
 
     @Override
@@ -39,12 +36,11 @@ public class FetchForumTask
         List<ForumEntry> result = new ArrayList<>();
         Document doc;
         try {
-            String url = context.getString(R.string.url_forum);
+            String url = params[0];
             doc = Jsoup.connect(url).get();
             for (Element entry : doc.select("div#prispevek")) {
                 String nick = entry.select("span.prispevek-nick").get(0).text();
                 String forum = entry.select("span.prispevek-nick").get(1).text();
-                ;
                 String time = entry.select("span.prispevek-cas").get(0).text();
                 String iconUrl = entry.select("div#prispevek-icon").select("img").first().attr("src");
                 for (Element remove : entry.select("span,img")) {

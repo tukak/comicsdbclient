@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
@@ -36,11 +38,12 @@ public abstract class AbstractActivity extends ActionBarActivity {
     CharSequence drawerTitle;
     // used to store app title
     CharSequence appTitle;
-
+    String[] activities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activities = getResources().getStringArray(R.array.nav_drawer_activities);
         setContentView(R.layout.activity);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
@@ -59,6 +62,22 @@ public abstract class AbstractActivity extends ActionBarActivity {
 
             public void onDrawerOpened(View drawerView) {
                 // calling onPrepareOptionsMenu() to hide action bar icons
+                ListView drawer = (ListView)drawerView.findViewById(R.id.left_drawer);
+                for (int i=0; i < drawer.getChildCount(); i++) {
+                    View view = drawer.getChildAt(i);
+                    TextView textView = (TextView)view.findViewById(R.id.navigation_drawer_text);
+                    Class activity = null;
+                    try {
+                        activity = Class.forName("cz.kutner.comicsdb.activity." + activities[i]);
+                    } catch (ClassNotFoundException e) {
+                        Log.e(LOG_TAG, e.getMessage(), e);
+                    }
+                    if (cls == activity) {
+                        textView.setBackgroundColor(Color.LTGRAY);
+                    } else {
+                        textView.setBackgroundColor(Color.WHITE);
+                    }
+                }
                 invalidateOptionsMenu();
             }
         };
@@ -72,19 +91,11 @@ public abstract class AbstractActivity extends ActionBarActivity {
                                 long id) {
             Intent intent = null;
             Class activity = null;
-            switch (position) {
-                case 0: //comicsy
-                    activity = MainActivity.class;
-                    break;
-                case 1: //bazar
-                    activity = ClassifiedActivity.class;
-                    break;
-                case 2: //Forum
-                    activity = ForumActivity.class;
-                    break;
-                case 3: //O aplikaci
-                    activity = AboutActivity.class;
-                    break;
+            String[] activities = getResources().getStringArray(R.array.nav_drawer_activities);
+            try {
+                activity = Class.forName("cz.kutner.comicsdb.activity." + activities[position]);
+            } catch (ClassNotFoundException e) {
+                Log.e(LOG_TAG, e.getMessage(), e);
             }
             if (activity != cls) {
                 intent = new Intent(view.getContext(), activity);

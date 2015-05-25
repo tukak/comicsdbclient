@@ -41,12 +41,11 @@ public class FetchClassifiedTask
         List<Classified> result = new ArrayList<>();
         Document doc;
         try {
-            String url = context.getString(R.string.url_classified);
+            String url = params[0];
             doc = Jsoup.connect(url).get();
             for (Element entry : doc.select("div#prispevek")) {
                 String nick = entry.select("span.prispevek-nick").get(0).text();
                 String category = entry.select("span.prispevek-nick").get(1).text();
-                ;
                 String time = entry.select("span.prispevek-cas").get(0).text();
                 String iconUrl = entry.select("div#prispevek-icon").select("img").first().attr("src");
                 for (Element remove : entry.select("span,img")) {
