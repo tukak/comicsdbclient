@@ -54,7 +54,6 @@ public class ComicsListFragment extends AbstractFragment {
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
         searchRunning = false;
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
-        Log.i(LOG_TAG, String.valueOf(firstLoad));
         if (firstLoad) {
             View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
             RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
@@ -85,7 +84,6 @@ public class ComicsListFragment extends AbstractFragment {
             data.clear();
         }
         data.addAll(event.getResult());
-        Log.i(LOG_TAG, "Máme to tady");
         adapter.notifyDataSetChanged();
         loading = false;
     }

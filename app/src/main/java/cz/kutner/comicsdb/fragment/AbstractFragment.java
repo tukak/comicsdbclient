@@ -60,7 +60,6 @@ public abstract class AbstractFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        lastPage = 1;
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);

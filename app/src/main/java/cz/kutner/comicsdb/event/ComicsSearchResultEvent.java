@@ -18,7 +18,6 @@ public class ComicsSearchResultEvent {
     }
 
     public List<Comics> getResult() {
-        Log.i("CSR", "Vracíme výsledek");
         return result;
     }
 
