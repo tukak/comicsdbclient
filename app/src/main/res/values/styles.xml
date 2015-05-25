@@ -21,5 +21,4 @@
     <style name="menuItemColor">
         <item name="android:textColor">@android:color/black</item>
     </style>
-
 </resources>

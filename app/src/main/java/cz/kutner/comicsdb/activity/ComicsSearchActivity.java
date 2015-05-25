@@ -27,9 +27,7 @@ public class ComicsSearchActivity extends AbstractActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             Fragment fragment = new ComicsListFragment();
             fragment.setArguments(getIntent().getExtras());
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             getSupportActionBar().setTitle("Výsledek pro \"" + intent.getStringExtra(SearchManager.QUERY) + "\"");
-            // setSupportActionBar(toolbar);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
                     .commit();
