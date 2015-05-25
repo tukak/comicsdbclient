@@ -19,6 +19,7 @@ public abstract class AbstractFragment extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
     ViewGroup container;
     int lastPage;
+    boolean firstLoad;
 
     public AbstractFragment() {
         EventBus.getInstance().register(this);
@@ -67,6 +68,7 @@ public abstract class AbstractFragment extends Fragment {
         View view = inflater.inflate(R.layout.loading, container, false);
         container.removeAllViews();
         container.addView(view);
+        firstLoad = true;
         loadData();
     }
 }

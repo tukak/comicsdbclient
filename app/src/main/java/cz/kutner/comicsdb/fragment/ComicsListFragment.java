@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -29,7 +30,6 @@ public class ComicsListFragment extends AbstractFragment {
     List<Comics> data = new ArrayList<>();
     ComicsListRVAdapter adapter = new ComicsListRVAdapter(data);
     LinearLayoutManager llm;
-    boolean firstLoad = true;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
     void loadData() {
@@ -54,6 +54,7 @@ public class ComicsListFragment extends AbstractFragment {
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
         searchRunning = false;
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
+        Log.i(LOG_TAG, String.valueOf(firstLoad));
         if (firstLoad) {
             View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
             RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
@@ -84,6 +85,7 @@ public class ComicsListFragment extends AbstractFragment {
             data.clear();
         }
         data.addAll(event.getResult());
+        Log.i(LOG_TAG, "Máme to tady");
         adapter.notifyDataSetChanged();
         loading = false;
     }

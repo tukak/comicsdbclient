@@ -35,7 +35,6 @@ public class ForumFragment extends AbstractFragment {
     List<ForumEntry> data = new ArrayList<>();
     ForumRVAdapter adapter = new ForumRVAdapter(data);
     LinearLayoutManager llm;
-    boolean firstLoad = true;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 

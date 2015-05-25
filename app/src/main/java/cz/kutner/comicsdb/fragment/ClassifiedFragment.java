@@ -28,7 +28,6 @@ public class ClassifiedFragment extends AbstractFragment {
     List<Classified> data = new ArrayList<>();
     ClassifiedRVAdapter adapter = new ClassifiedRVAdapter(data);
     LinearLayoutManager llm;
-    boolean firstLoad = true;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
