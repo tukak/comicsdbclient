@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -26,7 +25,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public class ComicsListFragment extends AbstractFragment {
 
     private boolean searchRunning;
-    private boolean loadable;
+    private boolean endless;
     List<Comics> data = new ArrayList<>();
     ComicsListRVAdapter adapter = new ComicsListRVAdapter(data);
     LinearLayoutManager llm;
@@ -41,10 +40,10 @@ public class ComicsListFragment extends AbstractFragment {
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
                 task.execute(getString(R.string.url_comics_search) + searchText);
-                loadable = false;
+                endless = false;
             } else { //zobrazujeme nejnovější
                 task.execute(getString(R.string.url_comics_list_new) + "?str=" + lastPage);
-                loadable = true;
+                endless = true;
             }
             lastPage++;
         }
@@ -60,7 +59,7 @@ public class ComicsListFragment extends AbstractFragment {
             llm = new LinearLayoutManager(view.getContext());
             rv.setLayoutManager(llm);
             rv.setAdapter(adapter);
-            if (loadable) {
+            if (endless) {
                 rv.setOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
                     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -80,7 +79,7 @@ public class ComicsListFragment extends AbstractFragment {
             container.addView(view);
             firstLoad = false;
         }
-        if (!loadable) {
+        if (!endless) {
             data.clear();
         }
         data.addAll(event.getResult());
