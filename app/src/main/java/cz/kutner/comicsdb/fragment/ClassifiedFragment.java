@@ -23,13 +23,15 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public class ClassifiedFragment extends AbstractFragment<Classified> {
+public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedRVAdapter, ClassifiedResultEvent> {
 
-    private boolean searchRunning;
-    ClassifiedRVAdapter adapter = new ClassifiedRVAdapter(data);
-    LinearLayoutManager llm;
-    boolean loading = false;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
+
+    public ClassifiedFragment() {
+        adapter = new ClassifiedRVAdapter(data);
+        fragment_view = R.layout.fragment_classified;
+        recycler_view = R.id.classified_recycler_view;
+        preloadCount = 8;
+    }
 
     void loadData() {
         if (searchRunning == false) {
@@ -49,38 +51,6 @@ public class ClassifiedFragment extends AbstractFragment<Classified> {
 
     @Subscribe
     public void onAsyncTaskResult(ClassifiedResultEvent event) {
-        searchRunning = false;
-        LayoutInflater inflater = this.getActivity().getLayoutInflater();
-        if (firstLoad) {
-            View view = inflater.inflate(R.layout.fragment_classified, container, false);
-            RecyclerView rv = (RecyclerView) view.findViewById(R.id.classified_recycler_view);
-            llm = new LinearLayoutManager(view.getContext());
-            rv.setLayoutManager(llm);
-            rv.setAdapter(adapter);
-            rv.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    visibleItemCount = llm.getChildCount();
-                    totalItemCount = llm.getItemCount();
-                    pastVisiblesItems = llm.findFirstVisibleItemPosition();
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 8) {
-                            loading = true;
-                            loadData();
-                        }
-                    }
-                }
-            });
-
-            container.removeAllViews();
-            container.addView(view);
-            firstLoad = false;
-        }
-        if (lastItem == null || !(lastItem.equals(event.getResult().get(1)))) {
-            lastItem = event.getResult().get(1);
-            data.addAll(event.getResult());
-            adapter.notifyDataSetChanged();
-            loading = false;
-        }
+        super.onAsyncTaskResult(event);
     }
 }

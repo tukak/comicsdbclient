@@ -7,14 +7,8 @@ import cz.kutner.comicsdb.model.ForumEntry;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public class ForumResultEvent {
-    private List<ForumEntry> result;
-
+public class ForumResultEvent extends AbstractResultEvent<ForumEntry> {
     public ForumResultEvent(List<ForumEntry> result) {
-        this.result = result;
-    }
-
-    public List<ForumEntry> getResult() {
-        return result;
+        super(result);
     }
 }

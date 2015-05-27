@@ -11,6 +11,9 @@ import org.jsoup.nodes.Node;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.event.EventBus;
@@ -31,7 +34,9 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
 
     @Override
     protected void onPostExecute(Comics result) {
-        EventBus.getInstance().post(new ComicsDetailResultEvent(result));
+        List<Comics> listResult = new ArrayList<Comics>();
+        listResult.add(result);
+        EventBus.getInstance().post(new ComicsDetailResultEvent(listResult));
     }
 
     @Override

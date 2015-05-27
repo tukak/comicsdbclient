@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -22,14 +23,15 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
  */
-public class ComicsListFragment extends AbstractFragment<Comics> {
+public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAdapter, ComicsSearchResultEvent> {
 
-    private boolean searchRunning;
-    private boolean endless;
-    ComicsListRVAdapter adapter = new ComicsListRVAdapter(data);
-    LinearLayoutManager llm;
-    boolean loading = false;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
+
+    public ComicsListFragment() {
+        adapter = new ComicsListRVAdapter(data);
+        fragment_view = R.layout.fragment_comics_list;
+        recycler_view = R.id.comics_recycler_view;
+        preloadCount = 20;
+    }
 
     void loadData() {
         if (searchRunning == false) {
@@ -43,7 +45,6 @@ public class ComicsListFragment extends AbstractFragment<Comics> {
                 endless = false;
             } else { //zobrazujeme nejnovější
                 task.execute(getString(R.string.url_comics_list_new) + "?str=" + lastPage);
-                endless = true;
             }
             lastPage++;
         }
@@ -51,43 +52,7 @@ public class ComicsListFragment extends AbstractFragment<Comics> {
 
     @Subscribe
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
-        searchRunning = false;
-        LayoutInflater inflater = this.getActivity().getLayoutInflater();
-        if (firstLoad) {
-            View view = inflater.inflate(R.layout.fragment_comics_list, container, false);
-            RecyclerView rv = (RecyclerView) view.findViewById(R.id.comics_recycler_view);
-            llm = new LinearLayoutManager(view.getContext());
-            rv.setLayoutManager(llm);
-            rv.setAdapter(adapter);
-            if (endless) {
-                rv.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                        visibleItemCount = llm.getChildCount();
-                        totalItemCount = llm.getItemCount();
-                        pastVisiblesItems = llm.findFirstVisibleItemPosition();
-                        if (!loading) {
-                            if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 20) {
-                                loading = true;
-                                loadData();
-                            }
-                        }
-                    }
-                });
-            }
-            container.removeAllViews();
-            container.addView(view);
-            firstLoad = false;
-        }
-        if (!endless) {
-            data.clear();
-        }
-        if (lastItem == null || !(lastItem.equals(event.getResult().get(1)))) {
-            lastItem = event.getResult().get(1);
-            data.addAll(event.getResult());
-            adapter.notifyDataSetChanged();
-            loading = false;
-        }
+        super.onAsyncTaskResult(event);
     }
 }
 

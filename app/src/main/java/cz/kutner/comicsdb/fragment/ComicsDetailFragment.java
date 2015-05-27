@@ -20,7 +20,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
  */
 
 
-public class ComicsDetailFragment extends AbstractFragment<Comics> {
+public class ComicsDetailFragment extends AbstractFragment<Comics, ComicsDetailRVAdapter, ComicsDetailResultEvent> {
 
     void loadData() {
         Bundle args = this.getArguments();
@@ -31,7 +31,7 @@ public class ComicsDetailFragment extends AbstractFragment<Comics> {
 
     @Subscribe
     public void onAsyncTaskResult(ComicsDetailResultEvent event) {
-        Comics result = event.getResult();
+        Comics result = event.getResult().get(0);
         Activity activity = getActivity();
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_comics_detail, container, false);
