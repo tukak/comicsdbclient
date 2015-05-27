@@ -42,6 +42,29 @@ public class ForumEntry {
     public String getForum() {
         return forum;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ForumEntry that = (ForumEntry) o;
+
+        if (!nick.equals(that.nick)) return false;
+        if (!text.equals(that.text)) return false;
+        if (!time.equals(that.time)) return false;
+        return forum.equals(that.forum);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nick.hashCode();
+        result = 31 * result + text.hashCode();
+        result = 31 * result + time.hashCode();
+        result = 31 * result + forum.hashCode();
+        return result;
+    }
 }
 
 

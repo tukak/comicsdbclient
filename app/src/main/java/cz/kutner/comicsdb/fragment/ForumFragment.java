@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
+import java.text.DateFormat;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
@@ -37,6 +41,8 @@ public class ForumFragment extends AbstractFragment {
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
+    ForumEntry lastItem;
+
 
     void loadData() {
         if (searchRunning == false) {
@@ -78,13 +84,15 @@ public class ForumFragment extends AbstractFragment {
                     }
                 }
             });
-
             container.removeAllViews();
             container.addView(view);
             firstLoad = false;
         }
-        data.addAll(event.getResult());
-        adapter.notifyDataSetChanged();
-        loading = false;
+        if (lastItem == null || !(lastItem.equals(event.getResult().get(1)))) {
+            lastItem = event.getResult().get(1);
+            data.addAll(event.getResult());
+            adapter.notifyDataSetChanged();
+            loading = false;
+        }
     }
 }
