@@ -31,6 +31,7 @@ public class ClassifiedFragment extends AbstractFragment {
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
+    Classified lastItem;
 
     void loadData() {
         if (searchRunning == false) {
@@ -77,8 +78,11 @@ public class ClassifiedFragment extends AbstractFragment {
             container.addView(view);
             firstLoad = false;
         }
-        data.addAll(event.getResult());
-        adapter.notifyDataSetChanged();
-        loading = false;
+        if (lastItem == null || !(lastItem.equals(event.getResult().get(1)))) {
+            lastItem = event.getResult().get(1);
+            data.addAll(event.getResult());
+            adapter.notifyDataSetChanged();
+            loading = false;
+        }
     }
 }

@@ -42,6 +42,20 @@ public class Classified {
     public String getCategory() {
         return category;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Classified that = (Classified) o;
+
+        if (!nick.equals(that.nick)) return false;
+        if (!text.equals(that.text)) return false;
+        if (!time.equals(that.time)) return false;
+        return category.equals(that.category);
+
+    }
 }
 
 

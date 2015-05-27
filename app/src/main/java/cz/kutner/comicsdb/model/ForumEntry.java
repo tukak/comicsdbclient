@@ -54,16 +54,6 @@ public class ForumEntry {
         if (!text.equals(that.text)) return false;
         if (!time.equals(that.time)) return false;
         return forum.equals(that.forum);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nick.hashCode();
-        result = 31 * result + text.hashCode();
-        result = 31 * result + time.hashCode();
-        result = 31 * result + forum.hashCode();
-        return result;
     }
 }
 

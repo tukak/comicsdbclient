@@ -31,6 +31,8 @@ public class ComicsListFragment extends AbstractFragment {
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
+    Comics lastItem;
+
     void loadData() {
         if (searchRunning == false) {
             searchRunning = true;
@@ -82,9 +84,12 @@ public class ComicsListFragment extends AbstractFragment {
         if (!endless) {
             data.clear();
         }
-        data.addAll(event.getResult());
-        adapter.notifyDataSetChanged();
-        loading = false;
+        if (lastItem == null || !(lastItem.equals(event.getResult().get(1)))) {
+            lastItem = event.getResult().get(1);
+            data.addAll(event.getResult());
+            adapter.notifyDataSetChanged();
+            loading = false;
+        }
     }
 }
 

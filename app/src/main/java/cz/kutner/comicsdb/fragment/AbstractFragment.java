@@ -8,10 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
