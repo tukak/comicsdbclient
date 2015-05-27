@@ -22,16 +22,14 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
  */
-public class ComicsListFragment extends AbstractFragment {
+public class ComicsListFragment extends AbstractFragment<Comics> {
 
     private boolean searchRunning;
     private boolean endless;
-    List<Comics> data = new ArrayList<>();
     ComicsListRVAdapter adapter = new ComicsListRVAdapter(data);
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
-    Comics lastItem;
 
     void loadData() {
         if (searchRunning == false) {

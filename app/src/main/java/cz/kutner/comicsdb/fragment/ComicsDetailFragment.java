@@ -20,7 +20,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
  */
 
 
-public class ComicsDetailFragment extends AbstractFragment {
+public class ComicsDetailFragment extends AbstractFragment<Comics> {
 
     void loadData() {
         Bundle args = this.getArguments();

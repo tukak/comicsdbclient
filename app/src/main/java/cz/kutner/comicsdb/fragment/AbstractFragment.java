@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
@@ -15,11 +18,13 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public abstract class AbstractFragment extends Fragment {
+public abstract class AbstractFragment<T> extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
     ViewGroup container;
     int lastPage;
     boolean firstLoad;
+    T lastItem;
+    List<T> data = new ArrayList<>();
 
     public AbstractFragment() {
         EventBus.getInstance().register(this);

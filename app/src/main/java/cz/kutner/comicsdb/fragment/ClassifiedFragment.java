@@ -23,15 +23,13 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public class ClassifiedFragment extends AbstractFragment {
+public class ClassifiedFragment extends AbstractFragment<Classified> {
 
     private boolean searchRunning;
-    List<Classified> data = new ArrayList<>();
     ClassifiedRVAdapter adapter = new ClassifiedRVAdapter(data);
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
-    Classified lastItem;
 
     void loadData() {
         if (searchRunning == false) {

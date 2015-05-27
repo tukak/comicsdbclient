@@ -33,15 +33,13 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public class ForumFragment extends AbstractFragment {
+public class ForumFragment extends AbstractFragment<ForumEntry> {
 
     private boolean searchRunning;
-    List<ForumEntry> data = new ArrayList<>();
     ForumRVAdapter adapter = new ForumRVAdapter(data);
     LinearLayoutManager llm;
     boolean loading = false;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
-    ForumEntry lastItem;
 
 
     void loadData() {
