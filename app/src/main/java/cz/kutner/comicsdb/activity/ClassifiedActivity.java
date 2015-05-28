@@ -1,10 +1,8 @@
 package cz.kutner.comicsdb.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
-import cz.kutner.comicsdb.fragment.ForumFragment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**

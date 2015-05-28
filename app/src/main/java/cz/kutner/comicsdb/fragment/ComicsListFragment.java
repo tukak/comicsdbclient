@@ -2,17 +2,10 @@ package cz.kutner.comicsdb.fragment;
 
 import android.app.SearchManager;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.squareup.otto.Subscribe;
 
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
@@ -34,7 +27,7 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
     }
 
     void loadData() {
-        if (searchRunning == false) {
+        if (!searchRunning) {
             searchRunning = true;
             FetchComicsListTask task = new FetchComicsListTask();
             Bundle args = this.getArguments();

@@ -1,23 +1,11 @@
 package cz.kutner.comicsdb.fragment;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-
 import com.squareup.otto.Subscribe;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cz.kutner.comicsdb.adapter.ClassifiedRVAdapter;
-import cz.kutner.comicsdb.adapter.ForumRVAdapter;
 import cz.kutner.comicsdb.event.ClassifiedResultEvent;
-import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdb.task.FetchClassifiedTask;
-import cz.kutner.comicsdb.task.FetchForumTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -34,9 +22,9 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
     }
 
     void loadData() {
-        if (searchRunning == false) {
+        if (!searchRunning) {
             searchRunning = true;
-            FetchClassifiedTask task = new FetchClassifiedTask(this.getActivity().getApplicationContext());
+            FetchClassifiedTask task = new FetchClassifiedTask();
             //Bundle args = this.getArguments();
             //if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
             //    String searchText = args.getString(SearchManager.QUERY);

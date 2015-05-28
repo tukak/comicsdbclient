@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+@SuppressWarnings("ALL")
 public class MaterialProgressBar extends View {
 
     private CircularProgressDrawable mDrawable;

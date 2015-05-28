@@ -1,32 +1,10 @@
 package cz.kutner.comicsdb.fragment;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.squareup.otto.Subscribe;
 
-import java.text.DateFormat;
-import java.text.Normalizer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.adapter.ForumRVAdapter;
-import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
-import cz.kutner.comicsdb.task.FetchComicsListTask;
 import cz.kutner.comicsdb.task.FetchForumTask;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -43,7 +21,7 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
     }
 
     void loadData() {
-        if (searchRunning == false) {
+        if (!searchRunning) {
             searchRunning = true;
             FetchForumTask task = new FetchForumTask();
             //Bundle args = this.getArguments();

@@ -34,7 +34,7 @@ public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
 
     @Override
     protected void onPostExecute(Comics result) {
-        List<Comics> listResult = new ArrayList<Comics>();
+        List<Comics> listResult = new ArrayList<>();
         listResult.add(result);
         EventBus.getInstance().post(new ComicsDetailResultEvent(listResult));
     }

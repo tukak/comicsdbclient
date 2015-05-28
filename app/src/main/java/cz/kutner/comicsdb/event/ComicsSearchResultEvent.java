@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.event;
 
-import android.util.Log;
-
 import java.util.List;
 
 import cz.kutner.comicsdb.model.Comics;

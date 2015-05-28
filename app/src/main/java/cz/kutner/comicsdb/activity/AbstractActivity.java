@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.activity;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,7 +21,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
@@ -34,10 +32,6 @@ public abstract class AbstractActivity extends ActionBarActivity {
     ListView drawerList;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Class cls = this.getClass();
-    // nav drawer title
-    CharSequence drawerTitle;
-    // used to store app title
-    CharSequence appTitle;
     String[] activities;
 
     @Override
@@ -48,7 +42,7 @@ public abstract class AbstractActivity extends ActionBarActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
         // Set the adapter for the list view
-        drawerList.setAdapter(new ArrayAdapter<String>(this,
+        drawerList.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, getResources().getStringArray(R.array.nav_drawer_items)));
         drawerList.setOnItemClickListener(new SlideMenuClickListener());
 
@@ -89,7 +83,7 @@ public abstract class AbstractActivity extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-            Intent intent = null;
+            Intent intent;
             Class activity = null;
             String[] activities = getResources().getStringArray(R.array.nav_drawer_activities);
             try {

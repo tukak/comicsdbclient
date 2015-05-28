@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
