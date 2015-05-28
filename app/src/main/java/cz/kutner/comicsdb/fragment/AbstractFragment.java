@@ -101,7 +101,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
             rv.setLayoutManager(llm);
             rv.setAdapter(adapter);
             if (endless) {
-                rv.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
                     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                         visibleItemCount = llm.getChildCount();
