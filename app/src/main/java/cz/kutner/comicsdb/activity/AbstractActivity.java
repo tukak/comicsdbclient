@@ -8,8 +8,8 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +26,7 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
-public abstract class AbstractActivity extends ActionBarActivity {
+public abstract class AbstractActivity extends AppCompatActivity {
     final String LOG_TAG = getClass().getSimpleName();
     DrawerLayout drawerLayout;
     ListView drawerList;
@@ -56,10 +56,10 @@ public abstract class AbstractActivity extends ActionBarActivity {
 
             public void onDrawerOpened(View drawerView) {
                 // calling onPrepareOptionsMenu() to hide action bar icons
-                ListView drawer = (ListView)drawerView.findViewById(R.id.left_drawer);
-                for (int i=0; i < drawer.getChildCount(); i++) {
+                ListView drawer = (ListView) drawerView.findViewById(R.id.left_drawer);
+                for (int i = 0; i < drawer.getChildCount(); i++) {
                     View view = drawer.getChildAt(i);
-                    TextView textView = (TextView)view.findViewById(R.id.navigation_drawer_text);
+                    TextView textView = (TextView) view.findViewById(R.id.navigation_drawer_text);
                     Class activity = null;
                     try {
                         activity = Class.forName("cz.kutner.comicsdb.activity." + activities[i]);
