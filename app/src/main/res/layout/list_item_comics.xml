@@ -22,6 +22,7 @@
                 android:id="@+id/comics_name"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 tools:text="name"
                 android:layout_toStartOf="@+id/comics_rating"
                 android:layout_toLeftOf="@+id/comics_rating" />
@@ -31,10 +32,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/comics_published"
                 tools:text="published"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_below="@+id/comics_name"
                 android:layout_alignLeft="@+id/comics_name"
                 android:layout_alignStart="@+id/comics_name"
                 android:layout_toStartOf="@+id/comics_rating"
+                android:layout_toLeftOf="@+id/comics_rating"
                 android:layout_alignRight="@+id/comics_name"
                 android:layout_alignEnd="@+id/comics_name" />
 
@@ -47,7 +50,8 @@
                 android:layout_alignParentRight="true"
                 android:textSize="30sp"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp" />
+                android:paddingRight="4dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </RelativeLayout>
 
