@@ -5,9 +5,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,11 +17,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -31,71 +30,80 @@ public abstract class AbstractActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ListView drawerList;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
     Class cls = this.getClass();
     String[] activities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activities = getResources().getStringArray(R.array.nav_drawer_activities);
         setContentView(R.layout.activity);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
-        // Set the adapter for the list view
-        drawerList.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, getResources().getStringArray(R.array.nav_drawer_items)));
-        drawerList.setOnItemClickListener(new SlideMenuClickListener());
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationViewItemSelectedListener());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.abc_ic_menu_share_mtrl_alpha);
+            //TODO ???
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerClosed(View view) {
-                // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                // calling onPrepareOptionsMenu() to hide action bar icons
-                ListView drawer = (ListView) drawerView.findViewById(R.id.left_drawer);
-                for (int i = 0; i < drawer.getChildCount(); i++) {
-                    View view = drawer.getChildAt(i);
-                    TextView textView = (TextView) view.findViewById(R.id.navigation_drawer_text);
-                    Class activity = null;
-                    try {
-                        activity = Class.forName("cz.kutner.comicsdb.activity." + activities[i]);
-                    } catch (ClassNotFoundException e) {
-                        Log.e(LOG_TAG, e.getMessage(), e);
-                    }
-                    if (cls == activity) {
-                        textView.setBackgroundColor(Color.LTGRAY);
-                    } else {
-                        textView.setBackgroundColor(Color.WHITE);
-                    }
+                navigationView = (NavigationView) findViewById(R.id.navigation_view);
+                int menuId = 0;
+                switch (cls.getSimpleName()) {
+                    case "MainActivity":
+                        Log.i(LOG_TAG, "JOOJOJO");
+                        menuId = R.id.navigation_item_comics;
+                        break;
+                    case "ClassifiedActivity":
+                        menuId = R.id.navigation_item_classified;
+                        break;
+                    case "ForumActivity":
+                        menuId = R.id.navigation_item_forum;
+                        break;
                 }
+                Log.i(LOG_TAG, cls.getSimpleName());
+                Log.i(LOG_TAG, String.valueOf(menuId));
+                Log.i(LOG_TAG, String.valueOf(R.id.navigation_item_comics));
                 invalidateOptionsMenu();
             }
         };
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
     }
 
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class NavigationViewItemSelectedListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            Intent intent;
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+            menuItem.setChecked(true);
             Class activity = null;
-            String[] activities = getResources().getStringArray(R.array.nav_drawer_activities);
-            try {
-                activity = Class.forName("cz.kutner.comicsdb.activity." + activities[position]);
-            } catch (ClassNotFoundException e) {
-                Log.e(LOG_TAG, e.getMessage(), e);
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_item_comics:
+                    activity = MainActivity.class;
+                    break;
+                case R.id.navigation_item_classified:
+                    activity = ClassifiedActivity.class;
+                    break;
+                case R.id.navigation_item_forum:
+                    activity = ForumActivity.class;
+                    break;
+                case R.id.navigation_item_about:
+                    activity = AboutActivity.class;
+                    break;
             }
-            if (activity != cls) {
-                intent = new Intent(view.getContext(), activity);
-                view.getContext().startActivity(intent);
-                drawerLayout.closeDrawers();
-            }
+            //if (activity != cls) {
+            //    Intent intent = new Intent(getApplication(), activity);
+            //    startActivity(intent);
+            //    drawerLayout.closeDrawers();
+            //}
+            return true;
         }
     }
 

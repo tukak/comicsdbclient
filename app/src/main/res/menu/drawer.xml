@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_comics"
+            android:title="@string/comics" />
+        <item
+            android:id="@+id/navigation_item_classified"
+            android:title="@string/classified" />
+        <item
+            android:id="@+id/navigation_item_forum"
+            android:title="@string/forum" />
+        <item
+            android:id="@+id/navigation_item_about"
+            android:title="@string/about" />
+    </group>
+</menu>
