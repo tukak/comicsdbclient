@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,24 +50,8 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView;
         this.container = container;
-        //TODO  - tohle kontrolovat pokaždé při načtení - v onStart?
-        if (!Utils.isConnected(this.getActivity())) {
-            rootView = inflater.inflate(R.layout.loading_error, container, false);
-            Button tryAgainButton = (Button) rootView.findViewById(R.id.try_again);
-            tryAgainButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (Utils.isConnected(getActivity())) {
-                        loadData();
-                    }
-                }
-            });
-        } else {
-            rootView = inflater.inflate(R.layout.loading, container, false);
-        }
-        return rootView;
+        return null;
     }
 
     abstract void loadData();
@@ -80,15 +65,31 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @Override
     public void onStart() {
         super.onStart();
+        View view;
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.loading, container, false);
-        container.removeAllViews();
-        container.addView(view);
-        firstLoad = true;
-        loadData();
+        if (!Utils.isConnected(this.getActivity())) {
+            view = inflater.inflate(R.layout.loading_error, container, false);
+            container.removeAllViews();
+            container.addView(view);
+            Button tryAgainButton = (Button) view.findViewById(R.id.try_again);
+            tryAgainButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.isConnected(getActivity())) {
+                        onStart();
+                    }
+                }
+            });
+        } else {
+            view = inflater.inflate(R.layout.loading, container, false);
+            container.removeAllViews();
+            container.addView(view);
+            firstLoad = true;
+            loadData();
+        }
     }
 
     public void onAsyncTaskResult(Event event) {
