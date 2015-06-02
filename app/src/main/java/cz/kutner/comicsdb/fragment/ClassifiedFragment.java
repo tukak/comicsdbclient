@@ -1,5 +1,7 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.support.v7.app.AppCompatActivity;
+
 import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.adapter.ClassifiedRVAdapter;
@@ -40,5 +42,11 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
     @Subscribe
     public void onAsyncTaskResult(ClassifiedResultEvent event) {
         super.onAsyncTaskResult(event);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Forum");
     }
 }

@@ -1,5 +1,7 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.support.v7.app.AppCompatActivity;
+
 import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.adapter.ForumRVAdapter;
@@ -20,6 +22,7 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
         preloadCount = 20;
     }
 
+
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -39,5 +42,11 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
     @Subscribe
     public void onAsyncTaskResult(ForumResultEvent event) {
         super.onAsyncTaskResult(event);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Forum");
     }
 }

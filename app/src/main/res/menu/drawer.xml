@@ -2,6 +2,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_item_comics"
+            android:checked="true"
             android:title="@string/comics" />
         <item
             android:id="@+id/navigation_item_classified"

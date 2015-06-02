@@ -2,6 +2,7 @@ package cz.kutner.comicsdb.fragment;
 
 import android.app.SearchManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.squareup.otto.Subscribe;
 
@@ -46,6 +47,17 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
     @Subscribe
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
         super.onAsyncTaskResult(event);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle args = this.getArguments();
+        if (args != null && args.containsKey(SearchManager.QUERY)) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\"");
+        } else {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Comicsy");
+        }
     }
 }
 

@@ -26,7 +26,6 @@ public class ComicsSearchActivity extends AbstractActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             Fragment fragment = new ComicsListFragment();
             fragment.setArguments(getIntent().getExtras());
-            getSupportActionBar().setTitle("Výsledek pro \"" + intent.getStringExtra(SearchManager.QUERY) + "\"");
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
                     .commit();
