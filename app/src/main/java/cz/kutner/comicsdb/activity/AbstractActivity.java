@@ -6,14 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,27 +75,28 @@ public abstract class AbstractActivity extends AppCompatActivity {
     private class NavigationViewItemSelectedListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(MenuItem menuItem) {
-            menuItem.setChecked(true);
+
+            Fragment fragment = null;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_item_comics:
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.container, new ComicsListFragment())
-                            .commit();
+                    fragment = new ComicsListFragment();
                     break;
                 case R.id.navigation_item_classified:
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.container, new ClassifiedFragment())
-                            .commit();
+                    fragment = new ClassifiedFragment();
                     break;
                 case R.id.navigation_item_forum:
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.container, new ForumFragment())
-                            .commit();
+                    fragment = new ForumFragment();
                     break;
                 case R.id.navigation_item_about:
                     Intent intent = new Intent(getApplication(), AboutActivity.class);
                     startActivity(intent);
                     break;
+            }
+            menuItem.setChecked(true);
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, fragment)
+                        .commit();
             }
             drawerLayout.closeDrawers();
             return true;

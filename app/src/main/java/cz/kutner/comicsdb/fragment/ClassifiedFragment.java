@@ -47,6 +47,6 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
     @Override
     public void onStart() {
         super.onStart();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Forum");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Bazar");
     }
 }
