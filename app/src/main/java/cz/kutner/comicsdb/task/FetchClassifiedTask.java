@@ -20,7 +20,7 @@ import cz.kutner.comicsdb.model.Classified;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
 public class FetchClassifiedTask
-        extends AsyncTask<Integer, Void, List<Classified>> {
+        extends AsyncTask<String, Void, List<Classified>> {
     private String LOG_TAG = getClass().getSimpleName();
 
     public FetchClassifiedTask() {
@@ -32,8 +32,8 @@ public class FetchClassifiedTask
     }
 
     @Override
-    protected List<Classified> doInBackground(Integer... params) {
-        return ClassifiedConnector.get(params[0]);
+    protected List<Classified> doInBackground(String... params) {
+        return ClassifiedConnector.getFiltered(Integer.valueOf(params[0]), params[1], params[2]);
     }
 }
 

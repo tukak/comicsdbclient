@@ -1,14 +1,21 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +45,10 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     int recycler_view;
     int preloadCount;
     boolean endless;
+    boolean spinnerEnabled;
+    String[] spinnerValues;
+    Spinner spinner;
+
 
     public AbstractFragment() {
         EventBus.getInstance().register(this);
@@ -46,6 +57,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         endless = true;
         fragment_view = R.layout.fragment;
         recycler_view = R.id.recycler_view;
+        spinnerEnabled = false;
     }
 
     @Override
@@ -98,6 +110,18 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
         if (firstLoad) {
             View view = inflater.inflate(fragment_view, container, false);
+            spinner = (Spinner) view.findViewById(R.id.spinner);
+            if (!spinnerEnabled) {
+                spinner.setVisibility(View.GONE);
+                view.findViewById(R.id.filter_text).setVisibility(View.GONE);
+            }
+            if (spinnerEnabled) {
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, spinnerValues);
+                spinner.setAdapter(spinnerAdapter);
+                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setTag(0);
+                spinner.setOnItemSelectedListener(new itemSelectedListener());
+            }
             RecyclerView rv = (RecyclerView) view.findViewById(recycler_view);
             llm = new LinearLayoutManager(view.getContext());
             rv.setLayoutManager(llm);
@@ -132,9 +156,31 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                 }
                 data.addAll(event.getResult());
                 adapter.notifyDataSetChanged();
+                loading = false;
             }
         } else {
             loading = false;
+        }
+    }
+
+    public class itemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            Log.i(LOG_TAG, String.valueOf(firstLoad));
+            Log.i(LOG_TAG, String.valueOf(spinner.getTag()));
+            Log.i(LOG_TAG, String.valueOf(pos));
+            if ((Integer)spinner.getTag() != pos) {
+                data.clear();
+                lastPage = 1;
+                spinner.setTag(pos);
+                loadData();
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
         }
     }
 }

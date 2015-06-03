@@ -18,6 +18,9 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
     public ForumFragment() {
         adapter = new ForumRVAdapter(data);
         preloadCount = 20;
+        spinnerEnabled = true;
+        spinnerValues = new String[] {"* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub",
+                "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)"};
     }
 
 
