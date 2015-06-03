@@ -124,17 +124,16 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
             firstLoad = false;
         }
         result = event.getResult();
-        if (!endless) {
-            data.clear();
-        }
         if (result.size() > 0) {
             if (lastItem == null || !(lastItem.equals(result.get(0)))) {
                 lastItem = result.get(0);
+                if (!endless) {
+                    data.clear();
+                }
                 data.addAll(event.getResult());
-
+                adapter.notifyDataSetChanged();
             }
         } else {
-            adapter.notifyDataSetChanged();
             loading = false;
         }
     }
