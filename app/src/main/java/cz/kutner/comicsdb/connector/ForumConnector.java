@@ -18,12 +18,56 @@ import cz.kutner.comicsdb.model.ForumEntry;
 public class ForumConnector {
     private static final String LOG_TAG = ForumConnector.class.getSimpleName();
 
+    public static List<ForumEntry> getFiltered(int page, String forum, String searchText) {
+        int forumId = 0;
+        switch (forum) {
+            case "* Připomínky a návrhy":
+                forumId = 1;
+                break;
+            case "Fabula Rasa":
+                forumId = 10;
+                break;
+            case "Filmový klub":
+                forumId = 5;
+                break;
+            case "Pindárna":
+                forumId = 3;
+                break;
+            case "Povinná četba":
+                forumId = 4;
+                break;
+            case "Poznej comics nebo postavu":
+                forumId = 9;
+                break;
+            case "Sběratelský klub":
+                forumId = 6;
+                break;
+            case "Slevy, výprodeje, bazary":
+                forumId = 11;
+                break;
+            case "Srazy, cony, festivaly":
+                forumId = 8;
+                break;
+            case "Stripy, jouky, fejky :)":
+                forumId = 8;
+                break;
+        }
+
+        String uri = "http://comicsdb.cz/forum.php" + "?str=" + page + "&id=" + forumId + "&val=" + searchText;
+        return loadFromUri(uri);
+    }
+
+
     public static List<ForumEntry> get(int page) {
+        String uri = "http://comicsdb.cz/forum.php" + "?str=" + page;
+        return loadFromUri(uri);
+    }
+
+    private static List<ForumEntry> loadFromUri(String uri) {
         List<ForumEntry> result = new ArrayList<>();
         Document doc;
         try {
-            String url = "http://comicsdb.cz/forum.php" + "?str=" + page;
-            doc = Jsoup.connect(url).get();
+            doc = Jsoup.connect(uri).get();
             for (Element entry : doc.select("div#prispevek")) {
                 String nick = entry.select("span.prispevek-nick").get(0).text();
                 String forum = entry.select("span.prispevek-nick").get(1).text();

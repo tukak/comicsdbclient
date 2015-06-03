@@ -20,7 +20,7 @@ import cz.kutner.comicsdb.model.ForumEntry;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
 public class FetchForumTask
-        extends AsyncTask<Integer, Void, List<ForumEntry>> {
+        extends AsyncTask<String, Void, List<ForumEntry>> {
     private String LOG_TAG = getClass().getSimpleName();
 
     public FetchForumTask() {
@@ -33,8 +33,8 @@ public class FetchForumTask
     }
 
     @Override
-    protected List<ForumEntry> doInBackground(Integer... params) {
-        return ForumConnector.get(params[0]);
+    protected List<ForumEntry> doInBackground(String... params) {
+        return ForumConnector.getFiltered(Integer.valueOf(params[0]), params[1], params[2]);
     }
 }
 

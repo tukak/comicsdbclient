@@ -1,6 +1,8 @@
 package cz.kutner.comicsdb.fragment;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Spinner;
 
 import com.squareup.otto.Subscribe;
 
@@ -19,7 +21,7 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
         adapter = new ForumRVAdapter(data);
         preloadCount = 20;
         spinnerEnabled = true;
-        spinnerValues = new String[] {"* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub",
+        spinnerValues = new String[]{"Všechna fora", "* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub",
                 "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)"};
     }
 
@@ -28,13 +30,21 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
         if (!searchRunning) {
             searchRunning = true;
             FetchForumTask task = new FetchForumTask();
+            String filter = "";
+            String searchText = "";
             //Bundle args = this.getArguments();
             //if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
             //    String searchText = args.getString(SearchManager.QUERY);
             //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             //    task.execute(getString(R.string.url_comics_search) + searchText);
             //} else { //zobrazujeme nejnovější
-            task.execute(lastPage);
+            Spinner spinner = (Spinner) container.findViewById(R.id.spinner);
+            if (spinner != null) {
+                filter = spinner.getSelectedItem().toString();
+                Log.i(LOG_TAG, filter);
+            }
+            task.execute(String.valueOf(lastPage), filter, searchText); //Stránka, Kategorie, Hledaný text
+
             //}
             lastPage++;
         }

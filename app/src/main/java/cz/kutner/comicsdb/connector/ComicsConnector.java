@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comment;
 
-impor cz.kutner.comicsdb.model.Comics;
+import cz.kutner.comicsdb.model.Comics;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.

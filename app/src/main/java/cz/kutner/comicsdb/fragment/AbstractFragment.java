@@ -155,21 +155,16 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                     data.clear();
                 }
                 data.addAll(event.getResult());
-                adapter.notifyDataSetChanged();
-                loading = false;
             }
-        } else {
-            loading = false;
         }
+        adapter.notifyDataSetChanged();
+        loading = false;
     }
 
     public class itemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            Log.i(LOG_TAG, String.valueOf(firstLoad));
-            Log.i(LOG_TAG, String.valueOf(spinner.getTag()));
-            Log.i(LOG_TAG, String.valueOf(pos));
             if ((Integer)spinner.getTag() != pos) {
                 data.clear();
                 lastPage = 1;
