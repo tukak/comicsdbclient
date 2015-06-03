@@ -44,6 +44,8 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         lastPage = 1;
         loading = false;
         endless = true;
+        fragment_view = R.layout.fragment;
+        recycler_view = R.id.recycler_view;
     }
 
     @Override

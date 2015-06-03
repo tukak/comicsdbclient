@@ -17,8 +17,6 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
 
     public ForumFragment() {
         adapter = new ForumRVAdapter(data);
-        fragment_view = R.layout.fragment_forum;
-        recycler_view = R.id.forum_recycler_view;
         preloadCount = 20;
     }
 
