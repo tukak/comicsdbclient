@@ -41,7 +41,6 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
             Spinner spinner = (Spinner) container.findViewById(R.id.spinner);
             if (spinner != null) {
                 filter = spinner.getSelectedItem().toString();
-                Log.i(LOG_TAG, filter);
             }
             task.execute(String.valueOf(lastPage), filter, searchText); //Stránka, Kategorie, Hledaný text
 
