@@ -132,9 +132,8 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                 }
                 data.addAll(event.getResult());
                 adapter.notifyDataSetChanged();
+                loading = false;
             }
-        } else {
-            loading = false;
         }
     }
 }
