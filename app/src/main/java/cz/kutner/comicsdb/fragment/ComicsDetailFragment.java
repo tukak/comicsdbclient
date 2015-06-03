@@ -26,7 +26,7 @@ public class ComicsDetailFragment extends AbstractFragment<Comics, ComicsDetailR
     void loadData() {
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
-        FetchComicsDetailTask task = new FetchComicsDetailTask(this.getActivity().getApplicationContext());
+        FetchComicsDetailTask task = new FetchComicsDetailTask();
         task.execute(id);
     }
 
