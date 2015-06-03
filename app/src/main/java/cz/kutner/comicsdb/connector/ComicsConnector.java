@@ -19,9 +19,6 @@ import cz.kutner.comicsdb.model.Comics;
 public class ComicsConnector {
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
-    public ComicsConnector() {
-    }
-
     public static Comics get(int id) {
         cz.kutner.comicsdb.model.Comics comics = new cz.kutner.comicsdb.model.Comics();
         try {
