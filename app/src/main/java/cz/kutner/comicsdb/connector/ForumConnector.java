@@ -16,7 +16,7 @@ import cz.kutner.comicsdb.model.ForumEntry;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
  */
 public class ForumConnector {
-    private static final String LOG_TAG = Utils.class.getSimpleName();
+    private static final String LOG_TAG = ForumConnector.class.getSimpleName();
 
     public static List<ForumEntry> get(int page) {
         List<ForumEntry> result = new ArrayList<>();

@@ -17,7 +17,7 @@ import cz.kutner.comicsdb.model.Comics;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
  */
 public class ComicsConnector {
-    private static final String LOG_TAG = Utils.class.getSimpleName();
+    private static final String LOG_TAG = ComicsConnector.class.getSimpleName();
 
     public static Comics get(int id) {
         cz.kutner.comicsdb.model.Comics comics = new cz.kutner.comicsdb.model.Comics();

@@ -16,7 +16,7 @@ import cz.kutner.comicsdb.model.Classified;
  * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
  */
 public class ClassifiedConnector {
-    private static final String LOG_TAG = Utils.class.getSimpleName();
+    private static final String LOG_TAG = ClassifiedConnector.class.getSimpleName();
 
     public static List<Classified> get(int page) {
         List<Classified> result = new ArrayList<>();
