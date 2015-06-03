@@ -22,6 +22,8 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
 
     public ComicsListFragment() {
         adapter = new ComicsListRVAdapter(data);
+        fragment_view = R.layout.fragment_comics_list;
+        recycler_view = R.id.comics_recycler_view;
         preloadCount = 20;
     }
 
