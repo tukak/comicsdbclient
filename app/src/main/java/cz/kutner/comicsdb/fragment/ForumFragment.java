@@ -31,7 +31,7 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
             //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             //    task.execute(getString(R.string.url_comics_search) + searchText);
             //} else { //zobrazujeme nejnovější
-            task.execute(getString(R.string.url_forum) + "?str=" + lastPage);
+            task.execute(lastPage);
             //}
             lastPage++;
         }

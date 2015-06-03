@@ -31,7 +31,7 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
             //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             //    task.execute(getString(R.string.url_comics_search) + searchText);
             //} else { //zobrazujeme nejnovější
-            task.execute(getString(R.string.url_classified) + "?str=" + lastPage);
+            task.execute(lastPage);
             //}
             lastPage++;
         }
