@@ -35,7 +35,6 @@ public class FetchComicsListTask
                 result = ComicsListConnector.get(Integer.parseInt(params[1]));
                 break;
         }
-        Log.i(LOG_TAG, "Velikost v tasku " + result.size());
         return result;
     }
 }

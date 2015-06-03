@@ -61,7 +61,6 @@ public class ComicsListConnector {
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage(), e);
         }
-        Log.i(LOG_TAG, "Velikost v connectoru " + result.size());
         return result;
     }
 }

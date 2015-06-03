@@ -128,7 +128,6 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         if (!endless) {
             data.clear();
         }
-        Log.i(LOG_TAG, "Velikost ve fragmentu " + result.size());
         if (result.size() > 0) {
             if (lastItem == null || !(lastItem.equals(result.get(0)))) {
                 lastItem = result.get(0);
