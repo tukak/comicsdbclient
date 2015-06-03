@@ -19,11 +19,35 @@ public class ClassifiedConnector {
     private static final String LOG_TAG = ClassifiedConnector.class.getSimpleName();
 
     public static List<Classified> get(int page) {
+        String uri = "http://comicsdb.cz/bazar.php" + "?str=" + page;
+        return loadFromUri(uri);
+    }
+
+    public static List<Classified> getFiltered(int page, String category, String searchText) {
+        int categoryId = 0;
+        switch (category) {
+            case "Prodám":
+                categoryId = 1;
+                break;
+            case "Koupím":
+                categoryId = 2;
+                break;
+            case "Vyměním":
+                categoryId = 3;
+                break;
+            case "Ostatní":
+                categoryId = 10;
+                break;
+        }
+        String uri = "http://comicsdb.cz/bazar.php" + "?str=" + page + "&id=" + categoryId + "&val=" + searchText;
+        return loadFromUri(uri);
+    }
+
+    private static List<Classified> loadFromUri(String uri) {
         List<Classified> result = new ArrayList<>();
         Document doc;
         try {
-            String url = "http://comicsdb.cz/bazar.php" + "?str=" + page;
-            doc = Jsoup.connect(url).get();
+            doc = Jsoup.connect(uri).get();
             for (Element entry : doc.select("div#prispevek")) {
                 String nick = entry.select("span.prispevek-nick").get(0).text();
                 String category = entry.select("span.prispevek-nick").get(1).text();
@@ -45,3 +69,4 @@ public class ClassifiedConnector {
         return result;
     }
 }
+

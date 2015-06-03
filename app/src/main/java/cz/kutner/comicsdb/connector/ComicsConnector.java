@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comment;
+
 import cz.kutner.comicsdb.model.Comics;
 
 /**

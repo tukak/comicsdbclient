@@ -1,6 +1,8 @@
 package cz.kutner.comicsdb.fragment;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Spinner;
 
 import com.squareup.otto.Subscribe;
 
@@ -19,19 +21,27 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
     public ClassifiedFragment() {
         adapter = new ClassifiedRVAdapter(data);
         preloadCount = 8;
+        spinnerEnabled = true;
+        spinnerValues = new String[]{"Všechny inzeráty", "Prodám", "Koupím", "Vyměním", "Ostatní"};
     }
 
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
             FetchClassifiedTask task = new FetchClassifiedTask();
+            String filter = "";
+            String searchText = "";
             //Bundle args = this.getArguments();
             //if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
             //    String searchText = args.getString(SearchManager.QUERY);
             //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             //    task.execute(getString(R.string.url_comics_search) + searchText);
             //} else { //zobrazujeme nejnovější
-            task.execute(lastPage);
+            Spinner spinner = (Spinner) container.findViewById(R.id.spinner);
+            if (spinner != null) {
+                filter = spinner.getSelectedItem().toString();
+            }
+            task.execute(String.valueOf(lastPage), filter, searchText); //Stránka, Kategorie, Hledaný text
             //}
             lastPage++;
         }
