@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,9 +125,13 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         if (!endless) {
             data.clear();
         }
-        if (lastItem == null || !(lastItem.equals(result.get(0)))) {
-            lastItem = result.get(0);
-            data.addAll(event.getResult());
+        if (result.size() > 0) {
+            if (lastItem == null || !(lastItem.equals(result.get(0)))) {
+                lastItem = result.get(0);
+                data.addAll(event.getResult());
+
+            }
+        } else {
             adapter.notifyDataSetChanged();
             loading = false;
         }
