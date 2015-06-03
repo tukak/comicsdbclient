@@ -18,8 +18,6 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
 
     public ClassifiedFragment() {
         adapter = new ClassifiedRVAdapter(data);
-        fragment_view = R.layout.fragment_classified;
-        recycler_view = R.id.classified_recycler_view;
         preloadCount = 8;
     }
 
