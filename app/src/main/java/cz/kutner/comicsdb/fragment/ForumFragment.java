@@ -30,7 +30,6 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
         if (!searchRunning) {
             searchRunning = true;
             FetchForumTask task = new FetchForumTask();
-            String filter = "";
             String searchText = "";
             //Bundle args = this.getArguments();
             //if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
@@ -38,10 +37,6 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
             //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
             //    task.execute(getString(R.string.url_comics_search) + searchText);
             //} else { //zobrazujeme nejnovější
-            Spinner spinner = (Spinner) container.findViewById(R.id.spinner);
-            if (spinner != null) {
-                filter = spinner.getSelectedItem().toString();
-            }
             task.execute(String.valueOf(lastPage), filter, searchText); //Stránka, Kategorie, Hledaný text
 
             //}

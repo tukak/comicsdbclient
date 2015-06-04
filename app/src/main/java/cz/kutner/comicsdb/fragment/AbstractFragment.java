@@ -48,6 +48,8 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     boolean spinnerEnabled;
     String[] spinnerValues;
     Spinner spinner;
+    String filter;
+    Integer spinnerPosition;
 
 
     public AbstractFragment() {
@@ -58,6 +60,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         fragment_view = R.layout.fragment;
         recycler_view = R.id.recycler_view;
         spinnerEnabled = false;
+        filter = "";
     }
 
     @Override
@@ -119,7 +122,11 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, spinnerValues);
                 spinner.setAdapter(spinnerAdapter);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setTag(0);
+                if (spinnerPosition != null) {
+                    spinner.setSelection(spinnerPosition);
+                } else {
+                    spinnerPosition = 0;
+                }
                 spinner.setOnItemSelectedListener(new itemSelectedListener());
             }
             RecyclerView rv = (RecyclerView) view.findViewById(recycler_view);
@@ -165,10 +172,17 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            if ((Integer)spinner.getTag() != pos) {
+            if (spinnerPosition != pos) {
+                filter = spinner.getSelectedItem().toString();
                 data.clear();
+                lastItem = null;
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                view = inflater.inflate(R.layout.loading, container, false);
+                container.removeAllViews();
+                container.addView(view);
+                firstLoad = true;
                 lastPage = 1;
-                spinner.setTag(pos);
+                spinnerPosition = pos;
                 loadData();
             }
         }
