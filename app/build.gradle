@@ -2,18 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "20.0.0"
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 8
-        versionName "8.0"
+        versionCode 9
+        versionName "9.0"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
         }
