@@ -15,7 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--dontobfuscate
+
+#-dontobfuscate
+
+-keep class org.jsoup.** { *; }
 
 -keepattributes *Annotation*
 -keepclassmembers class ** {
