@@ -95,7 +95,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
             menuItem.setChecked(true);
             if (fragment != null) {
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, fragment)
+                        .replace(R.id.container, fragment)
                         .commit();
             }
             drawerLayout.closeDrawers();
