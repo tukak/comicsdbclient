@@ -15,9 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
@@ -28,16 +31,21 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
  */
 public abstract class AbstractActivity extends AppCompatActivity {
     final String LOG_TAG = getClass().getSimpleName();
-    DrawerLayout drawerLayout;
-    ListView drawerList;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    @Bind(R.id.searchView)
+    SearchView searchView;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.navigation_view)
     NavigationView navigationView;
-    Class cls = this.getClass();
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
+        ButterKnife.bind(this);
 
         setupToolbar();
         setupNavigationDrawer();
@@ -45,7 +53,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
 
     void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
       /*  final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -56,10 +63,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
     }
 
     void setupNavigationDrawer() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationViewItemSelectedListener());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerClosed(View view) {
                 invalidateOptionsMenu();
@@ -107,9 +111,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        SearchView searchView =
-                (SearchView) toolbar.findViewById(R.id.searchView);
         ComponentName cn = new ComponentName(this, ComicsSearchActivity.class);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
 

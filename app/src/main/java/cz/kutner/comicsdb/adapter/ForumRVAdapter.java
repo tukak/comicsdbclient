@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.adapter;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -19,22 +22,26 @@ import cz.kutner.comicsdbclient.comicsdbclient.R;
 public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumViewHolder> {
     private final String LOG_TAG = getClass().getSimpleName();
 
+
     public static class ForumViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = getClass().getSimpleName();
 
-        TextView nick;
-        TextView time;
-        TextView forum;
-        TextView text;
-        ImageView icon;
+        @Bind(R.id.forum_nick_icon)
+        ImageView forumNickIcon;
+        @Bind(R.id.forum_comment_nick)
+        TextView forumCommentNick;
+        @Bind(R.id.forum_comment_forum)
+        TextView forumCommentForum;
+        @Bind(R.id.forum_comment_time)
+        TextView forumCommentTime;
+        @Bind(R.id.forum_comment_text)
+        TextView forumCommentText;
+        @Bind(R.id.card_view_comments)
+        CardView cardViewComments;
 
         ForumViewHolder(View itemView) {
             super(itemView);
-            nick = (TextView) itemView.findViewById(R.id.forum_comment_nick);
-            time = (TextView) itemView.findViewById(R.id.forum_comment_time);
-            forum = (TextView) itemView.findViewById(R.id.forum_comment_forum);
-            text = (TextView) itemView.findViewById(R.id.forum_comment_text);
-            icon = (ImageView) itemView.findViewById(R.id.forum_nick_icon);
+            ButterKnife.bind(this, itemView);
         }
     }
 
@@ -62,11 +69,11 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumVie
 
     @Override
     public void onBindViewHolder(ForumViewHolder forumViewHolder, int i) {
-        forumViewHolder.nick.setText(entries.get(i).getNick());
-        forumViewHolder.time.setText(entries.get(i).getTime());
-        forumViewHolder.text.setText(Html.fromHtml(entries.get(i).getText()));
-        forumViewHolder.icon.setImageBitmap(entries.get(i).getIcon());
-        forumViewHolder.forum.setText(entries.get(i).getForum());
+        forumViewHolder.forumCommentNick.setText(entries.get(i).getNick());
+        forumViewHolder.forumCommentTime.setText(entries.get(i).getTime());
+        forumViewHolder.forumCommentText.setText(Html.fromHtml(entries.get(i).getText()));
+        forumViewHolder.forumNickIcon.setImageBitmap(entries.get(i).getIcon());
+        forumViewHolder.forumCommentForum.setText(entries.get(i).getForum());
     }
 
 }

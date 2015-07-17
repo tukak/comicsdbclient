@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.adapter;
 
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
 import cz.kutner.comicsdb.activity.ComicsDetailActivity;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
@@ -22,24 +27,25 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         private final String LOG_TAG = getClass().getSimpleName();
         public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
 
+        @Bind(R.id.comics_name)
         TextView comicsName;
-        TextView publishedDate;
-        TextView rating;
+        @Bind(R.id.comics_published)
+        TextView comicsPublished;
+        @Bind(R.id.comics_rating)
+        TextView comicsRating;
         Integer comicsId;
+
 
         ComicsViewHolder(View itemView) {
             super(itemView);
-            comicsName = (TextView) itemView.findViewById(R.id.comics_name);
-            publishedDate = (TextView) itemView.findViewById(R.id.comics_published);
-            rating = (TextView) itemView.findViewById(R.id.comics_rating);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), ComicsDetailActivity.class);
-                    intent.putExtra(COMICS_ID, comicsId);
-                    v.getContext().startActivity(intent);
-                }
-            });
+            ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.card_view_comics)
+        public void onComicsClick(View v) {
+            Intent intent = new Intent(v.getContext(), ComicsDetailActivity.class);
+            intent.putExtra(COMICS_ID, comicsId);
+            v.getContext().startActivity(intent);
         }
     }
 
@@ -68,11 +74,11 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
     @Override
     public void onBindViewHolder(ComicsViewHolder comicsViewHolder, int i) {
         comicsViewHolder.comicsName.setText(comics.get(i).getName());
-        comicsViewHolder.publishedDate.setText(comics.get(i).getPublished());
+        comicsViewHolder.comicsPublished.setText(comics.get(i).getPublished());
         if (comics.get(i).getRating() > 0) {
-            comicsViewHolder.rating.setText(comics.get(i).getRating().toString());
+            comicsViewHolder.comicsRating.setText(comics.get(i).getRating().toString());
         } else {
-            comicsViewHolder.rating.setText(" ");
+            comicsViewHolder.comicsRating.setText(" ");
 
         }
         comicsViewHolder.comicsId = comics.get(i).getId();

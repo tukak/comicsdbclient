@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.adapter;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
 
@@ -22,19 +25,23 @@ public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapte
     public static class ClassifiedViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = getClass().getSimpleName();
 
-        TextView nick;
-        TextView time;
-        TextView category;
-        TextView text;
-        ImageView icon;
+        @Bind(R.id.classified_nick_icon)
+        ImageView classifiedNickIcon;
+        @Bind(R.id.classified_nick)
+        TextView classifiedNick;
+        @Bind(R.id.classified_category)
+        TextView classifiedCategory;
+        @Bind(R.id.classified_time)
+        TextView classifiedTime;
+        @Bind(R.id.classified_text)
+        TextView classifiedText;
+        @Bind(R.id.card_view_comments)
+        CardView cardViewComments;
 
         ClassifiedViewHolder(View itemView) {
             super(itemView);
-            nick = (TextView) itemView.findViewById(R.id.classified_nick);
-            time = (TextView) itemView.findViewById(R.id.classified_time);
-            category = (TextView) itemView.findViewById(R.id.classified_category);
-            text = (TextView) itemView.findViewById(R.id.classified_text);
-            icon = (ImageView) itemView.findViewById(R.id.classified_nick_icon);
+            ButterKnife.bind(this, itemView);
+
         }
     }
 
@@ -62,11 +69,11 @@ public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapte
 
     @Override
     public void onBindViewHolder(ClassifiedViewHolder classifiedViewHolder, int i) {
-        classifiedViewHolder.nick.setText(entries.get(i).getNick());
-        classifiedViewHolder.time.setText(entries.get(i).getTime());
-        classifiedViewHolder.text.setText(Html.fromHtml(entries.get(i).getText()));
-        classifiedViewHolder.icon.setImageBitmap(entries.get(i).getIcon());
-        classifiedViewHolder.category.setText(entries.get(i).getCategory());
+        classifiedViewHolder.classifiedNick.setText(entries.get(i).getNick());
+        classifiedViewHolder.classifiedTime.setText(entries.get(i).getTime());
+        classifiedViewHolder.classifiedText.setText(Html.fromHtml(entries.get(i).getText()));
+        classifiedViewHolder.classifiedNickIcon.setImageBitmap(entries.get(i).getIcon());
+        classifiedViewHolder.classifiedCategory.setText(entries.get(i).getCategory());
     }
 
 }
