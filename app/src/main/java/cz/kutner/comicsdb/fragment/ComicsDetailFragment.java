@@ -2,7 +2,6 @@ package cz.kutner.comicsdb.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.View;
 
 import com.squareup.otto.Subscribe;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.model.Comics;
@@ -38,7 +38,7 @@ public class ComicsDetailFragment extends AbstractFragment<Comics, ComicsDetailR
         View view = inflater.inflate(R.layout.fragment_comics_detail, container, false);
         container.removeAllViews();
         container.addView(view);
-        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result, this.getActivity().getApplicationContext());
+        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(result, ComicsDBApplication.getContext());
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.comments_detail_recycler_view);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);

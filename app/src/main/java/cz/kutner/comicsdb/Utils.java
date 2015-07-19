@@ -1,26 +1,15 @@
 package cz.kutner.comicsdb;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Base64;
-import android.util.Log;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.kutner.comicsdb.model.Comics;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.4.2015.
@@ -32,9 +21,9 @@ public class Utils {
         return (a == null) ? b : a;
     }
 
-    public static boolean isConnected(Activity activity) {
+    public static boolean isConnected() {
         boolean connected = false;
-        ConnectivityManager cm = (ConnectivityManager) activity.getApplicationContext().getSystemService(
+        ConnectivityManager cm = (ConnectivityManager) ComicsDBApplication.getContext().getSystemService(
                 Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);

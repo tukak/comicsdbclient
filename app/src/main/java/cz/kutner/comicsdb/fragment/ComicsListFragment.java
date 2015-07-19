@@ -32,10 +32,10 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                task.execute(task.SEARCH, searchText);
+                task.execute(FetchComicsListTask.SEARCH, searchText);
                 endless = false;
             } else { //zobrazujeme nejnovější
-                task.execute(task.LIST, String.valueOf(lastPage));
+                task.execute(FetchComicsListTask.LIST, String.valueOf(lastPage));
             }
             lastPage++;
         }

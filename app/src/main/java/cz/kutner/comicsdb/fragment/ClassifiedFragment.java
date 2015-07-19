@@ -1,8 +1,6 @@
 package cz.kutner.comicsdb.fragment;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Spinner;
 
 import com.squareup.otto.Subscribe;
 
@@ -10,7 +8,6 @@ import cz.kutner.comicsdb.adapter.ClassifiedRVAdapter;
 import cz.kutner.comicsdb.event.ClassifiedResultEvent;
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdb.task.FetchClassifiedTask;
-import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.

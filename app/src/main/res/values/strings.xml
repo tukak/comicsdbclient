@@ -22,5 +22,6 @@
     <string name="classified">Bazar</string>
     <string name="forum">Forum</string>
     <string name="about">O aplikaci</string>
+    <string name="filter">Filtruj :</string>
 
 </resources>

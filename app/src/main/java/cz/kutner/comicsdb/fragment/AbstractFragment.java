@@ -81,7 +81,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         sw.setQuery("", false);
         sw.setIconified(true);
         LayoutInflater inflater = this.getActivity().getLayoutInflater();
-        if (!Utils.isConnected(this.getActivity())) {
+        if (!Utils.isConnected()) {
             view = inflater.inflate(R.layout.loading_error, container, false);
             container.removeAllViews();
             container.addView(view);
@@ -89,7 +89,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
             tryAgainButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Utils.isConnected(getActivity())) {
+                    if (Utils.isConnected()) {
                         onStart();
                     }
                 }
