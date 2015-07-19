@@ -6,6 +6,7 @@ package cz.kutner.comicsdb.adapter;
 
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdbclient.comicsdbclient.R;
@@ -28,61 +31,63 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public static class CommentsViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = getClass().getSimpleName();
 
+        @Bind(R.id.commentNick)
         TextView commentNick;
+        @Bind(R.id.commentTime)
         TextView commentTime;
-        TextView commentText;
+        @Bind(R.id.commentRatingBar)
         RatingBar commentRatingBar;
+        @Bind(R.id.commentText)
+        TextView commentText;
+        @Bind(R.id.nickIcon)
         ImageView nickIcon;
 
         CommentsViewHolder(View itemView) {
             super(itemView);
-            commentNick = (TextView) itemView.findViewById(R.id.commentNick);
-            commentTime = (TextView) itemView.findViewById(R.id.commentTime);
-            commentText = (TextView) itemView.findViewById(R.id.commentText);
-            commentRatingBar = (RatingBar) itemView.findViewById(R.id.commentRatingBar);
-            nickIcon = (ImageView) itemView.findViewById(R.id.nickIcon);
+            ButterKnife.bind(this, itemView);
         }
     }
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
         private final String LOG_TAG = getClass().getSimpleName();
-        TextView name;
-        TextView rating;
-        TextView description;
-        TextView genre;
-        TextView publisher;
-        TextView issueNumber;
-        TextView binding;
-        TextView format;
-        TextView pagesCount;
-        TextView originalName;
-        TextView price;
-        TextView notes;
-        TextView authors;
-        TextView series;
+        @Bind(R.id.cover)
         ImageView cover;
-        TextView URL;
-        RatingBar ratingBar;
+        @Bind(R.id.name)
+        TextView name;
+        @Bind(R.id.genre)
+        TextView genre;
+        @Bind(R.id.comics_detail_rating_bar)
+        RatingBar comicsDetailRatingBar;
+        @Bind(R.id.rating)
+        TextView rating;
+        @Bind(R.id.publisher)
+        TextView publisher;
+        @Bind(R.id.pagesCount)
+        TextView pagesCount;
+        @Bind(R.id.price)
+        TextView price;
+        @Bind(R.id.originalName)
+        TextView originalName;
+        @Bind(R.id.binding)
+        TextView binding;
+        @Bind(R.id.series)
+        TextView series;
+        @Bind(R.id.issueNumber)
+        TextView issueNumber;
+        @Bind(R.id.format)
+        TextView format;
+        @Bind(R.id.url)
+        TextView url;
+        @Bind(R.id.description)
+        TextView description;
+        @Bind(R.id.notes)
+        TextView notes;
+        @Bind(R.id.authors)
+        TextView authors;
 
         ComicsViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            rating = (TextView) itemView.findViewById(R.id.rating);
-            description = (TextView) itemView.findViewById(R.id.description);
-            genre = (TextView) itemView.findViewById(R.id.genre);
-            publisher = (TextView) itemView.findViewById(R.id.publisher);
-            issueNumber = (TextView) itemView.findViewById(R.id.issueNumber);
-            binding = (TextView) itemView.findViewById(R.id.binding);
-            format = (TextView) itemView.findViewById(R.id.format);
-            pagesCount = (TextView) itemView.findViewById(R.id.pagesCount);
-            originalName = (TextView) itemView.findViewById(R.id.originalName);
-            price = (TextView) itemView.findViewById(R.id.price);
-            notes = (TextView) itemView.findViewById(R.id.notes);
-            authors = (TextView) itemView.findViewById(R.id.authors);
-            series = (TextView) itemView.findViewById(R.id.series);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
-            URL = (TextView) itemView.findViewById(R.id.url);
-            ratingBar = (RatingBar) itemView.findViewById(R.id.comics_detail_rating_bar);
+            ButterKnife.bind(this, itemView);
         }
     }
 
@@ -162,8 +167,8 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh.authors.setText(comics.getAuthors());
             vh.series.setText(comics.getSeries());
             vh.cover.setImageBitmap(comics.getCover());
-            vh.URL.setText(context.getResources().getString(R.string.url_comics_detail) + comics.getId().toString());
-            vh.ratingBar.setRating(Math.round((float) comics.getRating() / 20));
+            vh.url.setText(context.getResources().getString(R.string.url_comics_detail) + comics.getId().toString());
+            vh.comicsDetailRatingBar.setRating(Math.round((float) comics.getRating() / 20));
         } else {
             i--; //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             CommentsViewHolder vh = (CommentsViewHolder) viewHolder;
