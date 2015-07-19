@@ -16,7 +16,7 @@ import butterknife.OnClick;
 import butterknife.OnItemClick;
 import cz.kutner.comicsdb.activity.ComicsDetailActivity;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.

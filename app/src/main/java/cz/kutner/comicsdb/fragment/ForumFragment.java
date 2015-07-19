@@ -10,7 +10,7 @@ import cz.kutner.comicsdb.adapter.ForumRVAdapter;
 import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdb.task.FetchForumTask;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.

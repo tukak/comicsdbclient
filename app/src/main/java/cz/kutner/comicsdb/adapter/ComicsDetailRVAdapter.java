@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.

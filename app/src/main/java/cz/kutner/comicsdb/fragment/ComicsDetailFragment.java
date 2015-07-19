@@ -14,7 +14,7 @@ import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsDetailTask;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 31.3.2015.

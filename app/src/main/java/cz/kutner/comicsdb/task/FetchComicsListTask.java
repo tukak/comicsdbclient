@@ -1,13 +1,12 @@
 package cz.kutner.comicsdb.task;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.List;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.connector.ComicsListConnector;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
-import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.model.Comics;
 
 /**
@@ -19,9 +18,10 @@ public class FetchComicsListTask
 
     public final static String SEARCH = "search";
     public final static String LIST = "list";
+
     @Override
     protected void onPostExecute(List<Comics> result) {
-        EventBus.getInstance().post(new ComicsSearchResultEvent(result));
+        ComicsDBApplication.getEventBus().post(new ComicsSearchResultEvent(result));
     }
 
     @Override

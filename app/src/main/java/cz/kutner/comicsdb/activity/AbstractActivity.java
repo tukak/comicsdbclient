@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.

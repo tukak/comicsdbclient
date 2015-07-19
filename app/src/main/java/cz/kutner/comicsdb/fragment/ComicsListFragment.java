@@ -3,8 +3,6 @@ package cz.kutner.comicsdb.fragment;
 import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Spinner;
 
 import com.squareup.otto.Subscribe;
 
@@ -14,7 +12,6 @@ import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsListTask;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.

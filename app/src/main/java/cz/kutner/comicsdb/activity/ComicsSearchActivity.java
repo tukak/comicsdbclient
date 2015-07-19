@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 public class ComicsSearchActivity extends AbstractActivity {
     private final String LOG_TAG = getClass().getSimpleName();

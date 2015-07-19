@@ -1,19 +1,12 @@
 package cz.kutner.comicsdb.task;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import cz.kutner.comicsdb.Utils;
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.connector.ClassifiedConnector;
 import cz.kutner.comicsdb.event.ClassifiedResultEvent;
-import cz.kutner.comicsdb.event.EventBus;
 import cz.kutner.comicsdb.model.Classified;
 
 /**
@@ -28,7 +21,7 @@ public class FetchClassifiedTask
 
     @Override
     protected void onPostExecute(List<Classified> result) {
-        EventBus.getInstance().post(new ClassifiedResultEvent(result));
+        ComicsDBApplication.getEventBus().post(new ClassifiedResultEvent(result));
     }
 
     @Override

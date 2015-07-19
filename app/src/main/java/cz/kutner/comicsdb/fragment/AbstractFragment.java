@@ -1,12 +1,9 @@
 package cz.kutner.comicsdb.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.AbstractResultEvent;
-import cz.kutner.comicsdb.event.EventBus;
-import cz.kutner.comicsdbclient.comicsdbclient.R;
+import cz.kutner.comicsdb.R;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
@@ -74,7 +70,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @Override
     public void onPause() {
         super.onPause();
-        EventBus.getInstance().unregister(this);
+        ComicsDBApplication.getEventBus().unregister(this);
     }
 
     @Override
@@ -110,7 +106,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @Override
     public void onResume() {
         super.onResume();
-        EventBus.getInstance().register(this);
+        ComicsDBApplication.getEventBus().register(this);
     }
 
     public void onAsyncTaskResult(Event event) {
