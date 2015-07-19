@@ -53,7 +53,6 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
 
 
     public AbstractFragment() {
-        EventBus.getInstance().register(this);
         lastPage = 1;
         loading = false;
         endless = true;
@@ -73,9 +72,9 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     abstract void loadData();
 
     @Override
-    public void onDestroy() {
+    public void onPause() {
+        super.onPause();
         EventBus.getInstance().unregister(this);
-        super.onDestroy();
     }
 
     @Override
@@ -106,6 +105,12 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
             firstLoad = true;
             loadData();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getInstance().register(this);
     }
 
     public void onAsyncTaskResult(Event event) {
