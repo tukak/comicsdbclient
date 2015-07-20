@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.squareup.otto.Subscribe;
@@ -20,6 +21,15 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
         preloadCount = 8;
         spinnerEnabled = true;
         spinnerValues = new String[]{"Všechny inzeráty", "Prodám", "Koupím", "Vyměním", "Ostatní"};
+    }
+
+    public static ClassifiedFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ClassifiedFragment fragment = new ClassifiedFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     void loadData() {

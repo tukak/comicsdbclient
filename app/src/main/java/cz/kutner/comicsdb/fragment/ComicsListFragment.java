@@ -24,6 +24,14 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
         preloadCount = 20;
     }
 
+    public static ComicsListFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ComicsListFragment fragment = new ComicsListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;

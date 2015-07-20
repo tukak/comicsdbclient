@@ -13,7 +13,7 @@ public class MainActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ComicsListFragment())
+                    .add(R.id.container, ComicsListFragment.newInstance())
                     .commit();
         }
     }

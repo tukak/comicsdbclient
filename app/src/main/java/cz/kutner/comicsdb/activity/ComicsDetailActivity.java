@@ -15,7 +15,7 @@ public class ComicsDetailActivity extends AbstractActivity {
         getSupportActionBar().setTitle("Detail");
         Intent intent = getIntent();
         Integer id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
-        Fragment fragment = new ComicsDetailFragment();
+        Fragment fragment = ComicsDetailFragment.newInstance();
         Bundle args = new Bundle();
         args.putInt("id", id);
         fragment.setArguments(args);

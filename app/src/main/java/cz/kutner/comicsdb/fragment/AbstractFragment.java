@@ -58,6 +58,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         filter = "";
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

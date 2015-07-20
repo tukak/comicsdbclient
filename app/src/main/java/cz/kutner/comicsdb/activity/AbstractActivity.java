@@ -81,13 +81,13 @@ public abstract class AbstractActivity extends AppCompatActivity {
             Fragment fragment = null;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_item_comics:
-                    fragment = new ComicsListFragment();
+                    fragment = ComicsListFragment.newInstance();
                     break;
                 case R.id.navigation_item_classified:
-                    fragment = new ClassifiedFragment();
+                    fragment = ClassifiedFragment.newInstance();
                     break;
                 case R.id.navigation_item_forum:
-                    fragment = new ForumFragment();
+                    fragment = ForumFragment.newInstance();
                     break;
                 case R.id.navigation_item_about:
                     Intent intent = new Intent(getApplication(), AboutActivity.class);

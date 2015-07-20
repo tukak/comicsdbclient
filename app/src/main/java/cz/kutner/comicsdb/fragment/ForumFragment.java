@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.fragment;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.squareup.otto.Subscribe;
@@ -22,6 +23,14 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
                 "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)"};
     }
 
+    public static ForumFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ForumFragment fragment = new ForumFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     void loadData() {
         if (!searchRunning) {

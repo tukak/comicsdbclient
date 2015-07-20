@@ -30,6 +30,15 @@ public class ComicsDetailFragment extends AbstractFragment<Comics, ComicsDetailR
         task.execute(id);
     }
 
+    public static ComicsDetailFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ComicsDetailFragment fragment = new ComicsDetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Subscribe
     public void onAsyncTaskResult(ComicsDetailResultEvent event) {
         Comics result = event.getResult().get(0);

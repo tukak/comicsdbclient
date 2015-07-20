@@ -23,7 +23,7 @@ public class ComicsSearchActivity extends AbstractActivity {
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            Fragment fragment = new ComicsListFragment();
+            Fragment fragment = ComicsListFragment.newInstance();
             fragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
