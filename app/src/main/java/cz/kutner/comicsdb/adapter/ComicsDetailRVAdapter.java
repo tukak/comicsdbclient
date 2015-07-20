@@ -17,9 +17,10 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdb.R;
+import hugo.weaving.DebugLog;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
@@ -98,6 +99,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.context = context;
     }
 
+    @DebugLog
     public void setComics(Comics comics) {
         this.comics = comics;
     }
@@ -111,6 +113,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
+    @DebugLog
     @Override
     public int getItemCount() {
         return comics.getComments().size() + 1;

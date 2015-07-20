@@ -8,6 +8,7 @@ import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.connector.ComicsListConnector;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.model.Comics;
+import hugo.weaving.DebugLog;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 11.5.2015.
@@ -20,11 +21,13 @@ public class FetchComicsListTask
     public final static String LIST = "list";
 
     @Override
+    @DebugLog
     protected void onPostExecute(List<Comics> result) {
         ComicsDBApplication.getEventBus().post(new ComicsSearchResultEvent(result));
     }
 
     @Override
+    @DebugLog
     protected List<Comics> doInBackground(String... params) {
         List<Comics> result = null;
         switch (params[0]) {

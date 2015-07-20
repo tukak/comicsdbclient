@@ -12,6 +12,7 @@ import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsListTask;
+import hugo.weaving.DebugLog;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
@@ -19,7 +20,9 @@ import cz.kutner.comicsdb.task.FetchComicsListTask;
 public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAdapter, ComicsSearchResultEvent> {
 
 
+    @DebugLog
     public ComicsListFragment() {
+        super();
         adapter = new ComicsListRVAdapter(data);
         preloadCount = 20;
     }
@@ -32,6 +35,8 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
         fragment.setArguments(args);
         return fragment;
     }
+
+    @DebugLog
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -50,11 +55,13 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
     }
 
     @Subscribe
+    @DebugLog
     public void onAsyncTaskResult(ComicsSearchResultEvent event) {
         super.onAsyncTaskResult(event);
     }
 
     @Override
+    @DebugLog
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

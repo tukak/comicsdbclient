@@ -9,24 +9,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cz.kutner.comicsdb.ComicsDBApplication;
+import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.AbstractResultEvent;
-import cz.kutner.comicsdb.R;
+import hugo.weaving.DebugLog;
+import pl.aprilapps.switcher.Switcher;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
 public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapter, Event extends AbstractResultEvent> extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
-    ViewGroup container;
     int lastPage;
     boolean firstLoad;
     boolean searchRunning;
@@ -35,35 +40,73 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     List<Item> data = new ArrayList<>();
     List<Item> result = new ArrayList<>();
     int pastVisibleItems, visibleItemCount, totalItemCount;
-    LinearLayoutManager llm;
     Adapter adapter;
-    int fragment_view;
-    int recycler_view;
     int preloadCount;
     boolean endless;
     boolean spinnerEnabled;
     String[] spinnerValues;
-    Spinner spinner;
     String filter;
     Integer spinnerPosition;
+    Switcher switcher;
+    @Bind(R.id.empty_view)
+    LinearLayout emptyView;
+    @Bind(R.id.progress_view)
+    LinearLayout progressView;
+    @Bind(R.id.error_view)
+    LinearLayout errorView;
+    @Bind(R.id.content)
+    LinearLayout content;
 
+    @Bind(R.id.recycler_view)
+    RecyclerView rv;
+    @Bind(R.id.spinner)
+    Spinner spinner;
+    @Bind(R.id.filter_text)
+    TextView filterText;
 
+    @DebugLog
     public AbstractFragment() {
         lastPage = 1;
         loading = false;
         endless = true;
-        fragment_view = R.layout.fragment;
-        recycler_view = R.id.recycler_view;
         spinnerEnabled = false;
         filter = "";
     }
 
 
     @Override
+    @DebugLog
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.container = container;
-        return null;
+        View view = inflater.inflate(R.layout.fragment, container, false);
+        ButterKnife.bind(this, view);
+        switcher = new Switcher.Builder()
+                .withContentView(content)
+                .withEmptyView(emptyView)
+                .withProgressView(progressView)
+                .withErrorView(errorView)
+                .build();
+        final LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        rv.setLayoutManager(llm);
+        rv.setAdapter(adapter);
+        if (endless) {
+            rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    visibleItemCount = llm.getChildCount();
+                    totalItemCount = llm.getItemCount();
+                    pastVisibleItems = llm.findFirstVisibleItemPosition();
+                    if (!loading) {
+                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount) {
+                            loading = true;
+                            loadData();
+                        }
+                    }
+                }
+            });
+        }
+        switcher.showProgressView();
+        return view;
     }
 
     abstract void loadData();
@@ -75,50 +118,41 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        View view;
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
-        LayoutInflater inflater = this.getActivity().getLayoutInflater();
+    }
+
+    @OnClick(R.id.try_again)
+    public void tryAgainButtonClicked() {
+        if (Utils.isConnected()) {
+            onResume();
+        }
+    }
+
+    @Override
+    @DebugLog
+    public void onResume() {
+        super.onResume();
         if (!Utils.isConnected()) {
-            view = inflater.inflate(R.layout.loading_error, container, false);
-            container.removeAllViews();
-            container.addView(view);
-            Button tryAgainButton = (Button) view.findViewById(R.id.try_again);
-            tryAgainButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (Utils.isConnected()) {
-                        onStart();
-                    }
-                }
-            });
+            switcher.showErrorView();
         } else {
-            view = inflater.inflate(R.layout.loading, container, false);
-            container.removeAllViews();
-            container.addView(view);
+            ComicsDBApplication.getEventBus().register(this);
+            switcher.showProgressView();
             firstLoad = true;
             loadData();
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ComicsDBApplication.getEventBus().register(this);
-    }
-
+    @DebugLog
     public void onAsyncTaskResult(Event event) {
         searchRunning = false;
-        LayoutInflater inflater = this.getActivity().getLayoutInflater();
         if (firstLoad) {
-            View view = inflater.inflate(fragment_view, container, false);
-            spinner = (Spinner) view.findViewById(R.id.spinner);
             if (!spinnerEnabled) {
                 spinner.setVisibility(View.GONE);
-                view.findViewById(R.id.filter_text).setVisibility(View.GONE);
+                filterText.setVisibility(View.GONE);
             }
             if (spinnerEnabled) {
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, spinnerValues);
@@ -131,29 +165,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                 }
                 spinner.setOnItemSelectedListener(new itemSelectedListener());
             }
-            RecyclerView rv = (RecyclerView) view.findViewById(recycler_view);
-            llm = new LinearLayoutManager(view.getContext());
-            rv.setLayoutManager(llm);
-            rv.setAdapter(adapter);
-            if (endless) {
-                rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                        visibleItemCount = llm.getChildCount();
-                        totalItemCount = llm.getItemCount();
-                        pastVisibleItems = llm.findFirstVisibleItemPosition();
-                        if (!loading) {
-                            if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount) {
-                                loading = true;
-                                loadData();
-                            }
-                        }
-                    }
-                });
-            }
-
-            container.removeAllViews();
-            container.addView(view);
+            switcher.showContentView();
             firstLoad = false;
         }
         result = event.getResult();
@@ -170,6 +182,12 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         loading = false;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
     public class itemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         @Override
@@ -178,10 +196,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
                 filter = spinner.getSelectedItem().toString();
                 data.clear();
                 lastItem = null;
-                LayoutInflater inflater = getActivity().getLayoutInflater();
-                view = inflater.inflate(R.layout.loading, container, false);
-                container.removeAllViews();
-                container.addView(view);
+                switcher.showProgressView();
                 firstLoad = true;
                 lastPage = 1;
                 spinnerPosition = pos;
