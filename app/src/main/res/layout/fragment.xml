@@ -41,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:gravity="center_vertical"
             android:visibility="invisible">
 
             <TextView
@@ -49,14 +50,14 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/loading_error"
                 android:id="@+id/loading_error_text"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/try_again_button_text"
                 android:id="@+id/try_again"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
