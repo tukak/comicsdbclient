@@ -75,6 +75,12 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     @DebugLog
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -118,17 +124,19 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
+    @DebugLog
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
         sw.setQuery("", false);
         sw.setIconified(true);
+        checkConnectionAndLoadData();
     }
 
     @OnClick(R.id.try_again)
     public void tryAgainButtonClicked() {
         if (Utils.isConnected()) {
-            onResume();
+            checkConnectionAndLoadData();
         }
     }
 
@@ -136,16 +144,19 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @DebugLog
     public void onResume() {
         super.onResume();
+        ComicsDBApplication.getEventBus().register(this);
+    }
+
+    @DebugLog
+    public void checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
             switcher.showErrorView();
         } else {
-            ComicsDBApplication.getEventBus().register(this);
             switcher.showProgressView();
             firstLoad = true;
             loadData();
         }
     }
-
     @DebugLog
     public void onAsyncTaskResult(Event event) {
         searchRunning = false;
