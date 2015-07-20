@@ -2,6 +2,7 @@ package cz.kutner.comicsdb.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -123,6 +124,7 @@ public class ComicsDetailFragment extends Fragment {
     @Subscribe
     public void onAsyncTaskResult(ComicsDetailResultEvent event) {
         Comics result = event.getResult().get(0);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(result.getName());
         adapter = new ComicsDetailRVAdapter(result, ComicsDBApplication.getContext());
         recyclerView.setAdapter(adapter);
         adapter.setComics(result);

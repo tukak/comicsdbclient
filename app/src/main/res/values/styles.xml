@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/primary</item>
@@ -19,6 +19,14 @@
 
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
     </style>
+
+    <style name="AppTheme" parent="AppThemeActionBar">
+          
+        <item name="windowActionBar">false</item>
+            
+        <item name="windowNoTitle">true</item>
+    </style>
+
 
     <style name="menuItemColor">
         <item name="android:textColor">@android:color/black</item>

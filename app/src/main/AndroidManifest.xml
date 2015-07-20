@@ -28,7 +28,7 @@
             android:name="cz.kutner.comicsdb.activity.ComicsDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppThemeActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.activity.MainActivity" />
