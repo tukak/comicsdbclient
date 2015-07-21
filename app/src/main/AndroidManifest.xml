@@ -38,11 +38,6 @@
         </activity>
 
         <activity
-            android:name="cz.kutner.comicsdb.activity.AboutActivity"
-            android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme" />
-
-        <activity
             android:name="cz.kutner.comicsdb.activity.ComicsSearchActivity"
             android:label="@string/title_activity_comics_search"
             android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity">

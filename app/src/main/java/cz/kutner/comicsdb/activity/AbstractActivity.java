@@ -19,6 +19,7 @@ import android.widget.SearchView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.fragment.AboutFragment;
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
@@ -90,8 +91,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
                     fragment = ForumFragment.newInstance();
                     break;
                 case R.id.navigation_item_about:
-                    Intent intent = new Intent(getApplication(), AboutActivity.class);
-                    startActivity(intent);
+                    fragment = AboutFragment.newInstance();
                     break;
             }
             menuItem.setChecked(true);
