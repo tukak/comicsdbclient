@@ -3,8 +3,11 @@ package cz.kutner.comicsdb.fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.ClassifiedRVAdapter;
 import cz.kutner.comicsdb.event.ClassifiedResultEvent;
 import cz.kutner.comicsdb.model.Classified;
@@ -58,5 +61,8 @@ public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedR
     public void onStart() {
         super.onStart();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Bazar");
+        Tracker tracker = ComicsDBApplication.getTracker();
+        tracker.setScreenName("ClassifiedFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

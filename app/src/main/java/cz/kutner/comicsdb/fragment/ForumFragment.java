@@ -3,8 +3,11 @@ package cz.kutner.comicsdb.fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.ForumRVAdapter;
 import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
@@ -59,5 +62,8 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
     public void onStart() {
         super.onStart();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Forum");
+        Tracker tracker = ComicsDBApplication.getTracker();
+        tracker.setScreenName("ForumFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

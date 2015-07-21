@@ -10,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 
 public class AboutFragment extends Fragment {
@@ -51,5 +55,8 @@ public class AboutFragment extends Fragment {
     public void onStart() {
         super.onStart();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("O aplikaci");
+        Tracker tracker = ComicsDBApplication.getTracker();
+        tracker.setScreenName("AboutFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

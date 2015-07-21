@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
@@ -155,5 +157,13 @@ public class ComicsDetailFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Tracker tracker = ComicsDBApplication.getTracker();
+        tracker.setScreenName("ComicsDetailFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

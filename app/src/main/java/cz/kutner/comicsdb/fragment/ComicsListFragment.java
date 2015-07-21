@@ -4,10 +4,13 @@ import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
 import java.text.Normalizer;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.model.Comics;
@@ -65,11 +68,15 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();
+        Tracker tracker = ComicsDBApplication.getTracker();
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\"");
+            tracker.setScreenName("ComicsListFragment - Search");
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Comicsy");
+            tracker.setScreenName("ComicsListFragment - List");
         }
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }
 
