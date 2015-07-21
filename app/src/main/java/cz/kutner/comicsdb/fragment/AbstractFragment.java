@@ -115,6 +115,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         return view;
     }
 
+    @DebugLog
     abstract void loadData();
 
     @Override
@@ -154,11 +155,22 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         } else {
             switcher.showProgressView();
             firstLoad = true;
-            loadData();
+            if (!result.isEmpty()) {
+                showData();
+            } else {
+                loadData();
+            }
+
         }
     }
     @DebugLog
     public void onAsyncTaskResult(Event event) {
+        result = event.getResult();
+        showData();
+    }
+
+    @DebugLog
+    private void showData() {
         searchRunning = false;
         if (firstLoad) {
             if (!spinnerEnabled) {
@@ -179,14 +191,13 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
             switcher.showContentView();
             firstLoad = false;
         }
-        result = event.getResult();
         if (result.size() > 0) {
             if (lastItem == null || !(lastItem.equals(result.get(0)))) {
                 lastItem = result.get(0);
                 if (!endless) {
                     data.clear();
                 }
-                data.addAll(event.getResult());
+                data.addAll(result);
             }
         }
         adapter.notifyDataSetChanged();

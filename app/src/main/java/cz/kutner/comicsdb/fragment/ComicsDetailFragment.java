@@ -55,6 +55,14 @@ public class ComicsDetailFragment extends Fragment {
     @Bind(R.id.filter_text)
     TextView filterText;
 
+    Comics comics;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Override
     @DebugLog
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,7 +115,11 @@ public class ComicsDetailFragment extends Fragment {
         } else {
             switcher.showProgressView();
             ComicsDBApplication.getEventBus().register(this);
-            loadData();
+            if (comics != null) {
+                showData();
+            } else {
+                loadData();
+            }
         }
     }
 
@@ -123,14 +135,21 @@ public class ComicsDetailFragment extends Fragment {
     @DebugLog
     @Subscribe
     public void onAsyncTaskResult(ComicsDetailResultEvent event) {
-        Comics result = event.getResult().get(0);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(result.getName());
-        adapter = new ComicsDetailRVAdapter(result, ComicsDBApplication.getContext());
+        comics = event.getResult().get(0);
+        showData();
+    }
+
+    @DebugLog
+    private void showData() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(comics.getName());
+        adapter = new ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext());
         recyclerView.setAdapter(adapter);
-        adapter.setComics(result);
+        adapter.setComics(comics);
         recyclerView.setHasFixedSize(true);
         switcher.showContentView();
     }
+
+    ;
 
     @Override
     public void onDestroyView() {
