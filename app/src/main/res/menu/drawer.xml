@@ -3,15 +3,19 @@
         <item
             android:id="@+id/navigation_item_comics"
             android:checked="true"
+            android:icon="@drawable/ic_book_black_18dp"
             android:title="@string/comics" />
         <item
             android:id="@+id/navigation_item_classified"
+            android:icon="@drawable/ic_attach_money_black_18dp"
             android:title="@string/classified" />
         <item
             android:id="@+id/navigation_item_forum"
+            android:icon="@drawable/ic_forum_black_18dp"
             android:title="@string/forum" />
         <item
             android:id="@+id/navigation_item_about"
+            android:icon="@drawable/ic_info_outline_black_18dp"
             android:title="@string/about" />
     </group>
 </menu>
