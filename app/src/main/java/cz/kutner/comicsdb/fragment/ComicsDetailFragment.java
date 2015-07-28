@@ -149,21 +149,15 @@ public class ComicsDetailFragment extends Fragment {
         adapter.setComics(comics);
         recyclerView.setHasFixedSize(true);
         switcher.showContentView();
+        Tracker tracker = ComicsDBApplication.getTracker();
+        tracker.setScreenName("ComicsDetailFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        tracker.send(new HitBuilders.EventBuilder().setCategory("Detail").setAction(comics.getName()).build());
     }
-
-    ;
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Tracker tracker = ComicsDBApplication.getTracker();
-        tracker.setScreenName("ComicsDetailFragment");
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }
