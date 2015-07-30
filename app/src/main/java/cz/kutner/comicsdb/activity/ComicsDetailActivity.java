@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
@@ -21,7 +22,16 @@ public class ComicsDetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        Integer id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
+        Integer id = null;
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) { //volá nás někdo přes URL
+            Log.i("DETAIL", intent.getDataString());
+            try {
+                id = Integer.parseInt(intent.getDataString().replaceFirst("^.*\\D", ""));
+            } catch (Exception e) {
+            }
+        } else {
+            id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
+        }
         Fragment fragment = ComicsDetailFragment.newInstance();
         Bundle args = new Bundle();
         args.putInt("id", id);

@@ -55,6 +55,22 @@
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="comicsdb.cz"
+                    android:pathPrefix="/comics.php" />
+                <data
+                    android:scheme="http"
+                    android:host="www.comicsdb.cz"
+                    android:pathPrefix="/comics.php" />
+            </intent-filter>
         </activity>
 
         <activity
