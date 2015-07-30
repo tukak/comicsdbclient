@@ -25,6 +25,7 @@ import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
 import cz.kutner.comicsdb.R;
+import cz.kutner.comicsdb.fragment.SeriesFragment;
 
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
@@ -75,6 +76,9 @@ public abstract class AbstractActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_item_comics:
                         fragment = ComicsListFragment.newInstance();
+                        break;
+                    case R.id.navigation_item_series:
+                        fragment = SeriesFragment.newInstance();
                         break;
                     case R.id.navigation_item_classified:
                         fragment = ClassifiedFragment.newInstance();
