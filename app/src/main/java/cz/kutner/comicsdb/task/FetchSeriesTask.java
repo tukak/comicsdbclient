@@ -5,11 +5,8 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.ComicsListConnector;
 import cz.kutner.comicsdb.connector.SeriesConnector;
-import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.event.SeriesResultEvent;
-import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.model.Series;
 import hugo.weaving.DebugLog;
 

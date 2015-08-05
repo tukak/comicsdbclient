@@ -9,14 +9,9 @@ import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.AuthorRVAdapter;
-import cz.kutner.comicsdb.adapter.SeriesRVAdapter;
 import cz.kutner.comicsdb.event.AuthorResultEvent;
-import cz.kutner.comicsdb.event.SeriesResultEvent;
 import cz.kutner.comicsdb.model.Author;
-import cz.kutner.comicsdb.model.Series;
 import cz.kutner.comicsdb.task.FetchAuthorTask;
-import cz.kutner.comicsdb.task.FetchComicsListTask;
-import cz.kutner.comicsdb.task.FetchSeriesTask;
 import hugo.weaving.DebugLog;
 
 /**

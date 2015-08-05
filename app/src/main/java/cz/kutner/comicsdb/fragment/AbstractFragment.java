@@ -33,21 +33,23 @@ import pl.aprilapps.switcher.Switcher;
 public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapter, Event extends AbstractResultEvent> extends Fragment {
     String LOG_TAG = getClass().getSimpleName();
     int lastPage;
-    boolean firstLoad;
+    private boolean firstLoad;
     boolean searchRunning;
-    boolean loading;
-    Item lastItem;
+    private boolean loading;
+    private Item lastItem;
     List<Item> data = new ArrayList<>();
-    List<Item> result = new ArrayList<>();
-    int pastVisibleItems, visibleItemCount, totalItemCount;
+    private List<Item> result = new ArrayList<>();
+    private int pastVisibleItems;
+    private int visibleItemCount;
+    private int totalItemCount;
     Adapter adapter;
     int preloadCount;
     boolean endless;
     boolean spinnerEnabled;
     String[] spinnerValues;
     String filter;
-    Integer spinnerPosition;
-    Switcher switcher;
+    private Integer spinnerPosition;
+    private Switcher switcher;
     @Bind(R.id.empty_view)
     LinearLayout emptyView;
     @Bind(R.id.progress_view)
@@ -149,7 +151,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @DebugLog
-    public void checkConnectionAndLoadData() {
+    private void checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
             switcher.showErrorView();
         } else {
@@ -164,7 +166,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         }
     }
     @DebugLog
-    public void onAsyncTaskResult(Event event) {
+    void onAsyncTaskResult(Event event) {
         result = event.getResult();
         showData();
     }
@@ -210,7 +212,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         ButterKnife.unbind(this);
     }
 
-    public class itemSelectedListener implements AdapterView.OnItemSelectedListener {
+    private class itemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

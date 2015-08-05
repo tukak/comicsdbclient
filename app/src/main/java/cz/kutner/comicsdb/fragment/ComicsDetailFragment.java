@@ -37,7 +37,7 @@ import pl.aprilapps.switcher.Switcher;
 
 public class ComicsDetailFragment extends Fragment {
 
-    Switcher switcher;
+    private Switcher switcher;
     @Bind(R.id.empty_view)
     LinearLayout emptyView;
     @Bind(R.id.progress_view)
@@ -53,11 +53,10 @@ public class ComicsDetailFragment extends Fragment {
     @Bind(R.id.content)
     LinearLayout content;
 
-    ComicsDetailRVAdapter adapter;
     @Bind(R.id.filter_text)
     TextView filterText;
 
-    Comics comics;
+    private Comics comics;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +86,7 @@ public class ComicsDetailFragment extends Fragment {
     }
 
     @DebugLog
-    void loadData() {
+    private void loadData() {
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
         FetchComicsDetailTask task = new FetchComicsDetailTask();
@@ -144,7 +143,7 @@ public class ComicsDetailFragment extends Fragment {
     @DebugLog
     private void showData() {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(comics.getName());
-        adapter = new ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext());
+        ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext());
         recyclerView.setAdapter(adapter);
         adapter.setComics(comics);
         recyclerView.setHasFixedSize(true);

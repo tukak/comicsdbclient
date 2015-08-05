@@ -44,7 +44,4 @@ public class Comment {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
 }

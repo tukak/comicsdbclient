@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.kutner.comicsdb.model.Author;
-import cz.kutner.comicsdb.model.Series;
 import hugo.weaving.DebugLog;
 
 /**

@@ -12,13 +12,12 @@ import com.squareup.otto.Bus;
 public class ComicsDBApplication extends android.app.Application {
     private static Context context;
     private static Bus eventBus;
-    public static GoogleAnalytics analytics;
-    public static Tracker tracker;
+    private static Tracker tracker;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        analytics = GoogleAnalytics.getInstance(this);
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
         tracker = analytics.newTracker(getString(R.string.google_analytics_id));
         tracker.enableExceptionReporting(true);
         context = getApplicationContext();

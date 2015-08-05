@@ -18,7 +18,7 @@ public class Utils {
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
     public static <T> T nvl(T a, T b) {
-        return (a == null) ? b : a;
+        return (a == null) ? (T) "" : a;
     }
 
     public static boolean isConnected() {

@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.model;
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 
 /**
@@ -24,40 +22,8 @@ public class Series {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public Integer getNumberOfComicses() {
         return numberOfComicses;
-    }
-
-    public void setNumberOfComicses(Integer numberOfComicses) {
-        this.numberOfComicses = numberOfComicses;
-    }
-
-    public ArrayList<Comics> getComicses() {
-        return comicses;
-    }
-
-    public void setComicses(ArrayList<Comics> comicses) {
-        this.comicses = comicses;
     }
 
     @Override

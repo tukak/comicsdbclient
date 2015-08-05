@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.fragment;
 
-import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -8,16 +7,10 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
-import java.text.Normalizer;
-
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.adapter.SeriesRVAdapter;
-import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
 import cz.kutner.comicsdb.event.SeriesResultEvent;
-import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.model.Series;
-import cz.kutner.comicsdb.task.FetchComicsListTask;
 import cz.kutner.comicsdb.task.FetchSeriesTask;
 import hugo.weaving.DebugLog;
 

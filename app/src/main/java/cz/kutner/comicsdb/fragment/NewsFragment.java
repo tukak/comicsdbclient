@@ -9,13 +9,9 @@ import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.adapter.NewsRVAdapter;
-import cz.kutner.comicsdb.adapter.SeriesRVAdapter;
 import cz.kutner.comicsdb.event.NewsResultEvent;
-import cz.kutner.comicsdb.event.SeriesResultEvent;
 import cz.kutner.comicsdb.model.NewsItem;
-import cz.kutner.comicsdb.model.Series;
 import cz.kutner.comicsdb.task.FetchNewsTask;
-import cz.kutner.comicsdb.task.FetchSeriesTask;
 import hugo.weaving.DebugLog;
 
 /**

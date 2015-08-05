@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.model.Series;
 import hugo.weaving.DebugLog;
 
@@ -37,7 +36,7 @@ public class SeriesConnector {
                 Elements columns = row.select("td");
                 String title = columns.get(0).select("a").first().text();
                 Integer id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")); //gets the id in the end of the url
-                Integer numberOfComicses = Integer.parseInt(columns.get(1).select("td").text().toString());
+                Integer numberOfComicses = Integer.parseInt(columns.get(1).select("td").text());
                 Series series = new Series(title, id, numberOfComicses);
                 result.add(series);
             }

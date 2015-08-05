@@ -6,11 +6,8 @@ import java.util.List;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.connector.AuthorConnector;
-import cz.kutner.comicsdb.connector.SeriesConnector;
 import cz.kutner.comicsdb.event.AuthorResultEvent;
-import cz.kutner.comicsdb.event.SeriesResultEvent;
 import cz.kutner.comicsdb.model.Author;
-import cz.kutner.comicsdb.model.Series;
 import hugo.weaving.DebugLog;
 
 /**
