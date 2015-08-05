@@ -21,6 +21,7 @@ import android.widget.SearchView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.kutner.comicsdb.fragment.AboutFragment;
+import cz.kutner.comicsdb.fragment.AuthorFragment;
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
@@ -79,6 +80,9 @@ public abstract class AbstractActivity extends AppCompatActivity {
                         break;
                     case R.id.navigation_item_series:
                         fragment = SeriesFragment.newInstance();
+                        break;
+                    case R.id.navigation_item_author:
+                        fragment = AuthorFragment.newInstance();
                         break;
                     case R.id.navigation_item_classified:
                         fragment = ClassifiedFragment.newInstance();

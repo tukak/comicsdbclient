@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        android:id="@+id/card_view_authors">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/authorName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/authorCountry"
+                tools:text="země"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_alignParentRight="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
