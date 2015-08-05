@@ -39,9 +39,6 @@ public class AuthorRVAdapter extends RecyclerView.Adapter<AuthorRVAdapter.Author
         this.authors = authors;
     }
 
-    public void setComicsList(List<Author> authors) {
-        this.authors = authors;
-    }
 
 
     @Override

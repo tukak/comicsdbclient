@@ -40,9 +40,6 @@ public class SeriesRVAdapter extends RecyclerView.Adapter<SeriesRVAdapter.Series
         this.series = series;
     }
 
-    public void setComicsList(List<Series> series) {
-        this.series = series;
-    }
 
 
     @Override

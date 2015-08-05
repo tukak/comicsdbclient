@@ -51,9 +51,6 @@ public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapte
         this.entries = entries;
     }
 
-    public void setEntries(List<Classified> entries) {
-        this.entries = entries;
-    }
 
 
     @Override

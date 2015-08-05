@@ -51,9 +51,6 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumVie
         this.entries = entries;
     }
 
-    public void setEntries(List<ForumEntry> entries) {
-        this.entries = entries;
-    }
 
 
     @Override

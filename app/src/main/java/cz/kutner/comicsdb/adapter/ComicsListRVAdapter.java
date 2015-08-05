@@ -53,9 +53,6 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
         this.comics = comics;
     }
 
-    public void setComicsList(List<Comics> comics) {
-        this.comics = comics;
-    }
 
 
     @Override
