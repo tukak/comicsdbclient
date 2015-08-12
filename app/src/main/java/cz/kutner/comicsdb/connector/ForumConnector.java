@@ -2,6 +2,8 @@ package cz.kutner.comicsdb.connector;
 
 import android.util.Log;
 
+import com.squareup.picasso.Picasso;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,6 +11,7 @@ import org.jsoup.nodes.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.ForumEntry;
 
@@ -79,7 +82,7 @@ public class ForumConnector {
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 ForumEntry forumEntry = new ForumEntry(nick, time, forum, text);
                 if (!iconUrl.isEmpty()) {
-                    forumEntry.setIcon(Utils.getFromCacheOrDownload(iconUrl));
+                    forumEntry.setIconUrl(Utils.fixUrl(iconUrl));
                 }
                 result.add(forumEntry);
             }

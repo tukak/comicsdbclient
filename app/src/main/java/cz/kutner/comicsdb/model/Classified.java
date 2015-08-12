@@ -8,9 +8,9 @@ import android.graphics.Bitmap;
 public class Classified {
     private String nick;
     private String text;
-    private Bitmap icon;
     private String time;
     private String category;
+    private String iconUrl;
 
     public Classified(String nick, String time, String category, String text) {
         this.time = time;
@@ -19,9 +19,6 @@ public class Classified {
         this.text = text;
     }
 
-    public void setIcon(Bitmap icon) {
-        this.icon = icon;
-    }
 
     public String getNick() {
         return nick;
@@ -31,16 +28,20 @@ public class Classified {
         return text;
     }
 
-    public Bitmap getIcon() {
-        return icon;
-    }
-
     public String getTime() {
         return time;
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     @Override

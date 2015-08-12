@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.model;
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 
 /**
@@ -29,16 +27,8 @@ public class Comics {
     private String authors;
     private String series;
     private ArrayList<Comment> comments;
+    private String coverUrl;
 
-    public Bitmap getCover() {
-        return cover;
-    }
-
-    public void setCover(Bitmap cover) {
-        this.cover = cover;
-    }
-
-    private Bitmap cover;
 
     public String getSeries() {
         return series;
@@ -218,6 +208,14 @@ public class Comics {
 
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
     @Override

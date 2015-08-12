@@ -35,5 +35,5 @@ dependencies {
         exclude module: 'appcompat-v7'
     }
     compile 'com.google.android.gms:play-services-analytics:7.5.+'
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

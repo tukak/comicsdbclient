@@ -9,8 +9,8 @@ public class Comment {
     private String nick;
     private Integer stars;
     private String text;
-    private Bitmap icon;
     private String time;
+    private String iconUrl;
 
     public Comment(String nick, Integer stars, String text, String time) {
         this.nick = nick;
@@ -19,18 +19,18 @@ public class Comment {
         this.time = time;
     }
 
-    public void setIcon(Bitmap icon) {
-        this.icon = icon;
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     public String getTime() {
         return time;
     }
 
-    public Bitmap getIcon() {
-
-        return icon;
-    }
 
     public String getNick() {
         return nick;

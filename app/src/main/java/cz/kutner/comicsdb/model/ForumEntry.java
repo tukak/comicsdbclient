@@ -1,14 +1,12 @@
 package cz.kutner.comicsdb.model;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
  */
 public class ForumEntry {
     private String nick;
     private String text;
-    private Bitmap icon;
+    private String iconUrl;
     private String time;
     private String forum;
 
@@ -19,8 +17,8 @@ public class ForumEntry {
         this.text = text;
     }
 
-    public void setIcon(Bitmap icon) {
-        this.icon = icon;
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     public String getNick() {
@@ -31,8 +29,8 @@ public class ForumEntry {
         return text;
     }
 
-    public Bitmap getIcon() {
-        return icon;
+    public String getIconUrl() {
+        return iconUrl;
     }
 
     public String getTime() {

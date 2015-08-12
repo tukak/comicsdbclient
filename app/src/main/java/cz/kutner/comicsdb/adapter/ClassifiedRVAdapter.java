@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdb.R;
 
@@ -69,7 +72,7 @@ public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapte
         classifiedViewHolder.classifiedNick.setText(entries.get(i).getNick());
         classifiedViewHolder.classifiedTime.setText(entries.get(i).getTime());
         classifiedViewHolder.classifiedText.setText(Html.fromHtml(entries.get(i).getText()));
-        classifiedViewHolder.classifiedNickIcon.setImageBitmap(entries.get(i).getIcon());
+        Picasso.with(ComicsDBApplication.getContext()).load(entries.get(i).getIconUrl()).into(classifiedViewHolder.classifiedNickIcon);
         classifiedViewHolder.classifiedCategory.setText(entries.get(i).getCategory());
     }
 

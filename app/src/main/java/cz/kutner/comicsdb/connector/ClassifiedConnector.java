@@ -59,7 +59,7 @@ public class ClassifiedConnector {
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 Classified classified = new Classified(nick, time, category, text);
                 if (!iconUrl.isEmpty()) {
-                    classified.setIcon(Utils.getFromCacheOrDownload(iconUrl));
+                    classified.setIconUrl(Utils.fixUrl(iconUrl));
                 }
                 result.add(classified);
             }

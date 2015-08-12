@@ -15,8 +15,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
@@ -168,7 +171,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             }
             vh.authors.setText(comics.getAuthors());
             vh.series.setText(comics.getSeries());
-            vh.cover.setImageBitmap(comics.getCover());
+            Picasso.with(ComicsDBApplication.getContext()).load(comics.getCoverUrl()).into(vh.cover);
             vh.url.setText(context.getResources().getString(R.string.url_comics_detail) + comics.getId().toString());
             vh.comicsDetailRatingBar.setRating(Math.round((float) comics.getRating() / 20));
         } else {
@@ -178,7 +181,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh.commentTime.setText(comics.getComments().get(i).getTime());
             vh.commentText.setText(comics.getComments().get(i).getText());
             vh.commentRatingBar.setRating(comics.getComments().get(i).getStars());
-            vh.nickIcon.setImageBitmap(comics.getComments().get(i).getIcon());
+            Picasso.with(ComicsDBApplication.getContext()).load(comics.getComments().get(i).getIconUrl()).into(vh.nickIcon);
         }
     }
 }

@@ -46,7 +46,7 @@ public class ComicsConnector {
             if (coverElements.size() > 0) {
                 String coverURI = coverElements.first().attr("src");
                 if (!coverURI.isEmpty()) {
-                    comics.setCover(Utils.getFromCacheOrDownload(coverURI));
+                    comics.setCoverUrl(Utils.fixUrl(coverURI));
                 }
             }
 
@@ -161,7 +161,7 @@ public class ComicsConnector {
                 String commentText = comment.text().replace("| ", "");
                 Comment commentObject = new Comment(nick, stars, commentText, time);
                 if (!iconUrl.isEmpty()) {
-                    commentObject.setIcon(Utils.getFromCacheOrDownload(iconUrl));
+                    commentObject.setIconUrl(Utils.fixUrl(iconUrl));
                 }
                 comics.addComment(commentObject);
             }

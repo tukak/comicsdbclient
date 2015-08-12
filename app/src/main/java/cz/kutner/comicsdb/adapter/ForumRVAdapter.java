@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdb.R;
 
@@ -69,7 +72,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumVie
         forumViewHolder.forumCommentNick.setText(entries.get(i).getNick());
         forumViewHolder.forumCommentTime.setText(entries.get(i).getTime());
         forumViewHolder.forumCommentText.setText(Html.fromHtml(entries.get(i).getText()));
-        forumViewHolder.forumNickIcon.setImageBitmap(entries.get(i).getIcon());
+        Picasso.with(ComicsDBApplication.getContext()).load(entries.get(i).getIconUrl()).into(forumViewHolder.forumNickIcon);
         forumViewHolder.forumCommentForum.setText(entries.get(i).getForum());
     }
 

@@ -43,24 +43,11 @@ public class Utils {
         return connected;
     }
 
-    public static Bitmap getFromCacheOrDownload(String url) throws IOException {
-        //Dekodovat z base64, pokud začíná na data
-        if (!url.startsWith("http") && !url.startsWith("data")) { //občas se to vrátí bez celé adresy
-            url = "http://comicsdb.cz/" + url;
+    public static String fixUrl(String url) {
+        if (!url.startsWith("http") && !url.startsWith("data")) {
+            return "http://comicsdb.cz/" + url;
+        } else {
+            return url;
         }
-        Bitmap result = null;
-        if (url.startsWith("http")) {
-            result = (Bitmap) Cache.getInstance().getLru().get(url);
-            if (result == null) {
-                InputStream in = new java.net.URL(url).openStream();
-                result = BitmapFactory.decodeStream(in);
-                Cache.getInstance().getLru().put(url, result);
-            }
-        } else if (url.startsWith("data")) {
-            String imageDataBytes = url.substring(url.indexOf(",") + 1);
-            InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes(), Base64.DEFAULT));
-            result = BitmapFactory.decodeStream(stream);
-        }
-        return result;
     }
 }
