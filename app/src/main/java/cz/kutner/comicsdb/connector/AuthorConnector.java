@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.connector;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,21 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.kutner.comicsdb.model.Author;
-import hugo.weaving.DebugLog;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
- */
 public class AuthorConnector {
-    private static final String LOG_TAG = AuthorConnector.class.getSimpleName();
 
-    @DebugLog
+
     public static List<Author> get(int page) {
         String uri = "http://comicsdb.cz/autorlist.php" + "?str=" + page;
         return loadFromUri(uri);
     }
 
-    @DebugLog
+
     private static List<Author> loadFromUri(String uri) {
         List<Author> result = new ArrayList<>();
         Document doc;
@@ -41,7 +34,6 @@ public class AuthorConnector {
                 result.add(author);
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
         }
         return result;
     }

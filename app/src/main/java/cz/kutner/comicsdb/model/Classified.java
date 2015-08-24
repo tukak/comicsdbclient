@@ -1,10 +1,6 @@
 package cz.kutner.comicsdb.model;
 
-import android.graphics.Bitmap;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class Classified {
     private String nick;
     private String text;

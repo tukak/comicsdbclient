@@ -27,12 +27,7 @@ import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsDetailTask;
-import hugo.weaving.DebugLog;
 import pl.aprilapps.switcher.Switcher;
-
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 31.3.2015.
- */
 
 
 public class ComicsDetailFragment extends Fragment {
@@ -65,7 +60,7 @@ public class ComicsDetailFragment extends Fragment {
     }
 
     @Override
-    @DebugLog
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment, container, false);
@@ -85,7 +80,7 @@ public class ComicsDetailFragment extends Fragment {
 
     }
 
-    @DebugLog
+
     private void loadData() {
         Bundle args = this.getArguments();
         Integer id = args.getInt("id");
@@ -108,7 +103,7 @@ public class ComicsDetailFragment extends Fragment {
     }
 
     @Override
-    @DebugLog
+
     public void onResume() {
         super.onResume();
         if (!Utils.isConnected()) {
@@ -133,14 +128,14 @@ public class ComicsDetailFragment extends Fragment {
         return fragment;
     }
 
-    @DebugLog
+
     @Subscribe
     public void onAsyncTaskResult(ComicsDetailResultEvent event) {
         comics = event.getResult().get(0);
         showData();
     }
 
-    @DebugLog
+
     private void showData() {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(comics.getName());
         ComicsDetailRVAdapter adapter = new ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext());

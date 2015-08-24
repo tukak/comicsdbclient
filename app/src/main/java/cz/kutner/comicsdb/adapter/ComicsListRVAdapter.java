@@ -12,17 +12,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.activity.ComicsDetailActivity;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdb.R;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapter.ComicsViewHolder> {
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
         public final static String COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id";
 
         @Bind(R.id.comics_name)
@@ -52,7 +48,6 @@ public class ComicsListRVAdapter extends RecyclerView.Adapter<ComicsListRVAdapte
     public ComicsListRVAdapter(List<Comics> comics) {
         this.comics = comics;
     }
-
 
 
     @Override

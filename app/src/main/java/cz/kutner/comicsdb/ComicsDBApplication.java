@@ -6,9 +6,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Bus;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 19.7.2015.
- */
+import timber.log.Timber;
+
 public class ComicsDBApplication extends android.app.Application {
     private static Context context;
     private static Bus eventBus;
@@ -17,6 +16,7 @@ public class ComicsDBApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (BuildConfig.DEBUG) Timber.plant(new Timber.DebugTree());
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
         tracker = analytics.newTracker(getString(R.string.google_analytics_id));
         tracker.enableExceptionReporting(true);

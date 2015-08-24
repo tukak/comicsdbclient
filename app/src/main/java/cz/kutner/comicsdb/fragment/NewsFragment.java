@@ -12,15 +12,11 @@ import cz.kutner.comicsdb.adapter.NewsRVAdapter;
 import cz.kutner.comicsdb.event.NewsResultEvent;
 import cz.kutner.comicsdb.model.NewsItem;
 import cz.kutner.comicsdb.task.FetchNewsTask;
-import hugo.weaving.DebugLog;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class NewsFragment extends AbstractFragment<NewsItem, NewsRVAdapter, NewsResultEvent> {
 
 
-    @DebugLog
+
     public NewsFragment() {
         super();
         adapter = new NewsRVAdapter(data);
@@ -37,7 +33,7 @@ public class NewsFragment extends AbstractFragment<NewsItem, NewsRVAdapter, News
         return fragment;
     }
 
-    @DebugLog
+
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -48,13 +44,13 @@ public class NewsFragment extends AbstractFragment<NewsItem, NewsRVAdapter, News
     }
 
     @Subscribe
-    @DebugLog
+
     public void onAsyncTaskResult(NewsResultEvent event) {
         super.onAsyncTaskResult(event);
     }
 
     @Override
-    @DebugLog
+
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

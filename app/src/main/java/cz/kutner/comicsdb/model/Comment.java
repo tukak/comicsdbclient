@@ -1,10 +1,5 @@
 package cz.kutner.comicsdb.model;
 
-import android.graphics.Bitmap;
-
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 9.4.2015.
- */
 public class Comment {
     private String nick;
     private Integer stars;

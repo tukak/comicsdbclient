@@ -13,9 +13,6 @@ import cz.kutner.comicsdb.event.ClassifiedResultEvent;
 import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdb.task.FetchClassifiedTask;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class ClassifiedFragment extends AbstractFragment<Classified, ClassifiedRVAdapter, ClassifiedResultEvent> {
 
 

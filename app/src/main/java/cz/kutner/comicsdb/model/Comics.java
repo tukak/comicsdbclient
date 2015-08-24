@@ -2,9 +2,6 @@ package cz.kutner.comicsdb.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 24.3.2015.
- */
 public class Comics {
     private String name;
     private Integer id;

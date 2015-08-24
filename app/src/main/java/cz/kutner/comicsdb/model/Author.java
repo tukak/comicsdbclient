@@ -1,8 +1,5 @@
 package cz.kutner.comicsdb.model;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 5.8.2015.
- */
 public class Author {
     private String name;
     private String country;

@@ -1,9 +1,5 @@
 package cz.kutner.comicsdb.connector;
 
-import android.util.Log;
-
-import com.squareup.picasso.Picasso;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,15 +7,10 @@ import org.jsoup.nodes.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.ForumEntry;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
- */
 public class ForumConnector {
-    private static final String LOG_TAG = ForumConnector.class.getSimpleName();
 
     public static List<ForumEntry> getFiltered(int page, String forum, String searchText) {
         int forumId = 0;
@@ -87,7 +78,6 @@ public class ForumConnector {
                 result.add(forumEntry);
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
         }
         return result;
     }

@@ -17,20 +17,16 @@ import android.widget.SearchView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.fragment.AboutFragment;
 import cz.kutner.comicsdb.fragment.AuthorFragment;
 import cz.kutner.comicsdb.fragment.ClassifiedFragment;
 import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.fragment.ForumFragment;
-import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.fragment.NewsFragment;
 import cz.kutner.comicsdb.fragment.SeriesFragment;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public abstract class AbstractActivity extends AppCompatActivity {
-    final String LOG_TAG = getClass().getSimpleName();
     @Bind(R.id.searchView)
     SearchView searchView;
     @Bind(R.id.toolbar)

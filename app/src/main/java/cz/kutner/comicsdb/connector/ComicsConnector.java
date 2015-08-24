@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.connector;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,16 +8,10 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import cz.kutner.comicsdb.Utils;
+import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.model.Comment;
 
-import cz.kutner.comicsdb.model.Comics;
-
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
- */
 public class ComicsConnector {
-    private static final String LOG_TAG = ComicsConnector.class.getSimpleName();
-
     public static Comics get(int id) {
         cz.kutner.comicsdb.model.Comics comics = new cz.kutner.comicsdb.model.Comics();
         try {
@@ -166,7 +158,6 @@ public class ComicsConnector {
                 comics.addComment(commentObject);
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
         }
         return comics;
     }

@@ -15,13 +15,9 @@ import butterknife.ButterKnife;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.model.NewsItem;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class NewsRVAdapter extends RecyclerView.Adapter<NewsRVAdapter.NewsItemViewHolder> {
 
     public static class NewsItemViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.newsItemTitle)
         TextView newsItemTitle;

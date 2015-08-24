@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.connector;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,11 +10,7 @@ import java.util.List;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Classified;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 3.6.2015.
- */
 public class ClassifiedConnector {
-    private static final String LOG_TAG = ClassifiedConnector.class.getSimpleName();
 
     public static List<Classified> get(int page) {
         String uri = "http://comicsdb.cz/bazar.php" + "?str=" + page;
@@ -64,7 +58,6 @@ public class ClassifiedConnector {
                 result.add(classified);
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
         }
         return result;
     }

@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import cz.kutner.comicsdb.fragment.ComicsListFragment;
 import cz.kutner.comicsdb.R;
+import cz.kutner.comicsdb.fragment.ComicsListFragment;
 
 public class ComicsSearchActivity extends AbstractActivity {
-    private final String LOG_TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

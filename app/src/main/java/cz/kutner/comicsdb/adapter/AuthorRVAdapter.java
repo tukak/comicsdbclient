@@ -13,13 +13,9 @@ import butterknife.ButterKnife;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.model.Author;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class AuthorRVAdapter extends RecyclerView.Adapter<AuthorRVAdapter.AuthorViewHolder> {
 
     public static class AuthorViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.authorName)
         TextView authorName;
@@ -38,7 +34,6 @@ public class AuthorRVAdapter extends RecyclerView.Adapter<AuthorRVAdapter.Author
     public AuthorRVAdapter(List<Author> authors) {
         this.authors = authors;
     }
-
 
 
     @Override

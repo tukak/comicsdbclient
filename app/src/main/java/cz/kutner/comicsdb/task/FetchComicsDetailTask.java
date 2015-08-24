@@ -10,11 +10,7 @@ import cz.kutner.comicsdb.connector.ComicsConnector;
 import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
 import cz.kutner.comicsdb.model.Comics;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 11.5.2015.
- */
 public class FetchComicsDetailTask extends AsyncTask<Integer, Void, Comics> {
-    private String LOG_TAG = getClass().getSimpleName();
 
     public FetchComicsDetailTask() {
     }

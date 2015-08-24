@@ -9,12 +9,8 @@ import cz.kutner.comicsdb.connector.ClassifiedConnector;
 import cz.kutner.comicsdb.event.ClassifiedResultEvent;
 import cz.kutner.comicsdb.model.Classified;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class FetchClassifiedTask
         extends AsyncTask<String, Void, List<Classified>> {
-    private String LOG_TAG = getClass().getSimpleName();
 
     public FetchClassifiedTask() {
     }

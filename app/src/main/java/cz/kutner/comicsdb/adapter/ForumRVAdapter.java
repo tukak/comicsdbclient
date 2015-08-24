@@ -16,18 +16,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdb.R;
+import cz.kutner.comicsdb.model.ForumEntry;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumViewHolder> {
-    private final String LOG_TAG = getClass().getSimpleName();
 
 
     public static class ForumViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.forum_nick_icon)
         ImageView forumNickIcon;
@@ -53,7 +48,6 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumVie
     public ForumRVAdapter(List<ForumEntry> entries) {
         this.entries = entries;
     }
-
 
 
     @Override

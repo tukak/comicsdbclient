@@ -12,15 +12,11 @@ import cz.kutner.comicsdb.adapter.SeriesRVAdapter;
 import cz.kutner.comicsdb.event.SeriesResultEvent;
 import cz.kutner.comicsdb.model.Series;
 import cz.kutner.comicsdb.task.FetchSeriesTask;
-import hugo.weaving.DebugLog;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class SeriesFragment extends AbstractFragment<Series, SeriesRVAdapter, SeriesResultEvent> {
 
 
-    @DebugLog
+
     public SeriesFragment() {
         super();
         adapter = new SeriesRVAdapter(data);
@@ -36,7 +32,7 @@ public class SeriesFragment extends AbstractFragment<Series, SeriesRVAdapter, Se
         return fragment;
     }
 
-    @DebugLog
+
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -47,13 +43,13 @@ public class SeriesFragment extends AbstractFragment<Series, SeriesRVAdapter, Se
     }
 
     @Subscribe
-    @DebugLog
+
     public void onAsyncTaskResult(SeriesResultEvent event) {
         super.onAsyncTaskResult(event);
     }
 
     @Override
-    @DebugLog
+
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

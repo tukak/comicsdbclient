@@ -9,12 +9,8 @@ import cz.kutner.comicsdb.connector.ForumConnector;
 import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class FetchForumTask
         extends AsyncTask<String, Void, List<ForumEntry>> {
-    private String LOG_TAG = getClass().getSimpleName();
 
     public FetchForumTask() {
 

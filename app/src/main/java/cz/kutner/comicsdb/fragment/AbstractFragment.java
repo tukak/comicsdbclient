@@ -24,14 +24,9 @@ import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.AbstractResultEvent;
-import hugo.weaving.DebugLog;
 import pl.aprilapps.switcher.Switcher;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapter, Event extends AbstractResultEvent> extends Fragment {
-    String LOG_TAG = getClass().getSimpleName();
     int lastPage;
     private boolean firstLoad;
     boolean searchRunning;
@@ -66,7 +61,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     @Bind(R.id.filter_text)
     TextView filterText;
 
-    @DebugLog
+
     public AbstractFragment() {
         lastPage = 1;
         loading = false;
@@ -83,7 +78,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
-    @DebugLog
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment, container, false);
@@ -117,7 +112,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
         return view;
     }
 
-    @DebugLog
+
     abstract void loadData();
 
     @Override
@@ -127,7 +122,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
-    @DebugLog
+
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
@@ -144,13 +139,13 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
-    @DebugLog
+
     public void onResume() {
         super.onResume();
         ComicsDBApplication.getEventBus().register(this);
     }
 
-    @DebugLog
+
     private void checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
             switcher.showErrorView();
@@ -165,13 +160,14 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
 
         }
     }
-    @DebugLog
+
+
     void onAsyncTaskResult(Event event) {
         result = event.getResult();
         showData();
     }
 
-    @DebugLog
+
     private void showData() {
         searchRunning = false;
         if (firstLoad) {

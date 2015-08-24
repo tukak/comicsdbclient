@@ -16,17 +16,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.model.Classified;
 import cz.kutner.comicsdb.R;
+import cz.kutner.comicsdb.model.Classified;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapter.ClassifiedViewHolder> {
-    private final String LOG_TAG = getClass().getSimpleName();
 
     public static class ClassifiedViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.classified_nick_icon)
         ImageView classifiedNickIcon;
@@ -53,7 +48,6 @@ public class ClassifiedRVAdapter extends RecyclerView.Adapter<ClassifiedRVAdapte
     public ClassifiedRVAdapter(List<Classified> entries) {
         this.entries = entries;
     }
-
 
 
     @Override

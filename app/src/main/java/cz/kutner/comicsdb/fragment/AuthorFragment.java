@@ -12,15 +12,11 @@ import cz.kutner.comicsdb.adapter.AuthorRVAdapter;
 import cz.kutner.comicsdb.event.AuthorResultEvent;
 import cz.kutner.comicsdb.model.Author;
 import cz.kutner.comicsdb.task.FetchAuthorTask;
-import hugo.weaving.DebugLog;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, AuthorResultEvent> {
 
 
-    @DebugLog
+
     public AuthorFragment() {
         super();
         adapter = new AuthorRVAdapter(data);
@@ -36,7 +32,7 @@ public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, Au
         return fragment;
     }
 
-    @DebugLog
+
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -47,13 +43,13 @@ public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, Au
     }
 
     @Subscribe
-    @DebugLog
+
     public void onAsyncTaskResult(AuthorResultEvent event) {
         super.onAsyncTaskResult(event);
     }
 
     @Override
-    @DebugLog
+
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

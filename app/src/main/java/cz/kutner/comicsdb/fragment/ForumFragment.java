@@ -13,9 +13,6 @@ import cz.kutner.comicsdb.event.ForumResultEvent;
 import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdb.task.FetchForumTask;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 21.5.2015.
- */
 public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, ForumResultEvent> {
 
     public ForumFragment() {

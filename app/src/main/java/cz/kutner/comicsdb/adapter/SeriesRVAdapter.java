@@ -13,14 +13,10 @@ import butterknife.ButterKnife;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.model.Series;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class SeriesRVAdapter extends RecyclerView.Adapter<SeriesRVAdapter.SeriesViewHolder> {
 
 
     public static class SeriesViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.series_name)
         TextView seriesName;
@@ -39,7 +35,6 @@ public class SeriesRVAdapter extends RecyclerView.Adapter<SeriesRVAdapter.Series
     public SeriesRVAdapter(List<Series> series) {
         this.series = series;
     }
-
 
 
     @Override

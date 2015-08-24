@@ -1,10 +1,5 @@
 package cz.kutner.comicsdb.adapter;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 12.5.2015.
- */
-
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -23,16 +18,10 @@ import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
-import hugo.weaving.DebugLog;
 
-/**
- * Created by Lukáš Kutner (lukas@kutner.cz) on 27.4.2015.
- */
 public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final String LOG_TAG = getClass().getSimpleName();
 
     public static class CommentsViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
 
         @Bind(R.id.commentNick)
         TextView commentNick;
@@ -52,7 +41,6 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public static class ComicsViewHolder extends RecyclerView.ViewHolder {
-        private final String LOG_TAG = getClass().getSimpleName();
         @Bind(R.id.cover)
         ImageView cover;
         @Bind(R.id.name)
@@ -102,7 +90,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.context = context;
     }
 
-    @DebugLog
+
     public void setComics(Comics comics) {
         this.comics = comics;
     }
@@ -116,7 +104,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    @DebugLog
+
     @Override
     public int getItemCount() {
         return comics.getComments().size() + 1;
