@@ -25,8 +25,9 @@ import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.event.AbstractResultEvent;
 import pl.aprilapps.switcher.Switcher;
+import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapter, Event extends AbstractResultEvent> extends Fragment {
+public abstract class AbstractFragment<Item, Event extends AbstractResultEvent> extends Fragment {
     int lastPage;
     private boolean firstLoad;
     boolean searchRunning;
@@ -37,7 +38,7 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     private int pastVisibleItems;
     private int visibleItemCount;
     private int totalItemCount;
-    Adapter adapter;
+    EasyRecyclerAdapter adapter;
     int preloadCount;
     boolean endless;
     boolean spinnerEnabled;
@@ -78,7 +79,6 @@ public abstract class AbstractFragment<Item, Adapter extends RecyclerView.Adapte
     }
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment, container, false);

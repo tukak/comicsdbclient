@@ -2,21 +2,24 @@ package cz.kutner.comicsdb.fragment;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.adapter.ForumRVAdapter;
 import cz.kutner.comicsdb.event.ForumResultEvent;
+import cz.kutner.comicsdb.holder.ForumViewHolder;
 import cz.kutner.comicsdb.model.ForumEntry;
 import cz.kutner.comicsdb.task.FetchForumTask;
+import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, ForumResultEvent> {
+public class ForumFragment extends AbstractFragment<ForumEntry, ForumResultEvent> {
 
     public ForumFragment() {
-        adapter = new ForumRVAdapter(data);
         preloadCount = 20;
         spinnerEnabled = true;
         spinnerValues = new String[]{"Všechna fora", "* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub",
@@ -30,6 +33,15 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumRVAdapter, 
         ForumFragment fragment = new ForumFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        adapter = new EasyRecyclerAdapter<ForumEntry>(
+                getContext(),
+                ForumViewHolder.class,
+                data);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     void loadData() {

@@ -37,3 +37,8 @@
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
 }
+
+-keepattributes *Annotation*
+-keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
+    public <init>(...);
+ }

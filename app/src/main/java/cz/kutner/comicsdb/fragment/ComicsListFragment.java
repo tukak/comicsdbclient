@@ -3,6 +3,9 @@ package cz.kutner.comicsdb.fragment;
 import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -11,18 +14,18 @@ import com.squareup.otto.Subscribe;
 import java.text.Normalizer;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.adapter.ComicsListRVAdapter;
 import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
+import cz.kutner.comicsdb.holder.ComicsViewHolder;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.task.FetchComicsListTask;
+import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAdapter, ComicsSearchResultEvent> {
+public class ComicsListFragment extends AbstractFragment<Comics, ComicsSearchResultEvent> {
 
 
 
     public ComicsListFragment() {
         super();
-        adapter = new ComicsListRVAdapter(data);
         preloadCount = 20;
     }
 
@@ -35,6 +38,15 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsListRVAda
         return fragment;
     }
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        adapter = new EasyRecyclerAdapter<Comics>(
+                getContext(),
+                ComicsViewHolder.class,
+                data);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     void loadData() {
         if (!searchRunning) {

@@ -2,24 +2,27 @@ package cz.kutner.comicsdb.fragment;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.adapter.AuthorRVAdapter;
 import cz.kutner.comicsdb.event.AuthorResultEvent;
+import cz.kutner.comicsdb.holder.AuthorViewHolder;
 import cz.kutner.comicsdb.model.Author;
 import cz.kutner.comicsdb.task.FetchAuthorTask;
+import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, AuthorResultEvent> {
+public class AuthorFragment extends AbstractFragment<Author, AuthorResultEvent> {
 
 
 
     public AuthorFragment() {
         super();
-        adapter = new AuthorRVAdapter(data);
         preloadCount = 20;
     }
 
@@ -33,6 +36,15 @@ public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, Au
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        adapter = new EasyRecyclerAdapter<Author>(
+                getContext(),
+                AuthorViewHolder.class,
+                data);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
@@ -43,13 +55,11 @@ public class AuthorFragment extends AbstractFragment<Author, AuthorRVAdapter, Au
     }
 
     @Subscribe
-
     public void onAsyncTaskResult(AuthorResultEvent event) {
         super.onAsyncTaskResult(event);
     }
 
     @Override
-
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();
