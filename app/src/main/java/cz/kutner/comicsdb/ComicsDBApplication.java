@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Bus;
+import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
@@ -16,7 +17,10 @@ public class ComicsDBApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (BuildConfig.DEBUG) Timber.plant(new Timber.DebugTree());
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+            Picasso.with(getApplicationContext()).setIndicatorsEnabled(true);
+        }
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
         tracker = analytics.newTracker(getString(R.string.google_analytics_id));
         tracker.enableExceptionReporting(true);
