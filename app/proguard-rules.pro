@@ -42,3 +42,7 @@
 -keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
     public <init>(...);
  }
+
+-dontwarn com.squareup.okhttp.**
+
+-dontwarn com.google.android.gms.**
