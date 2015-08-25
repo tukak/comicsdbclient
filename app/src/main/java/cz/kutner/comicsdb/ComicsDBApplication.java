@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.squareup.leakcanary.LeakCanary;
 import com.squareup.otto.Bus;
 import com.squareup.picasso.Picasso;
 
@@ -17,6 +18,7 @@ public class ComicsDBApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
             Picasso.with(getApplicationContext()).setIndicatorsEnabled(true);
