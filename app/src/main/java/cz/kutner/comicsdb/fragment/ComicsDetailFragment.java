@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,10 +23,12 @@ import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
-import cz.kutner.comicsdb.event.ComicsDetailResultEvent;
+import cz.kutner.comicsdb.connector.ComicsConnector;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdb.task.FetchComicsDetailTask;
 import pl.aprilapps.switcher.Switcher;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class ComicsDetailFragment extends Fragment {
@@ -82,18 +83,15 @@ public class ComicsDetailFragment extends Fragment {
 
 
     private void loadData() {
-        Bundle args = this.getArguments();
-        Integer id = args.getInt("id");
-        FetchComicsDetailTask task = new FetchComicsDetailTask();
-        task.execute(id);
+        Observable.just(this.getArguments().getInt("id"))
+                .observeOn(Schedulers.io())
+                .map(integer -> ComicsConnector.get(integer))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(comics1 -> {
+                    comics = comics1;
+                    showData();
+                });
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        ComicsDBApplication.getEventBus().unregister(this);
-    }
-
 
     @OnClick(R.id.try_again)
     public void tryAgainButtonClicked() {
@@ -103,14 +101,12 @@ public class ComicsDetailFragment extends Fragment {
     }
 
     @Override
-
     public void onResume() {
         super.onResume();
         if (!Utils.isConnected()) {
             switcher.showErrorView();
         } else {
             switcher.showProgressView();
-            ComicsDBApplication.getEventBus().register(this);
             if (comics != null) {
                 showData();
             } else {
@@ -120,19 +116,10 @@ public class ComicsDetailFragment extends Fragment {
     }
 
     public static ComicsDetailFragment newInstance() {
-
         Bundle args = new Bundle();
-
         ComicsDetailFragment fragment = new ComicsDetailFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-
-    @Subscribe
-    public void onAsyncTaskResult(ComicsDetailResultEvent event) {
-        comics = event.getResult().get(0);
-        showData();
     }
 
 

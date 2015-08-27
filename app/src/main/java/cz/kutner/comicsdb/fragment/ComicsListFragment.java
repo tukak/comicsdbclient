@@ -9,19 +9,19 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import java.text.Normalizer;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.event.ComicsSearchResultEvent;
+import cz.kutner.comicsdb.connector.ComicsListConnector;
 import cz.kutner.comicsdb.holder.ComicsViewHolder;
 import cz.kutner.comicsdb.model.Comics;
-import cz.kutner.comicsdb.task.FetchComicsListTask;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class ComicsListFragment extends AbstractFragment<Comics, ComicsSearchResultEvent> {
-
+public class ComicsListFragment extends AbstractFragment<Comics> {
 
 
     public ComicsListFragment() {
@@ -51,28 +51,36 @@ public class ComicsListFragment extends AbstractFragment<Comics, ComicsSearchRes
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            FetchComicsListTask task = new FetchComicsListTask();
             Bundle args = this.getArguments();
+            Observable stream;
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                task.execute(FetchComicsListTask.SEARCH, searchText);
+                Observable.just(searchText)
+                        .observeOn(Schedulers.io())
+                        .map(s -> ComicsListConnector.search(s))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(comicses -> {
+                            result = comicses;
+                            showData();
+                        });
                 endless = false;
             } else { //zobrazujeme nejnovější
-                task.execute(FetchComicsListTask.LIST, String.valueOf(lastPage));
+                Observable.just(lastPage)
+                        .observeOn(Schedulers.io())
+                        .map(integer -> ComicsListConnector.get(integer))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(comicses -> {
+                            result = comicses;
+                            showData();
+                        });
             }
+
             lastPage++;
         }
     }
 
-    @Subscribe
-
-    public void onAsyncTaskResult(ComicsSearchResultEvent event) {
-        super.onAsyncTaskResult(event);
-    }
-
     @Override
-
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

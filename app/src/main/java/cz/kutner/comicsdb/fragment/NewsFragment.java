@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.event.NewsResultEvent;
+import cz.kutner.comicsdb.connector.NewsConnector;
 import cz.kutner.comicsdb.holder.NewsViewHolder;
 import cz.kutner.comicsdb.model.NewsItem;
-import cz.kutner.comicsdb.task.FetchNewsTask;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class NewsFragment extends AbstractFragment<NewsItem,  NewsResultEvent> {
-
+public class NewsFragment extends AbstractFragment<NewsItem> {
 
 
     public NewsFragment() {
@@ -49,16 +49,16 @@ public class NewsFragment extends AbstractFragment<NewsItem,  NewsResultEvent> {
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            FetchNewsTask task = new FetchNewsTask();
-            task.execute();
+            Observable.just(null)
+                    .observeOn(Schedulers.io())
+                    .map(integer -> NewsConnector.getNews())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(news -> {
+                        result = news;
+                        showData();
+                    });
             lastPage++;
         }
-    }
-
-    @Subscribe
-
-    public void onAsyncTaskResult(NewsResultEvent event) {
-        super.onAsyncTaskResult(event);
     }
 
     @Override

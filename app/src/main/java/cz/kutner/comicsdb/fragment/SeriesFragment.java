@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.event.SeriesResultEvent;
+import cz.kutner.comicsdb.connector.SeriesConnector;
 import cz.kutner.comicsdb.holder.SeriesViewHolder;
 import cz.kutner.comicsdb.model.Series;
-import cz.kutner.comicsdb.task.FetchSeriesTask;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class SeriesFragment extends AbstractFragment<Series, SeriesResultEvent> {
-
+public class SeriesFragment extends AbstractFragment<Series> {
 
 
     public SeriesFragment() {
@@ -47,20 +47,19 @@ public class SeriesFragment extends AbstractFragment<Series, SeriesResultEvent> 
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            FetchSeriesTask task = new FetchSeriesTask();
-            task.execute(FetchSeriesTask.LIST, String.valueOf(lastPage));
+            Observable.just(lastPage)
+                    .observeOn(Schedulers.io())
+                    .map(integer -> SeriesConnector.get(integer))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(series -> {
+                        result = series;
+                        showData();
+                    });
             lastPage++;
         }
     }
 
-    @Subscribe
-
-    public void onAsyncTaskResult(SeriesResultEvent event) {
-        super.onAsyncTaskResult(event);
-    }
-
     @Override
-
     public void onStart() {
         super.onStart();
         Bundle args = this.getArguments();

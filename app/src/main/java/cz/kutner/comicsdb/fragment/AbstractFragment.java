@@ -20,21 +20,19 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
-import cz.kutner.comicsdb.event.AbstractResultEvent;
 import pl.aprilapps.switcher.Switcher;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public abstract class AbstractFragment<Item, Event extends AbstractResultEvent> extends Fragment {
+public abstract class AbstractFragment<Item> extends Fragment {
     int lastPage;
     private boolean firstLoad;
     boolean searchRunning;
     private boolean loading;
     private Item lastItem;
     List<Item> data = new ArrayList<>();
-    private List<Item> result = new ArrayList<>();
+    List<Item> result = new ArrayList<>();
     private int pastVisibleItems;
     private int visibleItemCount;
     private int totalItemCount;
@@ -116,13 +114,6 @@ public abstract class AbstractFragment<Item, Event extends AbstractResultEvent> 
     abstract void loadData();
 
     @Override
-    public void onPause() {
-        super.onPause();
-        ComicsDBApplication.getEventBus().unregister(this);
-    }
-
-    @Override
-
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
@@ -137,14 +128,6 @@ public abstract class AbstractFragment<Item, Event extends AbstractResultEvent> 
             checkConnectionAndLoadData();
         }
     }
-
-    @Override
-
-    public void onResume() {
-        super.onResume();
-        ComicsDBApplication.getEventBus().register(this);
-    }
-
 
     private void checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
@@ -161,14 +144,7 @@ public abstract class AbstractFragment<Item, Event extends AbstractResultEvent> 
         }
     }
 
-
-    void onAsyncTaskResult(Event event) {
-        result = event.getResult();
-        showData();
-    }
-
-
-    private void showData() {
+    public void showData() {
         searchRunning = false;
         if (firstLoad) {
             if (!spinnerEnabled) {

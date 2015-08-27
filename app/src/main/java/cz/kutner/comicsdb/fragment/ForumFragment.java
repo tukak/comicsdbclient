@@ -8,16 +8,17 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.event.ForumResultEvent;
+import cz.kutner.comicsdb.connector.ForumConnector;
 import cz.kutner.comicsdb.holder.ForumViewHolder;
 import cz.kutner.comicsdb.model.ForumEntry;
-import cz.kutner.comicsdb.task.FetchForumTask;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class ForumFragment extends AbstractFragment<ForumEntry, ForumResultEvent> {
+public class ForumFragment extends AbstractFragment<ForumEntry> {
 
     public ForumFragment() {
         preloadCount = 20;
@@ -47,24 +48,17 @@ public class ForumFragment extends AbstractFragment<ForumEntry, ForumResultEvent
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            FetchForumTask task = new FetchForumTask();
             String searchText = "";
-            //Bundle args = this.getArguments();
-            //if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
-            //    String searchText = args.getString(SearchManager.QUERY);
-            //    searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-            //    task.execute(getString(R.string.url_comics_search) + searchText);
-            //} else { //zobrazujeme nejnovější
-            task.execute(String.valueOf(lastPage), filter, searchText); //Stránka, Kategorie, Hledaný text
-
-            //}
+            Observable.just(lastPage)
+                    .observeOn(Schedulers.io())
+                    .map(integer -> ForumConnector.getFiltered(integer, filter, searchText))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(forumEntries -> {
+                        result = forumEntries;
+                        showData();
+                    });
             lastPage++;
         }
-    }
-
-    @Subscribe
-    public void onAsyncTaskResult(ForumResultEvent event) {
-        super.onAsyncTaskResult(event);
     }
 
     @Override

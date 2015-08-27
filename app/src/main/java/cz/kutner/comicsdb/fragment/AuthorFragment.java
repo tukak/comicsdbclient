@@ -8,18 +8,17 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.otto.Subscribe;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.event.AuthorResultEvent;
+import cz.kutner.comicsdb.connector.AuthorConnector;
 import cz.kutner.comicsdb.holder.AuthorViewHolder;
 import cz.kutner.comicsdb.model.Author;
-import cz.kutner.comicsdb.task.FetchAuthorTask;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
-public class AuthorFragment extends AbstractFragment<Author, AuthorResultEvent> {
-
-
+public class AuthorFragment extends AbstractFragment<Author> {
 
     public AuthorFragment() {
         super();
@@ -48,15 +47,16 @@ public class AuthorFragment extends AbstractFragment<Author, AuthorResultEvent> 
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            FetchAuthorTask task = new FetchAuthorTask();
-            task.execute(FetchAuthorTask.LIST, String.valueOf(lastPage));
+            Observable.just(lastPage)
+                    .observeOn(Schedulers.io())
+                    .map(integer -> AuthorConnector.get(integer))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(authors -> {
+                        result = authors;
+                        showData();
+                    });
             lastPage++;
         }
-    }
-
-    @Subscribe
-    public void onAsyncTaskResult(AuthorResultEvent event) {
-        super.onAsyncTaskResult(event);
     }
 
     @Override
