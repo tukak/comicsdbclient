@@ -11,8 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
 
 import butterknife.Bind;
@@ -52,54 +50,45 @@ public abstract class AbstractActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    drawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
+            toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         }
     }
 
     private void setActionsForDrawer() {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
 
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                Fragment fragment = null;
-                switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_comics:
-                        fragment = ComicsListFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_news:
-                        fragment = NewsFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_series:
-                        fragment = SeriesFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_author:
-                        fragment = AuthorFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_classified:
-                        fragment = ClassifiedFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_forum:
-                        fragment = ForumFragment.newInstance();
-                        break;
-                    case R.id.navigation_item_about:
-                        fragment = AboutFragment.newInstance();
-                        break;
-                }
-                menuItem.setChecked(true);
-                if (fragment != null) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, fragment)
-                            .commit();
-                }
-                drawerLayout.closeDrawers();
-                return true;
+            Fragment fragment = null;
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_item_comics:
+                    fragment = ComicsListFragment.newInstance();
+                    break;
+                case R.id.navigation_item_news:
+                    fragment = NewsFragment.newInstance();
+                    break;
+                case R.id.navigation_item_series:
+                    fragment = SeriesFragment.newInstance();
+                    break;
+                case R.id.navigation_item_author:
+                    fragment = AuthorFragment.newInstance();
+                    break;
+                case R.id.navigation_item_classified:
+                    fragment = ClassifiedFragment.newInstance();
+                    break;
+                case R.id.navigation_item_forum:
+                    fragment = ForumFragment.newInstance();
+                    break;
+                case R.id.navigation_item_about:
+                    fragment = AboutFragment.newInstance();
+                    break;
             }
+            menuItem.setChecked(true);
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragment)
+                        .commit();
+            }
+            drawerLayout.closeDrawers();
+            return true;
         });
     }
 

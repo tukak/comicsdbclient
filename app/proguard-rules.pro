@@ -46,3 +46,5 @@
 -dontwarn com.squareup.okhttp.**
 
 -dontwarn com.google.android.gms.**
+
+-dontwarn java.lang.invoke.*

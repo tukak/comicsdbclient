@@ -1,9 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
@@ -40,4 +46,5 @@ dependencies {
     compile 'uk.co.ribot:easyadapter:1.5.0@aar'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    compile 'io.reactivex:rxandroid:1.0.1'
 }
