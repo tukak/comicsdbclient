@@ -18,13 +18,24 @@ public class SeriesConnector {
         return loadFromUri(uri);
     }
 
+    public static List<Series> search(String searchText) {
+        String uri = "http://comicsdb.cz/search.php?searchfor=" + searchText;
+        return loadFromUri(uri);
+    }
+
 
     private static List<Series> loadFromUri(String uri) {
         List<Series> result = new ArrayList<>();
         Document doc;
         try {
             doc = Jsoup.connect(uri).get();
-            Element table = doc.select("table[summary=Přehled comicsů]").first();
+            Element table;
+            int count = doc.select("table[summary=Přehled comicsů]").size();
+            if (count > 1) { //jsme na stránce vyhledávání
+                table = doc.select("table[summary=Přehled comicsů]").get(1);
+            } else { //jsme na stránce se sériema
+                table = doc.select("table[summary=Přehled comicsů]").first();
+            }
             for (Element row : table.select("tbody tr")) {
                 Elements columns = row.select("td");
                 String title = columns.get(0).select("a").first().text();

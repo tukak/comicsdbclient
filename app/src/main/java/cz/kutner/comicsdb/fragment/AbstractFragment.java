@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -116,9 +115,6 @@ public abstract class AbstractFragment<Item> extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        SearchView sw = (SearchView) this.getActivity().findViewById(R.id.toolbar).findViewById(R.id.searchView);
-        sw.setQuery("", false);
-        sw.setIconified(true);
         checkConnectionAndLoadData();
     }
 

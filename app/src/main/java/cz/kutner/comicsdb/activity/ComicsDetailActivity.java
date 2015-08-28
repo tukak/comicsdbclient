@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
-import cz.kutner.comicsdb.fragment.ComicsDetailFragment;
 import cz.kutner.comicsdb.R;
+import cz.kutner.comicsdb.fragment.ComicsDetailFragment;
 
 public class ComicsDetailActivity extends AppCompatActivity {
 
@@ -24,7 +23,6 @@ public class ComicsDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Integer id = null;
         if (Intent.ACTION_VIEW.equals(intent.getAction())) { //volá nás někdo přes URL
-            Log.i("DETAIL", intent.getDataString());
             try {
                 id = Integer.parseInt(intent.getDataString().replaceFirst("^.*\\D", ""));
             } catch (Exception e) {

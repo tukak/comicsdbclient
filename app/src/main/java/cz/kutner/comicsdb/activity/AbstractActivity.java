@@ -96,7 +96,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        ComponentName cn = new ComponentName(this, ComicsSearchActivity.class);
+        ComponentName cn = new ComponentName(this, SearchActivity.class);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
 
         return true;

@@ -48,3 +48,5 @@
 -dontwarn com.google.android.gms.**
 
 -dontwarn java.lang.invoke.*
+
+-dontwarn rx.internal.util.unsafe.*
