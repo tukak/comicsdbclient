@@ -48,7 +48,7 @@ public class SeriesFragment extends AbstractFragment<Series> {
         if (!searchRunning) {
             searchRunning = true;
             Observable.just(lastPage)
-                    .observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
                     .map(integer -> SeriesConnector.get(integer))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(series -> {

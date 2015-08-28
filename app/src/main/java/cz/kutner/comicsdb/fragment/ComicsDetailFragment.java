@@ -84,7 +84,7 @@ public class ComicsDetailFragment extends Fragment {
 
     private void loadData() {
         Observable.just(this.getArguments().getInt("id"))
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .map(integer -> ComicsConnector.get(integer))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(comics1 -> {

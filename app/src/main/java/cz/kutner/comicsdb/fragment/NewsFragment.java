@@ -50,7 +50,7 @@ public class NewsFragment extends AbstractFragment<NewsItem> {
         if (!searchRunning) {
             searchRunning = true;
             Observable.just(null)
-                    .observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
                     .map(integer -> NewsConnector.getNews())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(news -> {

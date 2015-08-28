@@ -50,7 +50,7 @@ public class ClassifiedFragment extends AbstractFragment<Classified> {
             searchRunning = true;
             String searchText = "";
             Observable.just(lastPage)
-                    .observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
                     .map(integer -> ClassifiedConnector.getFiltered(integer, filter, searchText))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(classifieds -> {

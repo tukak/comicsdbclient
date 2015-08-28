@@ -48,7 +48,7 @@ public class AuthorFragment extends AbstractFragment<Author> {
         if (!searchRunning) {
             searchRunning = true;
             Observable.just(lastPage)
-                    .observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
                     .map(integer -> AuthorConnector.get(integer))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(authors -> {

@@ -52,12 +52,11 @@ public class ComicsListFragment extends AbstractFragment<Comics> {
         if (!searchRunning) {
             searchRunning = true;
             Bundle args = this.getArguments();
-            Observable stream;
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
                 Observable.just(searchText)
-                        .observeOn(Schedulers.io())
+                        .subscribeOn(Schedulers.io())
                         .map(s -> ComicsListConnector.search(s))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(comicses -> {
@@ -67,7 +66,7 @@ public class ComicsListFragment extends AbstractFragment<Comics> {
                 endless = false;
             } else { //zobrazujeme nejnovější
                 Observable.just(lastPage)
-                        .observeOn(Schedulers.io())
+                        .subscribeOn(Schedulers.io())
                         .map(integer -> ComicsListConnector.get(integer))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(comicses -> {

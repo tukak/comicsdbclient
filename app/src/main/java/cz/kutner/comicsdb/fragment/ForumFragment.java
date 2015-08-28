@@ -50,7 +50,7 @@ public class ForumFragment extends AbstractFragment<ForumEntry> {
             searchRunning = true;
             String searchText = "";
             Observable.just(lastPage)
-                    .observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
                     .map(integer -> ForumConnector.getFiltered(integer, filter, searchText))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(forumEntries -> {
