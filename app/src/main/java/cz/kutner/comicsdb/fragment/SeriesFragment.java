@@ -13,10 +13,8 @@ import com.google.android.gms.analytics.Tracker;
 import java.text.Normalizer;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.SeriesConnector;
 import cz.kutner.comicsdb.holder.SeriesViewHolder;
 import cz.kutner.comicsdb.model.Series;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
@@ -54,9 +52,8 @@ public class SeriesFragment extends AbstractFragment<Series> {
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                Observable.just(searchText)
+                ComicsDBApplication.getSeriesService().seriesSearch(searchText)
                         .subscribeOn(Schedulers.io())
-                        .map(s -> SeriesConnector.search(s))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(series -> {
                             result = series;
@@ -64,9 +61,8 @@ public class SeriesFragment extends AbstractFragment<Series> {
                         });
                 endless = false;
             } else { //zobrazujeme nejnovější
-                Observable.just(lastPage)
+                ComicsDBApplication.getSeriesService().seriesList(lastPage)
                         .subscribeOn(Schedulers.io())
-                        .map(integer -> SeriesConnector.get(integer))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(series -> {
                             result = series;

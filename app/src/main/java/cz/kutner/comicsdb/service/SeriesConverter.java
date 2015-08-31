@@ -1,39 +1,34 @@
-package cz.kutner.comicsdb.connector;
+package cz.kutner.comicsdb.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.kutner.comicsdb.model.Series;
+import retrofit.converter.ConversionException;
+import retrofit.converter.Converter;
+import retrofit.mime.TypedInput;
+import retrofit.mime.TypedOutput;
+import timber.log.Timber;
 
-public class SeriesConnector {
+public class SeriesConverter implements Converter {
 
-
-    public static List<Series> get(int page) {
-        String uri = "http://comicsdb.cz/serielist.php" + "?str=" + page;
-        return loadFromUri(uri);
-    }
-
-    public static List<Series> search(String searchText) {
-        String uri = "http://comicsdb.cz/search.php?searchfor=" + searchText;
-        return loadFromUri(uri);
-    }
-
-
-    private static List<Series> loadFromUri(String uri) {
+    @Override
+    public Object fromBody(TypedInput body, Type type) throws ConversionException {
         List<Series> result = new ArrayList<>();
         Document doc;
+        Element table;
         try {
-            doc = Jsoup.connect(uri).get();
-            Element table;
-            int count = doc.select("table[summary=Přehled comicsů]").size();
-            if (count > 1) { //jsme na stránce vyhledávání
-                table = doc.select("table[summary=Přehled comicsů]").get(1);
-            } else { //jsme na stránce se sériema
+            doc = Jsoup.parse(body.in(), "windows-1250", "");
+            Timber.i(doc.select("title").toString());
+            if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
+                table = doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").first();
+            } else {
                 table = doc.select("table[summary=Přehled comicsů]").first();
             }
             for (Element row : table.select("tbody tr")) {
@@ -45,7 +40,14 @@ public class SeriesConnector {
                 result.add(series);
             }
         } catch (Exception e) {
+            Timber.e(e.getMessage());
+            e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public TypedOutput toBody(Object object) {
+        return null;
     }
 }

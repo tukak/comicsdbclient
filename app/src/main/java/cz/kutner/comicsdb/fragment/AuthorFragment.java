@@ -13,10 +13,8 @@ import com.google.android.gms.analytics.Tracker;
 import java.text.Normalizer;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.AuthorConnector;
 import cz.kutner.comicsdb.holder.AuthorViewHolder;
 import cz.kutner.comicsdb.model.Author;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
@@ -54,9 +52,8 @@ public class AuthorFragment extends AbstractFragment<Author> {
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                Observable.just(searchText)
+                ComicsDBApplication.getAuthorService().authorSearch(searchText)
                         .subscribeOn(Schedulers.io())
-                        .map(s -> AuthorConnector.search(s))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(authors -> {
                             result = authors;
@@ -64,9 +61,8 @@ public class AuthorFragment extends AbstractFragment<Author> {
                         });
                 endless = false;
             } else { //zobrazujeme nejnovější
-                Observable.just(lastPage)
+                ComicsDBApplication.getAuthorService().listAuthors(lastPage)
                         .subscribeOn(Schedulers.io())
-                        .map(integer -> AuthorConnector.get(integer))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(authors -> {
                             result = authors;

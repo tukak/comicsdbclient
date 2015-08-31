@@ -1,29 +1,28 @@
-package cz.kutner.comicsdb.connector;
+package cz.kutner.comicsdb.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.kutner.comicsdb.model.NewsItem;
+import retrofit.converter.ConversionException;
+import retrofit.converter.Converter;
+import retrofit.mime.TypedInput;
+import retrofit.mime.TypedOutput;
+import timber.log.Timber;
 
-public class NewsConnector {
+public class NewsConverter implements Converter {
 
-
-    public static List<NewsItem> getNews() {
-        String uri = "http://comicsdb.cz//index.php";
-        return loadFromUri(uri);
-    }
-
-
-    private static List<NewsItem> loadFromUri(String uri) {
+    @Override
+    public Object fromBody(TypedInput body, Type type) throws ConversionException {
         List<NewsItem> result = new ArrayList<>();
-        Document doc;
         try {
-            doc = Jsoup.connect(uri).get();
+            Document  doc = Jsoup.parse(body.in(), "windows-1250", "");
             Elements news = doc.select(".news");
             for (Element newsRow : news) {
                 String title = newsRow.select(".news-tit").first().text();
@@ -38,7 +37,14 @@ public class NewsConnector {
                 result.add(newsItem);
             }
         } catch (Exception e) {
+            Timber.e(e.getMessage());
+            e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public TypedOutput toBody(Object object) {
+        return null;
     }
 }

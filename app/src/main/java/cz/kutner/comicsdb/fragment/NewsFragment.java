@@ -10,10 +10,8 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.NewsConnector;
 import cz.kutner.comicsdb.holder.NewsViewHolder;
 import cz.kutner.comicsdb.model.NewsItem;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
@@ -49,9 +47,8 @@ public class NewsFragment extends AbstractFragment<NewsItem> {
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            Observable.just(null)
+            ComicsDBApplication.getNewsService().listNews()
                     .subscribeOn(Schedulers.io())
-                    .map(integer -> NewsConnector.getNews())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(news -> {
                         result = news;
