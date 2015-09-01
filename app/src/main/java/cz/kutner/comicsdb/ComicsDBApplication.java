@@ -2,6 +2,7 @@ package cz.kutner.comicsdb;
 
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.leakcanary.LeakCanary;
@@ -21,6 +22,7 @@ import cz.kutner.comicsdb.connector.service.ComicsService;
 import cz.kutner.comicsdb.connector.service.ForumService;
 import cz.kutner.comicsdb.connector.service.NewsService;
 import cz.kutner.comicsdb.connector.service.SeriesService;
+import io.fabric.sdk.android.Fabric;
 import retrofit.RestAdapter;
 import timber.log.Timber;
 
@@ -37,6 +39,7 @@ public class ComicsDBApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         LeakCanary.install(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
