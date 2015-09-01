@@ -37,10 +37,24 @@
     public <init>(...);
  }
 
--dontwarn com.squareup.okhttp.**
+-dontwarn okio.**
+-dontwarn retrofit.appengine.UrlFetchClient
 
 -dontwarn com.google.android.gms.**
 
 -dontwarn java.lang.invoke.*
 
 -dontwarn rx.internal.util.unsafe.*
+
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+
+-dontwarn retrofit.**
+-dontwarn retrofit.appengine.UrlFetchClient
+-keep class retrofit.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keepattributes Signature
+-keepattributes *Annotation*
