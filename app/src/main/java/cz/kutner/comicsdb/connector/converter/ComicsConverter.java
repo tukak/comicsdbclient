@@ -24,7 +24,6 @@ public class ComicsConverter implements Converter {
         Comics comics = new Comics();
         Document doc;
         Node sibling;
-        Element table;
         try {
             doc = Jsoup.parse(body.in(), "windows-1250", "");
             comics.setId(Integer.parseInt(doc.select("input[name=id]").first().attr("value")));

@@ -20,7 +20,6 @@ public class ClassifiedConverter implements Converter {
     public Object fromBody(TypedInput body, Type type) throws ConversionException {
         List<Classified> result = new ArrayList<>();
         Document doc;
-        Element table;
         try {
             doc = Jsoup.parse(body.in(), "windows-1250", "");
             for (Element entry : doc.select("div#prispevek")) {

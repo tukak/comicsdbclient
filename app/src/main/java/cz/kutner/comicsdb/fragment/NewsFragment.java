@@ -62,7 +62,6 @@ public class NewsFragment extends AbstractFragment<NewsItem> {
 
     public void onStart() {
         super.onStart();
-        Bundle args = this.getArguments();
         Tracker tracker = ComicsDBApplication.getTracker();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Novinky");
         tracker.setScreenName("NewsFragment");

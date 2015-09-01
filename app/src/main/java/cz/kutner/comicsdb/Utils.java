@@ -7,7 +7,11 @@ import android.net.NetworkInfo;
 public class Utils {
 
     public static <T> T nvl(T a, T b) {
-        return (a == null) ? (T) "" : a;
+        if (a == null) {
+            return b;
+        } else {
+            return a;
+        }
     }
 
     public static boolean isConnected() {
