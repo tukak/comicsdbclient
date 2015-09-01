@@ -7,12 +7,20 @@ import com.google.android.gms.analytics.Tracker;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.picasso.Picasso;
 
-import cz.kutner.comicsdb.service.AuthorConverter;
-import cz.kutner.comicsdb.service.AuthorService;
-import cz.kutner.comicsdb.service.NewsConverter;
-import cz.kutner.comicsdb.service.NewsService;
-import cz.kutner.comicsdb.service.SeriesConverter;
-import cz.kutner.comicsdb.service.SeriesService;
+import cz.kutner.comicsdb.connector.converter.AuthorConverter;
+import cz.kutner.comicsdb.connector.converter.ClassifiedConverter;
+import cz.kutner.comicsdb.connector.converter.ComicsConverter;
+import cz.kutner.comicsdb.connector.converter.ComicsListConverter;
+import cz.kutner.comicsdb.connector.converter.ForumConverter;
+import cz.kutner.comicsdb.connector.converter.NewsConverter;
+import cz.kutner.comicsdb.connector.converter.SeriesConverter;
+import cz.kutner.comicsdb.connector.service.AuthorService;
+import cz.kutner.comicsdb.connector.service.ClassifiedService;
+import cz.kutner.comicsdb.connector.service.ComicsListService;
+import cz.kutner.comicsdb.connector.service.ComicsService;
+import cz.kutner.comicsdb.connector.service.ForumService;
+import cz.kutner.comicsdb.connector.service.NewsService;
+import cz.kutner.comicsdb.connector.service.SeriesService;
 import retrofit.RestAdapter;
 import timber.log.Timber;
 
@@ -22,8 +30,10 @@ public class ComicsDBApplication extends android.app.Application {
     private static SeriesService seriesService;
     private static AuthorService authorService;
     private static NewsService newsService;
-
-
+    private static ForumService forumService;
+    private static ClassifiedService classifiedService;
+    private static ComicsListService comicsListService;
+    private static ComicsService comicsService;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,5 +88,49 @@ public class ComicsDBApplication extends android.app.Application {
             newsService = restAdapter.create(NewsService.class);
         }
         return newsService;
+    }
+
+    public static ForumService getForumService() {
+        if (forumService == null) {
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint("http://www.comicsdb.cz")
+                    .setConverter(new ForumConverter())
+                    .build();
+            forumService = restAdapter.create(ForumService.class);
+        }
+        return forumService;
+    }
+
+    public static ClassifiedService getClassifiedService() {
+        if (classifiedService == null) {
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint("http://www.comicsdb.cz")
+                    .setConverter(new ClassifiedConverter())
+                    .build();
+            classifiedService = restAdapter.create(ClassifiedService.class);
+        }
+        return classifiedService;
+    }
+
+    public static ComicsListService getComicsListService() {
+        if (comicsListService == null) {
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint("http://www.comicsdb.cz")
+                    .setConverter(new ComicsListConverter())
+                    .build();
+            comicsListService = restAdapter.create(ComicsListService.class);
+        }
+        return comicsListService;
+    }
+
+    public static ComicsService getComicsService() {
+        if (comicsService == null) {
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint("http://www.comicsdb.cz")
+                    .setConverter(new ComicsConverter())
+                    .build();
+            comicsService = restAdapter.create(ComicsService.class);
+        }
+        return comicsService;
     }
 }

@@ -1,47 +1,28 @@
-package cz.kutner.comicsdb.connector;
+package cz.kutner.comicsdb.connector.converter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Classified;
+import retrofit.converter.ConversionException;
+import retrofit.converter.Converter;
+import retrofit.mime.TypedInput;
+import retrofit.mime.TypedOutput;
 
-public class ClassifiedConnector {
-
-    public static List<Classified> get(int page) {
-        String uri = "http://comicsdb.cz/bazar.php" + "?str=" + page;
-        return loadFromUri(uri);
-    }
-
-    public static List<Classified> getFiltered(int page, String category, String searchText) {
-        int categoryId = 0;
-        switch (category) {
-            case "Prodám":
-                categoryId = 1;
-                break;
-            case "Koupím":
-                categoryId = 2;
-                break;
-            case "Vyměním":
-                categoryId = 3;
-                break;
-            case "Ostatní":
-                categoryId = 10;
-                break;
-        }
-        String uri = "http://comicsdb.cz/bazar.php" + "?str=" + page + "&id=" + categoryId + "&val=" + searchText;
-        return loadFromUri(uri);
-    }
-
-    private static List<Classified> loadFromUri(String uri) {
+public class ClassifiedConverter implements Converter {
+    @Override
+    public Object fromBody(TypedInput body, Type type) throws ConversionException {
         List<Classified> result = new ArrayList<>();
         Document doc;
+        Element table;
         try {
-            doc = Jsoup.connect(uri).get();
+            doc = Jsoup.parse(body.in(), "windows-1250", "");
             for (Element entry : doc.select("div#prispevek")) {
                 String nick = entry.select("span.prispevek-nick").get(0).text();
                 String category = entry.select("span.prispevek-nick").get(1).text();
@@ -61,5 +42,9 @@ public class ClassifiedConnector {
         }
         return result;
     }
-}
 
+    @Override
+    public TypedOutput toBody(Object object) {
+        return null;
+    }
+}

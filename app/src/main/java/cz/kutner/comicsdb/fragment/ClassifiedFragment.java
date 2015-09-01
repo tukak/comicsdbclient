@@ -10,10 +10,9 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.ClassifiedConnector;
+import cz.kutner.comicsdb.connector.helper.ClassifiedHelper;
 import cz.kutner.comicsdb.holder.ClassifiedViewHolder;
 import cz.kutner.comicsdb.model.Classified;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
@@ -49,9 +48,8 @@ public class ClassifiedFragment extends AbstractFragment<Classified> {
         if (!searchRunning) {
             searchRunning = true;
             String searchText = "";
-            Observable.just(lastPage)
+            ComicsDBApplication.getClassifiedService().filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
                     .subscribeOn(Schedulers.io())
-                    .map(integer -> ClassifiedConnector.getFiltered(integer, filter, searchText))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(classifieds -> {
                         result = classifieds;

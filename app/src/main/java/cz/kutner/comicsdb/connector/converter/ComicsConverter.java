@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.connector;
+package cz.kutner.comicsdb.connector.converter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,20 +7,27 @@ import org.jsoup.nodes.Node;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
+import java.lang.reflect.Type;
+
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.model.Comics;
 import cz.kutner.comicsdb.model.Comment;
+import retrofit.converter.ConversionException;
+import retrofit.converter.Converter;
+import retrofit.mime.TypedInput;
+import retrofit.mime.TypedOutput;
 
-public class ComicsConnector {
-    public static Comics get(int id) {
-        cz.kutner.comicsdb.model.Comics comics = new cz.kutner.comicsdb.model.Comics();
+public class ComicsConverter implements Converter {
+
+    @Override
+    public Object fromBody(TypedInput body, Type type) throws ConversionException {
+        Comics comics = new Comics();
+        Document doc;
+        Node sibling;
+        Element table;
         try {
-            Document doc;
-            Node sibling;
-            String url = "http://comicsdb.cz/comics.php?id=" + id;
-            comics.setId(id);
-            doc = Jsoup.connect(url).get();
-            // title - H5
+            doc = Jsoup.parse(body.in(), "windows-1250", "");
+            comics.setId(Integer.parseInt(doc.select("input[name=id]").first().attr("value")));
             String name = doc.select("H5").text();
             comics.setName(Parser.unescapeEntities(name, false));
             // rating - #rating_block - vrací Celkové hodnocení 67% (26) 1 2 3 4 5
@@ -160,5 +167,10 @@ public class ComicsConnector {
         } catch (Exception e) {
         }
         return comics;
+    }
+
+    @Override
+    public TypedOutput toBody(Object object) {
+        return null;
     }
 }

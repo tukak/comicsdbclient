@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.service;
+package cz.kutner.comicsdb.connector.service;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import rx.Observable;
 
 public interface SeriesService {
     @GET("/serielist.php")
-    Observable<List<Series>> seriesList(@Query("str") int page);
+    Observable<List<Series>> getSeriesList(@Query("str") int page);
 
     @GET("/search.php")
-    Observable<List<Series>> seriesSearch(@Query("searchfor") String keyword);
+    Observable<List<Series>> searchSeries(@Query("searchfor") String keyword);
 }

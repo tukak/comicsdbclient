@@ -23,10 +23,8 @@ import cz.kutner.comicsdb.ComicsDBApplication;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter;
-import cz.kutner.comicsdb.connector.ComicsConnector;
 import cz.kutner.comicsdb.model.Comics;
 import pl.aprilapps.switcher.Switcher;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -83,9 +81,8 @@ public class ComicsDetailFragment extends Fragment {
 
 
     private void loadData() {
-        Observable.just(this.getArguments().getInt("id"))
+        ComicsDBApplication.getComicsService().getComics(this.getArguments().getInt("id"))
                 .subscribeOn(Schedulers.io())
-                .map(integer -> ComicsConnector.get(integer))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(comics1 -> {
                     comics = comics1;

@@ -10,10 +10,9 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import cz.kutner.comicsdb.ComicsDBApplication;
-import cz.kutner.comicsdb.connector.ForumConnector;
+import cz.kutner.comicsdb.connector.helper.ForumHelper;
 import cz.kutner.comicsdb.holder.ForumViewHolder;
 import cz.kutner.comicsdb.model.ForumEntry;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
@@ -49,9 +48,8 @@ public class ForumFragment extends AbstractFragment<ForumEntry> {
         if (!searchRunning) {
             searchRunning = true;
             String searchText = "";
-            Observable.just(lastPage)
-                    .subscribeOn(Schedulers.io())
-                    .map(integer -> ForumConnector.getFiltered(integer, filter, searchText))
+            ComicsDBApplication.getForumService().filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+                   .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(forumEntries -> {
                         result = forumEntries;

@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.service;
+package cz.kutner.comicsdb.connector.converter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

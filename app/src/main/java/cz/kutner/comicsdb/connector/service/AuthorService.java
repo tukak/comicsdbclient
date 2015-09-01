@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.service;
+package cz.kutner.comicsdb.connector.service;
 
 import java.util.List;
 

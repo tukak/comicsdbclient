@@ -52,7 +52,7 @@ public class SeriesFragment extends AbstractFragment<Series> {
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                ComicsDBApplication.getSeriesService().seriesSearch(searchText)
+                ComicsDBApplication.getSeriesService().searchSeries(searchText)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(series -> {
@@ -61,7 +61,7 @@ public class SeriesFragment extends AbstractFragment<Series> {
                         });
                 endless = false;
             } else { //zobrazujeme nejnovější
-                ComicsDBApplication.getSeriesService().seriesList(lastPage)
+                ComicsDBApplication.getSeriesService().getSeriesList(lastPage)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(series -> {
