@@ -82,7 +82,6 @@ public class AuthorFragment extends AbstractFragment<Author> {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\"");
             tracker.setScreenName("AuthorFragment - Search");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
-            tracker.send(new HitBuilders.EventBuilder().setCategory("Search").setAction(args.getString(SearchManager.QUERY)).build());
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Autoři");
             tracker.setScreenName("AuthorFragment - List");

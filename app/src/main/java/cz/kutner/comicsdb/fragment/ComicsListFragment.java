@@ -83,7 +83,6 @@ public class ComicsListFragment extends AbstractFragment<Comics> {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\"");
             tracker.setScreenName("ComicsListFragment - Search");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
-            tracker.send(new HitBuilders.EventBuilder().setCategory("Search").setAction(args.getString(SearchManager.QUERY)).build());
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Comicsy");
             tracker.setScreenName("ComicsListFragment - List");

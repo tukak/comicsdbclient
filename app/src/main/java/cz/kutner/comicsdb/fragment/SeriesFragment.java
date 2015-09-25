@@ -82,7 +82,6 @@ public class SeriesFragment extends AbstractFragment<Series> {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\"");
             tracker.setScreenName("SeriesFragment - Search");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
-            tracker.send(new HitBuilders.EventBuilder().setCategory("Search").setAction(args.getString(SearchManager.QUERY)).build());
         } else {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Serie");
             tracker.setScreenName("SeriesFragment - List");
