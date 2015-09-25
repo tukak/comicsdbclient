@@ -18,6 +18,8 @@
 
 #-dontobfuscate
 
+-keepattributes SourceFile,LineNumberTable
+
 -keep class org.jsoup.** { *; }
 
 -keep class butterknife.** { *; }
