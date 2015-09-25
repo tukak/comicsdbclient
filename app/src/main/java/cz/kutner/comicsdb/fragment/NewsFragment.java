@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -66,6 +68,9 @@ public class NewsFragment extends AbstractFragment<NewsItem> {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Novinky");
         tracker.setScreenName("NewsFragment");
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        Answers.getInstance().logContentView(new ContentViewEvent()
+                .putContentName("Zobrazení novinek")
+                .putContentType("Novinky"));
     }
 }
 

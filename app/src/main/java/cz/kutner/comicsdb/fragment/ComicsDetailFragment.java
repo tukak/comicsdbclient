@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -131,6 +133,10 @@ public class ComicsDetailFragment extends Fragment {
         tracker.setScreenName("ComicsDetailFragment");
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
         tracker.send(new HitBuilders.EventBuilder().setCategory("Detail").setAction(comics.getName()).build());
+        Answers.getInstance().logContentView(new ContentViewEvent()
+                .putContentName("Zobrazení detailu komiksu")
+                .putContentType("Comics")
+                .putContentId(comics.getName()));
     }
 
     @Override

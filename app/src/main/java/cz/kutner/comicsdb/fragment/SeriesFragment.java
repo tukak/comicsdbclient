@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -86,6 +88,9 @@ public class SeriesFragment extends AbstractFragment<Series> {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Serie");
             tracker.setScreenName("SeriesFragment - List");
             tracker.send(new HitBuilders.ScreenViewBuilder().build());
+            Answers.getInstance().logContentView(new ContentViewEvent()
+                    .putContentName("Zobrazení seznamu sérií")
+                    .putContentType("Série"));
         }
     }
 }
