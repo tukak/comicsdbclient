@@ -30,7 +30,7 @@ public class ComicsDetailActivity extends AppCompatActivity {
         } else {
             id = intent.getIntExtra(MainActivity.COMICS_ID, 0);
         }
-        Fragment fragment = ComicsDetailFragment.newInstance();
+        Fragment fragment = ComicsDetailFragment.Companion.newInstance();
         Bundle args = new Bundle();
         args.putInt("id", id);
         fragment.setArguments(args);

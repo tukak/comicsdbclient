@@ -27,13 +27,13 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
         Timber.i(String.valueOf(position));
         switch (position) {
             case 0:
-                fragment = ComicsListFragment.newInstance();
+                fragment = ComicsListFragment.Companion.newInstance();
                 break;
             case 1:
-                fragment = SeriesFragment.newInstance();
+                fragment = SeriesFragment.Companion.newInstance();
                 break;
             case 2:
-                fragment = AuthorFragment.newInstance();
+                fragment = AuthorFragment.Companion.newInstance();
                 break;
         }
         fragment.setArguments(intent.getExtras());

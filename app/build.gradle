@@ -1,30 +1,30 @@
 buildscript {
+    ext.kotlin_version = '0.13.1514'
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
     }
 
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
 }
 
 apply plugin: 'com.jakewharton.hugo'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
@@ -43,8 +43,8 @@ android {
             zipAlignEnabled true
         }
     }
-    lintOptions {
-        warning 'InvalidPackage'
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -72,4 +72,5 @@ dependencies {
         transitive = true;
     }
     compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
