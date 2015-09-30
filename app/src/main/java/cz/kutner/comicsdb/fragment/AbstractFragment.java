@@ -22,6 +22,7 @@ import butterknife.OnClick;
 import cz.kutner.comicsdb.R;
 import cz.kutner.comicsdb.Utils;
 import pl.aprilapps.switcher.Switcher;
+import rx.Subscription;
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter;
 
 public abstract class AbstractFragment<Item> extends Fragment {
@@ -59,6 +60,7 @@ public abstract class AbstractFragment<Item> extends Fragment {
     @Bind(R.id.filter_text)
     TextView filterText;
 
+    Subscription subscription;
 
     public AbstractFragment() {
         lastPage = 1;
@@ -143,11 +145,11 @@ public abstract class AbstractFragment<Item> extends Fragment {
     public void showData() {
         searchRunning = false;
         if (firstLoad) {
-            if (!spinnerEnabled) {
+            if (!spinnerEnabled && spinner != null) {
                 spinner.setVisibility(View.GONE);
                 filterText.setVisibility(View.GONE);
             }
-            if (spinnerEnabled) {
+            if (spinnerEnabled && spinner != null) {
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, spinnerValues);
                 spinner.setAdapter(spinnerAdapter);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -178,6 +180,14 @@ public abstract class AbstractFragment<Item> extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
     }
 
     private class itemSelectedListener implements AdapterView.OnItemSelectedListener {

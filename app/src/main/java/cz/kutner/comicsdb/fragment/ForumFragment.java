@@ -50,10 +50,11 @@ public class ForumFragment extends AbstractFragment<ForumEntry> {
         if (!searchRunning) {
             searchRunning = true;
             String searchText = "";
-            ComicsDBApplication.getForumService().filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
-                   .subscribeOn(Schedulers.io())
+            subscription = ComicsDBApplication.getForumService().filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+                    .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(forumEntries -> {
+                    .subscribe( forumEntries -> {
+
                         result = forumEntries;
                         showData();
                     });

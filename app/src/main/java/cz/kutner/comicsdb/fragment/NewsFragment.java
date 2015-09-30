@@ -49,7 +49,7 @@ public class NewsFragment extends AbstractFragment<NewsItem> {
     void loadData() {
         if (!searchRunning) {
             searchRunning = true;
-            ComicsDBApplication.getNewsService().listNews()
+            subscription = ComicsDBApplication.getNewsService().listNews()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(news -> {

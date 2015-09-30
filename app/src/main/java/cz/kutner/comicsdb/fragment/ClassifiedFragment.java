@@ -50,7 +50,7 @@ public class ClassifiedFragment extends AbstractFragment<Classified> {
         if (!searchRunning) {
             searchRunning = true;
             String searchText = "";
-            ComicsDBApplication.getClassifiedService().filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+            subscription = ComicsDBApplication.getClassifiedService().filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(classifieds -> {

@@ -54,7 +54,7 @@ public class AuthorFragment extends AbstractFragment<Author> {
             if (args != null && args.containsKey(SearchManager.QUERY)) { //neco vyhledavame
                 String searchText = args.getString(SearchManager.QUERY);
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-                ComicsDBApplication.getAuthorService().authorSearch(searchText)
+                subscription = ComicsDBApplication.getAuthorService().authorSearch(searchText)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(authors -> {
@@ -63,7 +63,7 @@ public class AuthorFragment extends AbstractFragment<Author> {
                         });
                 endless = false;
             } else { //zobrazujeme nejnovější
-                ComicsDBApplication.getAuthorService().listAuthors(lastPage)
+                subscription = ComicsDBApplication.getAuthorService().listAuthors(lastPage)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(authors -> {
