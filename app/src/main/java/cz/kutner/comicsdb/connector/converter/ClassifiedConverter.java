@@ -33,7 +33,7 @@ public class ClassifiedConverter implements Converter {
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 Classified classified = new Classified(nick, time, category, text);
                 if (!iconUrl.isEmpty()) {
-                    classified.setIconUrl(Utils.fixUrl(iconUrl));
+                    classified.setIconUrl(Utils.INSTANCE$.fixUrl(iconUrl));
                 }
                 result.add(classified);
             }

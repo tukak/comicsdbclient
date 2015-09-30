@@ -35,7 +35,7 @@ public class ForumConverter implements Converter {
                 String text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "");
                 ForumEntry forumEntry = new ForumEntry(nick, time, forum, text);
                 if (!iconUrl.isEmpty()) {
-                    forumEntry.setIconUrl(Utils.fixUrl(iconUrl));
+                    forumEntry.setIconUrl(Utils.INSTANCE$.fixUrl(iconUrl));
                 }
                 result.add(forumEntry);
             }

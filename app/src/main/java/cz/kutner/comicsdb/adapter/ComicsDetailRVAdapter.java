@@ -136,12 +136,12 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             } else {
                 vh.rating.setText("< 5 hodnocení");
             }
-            vh.genre.setText(Utils.nvl(comics.getGenre(), ""));
+            vh.genre.setText((String)Utils.INSTANCE$.nvl(comics.getGenre(), ""));
             vh.publisher.setText(comics.getPublisher() + " - " + comics.getPublished());
-            vh.issueNumber.setText("Vydání: " + Utils.nvl(comics.getIssueNumber(), "") + " tisk: " + Utils.nvl(comics.getPrint(), ""));
-            vh.binding.setText("Vazba: " + Utils.nvl(comics.getBinding(), ""));
-            vh.format.setText("Formát: " + Utils.nvl(comics.getFormat(), ""));
-            vh.pagesCount.setText("Počet stran: " + Utils.nvl(comics.getPagesCount(), ""));
+            vh.issueNumber.setText("Vydání: " + Utils.INSTANCE$.nvl(comics.getIssueNumber(), "") + " tisk: " + Utils.INSTANCE$.nvl(comics.getPrint(), ""));
+            vh.binding.setText("Vazba: " + Utils.INSTANCE$.nvl(comics.getBinding(), ""));
+            vh.format.setText("Formát: " + Utils.INSTANCE$.nvl(comics.getFormat(), ""));
+            vh.pagesCount.setText("Počet stran: " + Utils.INSTANCE$.nvl(comics.getPagesCount(), ""));
             if (comics.getOriginalName() != null) {
                 vh.originalName.setText("Původně: " + comics.getOriginalName());
                 if (comics.getOriginalPublisher() != null) {
@@ -150,7 +150,7 @@ public class ComicsDetailRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             } else {
                 vh.originalName.setText("");
             }
-            vh.price.setText("Cena: " + Utils.nvl(comics.getPrice(), ""));
+            vh.price.setText("Cena: " + Utils.INSTANCE$.nvl(comics.getPrice(), ""));
             if (!(comics.getNotes() == null)) {
                 vh.notes.setText(Html.fromHtml(comics.getNotes()));
             }

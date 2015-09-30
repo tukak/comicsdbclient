@@ -122,13 +122,13 @@ public abstract class AbstractFragment<Item> extends Fragment {
 
     @OnClick(R.id.try_again)
     public void tryAgainButtonClicked() {
-        if (Utils.isConnected()) {
+        if (Utils.INSTANCE$.isConnected()) {
             checkConnectionAndLoadData();
         }
     }
 
     private void checkConnectionAndLoadData() {
-        if (!Utils.isConnected()) {
+        if (!Utils.INSTANCE$.isConnected()) {
             switcher.showErrorView();
         } else {
             switcher.showProgressView();

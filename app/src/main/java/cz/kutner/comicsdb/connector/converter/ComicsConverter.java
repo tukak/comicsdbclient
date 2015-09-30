@@ -44,7 +44,7 @@ public class ComicsConverter implements Converter {
             if (coverElements.size() > 0) {
                 String coverURI = coverElements.first().attr("src");
                 if (!coverURI.isEmpty()) {
-                    comics.setCoverUrl(Utils.fixUrl(coverURI));
+                    comics.setCoverUrl(Utils.INSTANCE$.fixUrl(coverURI));
                 }
             }
 
@@ -159,7 +159,7 @@ public class ComicsConverter implements Converter {
                 String commentText = comment.text().replace("| ", "");
                 Comment commentObject = new Comment(nick, stars, commentText, time);
                 if (!iconUrl.isEmpty()) {
-                    commentObject.setIconUrl(Utils.fixUrl(iconUrl));
+                    commentObject.setIconUrl(Utils.INSTANCE$.fixUrl(iconUrl));
                 }
                 comics.addComment(commentObject);
             }
