@@ -28,7 +28,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 ForumViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

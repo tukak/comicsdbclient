@@ -29,7 +29,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 ClassifiedViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

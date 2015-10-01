@@ -28,7 +28,7 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 NewsViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

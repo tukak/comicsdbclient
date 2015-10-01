@@ -29,7 +29,7 @@ public class ComicsListFragment : AbstractFragment<Comics>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 ComicsViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

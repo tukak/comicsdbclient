@@ -28,7 +28,7 @@ public class AuthorFragment : AbstractFragment<Author>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 AuthorViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

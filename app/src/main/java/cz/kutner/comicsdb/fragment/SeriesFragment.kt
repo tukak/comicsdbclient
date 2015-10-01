@@ -28,7 +28,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 SeriesViewHolder::class.java,
-                data)
+                data as MutableList<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
