@@ -64,6 +64,12 @@ public abstract class AbstractFragment<Item> : Fragment() {
         val llm = LinearLayoutManager(view!!.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
+        try_again.setOnClickListener {
+            if (Utils.isConnected()) {
+                checkConnectionAndLoadData();
+            }
+        }
+
         if (endless) {
             recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
