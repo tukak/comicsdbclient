@@ -1,0 +1,15 @@
+package cz.kutner.comicsdb.connector.service
+
+import cz.kutner.comicsdb.model.Comics
+import retrofit.http.GET
+import retrofit.http.Query
+import rx.Observable
+
+interface ComicsListService {
+    @GET("/comicslist.php")
+    fun comicsList(@Query("str") page: Int): Observable<List<Comics>>
+
+    @GET("/search.php")
+    fun comicsSearch(@Query("searchfor") keyword: String): Observable<List<Comics>>
+
+}
