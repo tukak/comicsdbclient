@@ -60,3 +60,6 @@
 }
 -keepattributes Signature
 -keepattributes *Annotation*
+
+-dontwarn kotlin.**
+-dontwarn org.w3c.dom.events.*
