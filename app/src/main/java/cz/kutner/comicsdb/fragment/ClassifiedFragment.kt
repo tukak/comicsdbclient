@@ -47,7 +47,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
 
     override fun onStart() {
         super.onStart()
-        (activity as AppCompatActivity).supportActionBar!!.title = "Bazar"
+        (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
         val tracker = ComicsDBApplication.getTracker()
         tracker.setScreenName("ClassifiedFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())

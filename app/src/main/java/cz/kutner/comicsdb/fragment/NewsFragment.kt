@@ -46,7 +46,7 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
     override fun onStart() {
         super.onStart()
         val tracker = ComicsDBApplication.getTracker()
-        (activity as AppCompatActivity).supportActionBar!!.title = "Novinky"
+        (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
         tracker.setScreenName("NewsFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
         Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení novinek").putContentType("Novinky"))

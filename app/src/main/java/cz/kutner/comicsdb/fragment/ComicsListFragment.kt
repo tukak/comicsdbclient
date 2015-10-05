@@ -62,11 +62,11 @@ public class ComicsListFragment : AbstractFragment<Comics>() {
         val args = this.arguments
         val tracker = ComicsDBApplication.getTracker()
         if (args != null && args.containsKey(SearchManager.QUERY)) {
-            (activity as AppCompatActivity).supportActionBar!!.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
+            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
             tracker.setScreenName("ComicsListFragment - Search")
             tracker.send(HitBuilders.ScreenViewBuilder().build())
         } else {
-            (activity as AppCompatActivity).supportActionBar!!.title = "Comicsy"
+            (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
             tracker.setScreenName("ComicsListFragment - List")
             tracker.send(HitBuilders.ScreenViewBuilder().build())
             Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení seznamu comicsů").putContentType("Comics"))

@@ -61,11 +61,11 @@ public class AuthorFragment : AbstractFragment<Author>() {
         val args = this.arguments
         val tracker = ComicsDBApplication.getTracker()
         if (args != null && args.containsKey(SearchManager.QUERY)) {
-            (activity as AppCompatActivity).supportActionBar!!.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
+            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
             tracker.setScreenName("AuthorFragment - Search")
             tracker.send(HitBuilders.ScreenViewBuilder().build())
         } else {
-            (activity as AppCompatActivity).supportActionBar!!.title = "Autoři"
+            (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
             tracker.setScreenName("AuthorFragment - List")
             tracker.send(HitBuilders.ScreenViewBuilder().build())
             Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení seznamu autorů").putContentType("Autor"))

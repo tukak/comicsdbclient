@@ -46,7 +46,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
 
     override fun onStart() {
         super.onStart()
-        (activity as AppCompatActivity).supportActionBar!!.title = "Forum"
+        (activity as AppCompatActivity).supportActionBar?.title = "Forum"
         val tracker = ComicsDBApplication.getTracker()
         tracker.setScreenName("ForumFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())

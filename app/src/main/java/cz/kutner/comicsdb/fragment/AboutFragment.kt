@@ -19,7 +19,7 @@ public class AboutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_about, container, false)
+        return inflater?.inflate(R.layout.fragment_about, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ public class AboutFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as AppCompatActivity).supportActionBar!!.title = "O aplikaci"
+        (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
         val tracker = ComicsDBApplication.getTracker()
         tracker.setScreenName("AboutFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
