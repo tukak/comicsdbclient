@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import butterknife.ButterKnife
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.ComicsDetailFragment
 
@@ -13,7 +12,6 @@ public class ComicsDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comics_detail)
-        ButterKnife.bind(this)
         val actionBar = supportActionBar
         actionBar.setDisplayHomeAsUpEnabled(true)
         val intent = intent
