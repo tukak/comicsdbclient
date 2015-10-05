@@ -49,7 +49,7 @@ public class ComicsConverter : Converter {
                 val title_value = titulek.nextSibling()
                 when (title_name) {
                     "Žánr" -> {
-                        val genre = title_value.toString().replaceAll("&nbsp;", " ")
+                        val genre = title_value.toString().replace("&nbsp;".toRegex(), " ")
                         comics.genre = Parser.unescapeEntities(genre.substring(1, genre.length() - 1), false)
                     }
                     "Vydal" -> comics.publisher = Parser.unescapeEntities(Jsoup.parse(title_value.nextSibling().outerHtml()).text(), false)

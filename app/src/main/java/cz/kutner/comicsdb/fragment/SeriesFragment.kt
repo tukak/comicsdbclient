@@ -28,7 +28,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 SeriesViewHolder::class.java,
-                data as MutableList<Any>?)
+                data as List<Any>?)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -39,7 +39,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
             if (args != null && args.containsKey(SearchManager.QUERY)) {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
-                searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "")
+                searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 subscription = ComicsDBApplication.getSeriesService().searchSeries(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { series ->
                     result = series
                     showData()

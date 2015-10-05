@@ -68,7 +68,7 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
         val listViewItemType = getItemViewType(i)
         var v: RecyclerView.ViewHolder = ComicsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_comics_detail, viewGroup, false))
         when (listViewItemType) {
-            0 -> null //komiks, ale ten už máme
+            //0 ->  //komiks, ale ten už máme
             1 -> v = CommentsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_comment, viewGroup, false)) //komentar
 
         }
@@ -76,7 +76,6 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
-        var i = i
         if (i == 0) {
             // zaznam komiksu
             val vh = viewHolder as ComicsViewHolder
@@ -96,7 +95,7 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
             if (comics!!.originalName != null) {
                 vh.originalName.text = "Původně: " + comics!!.originalName!!
                 if (comics!!.originalPublisher != null) {
-                    vh.originalName.text = vh!!.originalName.text as String + " - " + comics!!.originalPublisher
+                    vh.originalName.text = vh.originalName.text as String + " - " + comics!!.originalPublisher
                 }
             } else {
                 vh.originalName.text = ""
@@ -114,13 +113,13 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
             vh.url.text = context.resources.getString(R.string.url_comics_detail) + comics!!.id!!.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics!!.rating!!.toFloat() / 20).toFloat()
         } else {
-            i-- //i je o 1 větší, tak to musíme zmenšit, kvůli poli
+            val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as CommentsViewHolder
-            vh.commentNick.text = comics!!.comments!!.get(i).nick
-            vh.commentTime.text = comics!!.comments!!.get(i).time
-            vh.commentText.text = comics!!.comments!!.get(i).text
-            vh.commentRatingBar.rating = comics!!.comments!!.get(i).stars!!.toFloat()
-            Picasso.with(ComicsDBApplication.getContext()).load(comics!!.comments!!.get(i).iconUrl).into(vh.nickIcon)
+            vh.commentNick.text = comics!!.comments!!.get(j).nick
+            vh.commentTime.text = comics!!.comments!!.get(j).time
+            vh.commentText.text = comics!!.comments!!.get(j).text
+            vh.commentRatingBar.rating = comics!!.comments!!.get(j).stars!!.toFloat()
+            Picasso.with(ComicsDBApplication.getContext()).load(comics!!.comments!!.get(j).iconUrl).into(vh.nickIcon)
         }
     }
 }
