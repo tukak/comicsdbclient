@@ -30,10 +30,10 @@ public abstract class AbstractActivity : AppCompatActivity() {
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar.setDisplayHomeAsUpEnabled(true)
 
-            toolbar!!.setNavigationIcon(R.drawable.ic_menu_white_24dp)
-            toolbar!!.setNavigationOnClickListener { v -> drawer_layout.openDrawer(GravityCompat.START) }
+            toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
+            toolbar.setNavigationOnClickListener { v -> drawer_layout.openDrawer(GravityCompat.START) }
         }
     }
 

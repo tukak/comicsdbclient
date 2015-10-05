@@ -23,22 +23,18 @@ data class Comics() {
     var notes: String? = null
     var authors: String? = null
     var series: String? = null
-    var comments: ArrayList<Comment>? = null
+    var comments: ArrayList<Comment> = ArrayList()
         private set
     var coverUrl: String? = null
 
-    init {
-        this.comments = ArrayList<Comment>()
-    }
 
-    constructor(name: String, id: Int?) : this() {
+    constructor(name: String, id: Int) : this() {
         this.name = name
         this.id = id
         this.rating = 0
-        this.comments = ArrayList<Comment>()
     }
 
     fun addComment(comment: Comment) {
-        comments!!.add(comment)
+        comments.add(comment)
     }
 }
