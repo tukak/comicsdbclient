@@ -38,13 +38,13 @@ public class ComicsDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment, container, false)
+        return inflater?.inflate(R.layout.fragment, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
-        val llm = LinearLayoutManager(view!!.context)
+        val llm = LinearLayoutManager(view?.context)
         try_again.setOnClickListener{
             if (Utils.isConnected()) {
                 onResume()
@@ -53,7 +53,7 @@ public class ComicsDetailFragment : Fragment() {
         recycler_view.layoutManager = llm
         spinner.visibility = View.GONE
         filter_text.visibility = View.GONE
-        switcher!!.showProgressView()
+        switcher?.showProgressView()
     }
 
     private fun loadData() {
@@ -66,9 +66,9 @@ public class ComicsDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (!Utils.isConnected()) {
-            switcher!!.showErrorView()
+            switcher?.showErrorView()
         } else {
-            switcher!!.showProgressView()
+            switcher?.showProgressView()
             if (comics != null) {
                 showData()
             } else {
@@ -79,17 +79,17 @@ public class ComicsDetailFragment : Fragment() {
 
 
     private fun showData() {
-        (activity as AppCompatActivity).supportActionBar!!.title = comics!!.name
+        (activity as AppCompatActivity).supportActionBar?.title = comics?.name
         val adapter = ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext())
         recycler_view.adapter = adapter
         adapter.setComics(comics)
         recycler_view.setHasFixedSize(true)
-        switcher!!.showContentView()
+        switcher?.showContentView()
         val tracker = ComicsDBApplication.getTracker()
         tracker.setScreenName("ComicsDetailFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
-        tracker.send(HitBuilders.EventBuilder().setCategory("Detail").setAction(comics!!.name).build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení detailu komiksu").putContentType("Comics").putContentId(comics!!.name))
+        tracker.send(HitBuilders.EventBuilder().setCategory("Detail").setAction(comics?.name).build())
+        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení detailu komiksu").putContentType("Comics").putContentId(comics?.name))
     }
 
     companion object {

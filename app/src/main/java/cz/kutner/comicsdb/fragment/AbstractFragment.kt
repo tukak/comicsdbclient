@@ -55,13 +55,13 @@ public abstract class AbstractFragment<Item> : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment, container, false)
+        return inflater?.inflate(R.layout.fragment, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
-        val llm = LinearLayoutManager(view!!.context)
+        val llm = LinearLayoutManager(view?.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
         try_again.setOnClickListener {
@@ -85,7 +85,7 @@ public abstract class AbstractFragment<Item> : Fragment() {
                 }
             })
         }
-        switcher!!.showProgressView()
+        switcher?.showProgressView()
     }
 
     abstract fun loadData()
@@ -97,9 +97,9 @@ public abstract class AbstractFragment<Item> : Fragment() {
 
     private fun checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
-            switcher!!.showErrorView()
+            switcher?.showErrorView()
         } else {
-            switcher!!.showProgressView()
+            switcher?.showProgressView()
             firstLoad = true
             if (!result.isEmpty()) {
                 showData()
@@ -114,21 +114,21 @@ public abstract class AbstractFragment<Item> : Fragment() {
         searchRunning = false
         if (firstLoad) {
             if (!spinnerEnabled && spinner != null) {
-                spinner!!.visibility = View.GONE
+                spinner?.visibility = View.GONE
                 filter_text.visibility = View.GONE
             }
             if (spinnerEnabled && spinner != null) {
                 val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
-                spinner!!.adapter = spinnerAdapter
+                spinner?.adapter = spinnerAdapter
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 if (spinnerPosition != null) {
-                    spinner!!.setSelection(spinnerPosition!!)
+                    spinner?.setSelection(spinnerPosition!!)
                 } else {
                     spinnerPosition = 0
                 }
-                spinner!!.onItemSelectedListener = itemSelectedListener()
+                spinner?.onItemSelectedListener = itemSelectedListener()
             }
-            switcher!!.showContentView()
+            switcher?.showContentView()
             firstLoad = false
         }
         if (result.size() > 0) {
@@ -140,14 +140,14 @@ public abstract class AbstractFragment<Item> : Fragment() {
                 data.addAll(result)
             }
         }
-        adapter!!.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
         loading = false
     }
 
     override fun onStop() {
         super.onStop()
         if (subscription != null) {
-            subscription!!.unsubscribe()
+            subscription?.unsubscribe()
         }
     }
 
@@ -155,10 +155,10 @@ public abstract class AbstractFragment<Item> : Fragment() {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
             if (spinnerPosition !== pos) {
-                filter = spinner!!.selectedItem.toString()
+                filter = spinner?.selectedItem.toString()
                 data.clear()
                 lastItem = null
-                switcher!!.showProgressView()
+                switcher?.showProgressView()
                 firstLoad = true
                 lastPage = 1
                 spinnerPosition = pos
