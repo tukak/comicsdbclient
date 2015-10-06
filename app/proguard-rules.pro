@@ -22,18 +22,6 @@
 
 -keep class org.jsoup.** { *; }
 
--keep class butterknife.** { *; }
--dontwarn butterknife.internal.**
--keep class **$$ViewBinder { *; }
-
--keepclasseswithmembernames class * {
-    @butterknife.* <fields>;
-}
-
--keepclasseswithmembernames class * {
-    @butterknife.* <methods>;
-}
-
 -keepattributes *Annotation*
 -keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
     public <init>(...);
@@ -60,3 +48,6 @@
 }
 -keepattributes Signature
 -keepattributes *Annotation*
+
+-dontwarn kotlin.**
+-dontwarn org.w3c.dom.events.*
