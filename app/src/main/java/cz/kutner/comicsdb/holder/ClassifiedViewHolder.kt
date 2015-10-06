@@ -29,10 +29,10 @@ public class ClassifiedViewHolder(view: View) : ItemViewHolder<Classified>(view)
     var classifiedText: TextView? = null
 
     override fun onSetValues(classified: Classified, positionInfo: PositionInfo) {
-        classifiedNick!!.text = classified.nick
-        classifiedTime!!.text = classified.time
-        classifiedText!!.text = Html.fromHtml(classified.text)
+        classifiedNick?.text = classified.nick
+        classifiedTime?.text = classified.time
+        classifiedText?.text = Html.fromHtml(classified.text)
         Picasso.with(ComicsDBApplication.getContext()).load(classified.iconUrl).into(classifiedNickIcon)
-        classifiedCategory!!.text = classified.category
+        classifiedCategory?.text = classified.category
     }
 }

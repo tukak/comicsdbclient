@@ -24,14 +24,14 @@ public class NewsViewHolder(view: View) : ItemViewHolder<NewsItem>(view) {
     var newsItemText: TextView? = null
 
     init {
-        newsItemText!!.movementMethod = LinkMovementMethod.getInstance()
+        newsItemText?.movementMethod = LinkMovementMethod.getInstance()
 
     }
 
     override fun onSetValues(newsItem: NewsItem, positionInfo: PositionInfo) {
-        newsItemNick!!.text = newsItem.nick
-        newsItemText!!.text = Html.fromHtml(newsItem.text)
-        newsItemTime!!.text = newsItem.time
-        newsItemTitle!!.text = newsItem.title
+        newsItemNick?.text = newsItem.nick
+        newsItemText?.text = Html.fromHtml(newsItem.text)
+        newsItemTime?.text = newsItem.time
+        newsItemTitle?.text = newsItem.title
     }
 }

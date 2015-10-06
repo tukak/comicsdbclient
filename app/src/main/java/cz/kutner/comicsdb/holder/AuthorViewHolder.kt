@@ -18,7 +18,7 @@ public class AuthorViewHolder(view: View) : ItemViewHolder<Author>(view) {
     var authorCountry: TextView? = null
 
     override fun onSetValues(author: Author, positionInfo: PositionInfo) {
-        authorName!!.text = author.name
-        authorCountry!!.text = author.country
+        authorName?.text = author.name
+        authorCountry?.text = author.country
     }
 }

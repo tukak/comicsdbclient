@@ -30,10 +30,10 @@ public class ForumViewHolder(view: View) : ItemViewHolder<ForumEntry>(view) {
     var forumCommentText: TextView? = null
 
     override fun onSetValues(forumEntry: ForumEntry, positionInfo: PositionInfo) {
-        forumCommentNick!!.text = forumEntry.nick
-        forumCommentTime!!.text = forumEntry.time
-        forumCommentText!!.text = Html.fromHtml(forumEntry.text)
+        forumCommentNick?.text = forumEntry.nick
+        forumCommentTime?.text = forumEntry.time
+        forumCommentText?.text = Html.fromHtml(forumEntry.text)
         Picasso.with(ComicsDBApplication.getContext()).load(forumEntry.iconUrl).into(forumNickIcon)
-        forumCommentForum!!.text = forumEntry.forum
+        forumCommentForum?.text = forumEntry.forum
     }
 }

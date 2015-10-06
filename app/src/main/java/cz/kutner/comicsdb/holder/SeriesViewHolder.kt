@@ -18,7 +18,7 @@ public class SeriesViewHolder(view: View) : ItemViewHolder<Series>(view) {
     var seriesNumberOfComicses: TextView? = null
 
     override fun onSetValues(series: Series, positionInfo: PositionInfo) {
-        seriesName!!.text = series.name
-        seriesNumberOfComicses!!.text = series.numberOfComicses!!.toString()
+        seriesName?.text = series.name
+        seriesNumberOfComicses?.text = series.numberOfComicses?.toString()
     }
 }
