@@ -16,11 +16,11 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter
 import cz.kutner.comicsdb.model.Comics
-import kotlinx.android.synthetic.fragment.*
 import pl.aprilapps.switcher.Switcher
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import kotlinx.android.synthetic.fragment.*
 
 
 public class ComicsDetailFragment : Fragment() {
@@ -45,7 +45,7 @@ public class ComicsDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
         val llm = LinearLayoutManager(view?.context)
-        try_again.setOnClickListener{
+        try_again.setOnClickListener {
             if (Utils.isConnected()) {
                 onResume()
             }
@@ -79,17 +79,19 @@ public class ComicsDetailFragment : Fragment() {
 
 
     private fun showData() {
-        (activity as AppCompatActivity).supportActionBar?.title = comics?.name
-        val adapter = ComicsDetailRVAdapter(comics, ComicsDBApplication.getContext())
-        recycler_view.adapter = adapter
-        adapter.setComics(comics)
-        recycler_view.setHasFixedSize(true)
-        switcher?.showContentView()
-        val tracker = ComicsDBApplication.getTracker()
-        tracker.setScreenName("ComicsDetailFragment")
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        tracker.send(HitBuilders.EventBuilder().setCategory("Detail").setAction(comics?.name).build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení detailu komiksu").putContentType("Comics").putContentId(comics?.name))
+        if (comics != null) {
+            var existing_comics: Comics = comics as Comics
+            (activity as AppCompatActivity).supportActionBar?.title = existing_comics.name
+            val adapter = ComicsDetailRVAdapter(existing_comics, ComicsDBApplication.getContext())
+            recycler_view.adapter = adapter
+            recycler_view.setHasFixedSize(true)
+            switcher?.showContentView()
+            val tracker = ComicsDBApplication.getTracker()
+            tracker.setScreenName("ComicsDetailFragment")
+            tracker.send(HitBuilders.ScreenViewBuilder().build())
+            tracker.send(HitBuilders.EventBuilder().setCategory("Detail").setAction(existing_comics.name).build())
+            Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení detailu komiksu").putContentType("Comics").putContentId(existing_comics.name))
+        }
     }
 
     companion object {

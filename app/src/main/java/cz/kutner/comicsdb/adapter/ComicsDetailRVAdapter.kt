@@ -17,7 +17,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.model.Comics
 
-class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ComicsDetailRVAdapter(private var comics: Comics, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class CommentsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var commentNick: TextView = itemView.findViewById(R.id.commentNick) as TextView
@@ -47,21 +47,15 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
         internal var authors: TextView = itemView.findViewById(R.id.authors) as TextView
     }
 
-    fun setComics(comics: Comics?) {
-        this.comics = comics
-    }
-
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            // záznam komiksu
-            return 0
-        } else {
-            return 1 // komentář
+        when (position) {
+            0 -> return 0 //záznam komiksu
+            else -> return 1 //komentář
         }
     }
 
     override fun getItemCount(): Int {
-        return comics!!.comments!!.size() + 1
+        return comics.comments.size() + 1
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
@@ -80,46 +74,46 @@ class ComicsDetailRVAdapter(private var comics: Comics?, private val context: Co
             // zaznam komiksu
             val vh = viewHolder as ComicsViewHolder
 
-            vh.name.text = comics!!.name
-            if (comics!!.rating!!.toInt() > 0) {
-                vh.rating.text = comics!!.rating!!.toString() + "% (" + comics!!.voteCount!!.toString() + ")"
+            vh.name.text = comics.name
+            if (comics.rating!!.toInt() > 0) {
+                vh.rating.text = "${comics.rating.toString()}% (${comics.voteCount.toString()})"
             } else {
                 vh.rating.text = "< 5 hodnocení"
             }
-            vh.genre.text = Utils.nvl<Any>(comics!!.genre, "") as String
-            vh.publisher.text = comics!!.publisher + " - " + comics!!.published
-            vh.issueNumber.text = "Vydání: " + Utils.nvl<Any>(comics!!.issueNumber, "") + " tisk: " + Utils.nvl<Any>(comics!!.print, "")
-            vh.binding.text = "Vazba: " + Utils.nvl<Any>(comics!!.binding, "")
-            vh.format.text = "Formát: " + Utils.nvl<Any>(comics!!.format, "")
-            vh.pagesCount.text = "Počet stran: " + Utils.nvl<Any>(comics!!.pagesCount, "")
-            if (comics!!.originalName != null) {
-                vh.originalName.text = "Původně: " + comics!!.originalName!!
-                if (comics!!.originalPublisher != null) {
-                    vh.originalName.text = vh.originalName.text as String + " - " + comics!!.originalPublisher
+            vh.genre.text = Utils.nvl<Any>(comics.genre, "") as String
+            vh.publisher.text = "${comics.publisher} - ${comics.published}"
+            vh.issueNumber.text = "Vydání: ${Utils.nvl<Any>(comics.issueNumber, "")} tisk: ${Utils.nvl<Any>(comics.print, "")}"
+            vh.binding.text = "Vazba: ${Utils.nvl<Any>(comics.binding, "")}"
+            vh.format.text = "Formát: ${Utils.nvl<Any>(comics.format, "")}"
+            vh.pagesCount.text = "Počet stran: ${Utils.nvl<Any>(comics.pagesCount, "")}"
+            if (comics.originalName != null) {
+                vh.originalName.text = "Původně: ${comics.originalName}"
+                if (comics.originalPublisher != null) {
+                    vh.originalName.text = "${vh.originalName.text as String} - ${comics.originalPublisher}"
                 }
             } else {
                 vh.originalName.text = ""
             }
-            vh.price.text = "Cena: " + Utils.nvl<Any>(comics!!.price, "")
-            if (comics!!.notes != null) {
-                vh.notes.text = Html.fromHtml(comics!!.notes)
+            vh.price.text = "Cena: ${Utils.nvl<Any>(comics.price, "")}"
+            if (comics.notes != null) {
+                vh.notes.text = Html.fromHtml(comics.notes)
             }
-            if (comics!!.description != null) {
-                vh.description.text = Html.fromHtml(comics!!.description)
+            if (comics.description != null) {
+                vh.description.text = Html.fromHtml(comics.description)
             }
-            vh.authors.text = comics!!.authors
-            vh.series.text = comics!!.series
-            Picasso.with(ComicsDBApplication.getContext()).load(comics!!.coverUrl).into(vh.cover)
-            vh.url.text = context.resources.getString(R.string.url_comics_detail) + comics!!.id!!.toString()
-            vh.comicsDetailRatingBar.rating = Math.round(comics!!.rating!!.toFloat() / 20).toFloat()
+            vh.authors.text = comics.authors
+            vh.series.text = comics.series
+            Picasso.with(ComicsDBApplication.getContext()).load(comics.coverUrl).into(vh.cover)
+            vh.url.text = context.resources.getString(R.string.url_comics_detail) + comics.id.toString()
+            vh.comicsDetailRatingBar.rating = Math.round(comics.rating!!.toFloat() / 20).toFloat()
         } else {
             val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as CommentsViewHolder
-            vh.commentNick.text = comics!!.comments!!.get(j).nick
-            vh.commentTime.text = comics!!.comments!!.get(j).time
-            vh.commentText.text = comics!!.comments!!.get(j).text
-            vh.commentRatingBar.rating = comics!!.comments!!.get(j).stars!!.toFloat()
-            Picasso.with(ComicsDBApplication.getContext()).load(comics!!.comments!!.get(j).iconUrl).into(vh.nickIcon)
+            vh.commentNick.text = comics.comments.get(j).nick
+            vh.commentTime.text = comics.comments.get(j).time
+            vh.commentText.text = comics.comments.get(j).text
+            vh.commentRatingBar.rating = comics.comments.get(j).stars!!.toFloat()
+            Picasso.with(ComicsDBApplication.getContext()).load(comics.comments.get(j).iconUrl).into(vh.nickIcon)
         }
     }
 }
