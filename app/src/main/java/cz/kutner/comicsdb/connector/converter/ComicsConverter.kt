@@ -67,9 +67,9 @@ public class ComicsConverter : Converter {
                         var description = ""
                         sibling = title_value.nextSibling()
                         while (true) {
-                            description += sibling!!.toString()
-                            sibling = sibling.nextSibling()
-                            if (sibling!!.toString().startsWith("<span")) {
+                            description += sibling.toString()
+                            sibling = sibling?.nextSibling()
+                            if (sibling.toString().startsWith("<span")) {
                                 break
                             }
                         }
@@ -80,9 +80,9 @@ public class ComicsConverter : Converter {
                         sibling = title_value.nextSibling()
                         while (true) {
 
-                            notes += sibling!!.toString()
-                            sibling = sibling.nextSibling()
-                            if (sibling!!.toString().startsWith("<span")) {
+                            notes += sibling.toString()
+                            sibling = sibling?.nextSibling()
+                            if (sibling.toString().startsWith("<span")) {
                                 break
                             }
                         }
@@ -91,23 +91,23 @@ public class ComicsConverter : Converter {
                     "Autoři" -> {
                         var authors = ""
                         sibling = title_value.nextSibling()
-                        authors += Jsoup.parse(sibling!!.outerHtml()).text()
+                        authors += Jsoup.parse(sibling.outerHtml()).text()
                         authors += " "
                         sibling = sibling.nextSibling()
-                        authors += Jsoup.parse(sibling!!.outerHtml()).text()
+                        authors += Jsoup.parse(sibling.outerHtml()).text()
                         authors += "\n"
                         sibling = sibling.nextSibling()
                         while (true) {
-                            if (!sibling!!.toString().startsWith("<br")) {
+                            if (!sibling.toString().startsWith("<br")) {
                                 if (sibling.toString().startsWith("[")) {
-                                    authors += Jsoup.parse(sibling.outerHtml()).text()
+                                    authors += Jsoup.parse(sibling?.outerHtml()).text()
                                     authors += " "
-                                    sibling = sibling.nextSibling()
-                                    authors += Jsoup.parse(sibling!!.outerHtml()).text()
+                                    sibling = sibling?.nextSibling()
+                                    authors += Jsoup.parse(sibling?.outerHtml()).text()
                                 }
                                 authors += "\n"
                             }
-                            sibling = sibling.nextSibling()
+                            sibling = sibling?.nextSibling()
                             if (sibling == null) {
                                 break
                             }
