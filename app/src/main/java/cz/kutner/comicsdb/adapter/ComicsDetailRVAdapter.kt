@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso
 
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.model.Comics
 
 class ComicsDetailRVAdapter(private var comics: Comics, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -80,12 +79,12 @@ class ComicsDetailRVAdapter(private var comics: Comics, private val context: Con
             } else {
                 vh.rating.text = "< 5 hodnocení"
             }
-            vh.genre.text = Utils.nvl<Any>(comics.genre, "") as String
+            vh.genre.text = comics.genre ?: ""
             vh.publisher.text = "${comics.publisher} - ${comics.published}"
-            vh.issueNumber.text = "Vydání: ${Utils.nvl<Any>(comics.issueNumber, "")} tisk: ${Utils.nvl<Any>(comics.print, "")}"
-            vh.binding.text = "Vazba: ${Utils.nvl<Any>(comics.binding, "")}"
-            vh.format.text = "Formát: ${Utils.nvl<Any>(comics.format, "")}"
-            vh.pagesCount.text = "Počet stran: ${Utils.nvl<Any>(comics.pagesCount, "")}"
+            vh.issueNumber.text = "Vydání: ${comics.issueNumber ?: ""} tisk: ${comics.print ?: ""}"
+            vh.binding.text = "Vazba: ${comics.binding ?: ""}"
+            vh.format.text = "Formát: ${comics.format ?: ""}"
+            vh.pagesCount.text = "Počet stran: ${comics.pagesCount ?: ""}"
             if (comics.originalName != null) {
                 vh.originalName.text = "Původně: ${comics.originalName}"
                 if (comics.originalPublisher != null) {
@@ -94,7 +93,7 @@ class ComicsDetailRVAdapter(private var comics: Comics, private val context: Con
             } else {
                 vh.originalName.text = ""
             }
-            vh.price.text = "Cena: ${Utils.nvl<Any>(comics.price, "")}"
+            vh.price.text = "Cena: ${comics.price ?: ""}"
             if (comics.notes != null) {
                 vh.notes.text = Html.fromHtml(comics.notes)
             }
