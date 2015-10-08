@@ -31,7 +31,6 @@ public abstract class AbstractActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true)
-
             toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
             toolbar.setNavigationOnClickListener { v -> drawer_layout.openDrawer(GravityCompat.START) }
         }
@@ -39,16 +38,15 @@ public abstract class AbstractActivity : AppCompatActivity() {
 
     private fun setActionsForDrawer() {
         navigation_view.setNavigationItemSelectedListener { menuItem ->
-
-            var fragment: Fragment? = null
-            when (menuItem.itemId) {
-                R.id.navigation_item_comics -> fragment = ComicsListFragment.newInstance()
-                R.id.navigation_item_news -> fragment = NewsFragment.newInstance()
-                R.id.navigation_item_series -> fragment = SeriesFragment.newInstance()
-                R.id.navigation_item_author -> fragment = AuthorFragment.newInstance()
-                R.id.navigation_item_classified -> fragment = ClassifiedFragment.newInstance()
-                R.id.navigation_item_forum -> fragment = ForumFragment.newInstance()
-                R.id.navigation_item_about -> fragment = AboutFragment.newInstance()
+            val fragment: Fragment? = when (menuItem.itemId) {
+                R.id.navigation_item_comics -> ComicsListFragment.newInstance()
+                R.id.navigation_item_news -> NewsFragment.newInstance()
+                R.id.navigation_item_series -> SeriesFragment.newInstance()
+                R.id.navigation_item_author -> AuthorFragment.newInstance()
+                R.id.navigation_item_classified -> ClassifiedFragment.newInstance()
+                R.id.navigation_item_forum -> ForumFragment.newInstance()
+                R.id.navigation_item_about -> AboutFragment.newInstance()
+                else -> ComicsListFragment.newInstance()
             }
             menuItem.setChecked(true)
             if (fragment != null) {
