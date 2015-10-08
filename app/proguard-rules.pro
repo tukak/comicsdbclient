@@ -16,11 +16,13 @@
 #   public *;
 #}
 
-#-dontobfuscate
-
 -keepattributes SourceFile,LineNumberTable
 
 -keep class org.jsoup.** { *; }
+
+-keep class org.jetbrains.annotations.** {
+    public protected *;
+}
 
 -keepattributes *Annotation*
 -keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
@@ -51,3 +53,4 @@
 
 -dontwarn kotlin.**
 -dontwarn org.w3c.dom.events.*
+-dontwarn org.jetbrains.annotations.NonNls

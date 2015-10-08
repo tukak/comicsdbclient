@@ -38,9 +38,9 @@ android {
             ext.enableCrashlytics = false
         }
         release {
-            minifyEnabled false
-            /*proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' */
-            zipAlignEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
         }
     }
     sourceSets {
