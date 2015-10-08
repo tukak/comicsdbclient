@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.holder
 
 import android.content.Intent
+import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.TextView
 import cz.kutner.comicsdb.R
@@ -21,9 +22,11 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
     @ViewId(R.id.comics_rating)
     internal var comicsRating: TextView? = null
     internal var comicsId: Int? = null
+    @ViewId(R.id.card_view_comics)
+    internal var card_view_comics: CardView? = null
 
     init {
-        view.findViewById(R.id.card_view_comics).setOnClickListener {
+        card_view_comics?.setOnClickListener {
             val intent = Intent(view.context, ComicsDetailActivity::class.java)
             if (comicsId != null) {
                 intent.putExtra(COMICS_ID, comicsId as Int)
