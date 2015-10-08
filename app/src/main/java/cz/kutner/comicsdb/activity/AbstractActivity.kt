@@ -38,7 +38,7 @@ public abstract class AbstractActivity : AppCompatActivity() {
 
     private fun setActionsForDrawer() {
         navigation_view.setNavigationItemSelectedListener { menuItem ->
-            val fragment: Fragment? = when (menuItem.itemId) {
+            val fragment: Fragment = when (menuItem.itemId) {
                 R.id.navigation_item_comics -> ComicsListFragment.newInstance()
                 R.id.navigation_item_news -> NewsFragment.newInstance()
                 R.id.navigation_item_series -> SeriesFragment.newInstance()
@@ -49,9 +49,7 @@ public abstract class AbstractActivity : AppCompatActivity() {
                 else -> ComicsListFragment.newInstance()
             }
             menuItem.setChecked(true)
-            if (fragment != null) {
-                supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
-            }
+            supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
             drawer_layout.closeDrawers()
             true
         }
