@@ -4,13 +4,11 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.AuthorFragment
 import cz.kutner.comicsdb.fragment.ComicsListFragment
 import cz.kutner.comicsdb.fragment.SeriesFragment
-import timber.log.Timber
 
 public class SearchPagerAdapter(fm: FragmentManager, var intent:
 
