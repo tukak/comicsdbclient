@@ -6,7 +6,6 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.leakcanary.LeakCanary;
 import com.squareup.picasso.Picasso;
 
 import cz.kutner.comicsdb.connector.converter.AuthorConverter;
@@ -42,7 +41,6 @@ public class ComicsDBApplication extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
-        LeakCanary.install(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
             Picasso.with(getApplicationContext()).setIndicatorsEnabled(true);
