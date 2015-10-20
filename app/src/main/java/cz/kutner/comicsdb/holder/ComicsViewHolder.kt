@@ -38,7 +38,7 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
     override fun onSetValues(comics: Comics, positionInfo: PositionInfo) {
         comicsName?.text = comics.name
         comicsPublished?.text = comics.published
-        if (comics.rating!!.toInt() > 0) {
+        if (comics.rating.toInt() > 0) {
             comicsRating?.text = comics.rating?.toString()
         } else {
             comicsRating?.text = " "

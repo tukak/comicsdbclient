@@ -1,13 +1,11 @@
 package cz.kutner.comicsdb.model
 
-import java.util.ArrayList
+import java.util.*
 
-data class Comics() {
-    var name: String? = null
-    var id: Int? = null
+data class Comics(var name: String, var id: Int) {
     var published: String? = null
     var voteCount: Int? = null
-    var rating: Int? = null
+    var rating: Int = 0
     var genre: String? = null
     var publisher: String? = null
     var issn: String? = null
@@ -26,13 +24,6 @@ data class Comics() {
     var comments: ArrayList<Comment> = ArrayList()
         private set
     var coverUrl: String? = null
-
-
-    constructor(name: String, id: Int) : this() {
-        this.name = name
-        this.id = id
-        this.rating = 0
-    }
 
     fun addComment(comment: Comment) {
         comments.add(comment)

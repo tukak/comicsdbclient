@@ -71,7 +71,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             val vh = viewHolder as ComicsViewHolder
 
             vh.name.text = comics.name
-            if (comics.rating!!.toInt() > 0) {
+            if (comics.rating.toInt() > 0) {
                 vh.rating.text = "${comics.rating.toString()}% (${comics.voteCount.toString()})"
             } else {
                 vh.rating.text = "< 5 hodnocení"
@@ -101,7 +101,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             vh.series.text = comics.series
             Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
             vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
-            vh.comicsDetailRatingBar.rating = Math.round(comics.rating!!.toFloat() / 20).toFloat()
+            vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
         } else {
             val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as CommentsViewHolder

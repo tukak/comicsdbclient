@@ -17,7 +17,7 @@ public class ComicsConverter : Converter {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
-        val comics = Comics()
+        val comics = Comics("", 0)
         val doc: Document
         var sibling: Node?
         try {
