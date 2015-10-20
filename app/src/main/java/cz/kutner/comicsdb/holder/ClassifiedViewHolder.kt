@@ -32,7 +32,7 @@ public class ClassifiedViewHolder(view: View) : ItemViewHolder<Classified>(view)
         classifiedNick?.text = classified.nick
         classifiedTime?.text = classified.time
         classifiedText?.text = Html.fromHtml(classified.text)
-        Picasso.with(ComicsDBApplication.getContext()).load(classified.iconUrl).into(classifiedNickIcon)
+        Picasso.with(ComicsDBApplication.context).load(classified.iconUrl).into(classifiedNickIcon)
         classifiedCategory?.text = classified.category
     }
 }

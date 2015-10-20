@@ -29,9 +29,9 @@ Intent) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence {
         var name: CharSequence = ""
         when (position) {
-            0 -> name = ComicsDBApplication.getContext().resources.getString(R.string.comics)
-            1 -> name = ComicsDBApplication.getContext().resources.getString(R.string.series)
-            2 -> name = ComicsDBApplication.getContext().resources.getString(R.string.author)
+            0 -> name = ComicsDBApplication.context!!.resources.getString(R.string.comics)
+            1 -> name = ComicsDBApplication.context!!.resources.getString(R.string.series)
+            2 -> name = ComicsDBApplication.context!!.resources.getString(R.string.author)
         }
         return name
     }

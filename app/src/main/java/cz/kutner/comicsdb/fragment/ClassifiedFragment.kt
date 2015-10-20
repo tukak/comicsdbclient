@@ -29,7 +29,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 ClassifiedViewHolder::class.java,
-                data as MutableList<Any>?)
+                data as List<Classified>)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -37,7 +37,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            subscription = ComicsDBApplication.getClassifiedService().filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { classifieds ->
+            subscription = ComicsDBApplication.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { classifieds ->
                 result = classifieds
                 showData()
             }
@@ -48,7 +48,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         tracker.setScreenName("ClassifiedFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
         Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení inzerátů").putContentType("Inzerát"))

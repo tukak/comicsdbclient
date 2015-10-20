@@ -40,14 +40,14 @@ public class AuthorFragment : AbstractFragment<Author>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                subscription = ComicsDBApplication.getAuthorService().authorSearch(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
+                subscription = ComicsDBApplication.authorService.authorSearch(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
                     result = authors
                     showData()
                 }
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                subscription = ComicsDBApplication.getAuthorService().listAuthors(lastPage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
+                subscription = ComicsDBApplication.authorService.listAuthors(lastPage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
                     result = authors
                     showData()
                 }
@@ -59,7 +59,7 @@ public class AuthorFragment : AbstractFragment<Author>() {
     override fun onStart() {
         super.onStart()
         val args = this.arguments
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
             tracker.setScreenName("AuthorFragment - Search")

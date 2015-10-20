@@ -28,7 +28,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 ForumViewHolder::class.java,
-                data as MutableList<Any>?)
+                data as List<ForumEntry>)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -36,7 +36,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            subscription = ComicsDBApplication.getForumService().filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { forumEntries ->
+            subscription = ComicsDBApplication.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { forumEntries ->
                 result = forumEntries
                 showData()
             }
@@ -47,7 +47,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         tracker.setScreenName("ForumFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
         Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení fór").putContentType("Fórum"))

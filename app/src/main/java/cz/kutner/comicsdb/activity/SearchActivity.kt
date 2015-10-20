@@ -10,7 +10,8 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
-import kotlinx.android.synthetic.activity_search.*
+import kotlinx.android.synthetic.activity_search.pager
+import kotlinx.android.synthetic.activity_search.sliding_tabs
 
 public class SearchActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ public class SearchActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
         Answers.getInstance().logSearch(SearchEvent().putQuery(query))
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         tracker.send(HitBuilders.EventBuilder().setCategory("Search").setAction(query).build())
     }
 }

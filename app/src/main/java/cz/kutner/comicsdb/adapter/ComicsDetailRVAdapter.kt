@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.text.Html
 import android.view.LayoutInflater
@@ -9,14 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-
 import com.squareup.picasso.Picasso
-
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Comics
 
-class ComicsDetailRVAdapter(private var comics: Comics, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class CommentsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var commentNick: TextView = itemView.findViewById(R.id.commentNick) as TextView
@@ -102,8 +99,8 @@ class ComicsDetailRVAdapter(private var comics: Comics, private val context: Con
             }
             vh.authors.text = comics.authors
             vh.series.text = comics.series
-            Picasso.with(ComicsDBApplication.getContext()).load(comics.coverUrl).into(vh.cover)
-            vh.url.text = context.resources.getString(R.string.url_comics_detail) + comics.id.toString()
+            Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
+            vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics.rating!!.toFloat() / 20).toFloat()
         } else {
             val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
@@ -112,7 +109,7 @@ class ComicsDetailRVAdapter(private var comics: Comics, private val context: Con
             vh.commentTime.text = comics.comments.get(j).time
             vh.commentText.text = comics.comments.get(j).text
             vh.commentRatingBar.rating = comics.comments.get(j).stars!!.toFloat()
-            Picasso.with(ComicsDBApplication.getContext()).load(comics.comments.get(j).iconUrl).into(vh.nickIcon)
+            Picasso.with(ComicsDBApplication.context).load(comics.comments.get(j).iconUrl).into(vh.nickIcon)
         }
     }
 }

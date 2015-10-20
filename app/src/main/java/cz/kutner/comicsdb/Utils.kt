@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 public object Utils {
 
     public fun isConnected(): Boolean {
-        val cm = ComicsDBApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm = ComicsDBApplication.context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }

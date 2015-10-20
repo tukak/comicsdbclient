@@ -28,14 +28,14 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
         adapter = EasyRecyclerAdapter(
                 context,
                 NewsViewHolder::class.java,
-                data as MutableList<Any>?)
+                data as List<NewsItem>)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            subscription = ComicsDBApplication.getNewsService().listNews().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { news ->
+            subscription = ComicsDBApplication.newsService.listNews().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { news ->
                 result = news
                 showData()
             }
@@ -45,7 +45,7 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
 
     override fun onStart() {
         super.onStart()
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
         tracker.setScreenName("NewsFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())

@@ -16,11 +16,11 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter
 import cz.kutner.comicsdb.model.Comics
+import kotlinx.android.synthetic.fragment.*
 import pl.aprilapps.switcher.Switcher
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import kotlinx.android.synthetic.fragment.*
 
 
 public class ComicsDetailFragment : Fragment() {
@@ -57,7 +57,7 @@ public class ComicsDetailFragment : Fragment() {
     }
 
     private fun loadData() {
-        subscription = ComicsDBApplication.getComicsService().getComics(this.arguments.getInt("id")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { comics1 ->
+        subscription = ComicsDBApplication.comicsService.getComics(this.arguments.getInt("id")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { comics1 ->
             comics = comics1
             showData()
         }
@@ -82,11 +82,11 @@ public class ComicsDetailFragment : Fragment() {
         if (comics != null) {
             var existing_comics: Comics = comics as Comics
             (activity as AppCompatActivity).supportActionBar?.title = existing_comics.name
-            val adapter = ComicsDetailRVAdapter(existing_comics, ComicsDBApplication.getContext())
+            val adapter = ComicsDetailRVAdapter(existing_comics)
             recycler_view.adapter = adapter
             recycler_view.setHasFixedSize(true)
             switcher?.showContentView()
-            val tracker = ComicsDBApplication.getTracker()
+            val tracker = ComicsDBApplication.tracker
             tracker.setScreenName("ComicsDetailFragment")
             tracker.send(HitBuilders.ScreenViewBuilder().build())
             tracker.send(HitBuilders.EventBuilder().setCategory("Detail").setAction(existing_comics.name).build())

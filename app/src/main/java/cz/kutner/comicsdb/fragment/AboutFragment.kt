@@ -13,7 +13,8 @@ import com.crashlytics.android.answers.ContentViewEvent
 import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import kotlinx.android.synthetic.fragment_about.*
+import kotlinx.android.synthetic.fragment_about.about_donate
+import kotlinx.android.synthetic.fragment_about.about_first
 
 public class AboutFragment : Fragment() {
 
@@ -31,7 +32,7 @@ public class AboutFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        val tracker = ComicsDBApplication.getTracker()
+        val tracker = ComicsDBApplication.tracker
         tracker.setScreenName("AboutFragment")
         tracker.send(HitBuilders.ScreenViewBuilder().build())
         Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení O aplikaci"))

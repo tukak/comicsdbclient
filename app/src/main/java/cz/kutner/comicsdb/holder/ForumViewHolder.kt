@@ -33,7 +33,7 @@ public class ForumViewHolder(view: View) : ItemViewHolder<ForumEntry>(view) {
         forumCommentNick?.text = forumEntry.nick
         forumCommentTime?.text = forumEntry.time
         forumCommentText?.text = Html.fromHtml(forumEntry.text)
-        Picasso.with(ComicsDBApplication.getContext()).load(forumEntry.iconUrl).into(forumNickIcon)
+        Picasso.with(ComicsDBApplication.context).load(forumEntry.iconUrl).into(forumNickIcon)
         forumCommentForum?.text = forumEntry.forum
     }
 }
