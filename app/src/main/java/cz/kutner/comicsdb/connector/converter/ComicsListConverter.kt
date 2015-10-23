@@ -26,11 +26,11 @@ public class ComicsListConverter : Converter {
             }
             for (row in table.select("tbody tr")) {
                 val columns = row.select("td")
-                val title = columns.get(0).select("a").first().text()
+                val title = columns[0].select("a").first().text()
                 //val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")) //gets the id in the end of the url
-                val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").removePrefix("comics.php?id="))
-                val year = columns.get(1).text()
-                var rating = columns.get(3).text()
+                val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("comics.php?id="))
+                val year = columns[1].text()
+                var rating = columns[3].text()
                 if (rating.isEmpty()) {
                     rating = "0"
                 }

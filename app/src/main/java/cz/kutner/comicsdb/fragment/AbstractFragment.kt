@@ -11,7 +11,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
-import kotlinx.android.synthetic.fragment.*
 import pl.aprilapps.switcher.Switcher
 import rx.Subscription
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
@@ -131,9 +130,9 @@ public abstract class AbstractFragment<Item: Any> : Fragment() {
             switcher?.showContentView()
             firstLoad = false
         }
-        if (result.size() > 0) {
-            if (lastItem == null || lastItem != result.get(0)) {
-                lastItem = result.get(0)
+        if (result.size > 0) {
+            if (lastItem == null || lastItem != result[0]) {
+                lastItem = result[0]
                 if (!endless) {
                     data.clear()
                 }

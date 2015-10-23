@@ -27,10 +27,10 @@ public class AuthorConverter : Converter {
             }
             for (row in table.select("tbody tr")) {
                 val columns = row.select("td")
-                val name = columns.get(0).select("a").first().text()
+                val name = columns[0].select("a").first().text()
                 //val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")) //gets the id in the end of the url
-                val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").removePrefix("autor.php?id="))
-                val country = columns.get(1).text()
+                val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("autor.php?id="))
+                val country = columns[1].text()
                 val author = Author(name, country, id)
                 result.add(author)
             }

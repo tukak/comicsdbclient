@@ -21,9 +21,9 @@ public class ForumConverter : Converter {
         try {
             doc = Jsoup.parse(body.`in`(), "windows-1250", "")
             for (entry in doc.select("div#prispevek")) {
-                val nick = entry.select("span.prispevek-nick").get(0).text()
-                val forum = entry.select("span.prispevek-nick").get(1).text()
-                val time = entry.select("span.prispevek-cas").get(0).text()
+                val nick = entry.select("span.prispevek-nick")[0].text()
+                val forum = entry.select("span.prispevek-nick")[1].text()
+                val time = entry.select("span.prispevek-cas")[0].text()
                 val iconUrl = entry.select("div#prispevek-icon").select("img").first().attr("src")
                 for (remove in entry.select("span,img")) {
                     remove.remove()
@@ -36,7 +36,7 @@ public class ForumConverter : Converter {
                 result.add(forumEntry)
             }
         } catch (e: Exception) {
-            Timber.e(e.getMessage())
+            Timber.e(e.message)
             e.printStackTrace()
         }
 

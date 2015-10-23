@@ -51,7 +51,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
     }
 
     override fun getItemCount(): Int {
-        return comics.comments.size() + 1
+        return comics.comments.size + 1
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
@@ -105,11 +105,11 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
         } else {
             val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as CommentsViewHolder
-            vh.commentNick.text = comics.comments.get(j).nick
-            vh.commentTime.text = comics.comments.get(j).time
-            vh.commentText.text = comics.comments.get(j).text
-            vh.commentRatingBar.rating = comics.comments.get(j).stars!!.toFloat()
-            Picasso.with(ComicsDBApplication.context).load(comics.comments.get(j).iconUrl).into(vh.nickIcon)
+            vh.commentNick.text = comics.comments[j].nick
+            vh.commentTime.text = comics.comments[j].time
+            vh.commentText.text = comics.comments[j].text
+            vh.commentRatingBar.rating = comics.comments[j].stars!!.toFloat()
+            Picasso.with(ComicsDBApplication.context).load(comics.comments[j].iconUrl).into(vh.nickIcon)
         }
     }
 }

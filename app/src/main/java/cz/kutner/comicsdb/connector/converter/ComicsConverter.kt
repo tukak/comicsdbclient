@@ -37,7 +37,7 @@ public class ComicsConverter : Converter {
                 comics.voteCount = 0
             }
             val coverElements = doc.select("img[title=Obálka]")
-            if (coverElements.size() > 0) {
+            if (coverElements.size > 0) {
                 val coverURI = coverElements.first().attr("src")
                 if (!coverURI.isEmpty()) {
                     comics.coverUrl = Utils.fixUrl(coverURI)
@@ -45,12 +45,12 @@ public class ComicsConverter : Converter {
             }
 
             for (titulek in doc.select(".titulek")) {
-                val title_name = titulek.text().substring(0, titulek.text().length() - 1)
+                val title_name = titulek.text().substring(0, titulek.text().length - 1)
                 val title_value = titulek.nextSibling()
                 when (title_name) {
                     "Žánr" -> {
                         val genre = title_value.toString().replace("&nbsp;".toRegex(), " ")
-                        comics.genre = Parser.unescapeEntities(genre.substring(1, genre.length() - 1), false)
+                        comics.genre = Parser.unescapeEntities(genre.substring(1, genre.length - 1), false)
                     }
                     "Vydal" -> comics.publisher = Parser.unescapeEntities(Jsoup.parse(title_value.nextSibling().outerHtml()).text(), false)
                     "Rok a měsíc vydání" -> comics.published = Parser.unescapeEntities(title_value.toString(), false)
@@ -123,7 +123,7 @@ public class ComicsConverter : Converter {
             for (comment in doc.select("div#prispevek")) {
                 val nick = comment.select("span.prispevek-nick").first().text()
                 val time = comment.select("span.prispevek-cas").first().text()
-                val stars = comment.select("img.star").size()
+                val stars = comment.select("img.star").size
                 val iconUrl = comment.select("div#prispevek-icon").select("img").first().attr("src")
                 for (remove in comment.select("span,img")) {
                     remove.remove()

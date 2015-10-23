@@ -27,10 +27,10 @@ public class SeriesConverter : Converter {
             }
             for (row in table.select("tbody tr")) {
                 val columns = row.select("td")
-                val title = columns.get(0).select("a").first().text()
+                val title = columns[0].select("a").first().text()
                 //val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")) //gets the id in the end of the url
-                val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").removePrefix("serie.php?id="))
-                val numberOfComicses = Integer.parseInt(columns.get(1).select("td").text())
+                val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("serie.php?id="))
+                val numberOfComicses = Integer.parseInt(columns[1].select("td").text())
                 val series = Series(title, id, numberOfComicses)
                 result.add(series)
             }

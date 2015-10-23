@@ -31,7 +31,7 @@ public class NewsConverter : Converter {
                 result.add(newsItem)
             }
         } catch (e: Exception) {
-            Timber.e(e.getMessage())
+            Timber.e(e.message)
             e.printStackTrace()
         }
 
