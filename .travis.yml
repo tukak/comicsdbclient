@@ -1,4 +1,16 @@
 language: android
+
+env:
+  global:
+    - MALLOC_ARENA_MAX=2
+    - ADB_INSTALL_TIMEOUT=10
+
+cache: false
+sudo: required
+
+jdk:
+  - oraclejdk8
+
 android:
   components:
     # Uncomment the lines below if you want to
