@@ -10,9 +10,7 @@ import cz.kutner.comicsdb.fragment.AuthorFragment
 import cz.kutner.comicsdb.fragment.ComicsListFragment
 import cz.kutner.comicsdb.fragment.SeriesFragment
 
-public class SearchPagerAdapter(fm: FragmentManager, var intent:
-
-Intent) : FragmentPagerAdapter(fm) {
+public class SearchPagerAdapter(fm: FragmentManager, var intent: Intent) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment
@@ -22,7 +20,7 @@ Intent) : FragmentPagerAdapter(fm) {
             2 -> fragment = AuthorFragment.newInstance()
             else -> throw Exception("Chybný fragment ve vyhledávání")
         }
-            fragment.arguments = intent.extras
+        fragment.arguments = intent.extras
         return fragment
     }
 
