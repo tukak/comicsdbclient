@@ -28,4 +28,4 @@ android:
     - addon-google_apis-google-19
 
 script:
-    - TERM=dumb ./gradlew checkConnected -PdisablePreDex
+    - TERM=dumb gradle connectedCheck -PdisablePreDex
