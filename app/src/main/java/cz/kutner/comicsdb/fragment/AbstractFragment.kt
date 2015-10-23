@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
+import kotlinx.android.synthetic.fragment.*
 import pl.aprilapps.switcher.Switcher
 import rx.Subscription
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
