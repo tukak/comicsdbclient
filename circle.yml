@@ -1,3 +1,10 @@
+machine:
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+
 dependencies:
     pre:
+        - sudo add-apt-repository ppa:cwchien/gradle
+        - sudo apt-get update
+        - sudo apt-get install gradle-2.6
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.1,android-23
