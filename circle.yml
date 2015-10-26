@@ -12,4 +12,5 @@ dependencies:
 test:
   override:
     - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
-    - ls
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r app/build/outputs/test-results/* $CIRCLE_TEST_REPORTS
