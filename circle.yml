@@ -13,6 +13,6 @@ dependencies:
         - ~/android
 test:
   override:
-    - export TERM="dumb" if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
+    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
     - cp -r comicsdbclient/app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r comicsdbclient/app/build/reports/tests/* $CIRCLE_TEST_REPORTS
