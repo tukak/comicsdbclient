@@ -14,3 +14,4 @@ dependencies:
 test:
   override:
     - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
+    - ls
