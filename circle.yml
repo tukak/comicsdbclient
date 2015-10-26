@@ -8,10 +8,9 @@ dependencies:
         - sudo apt-get update
         - sudo apt-get install gradle-2.6
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.1,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
-    cache_directories:
-        - ~/.android
 
 test:
   override:
     - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
-    - ls
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
