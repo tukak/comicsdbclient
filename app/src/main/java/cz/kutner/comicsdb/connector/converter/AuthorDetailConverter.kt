@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.model.Comics
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.parser.Parser
@@ -50,6 +51,22 @@ public class AuthorDetailConverter : Converter {
                     result.notes = Parser.unescapeEntities(notes, false)
                 }
             }
+        }
+        val table = doc.select("table").first()
+        for (row in table.select("tbody tr")) {
+            val columns = row.select("td")
+            val title = columns[0].select("a").first().text()
+            //val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")) //gets the id in the end of the url
+            val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("comics.php?id="))
+            val year = columns[1].text()
+            var rating = columns[3].text()
+            if (rating.isEmpty()) {
+                rating = "0"
+            }
+            val comics = Comics(title, id)
+            comics.published = year
+            comics.rating = Integer.valueOf(rating)
+            result.comicses.add(comics)
         }
         return result
 
