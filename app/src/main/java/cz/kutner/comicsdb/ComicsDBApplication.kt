@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
 import io.fabric.sdk.android.Fabric
+import retrofit.RequestInterceptor
 import retrofit.RestAdapter
 import timber.log.Timber
 
@@ -33,12 +34,14 @@ class ComicsDBApplication : android.app.Application() {
             analytics.enableExceptionReporting(true)
             analytics
         }
-        val seriesService: SeriesService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
-        val authorService: AuthorService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(AuthorConverter()).build().create(AuthorService::class.java) }
-        val newsService: NewsService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(NewsConverter()).build().create(NewsService::class.java) }
-        val forumService: ForumService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(ForumConverter()).build().create(ForumService::class.java) }
-        val classifiedService: ClassifiedService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(ClassifiedConverter()).build().create(ClassifiedService::class.java) }
-        val comicsListService: ComicsListService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(ComicsListConverter()).build().create(ComicsListService::class.java) }
-        val comicsService: ComicsService by lazy { RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz").setConverter(ComicsConverter()).build().create(ComicsService::class.java) }
+
+        val adapter = RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz")
+        val seriesService: SeriesService by lazy { adapter.setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
+        val authorService: AuthorService by lazy { adapter.setConverter(AuthorConverter()).build().create(AuthorService::class.java) }
+        val newsService: NewsService by lazy { adapter.setConverter(NewsConverter()).build().create(NewsService::class.java) }
+        val forumService: ForumService by lazy { adapter.setConverter(ForumConverter()).build().create(ForumService::class.java) }
+        val classifiedService: ClassifiedService by lazy { adapter.setConverter(ClassifiedConverter()).build().create(ClassifiedService::class.java) }
+        val comicsListService: ComicsListService by lazy { adapter.setConverter(ComicsListConverter()).build().create(ComicsListService::class.java) }
+        val comicsService: ComicsService by lazy { adapter.setConverter(ComicsConverter()).build().create(ComicsService::class.java) }
     }
 }
