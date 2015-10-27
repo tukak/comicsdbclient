@@ -17,11 +17,13 @@ import org.junit.Assert.assertEquals
 class ConverterTest {
     @Test
     fun AuthorDetailTest() {
-        val authorDetailConverter = AuthorDetailConverter()
         val typedInput = TypedString(readFile("/author_miller.html"))
         try {
-            val miller = authorDetailConverter.fromBody(typedInput, Author::class.java) as Author
+            val miller = AuthorDetailConverter().fromBody(typedInput, Author::class.java) as Author
             assertEquals("Miller, Frank", miller.name)
+            assertEquals("USA", miller.country)
+            assertEquals(335, miller.id)
+            assertEquals(44, miller.comicses?.count())
         } catch (e: ConversionException) {
             e.printStackTrace()
         }
@@ -30,11 +32,12 @@ class ConverterTest {
 
     @Test
     fun ComicsDetailTest() {
-        val comicsConverter = ComicsConverter()
         val typedInput = TypedString(readFile("/comics_300.html"))
         try {
-            val comics_300 = comicsConverter.fromBody(typedInput, Comics::class.java) as Comics
+            val comics_300 = ComicsConverter().fromBody(typedInput, Comics::class.java) as Comics
             assertEquals("300", comics_300.name)
+            assertEquals("325 x 245 mm", comics_300.format)
+            assertEquals(94, comics_300.rating)
         } catch (e: ConversionException) {
             e.printStackTrace()
         }
