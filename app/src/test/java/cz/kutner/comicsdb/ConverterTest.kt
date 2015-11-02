@@ -1,21 +1,18 @@
 package cz.kutner.comicsdb
 
-import cz.kutner.comicsdb.connector.converter.AuthorDetailConverter
+import cz.kutner.comicsdb.connector.parser.AuthorParser
 import cz.kutner.comicsdb.connector.parser.ComicsParser
-import cz.kutner.comicsdb.model.Author
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit.converter.ConversionException
-import retrofit.mime.TypedString
 import java.io.File
 
 
 class ConverterTest {
     @Test
     fun AuthorDetailTest() {
-        val typedInput = TypedString(readFile("/author_miller.html"))
         try {
-            val miller = AuthorDetailConverter().fromBody(typedInput, Author::class.java) as Author
+            val miller = AuthorParser().parseAuthorDetail(readFile("/author_miller.html").byteInputStream(), "utf-8")
             assertEquals("Miller, Frank", miller.name)
             assertEquals("USA", miller.country)
             assertEquals(335, miller.id)
