@@ -7,11 +7,11 @@ import retrofit.mime.TypedInput
 import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 
-public class AuthorConverter : Converter {
+public class AuthorDetailConverter : Converter {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
-        return AuthorParser().parseAuthorList(body.`in`())
+        return AuthorParser().parseAuthorDetail(body.`in`())
     }
 
     override fun toBody(`object`: Any): TypedOutput? {
