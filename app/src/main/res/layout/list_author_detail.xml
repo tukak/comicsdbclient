@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/authorPhoto"
         android:layout_toStartOf="@+id/authorPhoto"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true">
 
         <TextView
             android:id="@+id/name"
