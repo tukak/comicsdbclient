@@ -17,6 +17,7 @@ class ConverterTest {
             assertEquals("USA", miller.country)
             assertEquals(335, miller.id)
             assertEquals(44, miller.comicses.count())
+            assertEquals("http://comicsdb.cz/picautor/xid335.jpg.pagespeed.ic.52Q4ZzHlgf.jpg", miller.photoUrl)
         } catch (e: ConversionException) {
             e.printStackTrace()
         }
