@@ -7,4 +7,5 @@ public data class Author(public val name: String?, public val country: String?, 
     public var bio: String? = null
     public var notes: String? = null
     var photoUrl: String? = null
+    var role: String? = null
 }
