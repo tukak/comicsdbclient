@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.fragment.ComicsDetailFragment
+import cz.kutner.comicsdb.fragment.AuthorDetailFragment
 
-public class ComicsDetailActivity : AppCompatActivity() {
+public class AuthorDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,14 +19,14 @@ public class ComicsDetailActivity : AppCompatActivity() {
         if (Intent.ACTION_VIEW == intent.action) {
             //volá nás někdo přes URL
             try {
-                id = Integer.parseInt(intent.dataString.removePrefix("http://comicsdb.cz/comics.php?id="))
+                id = Integer.parseInt(intent.dataString.removePrefix("http://comicsdb.cz/autor.php?id="))
             } catch (e: Exception) {
             }
 
         } else {
-            id = intent.getIntExtra(MainActivity.COMICS_ID, 0)
+            id = intent.getIntExtra(MainActivity.AUTHOR_ID, 0)
         }
-        val fragment = ComicsDetailFragment.newInstance()
+        val fragment = AuthorDetailFragment.newInstance()
         val args = Bundle()
         args.putInt("id", id!!)
         fragment.arguments = args

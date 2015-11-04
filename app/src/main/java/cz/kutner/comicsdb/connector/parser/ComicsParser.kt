@@ -43,7 +43,9 @@ public class ComicsParser {
             when (title_name) {
                 "Žánr" -> {
                     val genre = title_value.toString().replace("&nbsp;".toRegex(), " ")
-                    comics.genre = Parser.unescapeEntities(genre.substring(1, genre.length - 1), false)
+                    if (genre.length > 1) {
+                        comics.genre = Parser.unescapeEntities(genre.substring(1, genre.length - 1), false)
+                    }
                 }
                 "Vydal" -> comics.publisher = Parser.unescapeEntities(Jsoup.parse(title_value.nextSibling().outerHtml()).text(), false)
                 "Rok a měsíc vydání" -> comics.published = Parser.unescapeEntities(title_value.toString(), false)
