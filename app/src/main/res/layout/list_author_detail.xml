@@ -1,9 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/authorPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/author_photo_description"
+        android:minWidth="100dp" />
+
+    <LinearLayout
+        android:id="@+id/authorInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/authorPhoto"
+        android:layout_toStartOf="@+id/authorPhoto"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/name"
@@ -21,7 +37,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Země" />
 
-
         <TextView
             android:id="@+id/bio"
             android:layout_width="wrap_content"
@@ -35,4 +50,5 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Poznámky" />
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

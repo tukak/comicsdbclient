@@ -6,4 +6,5 @@ public data class Author(public val name: String?, public val country: String?, 
     public var comicses: ArrayList<Comics> = ArrayList()
     public var bio: String? = null
     public var notes: String? = null
+    var photoUrl: String? = null
 }

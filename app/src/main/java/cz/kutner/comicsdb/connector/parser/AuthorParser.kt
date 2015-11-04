@@ -1,11 +1,13 @@
 package cz.kutner.comicsdb.connector.parser
 
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Comics
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
+import timber.log.Timber
 import java.io.InputStream
 import java.util.*
 
@@ -17,6 +19,13 @@ public class AuthorParser {
         val id = doc.select("#filtrform > input:nth-child(2)").attr("value").toInt()
         val country = doc.select("div#wrapper div#leftcolumn").html().substringBefore("<br").substringAfter("</h5>").trim()
         var result = Author(name, country, id)
+        val photoElements = doc.select("div#comicspic img")
+        if (photoElements.size > 0) {
+            val photoURI = photoElements.first().attr("src")
+            if (!photoURI.isEmpty()) {
+                result.photoUrl= Utils.fixUrl(photoURI)
+            }
+        }
         for (titulek in doc.select(".titulek")) {
             val title_name = titulek.text().substring(0, titulek.text().length - 1)
             val title_value = titulek.nextSibling()
