@@ -1,7 +1,12 @@
 package cz.kutner.comicsdb.adapter
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +16,8 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.activity.AuthorDetailActivity
+import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Comics
 
 class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -43,6 +50,22 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
         internal var authors: TextView = itemView.findViewById(R.id.authors) as TextView
     }
 
+    class AuthorClickableSpan(id: Int) : ClickableSpan() {
+        private var id: Int = 0
+
+        init {
+            this.id = id
+        }
+
+        override fun onClick(widget: View?) {
+            if (widget != null) {
+                val intent = Intent(widget.context, AuthorDetailActivity::class.java)
+                intent.putExtra(MainActivity.AUTHOR_ID, id)
+                widget.context.startActivity(intent)
+            }
+        }
+    }
+
     override fun getItemViewType(position: Int): Int {
         when (position) {
             0 -> return 0 //záznam komiksu
@@ -58,7 +81,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
         val listViewItemType = getItemViewType(i)
         var v: RecyclerView.ViewHolder = ComicsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_comics_detail, viewGroup, false))
         when (listViewItemType) {
-            //0 ->  //komiks, ale ten už máme
+        //0 ->  //komiks, ale ten už máme
             1 -> v = CommentsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_comment, viewGroup, false)) //komentar
 
         }
@@ -97,13 +120,27 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             if (comics.description != null) {
                 vh.description.text = Html.fromHtml(comics.description)
             }
-            vh.authors.text = comics.authors
+
+            var authors = SpannableStringBuilder();
+
+            for (author in comics.authors) {
+                val formerLength = authors.length
+                authors.append(author.role)
+                authors.append(" ")
+                authors.append(author.name)
+                authors.append("\n")
+                if (author.id != null && author.name != null) {
+                    authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+            vh.authors.text = authors
+            vh.authors.movementMethod = LinkMovementMethod.getInstance()
             vh.series.text = comics.series
             Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
             vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
         } else {
-            val j = i-1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
+            val j = i - 1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as CommentsViewHolder
             vh.commentNick.text = comics.comments[j].nick
             vh.commentTime.text = comics.comments[j].time

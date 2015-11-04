@@ -95,6 +95,7 @@ public class ComicsParser {
                                 val authorId = Integer.parseInt(sibling.attr("href").removePrefix("autor.php?id="))
                                 val author = Author(authorName, null, authorId)
                                 author.role = authorRole
+                                comics.addAuthor(author)
                             }
                         }
                         sibling = sibling?.nextSibling()
