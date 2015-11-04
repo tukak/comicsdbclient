@@ -11,4 +11,7 @@ interface AuthorService {
 
     @GET("/search.php")
     fun authorSearch(@Query("searchfor") keyword: String): Observable<List<Author>>
+
+    @GET("/author.php")
+    fun authorDetail(@Query("id") id: Int): Observable<Author>
 }
