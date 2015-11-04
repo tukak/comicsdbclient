@@ -7,7 +7,10 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
+import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
@@ -40,6 +43,7 @@ class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<R
         internal var country: TextView = itemView.findViewById(R.id.country) as TextView
         internal var bio: TextView = itemView.findViewById(R.id.bio) as TextView
         internal var notes: TextView = itemView.findViewById(R.id.notes) as TextView
+        internal var photo: ImageView = itemView.findViewById(R.id.authorPhoto) as ImageView
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -71,6 +75,8 @@ class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<R
             vh.bio.text = Html.fromHtml(author.bio)
             vh.country.text = author.country
             vh.notes.text = Html.fromHtml(author.notes)
+            Picasso.with(ComicsDBApplication.context).load(author.photoUrl).into(vh.photo)
+
         } else {
             val j = i - 1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
             val vh = viewHolder as ComicsViewHolder
