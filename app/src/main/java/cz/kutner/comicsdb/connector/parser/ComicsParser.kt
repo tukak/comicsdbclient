@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Comment
 import org.jsoup.Jsoup
@@ -84,23 +85,17 @@ public class ComicsParser {
                     comics.notes = Parser.unescapeEntities(notes, false)
                 }
                 "Autoři" -> {
-                    var authors = ""
                     sibling = title_value.nextSibling()
-                    authors += Jsoup.parse(sibling.outerHtml()).text()
-                    authors += " "
-                    sibling = sibling.nextSibling()
-                    authors += Jsoup.parse(sibling.outerHtml()).text()
-                    authors += "\n"
-                    sibling = sibling.nextSibling()
                     while (true) {
                         if (!sibling.toString().startsWith("<br")) {
-                            if (sibling.toString().startsWith("[")) {
-                                authors += Jsoup.parse(sibling?.outerHtml()).text()
-                                authors += " "
-                                sibling = sibling?.nextSibling()
-                                authors += Jsoup.parse(sibling?.outerHtml()).text()
+                            if (sibling.toString().trim().startsWith("[")) {
+                                val authorRole = Jsoup.parse(sibling!!.outerHtml()).text().trim()
+                                sibling = sibling.nextSibling()
+                                val authorName = Jsoup.parse(sibling.outerHtml()).text()
+                                val authorId = Integer.parseInt(sibling.attr("href").removePrefix("autor.php?id="))
+                                val author = Author(authorName, null, authorId)
+                                author.role = authorRole
                             }
-                            authors += "\n"
                         }
                         sibling = sibling?.nextSibling()
                         if (sibling == null) {
@@ -110,7 +105,6 @@ public class ComicsParser {
                             break
                         }
                     }
-                    comics.authors = Parser.unescapeEntities(authors, false)
                 }
                 "Série" -> comics.series = Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false)
             }

@@ -19,7 +19,7 @@ data class Comics(var name: String, var id: Int) {
     var price: String? = null
     var description: String? = null
     var notes: String? = null
-    var authors: String? = null
+    var authors: ArrayList<Author> = ArrayList()
     var series: String? = null
     var comments: ArrayList<Comment> = ArrayList()
         private set
@@ -27,5 +27,9 @@ data class Comics(var name: String, var id: Int) {
 
     fun addComment(comment: Comment) {
         comments.add(comment)
+    }
+
+    fun addAuthor(author: Author) {
+        authors.add(author)
     }
 }
