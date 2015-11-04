@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
+import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Comics
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo
@@ -29,7 +30,7 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
         card_view_comics?.setOnClickListener {
             val intent = Intent(view.context, ComicsDetailActivity::class.java)
             if (comicsId != null) {
-                intent.putExtra(COMICS_ID, comicsId as Int)
+                intent.putExtra(MainActivity.COMICS_ID, comicsId as Int)
                 view.context.startActivity(intent)
             }
         }
@@ -44,9 +45,5 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
             comicsRating?.text = " "
         }
         comicsId = comics.id
-    }
-
-    companion object {
-        val COMICS_ID = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
     }
 }
