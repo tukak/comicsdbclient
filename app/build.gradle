@@ -34,11 +34,8 @@ android {
         versionName "16.0"
     }
     buildTypes {
-        debug {
-            ext.enableCrashlytics = false
-        }
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
         }
