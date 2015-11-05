@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ComicsDB Client</string>
     <string name="action_about">O aplikaci</string>
-    <string name="comics_name_search_hint">Jméno comisu</string>
+    <string name="comics_name_search_hint">Hledaný text</string>
     <string name="title_activity_about">O aplikaci</string>
     <string name="about_email">Chyby můžete hlásit na emailu <a href="mailto:lukas@kutner.cz">lukas@kutner.cz</a>.</string>
     <string name="about_free">Aplikace je a bude poskytována zdarma, bez reklam a bez nákupů v aplikaci. Je vytvářena ve volném čase a je poskytována bez jakýchkoliv záruk.</string>
