@@ -77,20 +77,22 @@ public class AuthorParser {
     fun parseAuthorList(html: InputStream, encoding: String = "windows-1250"): ArrayList<Author> {
         val result = ArrayList<Author>()
         val doc: Document
-        val table: Element
+        val table: Element?
         doc = Jsoup.parse(html, encoding, "")
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
             table = doc.select("div.search-title:contains(AUTOŘI) + table[summary=Přehled comicsů]").first()
         } else {
             table = doc.select("table[summary=Přehled comicsů]").first()
         }
-        for (row in table.select("tbody tr")) {
-            val columns = row.select("td")
-            val name = columns[0].select("a").first().text()
-            val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("autor.php?id="))
-            val country = columns[1].text()
-            val author = Author(name, country, id)
-            result.add(author)
+        if (table != null) {
+            for (row in table.select("tbody tr")) {
+                val columns = row.select("td")
+                val name = columns[0].select("a").first().text()
+                val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("autor.php?id="))
+                val country = columns[1].text()
+                val author = Author(name, country, id)
+                result.add(author)
+            }
         }
         return result
     }
