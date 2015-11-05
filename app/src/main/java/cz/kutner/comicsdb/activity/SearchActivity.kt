@@ -2,7 +2,7 @@ package cz.kutner.comicsdb.activity
 
 import android.app.SearchManager
 import android.os.Bundle
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.SearchEvent
@@ -20,7 +20,7 @@ public class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         val actionBar = supportActionBar
         actionBar.setDisplayHomeAsUpEnabled(true)
-        var fragmentPagerAdapter: FragmentPagerAdapter = SearchPagerAdapter(supportFragmentManager, intent)
+        var fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
