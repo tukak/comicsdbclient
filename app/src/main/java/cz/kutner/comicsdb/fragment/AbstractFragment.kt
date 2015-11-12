@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.fragment.*
+import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
 import rx.Subscription
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
@@ -64,7 +65,7 @@ public abstract class AbstractFragment<Item: Any> : Fragment() {
         val llm = LinearLayoutManager(view?.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
-        try_again.setOnClickListener {
+        try_again.onClick {
             if (Utils.isConnected()) {
                 checkConnectionAndLoadData();
             }

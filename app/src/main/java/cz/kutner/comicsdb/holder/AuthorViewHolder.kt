@@ -9,6 +9,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Author
+import org.jetbrains.anko.onClick
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
@@ -26,7 +27,7 @@ public class AuthorViewHolder(view: View) : ItemViewHolder<Author>(view) {
 
 
     init {
-        card_view_authors?.setOnClickListener {
+        card_view_authors?.onClick {
             val intent = Intent(view.context, AuthorDetailActivity::class.java)
             if (authorId != null) {
                 intent.putExtra(MainActivity.AUTHOR_ID, authorId as Int)
