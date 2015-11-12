@@ -14,7 +14,6 @@ import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
-import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
@@ -53,7 +52,6 @@ public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                info("Zjišťujeme komisky pro ${lastPage}")
                 async {
                     result = ComicsDBApplication.comicsListService.comicsList(lastPage)
                     uiThread {
