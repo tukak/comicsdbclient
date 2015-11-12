@@ -12,8 +12,8 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.holder.AuthorViewHolder
 import cz.kutner.comicsdb.model.Author
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.async
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
@@ -40,18 +40,23 @@ public class AuthorFragment : AbstractFragment<Author>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                subscription = ComicsDBApplication.authorService.authorSearch(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
-                    result = authors
-                    showData()
+                async {
+                    result = ComicsDBApplication.authorService.authorSearch(searchText)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                subscription = ComicsDBApplication.authorService.listAuthors(lastPage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { authors ->
-                    result = authors
-                    showData()
+                async {
+                    result = ComicsDBApplication.authorService.listAuthors(lastPage)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
-                lastPage++
             }
         }
     }

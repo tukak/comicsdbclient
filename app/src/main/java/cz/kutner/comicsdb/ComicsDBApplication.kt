@@ -10,7 +10,6 @@ import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
 import io.fabric.sdk.android.Fabric
 import retrofit.RestAdapter
-
 class ComicsDBApplication : android.app.Application() {
 
     override fun onCreate() {

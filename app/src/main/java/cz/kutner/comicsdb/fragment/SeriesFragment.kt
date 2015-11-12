@@ -12,8 +12,8 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.holder.SeriesViewHolder
 import cz.kutner.comicsdb.model.Series
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.async
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
@@ -40,18 +40,23 @@ public class SeriesFragment : AbstractFragment<Series>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                subscription = ComicsDBApplication.seriesService.searchSeries(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { series ->
-                    result = series
-                    showData()
+                async {
+                    result = ComicsDBApplication.seriesService.searchSeries(searchText)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                subscription = ComicsDBApplication.seriesService.getSeriesList(lastPage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { series ->
-                    result = series
-                    showData()
+                async {
+                    result = ComicsDBApplication.seriesService.getSeriesList(lastPage)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
-                lastPage++
             }
         }
     }

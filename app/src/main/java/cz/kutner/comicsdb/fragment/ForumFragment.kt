@@ -12,8 +12,8 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.holder.ForumViewHolder
 import cz.kutner.comicsdb.model.ForumEntry
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.async
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
 public class ForumFragment : AbstractFragment<ForumEntry>() {
@@ -36,11 +36,13 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            subscription = ComicsDBApplication.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { forumEntries ->
-                result = forumEntries
-                showData()
+            async {
+                result = ComicsDBApplication.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+                uiThread {
+                    showData()
+                    lastPage++
+                }
             }
-            lastPage++
         }
     }
 

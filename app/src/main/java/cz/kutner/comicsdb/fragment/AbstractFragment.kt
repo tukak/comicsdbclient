@@ -14,11 +14,10 @@ import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.fragment.*
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
-import rx.Subscription
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.util.*
 
-public abstract class AbstractFragment<Item: Any> : Fragment() {
+public abstract class AbstractFragment<Item : Any> : Fragment() {
     var lastPage: Int = 0
     private var firstLoad: Boolean = false
     var searchRunning: Boolean = false
@@ -37,8 +36,6 @@ public abstract class AbstractFragment<Item: Any> : Fragment() {
     var filter: String
     private var spinnerPosition: Int? = null
     private var switcher: Switcher? = null
-
-    var subscription: Subscription? = null
 
     init {
         lastPage = 1
@@ -112,43 +109,38 @@ public abstract class AbstractFragment<Item: Any> : Fragment() {
     }
 
     public fun showData() {
-        searchRunning = false
-        if (firstLoad) {
-            if (!spinnerEnabled && spinner != null) {
-                spinner?.visibility = View.GONE
-                filter_text.visibility = View.GONE
-            }
-            if (spinnerEnabled && spinner != null) {
-                val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
-                spinner?.adapter = spinnerAdapter
-                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                if (spinnerPosition != null) {
-                    spinner?.setSelection(spinnerPosition!!)
-                } else {
-                    spinnerPosition = 0
+        if (activity?.isFinishing == false) {
+            searchRunning = false
+            if (firstLoad) {
+                if (!spinnerEnabled && spinner != null) {
+                    spinner?.visibility = View.GONE
+                    filter_text.visibility = View.GONE
                 }
-                spinner?.onItemSelectedListener = itemSelectedListener()
-            }
-            switcher?.showContentView()
-            firstLoad = false
-        }
-        if (result.size > 0) {
-            if (lastItem == null || lastItem != result[0]) {
-                lastItem = result[0]
-                if (!endless) {
-                    data.clear()
+                if (spinnerEnabled && spinner != null) {
+                    val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
+                    spinner?.adapter = spinnerAdapter
+                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    if (spinnerPosition != null) {
+                        spinner?.setSelection(spinnerPosition!!)
+                    } else {
+                        spinnerPosition = 0
+                    }
+                    spinner?.onItemSelectedListener = itemSelectedListener()
                 }
-                data.addAll(result)
+                switcher?.showContentView()
+                firstLoad = false
             }
-        }
-        adapter?.notifyDataSetChanged()
-        loading = false
-    }
-
-    override fun onStop() {
-        super.onStop()
-        if (subscription != null) {
-            subscription?.unsubscribe()
+            if (result.size > 0) {
+                if (lastItem == null || lastItem != result[0]) {
+                    lastItem = result[0]
+                    if (!endless) {
+                        data.clear()
+                    }
+                    data.addAll(result)
+                }
+            }
+            adapter?.notifyDataSetChanged()
+            loading = false
         }
     }
 
