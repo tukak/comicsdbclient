@@ -2,6 +2,8 @@ package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.model.ForumEntry
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import retrofit.converter.ConversionException
@@ -11,7 +13,7 @@ import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 import java.util.*
 
-public class ForumConverter : Converter {
+public class ForumConverter : Converter, AnkoLogger {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
@@ -35,7 +37,7 @@ public class ForumConverter : Converter {
                 result.add(forumEntry)
             }
         } catch (e: Exception) {
-            error(e)
+            error(e.message)
         }
 
         return result
