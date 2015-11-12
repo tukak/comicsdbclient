@@ -1,16 +1,17 @@
 package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.model.NewsItem
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import retrofit.converter.ConversionException
 import retrofit.converter.Converter
 import retrofit.mime.TypedInput
 import retrofit.mime.TypedOutput
-import timber.log.Timber
 import java.lang.reflect.Type
 import java.util.*
 
-public class NewsConverter : Converter {
+public class NewsConverter : Converter, AnkoLogger {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
@@ -31,8 +32,7 @@ public class NewsConverter : Converter {
                 result.add(newsItem)
             }
         } catch (e: Exception) {
-            Timber.e(e.message)
-            e.printStackTrace()
+            error(e.message)
         }
 
         return result

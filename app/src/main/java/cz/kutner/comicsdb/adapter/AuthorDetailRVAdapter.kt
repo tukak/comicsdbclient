@@ -15,7 +15,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Author
-import timber.log.Timber
+import org.jetbrains.anko.onClick
 
 class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -27,8 +27,7 @@ class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<R
         internal var comicsId: Int? = null
 
         init {
-            card_view_comics.setOnClickListener {
-                Timber.i("Klikity klik")
+            card_view_comics.onClick {
                 val intent = Intent(itemView.context, ComicsDetailActivity::class.java)
                 if (comicsId != null) {
                     intent.putExtra(MainActivity.COMICS_ID, comicsId as Int)

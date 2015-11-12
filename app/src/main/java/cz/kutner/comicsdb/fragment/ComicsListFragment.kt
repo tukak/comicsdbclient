@@ -12,12 +12,14 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.async
+import org.jetbrains.anko.info
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
-public class ComicsListFragment : AbstractFragment<Comics>() {
+public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
 
     init {
@@ -41,19 +43,25 @@ public class ComicsListFragment : AbstractFragment<Comics>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                subscription = ComicsDBApplication.comicsListService.comicsSearch(searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { comicses ->
-                    result = comicses
-                    showData()
+                async {
+                    result = ComicsDBApplication.comicsListService.comicsSearch(searchText)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                subscription = ComicsDBApplication.comicsListService.comicsList(lastPage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { comicses ->
-                    result = comicses
-                    showData()
+                info("Zjišťujeme komisky pro ${lastPage}")
+                async {
+                    result = ComicsDBApplication.comicsListService.comicsList(lastPage)
+                    uiThread {
+                        showData()
+                        lastPage++
+                    }
                 }
             }
-            lastPage++
         }
     }
 

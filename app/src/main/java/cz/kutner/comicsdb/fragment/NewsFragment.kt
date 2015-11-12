@@ -11,8 +11,8 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.holder.NewsViewHolder
 import cz.kutner.comicsdb.model.NewsItem
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.async
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
 public class NewsFragment : AbstractFragment<NewsItem>() {
@@ -35,11 +35,13 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            subscription = ComicsDBApplication.newsService.listNews().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { news ->
-                result = news
-                showData()
+            async {
+                result = ComicsDBApplication.newsService.listNews()
+                uiThread {
+                    showData()
+                    lastPage++
+                }
             }
-            lastPage++
         }
     }
 

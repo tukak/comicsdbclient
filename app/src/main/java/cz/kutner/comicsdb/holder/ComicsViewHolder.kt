@@ -8,6 +8,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Comics
+import org.jetbrains.anko.onClick
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
@@ -27,7 +28,7 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
     internal var card_view_comics: CardView? = null
 
     init {
-        card_view_comics?.setOnClickListener {
+        card_view_comics?.onClick {
             val intent = Intent(view.context, ComicsDetailActivity::class.java)
             if (comicsId != null) {
                 intent.putExtra(MainActivity.COMICS_ID, comicsId as Int)

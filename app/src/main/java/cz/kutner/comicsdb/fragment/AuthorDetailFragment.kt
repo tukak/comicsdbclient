@@ -17,17 +17,15 @@ import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.AuthorDetailRVAdapter
 import cz.kutner.comicsdb.model.Author
 import kotlinx.android.synthetic.fragment.*
+import org.jetbrains.anko.async
+import org.jetbrains.anko.onClick
+import org.jetbrains.anko.uiThread
 import pl.aprilapps.switcher.Switcher
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 
 public class AuthorDetailFragment : Fragment() {
 
     private var switcher: Switcher? = null
-
-    var subscription: Subscription? = null
 
     private var author: Author? = null
 
@@ -45,7 +43,7 @@ public class AuthorDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
         val llm = LinearLayoutManager(view?.context)
-        try_again.setOnClickListener {
+        try_again.onClick {
             if (Utils.isConnected()) {
                 onResume()
             }
@@ -57,10 +55,14 @@ public class AuthorDetailFragment : Fragment() {
     }
 
     private fun loadData() {
-        subscription = ComicsDBApplication.authorDetailService.authorDetail(this.arguments.getInt("id")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { author1 ->
-            author = author1
-            showData()
+        val id = this.arguments.getInt("id")
+        async {
+            author = ComicsDBApplication.authorDetailService.authorDetail(id)
+            uiThread {
+                showData()
+            }
         }
+
     }
 
     override fun onResume() {

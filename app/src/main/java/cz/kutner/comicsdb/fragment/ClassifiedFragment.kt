@@ -12,8 +12,8 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.holder.ClassifiedViewHolder
 import cz.kutner.comicsdb.model.Classified
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import org.jetbrains.anko.async
+import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
 public class ClassifiedFragment : AbstractFragment<Classified>() {
@@ -37,11 +37,13 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            subscription = ComicsDBApplication.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { classifieds ->
-                result = classifieds
-                showData()
+            async {
+                result = ComicsDBApplication.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+                uiThread {
+                    showData()
+                    lastPage++
+                }
             }
-            lastPage++
         }
     }
 

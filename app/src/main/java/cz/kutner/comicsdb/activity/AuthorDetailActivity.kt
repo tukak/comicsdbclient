@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.AuthorDetailFragment
+import org.jetbrains.anko.clearTop
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 
 public class AuthorDetailActivity : AppCompatActivity() {
 
@@ -37,9 +40,7 @@ public class AuthorDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
+            startActivity(intentFor<MainActivity>().singleTop().clearTop())
         }
         return super.onOptionsItemSelected(item)
     }
