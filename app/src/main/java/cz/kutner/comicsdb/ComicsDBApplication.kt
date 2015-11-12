@@ -10,7 +10,6 @@ import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
 import io.fabric.sdk.android.Fabric
 import retrofit.RestAdapter
-import timber.log.Timber
 
 class ComicsDBApplication : android.app.Application() {
 
@@ -18,7 +17,6 @@ class ComicsDBApplication : android.app.Application() {
         super.onCreate()
         Fabric.with(this, Crashlytics.Builder().core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build())
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
             Picasso.with(applicationContext).setIndicatorsEnabled(true)
         }
         context = applicationContext

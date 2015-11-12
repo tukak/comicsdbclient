@@ -6,7 +6,6 @@ import retrofit.converter.ConversionException
 import retrofit.converter.Converter
 import retrofit.mime.TypedInput
 import retrofit.mime.TypedOutput
-import timber.log.Timber
 import java.lang.reflect.Type
 import java.util.*
 
@@ -31,8 +30,7 @@ public class NewsConverter : Converter {
                 result.add(newsItem)
             }
         } catch (e: Exception) {
-            Timber.e(e.message)
-            e.printStackTrace()
+            error(e)
         }
 
         return result

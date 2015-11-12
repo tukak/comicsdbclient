@@ -7,7 +7,6 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
-import timber.log.Timber
 import java.io.InputStream
 import java.util.*
 
