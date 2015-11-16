@@ -7,8 +7,8 @@ dependencies:
         - sudo add-apt-repository ppa:cwchien/gradle -y
         - sudo apt-get update
         - sudo apt-get install gradle-2.6
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.2,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
-
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
+        - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
   override:
     - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
