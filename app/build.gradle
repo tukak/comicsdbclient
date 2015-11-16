@@ -58,7 +58,6 @@ dependencies {
     }
     compile 'com.google.android.gms:play-services-analytics:8.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.jakewharton.timber:timber:4.1.0'
     compile 'uk.co.ribot:easyadapter:1.5.0@aar'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
