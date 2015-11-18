@@ -12,12 +12,14 @@ import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.fragment.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.util.*
 
-public abstract class AbstractFragment<Item : Any> : Fragment() {
+public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
     var lastPage: Int = 0
     private var firstLoad: Boolean = false
     var searchRunning: Boolean = false
@@ -98,10 +100,10 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
             switcher?.showErrorView()
         } else {
             switcher?.showProgressView()
-            firstLoad = true
             if (!result.isEmpty()) {
                 showData()
             } else {
+                firstLoad = true
                 loadData()
             }
 
@@ -109,6 +111,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
     }
 
     public fun showData() {
+        info(firstLoad)
         if (activity?.isFinishing == false) {
             searchRunning = false
             if (firstLoad) {
@@ -130,6 +133,8 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
                 switcher?.showContentView()
                 firstLoad = false
             }
+            info(adapter)
+            info(data.size)
             if (result.size > 0) {
                 if (lastItem == null || lastItem != result[0]) {
                     lastItem = result[0]
