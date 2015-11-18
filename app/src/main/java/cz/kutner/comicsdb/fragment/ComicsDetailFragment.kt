@@ -24,7 +24,7 @@ import pl.aprilapps.switcher.Switcher
 
 public class ComicsDetailFragment : Fragment() {
 
-    private var switcher: Switcher? = null
+    private val switcher: Switcher by lazy { Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build() }
 
     private var comics: Comics? = null
 
@@ -40,7 +40,6 @@ public class ComicsDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
         val llm = LinearLayoutManager(view?.context)
         try_again.onClick {
             if (Utils.isConnected()) {
@@ -50,7 +49,7 @@ public class ComicsDetailFragment : Fragment() {
         recycler_view.layoutManager = llm
         spinner.visibility = View.GONE
         filter_text.visibility = View.GONE
-        switcher?.showProgressView()
+        switcher.showProgressView()
     }
 
     private fun loadData() {
@@ -66,9 +65,9 @@ public class ComicsDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (!Utils.isConnected()) {
-            switcher?.showErrorView()
+            switcher.showErrorView()
         } else {
-            switcher?.showProgressView()
+            switcher.showProgressView()
             if (comics != null) {
                 showData()
             } else {
@@ -85,7 +84,7 @@ public class ComicsDetailFragment : Fragment() {
             val adapter = ComicsDetailRVAdapter(existing_comics)
             recycler_view.adapter = adapter
             recycler_view.setHasFixedSize(true)
-            switcher?.showContentView()
+            switcher.showContentView()
             val tracker = ComicsDBApplication.tracker
             tracker.setScreenName("ComicsDetailFragment")
             tracker.send(HitBuilders.ScreenViewBuilder().build())

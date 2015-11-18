@@ -19,7 +19,7 @@ import pl.aprilapps.switcher.Switcher
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.util.*
 
-public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
+public abstract class AbstractFragment<Item : Any> : Fragment() {
     var lastPage: Int = 0
     private var firstLoad: Boolean = false
     var searchRunning: Boolean = false
@@ -37,7 +37,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
     var spinnerValues: Array<String>? = null
     var filter: String
     private var spinnerPosition: Int? = null
-    private var switcher: Switcher? = null
+    private val switcher: Switcher by lazy { Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build() }
 
     init {
         lastPage = 1
@@ -60,7 +60,6 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        switcher = Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build()
         val llm = LinearLayoutManager(view?.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
@@ -85,7 +84,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
                 }
             })
         }
-        switcher?.showProgressView()
+        switcher.showProgressView()
     }
 
     abstract fun loadData()
@@ -97,21 +96,19 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
 
     private fun checkConnectionAndLoadData() {
         if (!Utils.isConnected()) {
-            switcher?.showErrorView()
+            switcher.showErrorView()
         } else {
-            switcher?.showProgressView()
+            switcher.showProgressView()
             if (!result.isEmpty()) {
                 showData()
             } else {
                 firstLoad = true
                 loadData()
             }
-
         }
     }
 
     public fun showData() {
-        info(firstLoad)
         if (activity?.isFinishing == false) {
             searchRunning = false
             if (firstLoad) {
@@ -130,11 +127,9 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
                     }
                     spinner?.onItemSelectedListener = itemSelectedListener()
                 }
-                switcher?.showContentView()
+                switcher.showContentView()
                 firstLoad = false
             }
-            info(adapter)
-            info(data.size)
             if (result.size > 0) {
                 if (lastItem == null || lastItem != result[0]) {
                     lastItem = result[0]
@@ -156,7 +151,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment(), AnkoLogger {
                 filter = spinner?.selectedItem.toString()
                 data.clear()
                 lastItem = null
-                switcher?.showProgressView()
+                switcher.showProgressView()
                 firstLoad = true
                 lastPage = 1
                 spinnerPosition = pos
