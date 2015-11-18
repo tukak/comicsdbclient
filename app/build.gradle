@@ -30,8 +30,8 @@ android {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 17
-        versionName "17"
+        versionCode 18
+        versionName "18"
     }
     buildTypes {
         release {
