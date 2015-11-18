@@ -11,6 +11,6 @@ dependencies:
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
   override:
-    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test -PdisablePreDex;else gradle test -PdisablePreDex;fi
+    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleRelease -PdisablePreDex;else gradle test assembleRelease -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
