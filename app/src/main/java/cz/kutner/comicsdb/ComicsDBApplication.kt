@@ -33,6 +33,7 @@ class ComicsDBApplication : android.app.Application() {
 
         val adapter = RestAdapter.Builder().setEndpoint("http://www.comicsdb.cz")
         val seriesService: SeriesService by lazy { adapter.setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
+        val seriesDetailService: SeriesDetailService by lazy { adapter.setConverter(SeriesDetailConverter()).build().create(SeriesDetailService::class.java) }
         val authorService: AuthorService by lazy { adapter.setConverter(AuthorConverter()).build().create(AuthorService::class.java) }
         val authorDetailService: AuthorDetailService by lazy { adapter.setConverter(AuthorDetailConverter()).build().create(AuthorDetailService::class.java) }
         val newsService: NewsService by lazy { adapter.setConverter(NewsConverter()).build().create(NewsService::class.java) }

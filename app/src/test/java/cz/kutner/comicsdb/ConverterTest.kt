@@ -2,6 +2,7 @@ package cz.kutner.comicsdb
 
 import cz.kutner.comicsdb.connector.parser.AuthorParser
 import cz.kutner.comicsdb.connector.parser.ComicsParser
+import cz.kutner.comicsdb.connector.parser.SeriesParser
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit.converter.ConversionException
@@ -9,6 +10,19 @@ import java.io.File
 
 
 class ConverterTest {
+    @Test
+    fun SeriesDetailTest() {
+        try {
+            val batman = SeriesParser().parseSeriesDetail(readFile("/serie_batman.html").byteInputStream(), "utf-8")
+            assertEquals("Batman - NEW 52", batman.name)
+            assertEquals(8, batman.comicses.count())
+            assertEquals(355, batman.id)
+            assertEquals(batman.comicses.count(), batman.numberOfComicses)
+        } catch (e: ConversionException) {
+            e.printStackTrace()
+        }
+    }
+
     @Test
     fun AuthorDetailTest() {
         try {

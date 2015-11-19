@@ -2,7 +2,7 @@ package cz.kutner.comicsdb.model
 
 import java.util.*
 
-public data class Series(public val name: String?, private val id: Int?, public val numberOfComicses: Int?) {
-    private val notes: String? = null
-    private val comicses: ArrayList<Comics>? = null
+public data class Series(public val name: String?, val id: Int?, public var numberOfComicses: Int?) {
+    val notes: String? = null
+    val comicses: ArrayList<Comics> = ArrayList()
 }
