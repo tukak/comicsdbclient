@@ -20,7 +20,7 @@ data class Comics(var name: String, var id: Int) {
     var description: String? = null
     var notes: String? = null
     var authors: ArrayList<Author> = ArrayList()
-    var series: String? = null
+    var series: Series? = null
     var comments: ArrayList<Comment> = ArrayList()
         private set
     var coverUrl: String? = null

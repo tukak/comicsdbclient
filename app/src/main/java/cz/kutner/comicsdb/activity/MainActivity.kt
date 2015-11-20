@@ -17,5 +17,6 @@ public class MainActivity : AbstractActivity() {
     companion object {
         public val COMICS_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
         public val AUTHOR_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.author_id"
+        public val SERIES_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.series_id"
     }
 }

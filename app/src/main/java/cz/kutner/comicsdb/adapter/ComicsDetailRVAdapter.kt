@@ -18,7 +18,9 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
+import cz.kutner.comicsdb.activity.SeriesDetailActivity
 import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.find
 
 class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -62,6 +64,22 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             if (widget != null) {
                 val intent = Intent(widget.context, AuthorDetailActivity::class.java)
                 intent.putExtra(MainActivity.AUTHOR_ID, id)
+                widget.context.startActivity(intent)
+            }
+        }
+    }
+
+    class SeriesClickableSpan(id: Int) : ClickableSpan() {
+        private var id: Int = 0
+
+        init {
+            this.id = id
+        }
+
+        override fun onClick(widget: View?) {
+            if (widget != null) {
+                val intent = Intent(widget.context, SeriesDetailActivity::class.java)
+                intent.putExtra(MainActivity.SERIES_ID, id)
                 widget.context.startActivity(intent)
             }
         }
@@ -136,7 +154,14 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             }
             vh.authors.text = authors
             vh.authors.movementMethod = LinkMovementMethod.getInstance()
-            vh.series.text = comics.series
+            val series: Series? = comics.series
+            if (series != null) {
+                var seriesString = SpannableStringBuilder();
+                seriesString.append(series.name)
+                seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                vh.series.text = seriesString
+                vh.series.movementMethod = LinkMovementMethod.getInstance()
+            }
             Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
             vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()

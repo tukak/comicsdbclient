@@ -4,6 +4,7 @@ import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Comment
+import cz.kutner.comicsdb.model.Series
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Node
@@ -107,7 +108,7 @@ public class ComicsParser {
                         }
                     }
                 }
-                "Série" -> comics.series = Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false)
+                "Série" -> comics.series = Series(name=Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false), id=Integer.parseInt(title_value.attr("href").removePrefix("serie.php?id=")), numberOfComicses = 0)
             }
         }
         for (comment in doc.select("div#prispevek")) {
