@@ -19,35 +19,36 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Comics
+import org.jetbrains.anko.find
 
 class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class CommentsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var commentNick: TextView = itemView.findViewById(R.id.commentNick) as TextView
-        internal var commentTime: TextView = itemView.findViewById(R.id.commentTime) as TextView
-        internal var commentRatingBar: RatingBar = itemView.findViewById(R.id.commentRatingBar) as RatingBar
-        internal var commentText: TextView = itemView.findViewById(R.id.commentText) as TextView
-        internal var nickIcon: ImageView = itemView.findViewById(R.id.nickIcon) as ImageView
+        internal var commentNick: TextView = itemView.find<TextView>(R.id.commentNick)
+        internal var commentTime: TextView = itemView.find<TextView>(R.id.commentTime)
+        internal var commentRatingBar: RatingBar = itemView.find<RatingBar>(R.id.commentRatingBar)
+        internal var commentText: TextView = itemView.find<TextView>(R.id.commentText)
+        internal var nickIcon: ImageView = itemView.find<ImageView>(R.id.nickIcon)
     }
 
     class ComicsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var cover: ImageView = itemView.findViewById(R.id.cover) as ImageView
-        internal var name: TextView = itemView.findViewById(R.id.name) as TextView
-        internal var genre: TextView = itemView.findViewById(R.id.genre) as TextView
-        internal var comicsDetailRatingBar: RatingBar = itemView.findViewById(R.id.comics_detail_rating_bar) as RatingBar
-        internal var rating: TextView = itemView.findViewById(R.id.rating) as TextView
-        internal var publisher: TextView = itemView.findViewById(R.id.publisher) as TextView
-        internal var pagesCount: TextView = itemView.findViewById(R.id.pagesCount) as TextView
-        internal var price: TextView = itemView.findViewById(R.id.price) as TextView
-        internal var originalName: TextView = itemView.findViewById(R.id.originalName) as TextView
-        internal var binding: TextView = itemView.findViewById(R.id.binding) as TextView
-        internal var series: TextView = itemView.findViewById(R.id.series) as TextView
-        internal var issueNumber: TextView = itemView.findViewById(R.id.issueNumber) as TextView
-        internal var format: TextView = itemView.findViewById(R.id.format) as TextView
-        internal var url: TextView = itemView.findViewById(R.id.url) as TextView
-        internal var description: TextView = itemView.findViewById(R.id.description) as TextView
-        internal var notes: TextView = itemView.findViewById(R.id.notes) as TextView
-        internal var authors: TextView = itemView.findViewById(R.id.authors) as TextView
+        internal var cover: ImageView = itemView.find<ImageView>(R.id.cover)
+        internal var name: TextView = itemView.find<TextView>(R.id.name)
+        internal var genre: TextView = itemView.find<TextView>(R.id.genre)
+        internal var comicsDetailRatingBar: RatingBar = itemView.find<RatingBar>(R.id.comics_detail_rating_bar)
+        internal var rating: TextView = itemView.find<TextView>(R.id.rating)
+        internal var publisher: TextView = itemView.find<TextView>(R.id.publisher)
+        internal var pagesCount: TextView = itemView.find<TextView>(R.id.pagesCount)
+        internal var price: TextView = itemView.find<TextView>(R.id.price)
+        internal var originalName: TextView = itemView.find<TextView>(R.id.originalName)
+        internal var binding: TextView = itemView.find<TextView>(R.id.binding)
+        internal var series: TextView = itemView.find<TextView>(R.id.series)
+        internal var issueNumber: TextView = itemView.find<TextView>(R.id.issueNumber)
+        internal var format: TextView = itemView.find<TextView>(R.id.format)
+        internal var url: TextView = itemView.find<TextView>(R.id.url)
+        internal var description: TextView = itemView.find<TextView>(R.id.description)
+        internal var notes: TextView = itemView.find<TextView>(R.id.notes)
+        internal var authors: TextView = itemView.find<TextView>(R.id.authors)
     }
 
     class AuthorClickableSpan(id: Int) : ClickableSpan() {
@@ -79,7 +80,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
         val listViewItemType = getItemViewType(i)
-        var v: RecyclerView.ViewHolder = ComicsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_comics_detail, viewGroup, false))
+        var v: RecyclerView.ViewHolder = ComicsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.fragment_comics_detail, viewGroup, false))
         when (listViewItemType) {
         //0 ->  //komiks, ale ten už máme
             1 -> v = CommentsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_comment, viewGroup, false)) //komentar

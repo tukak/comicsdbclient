@@ -15,15 +15,16 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Author
+import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
 
 class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ComicsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var comicsName: TextView = itemView.findViewById(R.id.comics_name) as TextView
-        internal var comicsPublished: TextView = itemView.findViewById(R.id.comics_published) as TextView
-        internal var comicsRating: TextView = itemView.findViewById(R.id.comics_rating) as TextView
-        internal var card_view_comics: CardView = itemView.findViewById(R.id.card_view_comics) as CardView
+        internal var comicsName: TextView = itemView.find<TextView>(R.id.comics_name)
+        internal var comicsPublished: TextView = itemView.find<TextView>(R.id.comics_published)
+        internal var comicsRating: TextView = itemView.find<TextView>(R.id.comics_rating)
+        internal var card_view_comics: CardView = itemView.find<CardView>(R.id.card_view_comics)
         internal var comicsId: Int? = null
 
         init {
@@ -38,11 +39,11 @@ class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<R
     }
 
     class AuthorViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var name: TextView = itemView.findViewById(R.id.name) as TextView
-        internal var country: TextView = itemView.findViewById(R.id.country) as TextView
-        internal var bio: TextView = itemView.findViewById(R.id.bio) as TextView
-        internal var notes: TextView = itemView.findViewById(R.id.notes) as TextView
-        internal var photo: ImageView = itemView.findViewById(R.id.authorPhoto) as ImageView
+        internal var name: TextView = itemView.find<TextView>(R.id.name)
+        internal var country: TextView = itemView.find<TextView>(R.id.country)
+        internal var bio: TextView = itemView.find<TextView>(R.id.bio)
+        internal var notes: TextView = itemView.find<TextView>(R.id.notes)
+        internal var photo: ImageView = itemView.find<ImageView>(R.id.authorPhoto)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -58,7 +59,7 @@ class AuthorDetailRVAdapter(private var author: Author) : RecyclerView.Adapter<R
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
         val listViewItemType = getItemViewType(i)
-        var v: RecyclerView.ViewHolder = AuthorViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_author_detail, viewGroup, false))
+        var v: RecyclerView.ViewHolder = AuthorViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.fragment_author_detail, viewGroup, false))
         when (listViewItemType) {
         //0 ->  //autor, ale toho už máme
             1 -> v = ComicsViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_comics, viewGroup, false)) //comics
