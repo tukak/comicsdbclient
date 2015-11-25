@@ -17,6 +17,9 @@ import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter
 import cz.kutner.comicsdb.model.Comics
 import kotlinx.android.synthetic.fragment.*
+import kotlinx.android.synthetic.view_empty.*
+import kotlinx.android.synthetic.view_error.*
+import kotlinx.android.synthetic.view_progress.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.uiThread
