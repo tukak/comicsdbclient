@@ -53,9 +53,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.pnikosis:materialish-progress:1.7'
-    compile('com.github.jkwiecien:Switcher:1.1.4') {
-        exclude module: 'appcompat-v7'
-    }
+    compile 'com.github.jkwiecien:Switcher:2.0.0'
     compile 'com.google.android.gms:play-services-analytics:8.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'uk.co.ribot:easyadapter:1.5.0@aar'
