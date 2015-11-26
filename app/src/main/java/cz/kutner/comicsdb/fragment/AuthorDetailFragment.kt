@@ -28,7 +28,7 @@ import pl.aprilapps.switcher.Switcher
 
 public class AuthorDetailFragment : Fragment() {
 
-    private val switcher: Switcher by lazy { Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build() }
+    private val switcher: Switcher by lazy { Switcher.Builder(ComicsDBApplication.context).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     private var author: Author? = null
 

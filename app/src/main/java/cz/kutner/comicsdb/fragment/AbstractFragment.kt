@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.fragment.*
@@ -38,7 +39,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
     var spinnerValues: Array<String>? = null
     var filter: String
     private var spinnerPosition: Int? = null
-    private val switcher: Switcher by lazy { Switcher.Builder().withContentView(content).withEmptyView(empty_view).withProgressView(progress_view).withErrorView(error_view).build() }
+    private val switcher: Switcher by lazy { Switcher.Builder(ComicsDBApplication.context).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     init {
         lastPage = 1
