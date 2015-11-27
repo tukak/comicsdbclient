@@ -10,8 +10,10 @@
     <string name="about_signature">Lukáš Kutner (tukak)</string>
     <string name="title_activity_comics_search">ComicsSearchActivity</string>
     <string name="cover_content_description">Obálka</string>
-
+    <string name="url_comicsdb">"http://www.comicsdb.cz"</string>
     <string name="url_comics_detail">http://comicsdb.cz/comics.php?id=</string>
+    <string name="url_author_detail">http://comicsdb.cz/autor.php?id=</string>
+    <string name="url_series_detail">http://comicsdb.cz/serie.php?id=</string>
     <string name="url_comics_search">http://comicsdb.cz/search.php?searchfor=</string>
     <string name="url_comics_list_new">http://comicsdb.cz/comicslist.php</string>
     <string name="url_forum">http://comicsdb.cz/forum.php</string>

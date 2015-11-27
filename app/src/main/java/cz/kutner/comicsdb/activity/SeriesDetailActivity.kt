@@ -22,7 +22,7 @@ public class SeriesDetailActivity : AppCompatActivity() {
         if (Intent.ACTION_VIEW == intent.action) {
             //volá nás někdo přes URL
             try {
-                id = Integer.parseInt(intent.dataString.removePrefix("http://comicsdb.cz/serie.php?id="))
+                id = Integer.parseInt(intent.dataString.removePrefix(getString(R.string.url_series_detail)))
             } catch (e: Exception) {
             }
 
