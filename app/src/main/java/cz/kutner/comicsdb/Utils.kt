@@ -11,9 +11,10 @@ public object Utils {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
-    public fun fixUrl(url: String): String {
+    public fun fixUrl(url: String, prefix: String = ""): String {
+        val real_prefix = if (prefix.length > 0) prefix else ComicsDBApplication.context?.getString(R.string.url_comicsdb)
         if (!url.startsWith("http") && !url.startsWith("data")) {
-            return ComicsDBApplication.context?.getString(R.string.url_comicsdb) + url
+            return real_prefix + url
         } else {
             return url
         }

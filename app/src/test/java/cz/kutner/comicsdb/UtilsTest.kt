@@ -10,8 +10,9 @@ import org.junit.Assert.*
 class UtilsTest {
     @Test
     fun utils_fixUrl() {
-        assertEquals(Utils.fixUrl("/ahoj"), "http://comicsdb.cz/ahoj")
-        assertEquals(Utils.fixUrl("http://comicsdb.cz/ahoj"), "http://comicsdb.cz/ahoj")
-        assertEquals(Utils.fixUrl("data:ahoj"), "data:ahoj")
+        val prefix = "http://comicsdb.cz"
+        assertEquals("http://comicsdb.cz/ahoj", Utils.fixUrl("/ahoj", prefix))
+        assertEquals("http://comicsdb.cz/ahoj", Utils.fixUrl("http://comicsdb.cz/ahoj", prefix))
+        assertEquals("data:ahoj", Utils.fixUrl("data:ahoj", prefix))
     }
 }
