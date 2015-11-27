@@ -13,7 +13,7 @@ public object Utils {
 
     public fun fixUrl(url: String): String {
         if (!url.startsWith("http") && !url.startsWith("data")) {
-            return "http://comicsdb.cz" + url
+            return ComicsDBApplication.context?.getString(R.string.url_comicsdb) + url
         } else {
             return url
         }
