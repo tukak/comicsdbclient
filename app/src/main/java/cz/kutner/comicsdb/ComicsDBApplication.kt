@@ -3,13 +3,18 @@ package cz.kutner.comicsdb
 import android.content.Context
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
+import com.facebook.stetho.Stetho
+import com.facebook.stetho.okhttp.StethoInterceptor
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
+import com.squareup.okhttp.OkHttpClient
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
 import io.fabric.sdk.android.Fabric
 import retrofit.RestAdapter
+import retrofit.client.OkClient
+
 class ComicsDBApplication : android.app.Application() {
 
     override fun onCreate() {
@@ -19,6 +24,9 @@ class ComicsDBApplication : android.app.Application() {
             Picasso.with(applicationContext).setIndicatorsEnabled(true)
         }
         context = applicationContext
+        Stetho.initializeWithDefaults(this);
+
+        client.networkInterceptors().add(StethoInterceptor());
     }
 
     companion object {
@@ -30,8 +38,9 @@ class ComicsDBApplication : android.app.Application() {
             analytics.enableExceptionReporting(true)
             analytics
         }
+        val client: OkHttpClient = OkHttpClient();
 
-        val adapter: RestAdapter.Builder by lazy { RestAdapter.Builder().setEndpoint(context?.getString(R.string.url_comicsdb)) }
+        val adapter: RestAdapter.Builder by lazy { RestAdapter.Builder().setEndpoint(context?.getString(R.string.url_comicsdb)).setClient(OkClient(client)) }
         val seriesService: SeriesService by lazy { adapter.setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
         val seriesDetailService: SeriesDetailService by lazy { adapter.setConverter(SeriesDetailConverter()).build().create(SeriesDetailService::class.java) }
         val authorService: AuthorService by lazy { adapter.setConverter(AuthorConverter()).build().create(AuthorService::class.java) }
