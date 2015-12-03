@@ -29,11 +29,6 @@ public class AuthorDetailFragment : Fragment() {
 
     private var author: Author? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment, container, false)
@@ -70,18 +65,14 @@ public class AuthorDetailFragment : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            if (author != null) {
-                showData()
-            } else {
-                loadData()
-            }
+            loadData()
         }
     }
 
 
     private fun showData() {
         if (author != null) {
-            var existing_author: Author = author as Author
+            val existing_author: Author = author as Author
             (activity as AppCompatActivity).supportActionBar?.title = existing_author.name
             val adapter = AuthorDetailRVAdapter(existing_author)
             recycler_view.adapter = adapter

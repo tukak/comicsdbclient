@@ -28,11 +28,6 @@ public class ComicsDetailFragment : Fragment() {
 
     private var comics: Comics? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment, container, false)
@@ -68,18 +63,14 @@ public class ComicsDetailFragment : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            if (comics != null) {
-                showData()
-            } else {
-                loadData()
-            }
+            loadData()
         }
     }
 
 
     private fun showData() {
         if (comics != null) {
-            var existing_comics: Comics = comics as Comics
+            val existing_comics: Comics = comics as Comics
             (activity as AppCompatActivity).supportActionBar?.title = existing_comics.name
             val adapter = ComicsDetailRVAdapter(existing_comics)
             recycler_view.adapter = adapter

@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.fragment.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
@@ -45,12 +43,6 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
         endless = true
         spinnerEnabled = false
         filter = ""
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -99,12 +91,8 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            if (!result.isEmpty()) {
-                showData()
-            } else {
-                firstLoad = true
-                loadData()
-            }
+            firstLoad = true
+            loadData()
         }
     }
 

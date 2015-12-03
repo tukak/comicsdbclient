@@ -29,11 +29,6 @@ public class SeriesDetailFragment : Fragment() {
 
     private var series: Series? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment, container, false)
@@ -70,11 +65,7 @@ public class SeriesDetailFragment : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            if (series != null) {
-                showData()
-            } else {
-                loadData()
-            }
+            loadData()
         }
     }
 
