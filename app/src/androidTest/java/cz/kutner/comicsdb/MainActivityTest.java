@@ -27,7 +27,7 @@ import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.typeText;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityEspressoTest {
+public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule =
@@ -37,22 +37,5 @@ public class MainActivityEspressoTest {
     public void comicsListandDetail() {
         onView(allOf(withId(R.id.recycler_view), hasDescendant(withId(R.id.card_view_comics)))).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.name)).check(matches(notNullValue()));
-    }
-
-    @Test
-    public void search(){
-        onView(withId(R.id.searchView)).perform(click()).perform(typeText("Batman"), pressKey(66));
-        onView(allOf(withId(R.id.comics_name), withText("Batman #1"))).check(matches(withText("Batman #1")));
-    }
-
-    @Test
-    public void searchSwipe(){
-        onView(withId(R.id.searchView)).perform(click()).perform(typeText("Batman"), pressKey(66));
-        onView(withId(R.id.pager)).perform(swipeLeft(), swipeLeft(), swipeRight(), swipeRight());
-    }
-
-    @Test
-    public void news() {
-        onView(isRoot()).perform(swipeRight());
     }
 }
