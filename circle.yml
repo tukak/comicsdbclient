@@ -9,8 +9,12 @@ dependencies:
         - sudo apt-get install gradle-2.9
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
+        - emulator -avd circleci-android22 -no-audio -no-window:
+          background: true
+          parallel: true
+        - circle-android wait-for-boot
 test:
   override:
-    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex;else gradle test assembleDebug -PdisablePreDex;fi
+    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
