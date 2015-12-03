@@ -11,7 +11,7 @@ dependencies:
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
   pre:
-    - emulator -avd circleci-android21 -no-audio -no-window:
+    - emulator -avd circleci-android22 -no-audio -no-window:
         background: true
         parallel: true
     - circle-android wait-for-boot
