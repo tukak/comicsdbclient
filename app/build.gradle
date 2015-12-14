@@ -70,7 +70,4 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-library:1.1'
     compile 'org.jetbrains.anko:anko-common:0.8.1'
     compile 'org.jetbrains.anko:anko-sdk15:0.8.1'
-    compile 'com.facebook.stetho:stetho:1.2.0'
-    compile 'com.facebook.stetho:stetho-okhttp:1.2.0'
-
 }
