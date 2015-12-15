@@ -4,19 +4,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.ComicsDetailFragment
+import kotlinx.android.synthetic.toolbar.*
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
 public class ComicsDetailActivity : AppCompatActivity() {
 
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        if (toolbar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true)
+            searchView.visibility = View.GONE
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val actionBar = supportActionBar
-        actionBar.setDisplayHomeAsUpEnabled(true)
+        setupToolbar()
         val intent = intent
         var id: Int? = null
         if (Intent.ACTION_VIEW == intent.action) {
