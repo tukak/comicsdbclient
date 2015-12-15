@@ -131,7 +131,8 @@
         <activity
             android:name=".activity.SearchActivity"
             android:label="@string/title_activity_comics_search"
-            android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity">
+            android:parentActivityName="cz.kutner.comicsdb.activity.MainActivity"
+            android:theme="@style/AppThemeActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.activity.MainActivity" />
