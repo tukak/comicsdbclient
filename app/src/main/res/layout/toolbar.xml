@@ -9,7 +9,7 @@
     android:elevation="8dp"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-    app:layout_scrollFlags="scroll|enterAlways">
+    app:layout_scrollFlags="scroll|enterAlways|snap">
 
     <SearchView
         android:id="@+id/searchView"
