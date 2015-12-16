@@ -11,11 +11,11 @@ dependencies:
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
   pre:
-    - emulator -avd circleci-android22 -no-audio -no-window:
-        background: true
-        parallel: true
-    - circle-android wait-for-boot
-    - adb shell input keyevent 82
+    #- emulator -avd circleci-android22 -no-audio -no-window:
+    #    background: true
+    #    parallel: true
+    #- circle-android wait-for-boot
+    #- adb shell input keyevent 82
   override:
     #- export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
     - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex;else gradle test assembleDebug -PdisablePreDex;fi
