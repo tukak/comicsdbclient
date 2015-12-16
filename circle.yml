@@ -17,6 +17,7 @@ test:
     - circle-android wait-for-boot
     - adb shell input keyevent 82
   override:
-    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
+    #- export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
+    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex;else gradle test assembleDebug -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
