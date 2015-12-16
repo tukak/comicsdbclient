@@ -32,6 +32,7 @@ android {
         targetSdkVersion 23
         versionCode 20
         versionName "20"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -68,4 +69,16 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-library:1.1'
     compile 'org.jetbrains.anko:anko-common:0.8.1'
     compile 'org.jetbrains.anko:anko-sdk15:0.8.1'
+    androidTestCompile ('com.android.support.test:runner:0.4.1') {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.1') {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'recyclerview-v7'
+    }
 }
