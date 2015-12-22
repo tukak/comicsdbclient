@@ -4,20 +4,18 @@ machine:
 
 dependencies:
     pre:
-        - sudo add-apt-repository ppa:cwchien/gradle -y
-        - sudo apt-get update
-        - sudo apt-get install gradle-2.9
+        - wget "https://services.gradle.org/distributions/gradle-2.10-bin.zip"; unzip gradle-2.10-bin.zip
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
   pre:
-    #- emulator -avd circleci-android22 -no-audio -no-window:
-    #    background: true
-    #    parallel: true
-    #- circle-android wait-for-boot
-    #- adb shell input keyevent 82
+    - emulator -avd circleci-android22 -no-audio -no-window:
+        background: true
+        parallel: true
+    - circle-android wait-for-boot
+    - sleep 30
+    - adb shell input keyevent 82
   override:
-    #- export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
-    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex;else gradle test assembleDebug -PdisablePreDex;fi
+    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
