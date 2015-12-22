@@ -4,7 +4,6 @@ machine:
     PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-2.10/bin:$PATH"
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
     pre:
@@ -12,14 +11,14 @@ dependencies:
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-23,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 test:
-  pre:
+  override:
     - emulator -avd circleci-android22 -no-audio -no-window:
-        background: true
-        parallel: true
+          background: true
+          parallel: true
     - circle-android wait-for-boot
     - sleep 30
     - adb shell input keyevent 82
-  override:
-    - export TERM="dumb"; if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
+    - if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
+    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
