@@ -1,6 +1,10 @@
 machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
+    PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-2.10/bin:$PATH"
+    TERM: "dumb"
+    ADB_INSTALL_TIMEOUT: "10"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
     pre:
