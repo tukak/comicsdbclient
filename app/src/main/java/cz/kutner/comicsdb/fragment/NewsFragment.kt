@@ -35,7 +35,7 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            async {
+            async() {
                 result = ComicsDBApplication.newsService.listNews()
                 uiThread {
                     showData()

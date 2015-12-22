@@ -37,7 +37,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            async {
+            async() {
                 result = ComicsDBApplication.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
                 uiThread {
                     showData()

@@ -36,7 +36,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            async {
+            async() {
                 result = ComicsDBApplication.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
                 uiThread {
                     showData()

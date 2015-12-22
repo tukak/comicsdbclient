@@ -16,10 +16,10 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.AuthorDetailRVAdapter
 import cz.kutner.comicsdb.model.Author
-import kotlinx.android.synthetic.fragment.*
-import kotlinx.android.synthetic.view_empty.*
-import kotlinx.android.synthetic.view_error.*
-import kotlinx.android.synthetic.view_progress.*
+import kotlinx.android.synthetic.main.fragment.*
+import kotlinx.android.synthetic.main.view_empty.*
+import kotlinx.android.synthetic.main.view_error.*
+import kotlinx.android.synthetic.main.view_progress.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.uiThread
@@ -53,7 +53,7 @@ public class AuthorDetailFragment : Fragment() {
 
     private fun loadData() {
         val id = this.arguments.getInt("id")
-        async {
+        async() {
             author = ComicsDBApplication.authorDetailService.authorDetail(id)
             uiThread {
                 showData()

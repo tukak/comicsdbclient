@@ -10,8 +10,8 @@ import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
-import kotlinx.android.synthetic.activity_search.pager
-import kotlinx.android.synthetic.activity_search.sliding_tabs
+import kotlinx.android.synthetic.main.activity_search.pager
+import kotlinx.android.synthetic.main.activity_search.sliding_tabs
 
 public class SearchActivity : AppCompatActivity() {
 

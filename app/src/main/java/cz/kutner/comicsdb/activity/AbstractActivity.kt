@@ -10,10 +10,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
-import kotlinx.android.synthetic.activity.drawer_layout
-import kotlinx.android.synthetic.activity.navigation_view
-import kotlinx.android.synthetic.toolbar.searchView
-import kotlinx.android.synthetic.toolbar.toolbar
+import kotlinx.android.synthetic.main.activity.drawer_layout
+import kotlinx.android.synthetic.main.activity.navigation_view
+import kotlinx.android.synthetic.main.toolbar.searchView
+import kotlinx.android.synthetic.main.toolbar.toolbar
 
 
 public abstract class AbstractActivity : AppCompatActivity() {

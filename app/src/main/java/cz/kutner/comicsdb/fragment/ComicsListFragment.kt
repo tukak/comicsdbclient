@@ -42,7 +42,7 @@ public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                async {
+                async() {
                     result = ComicsDBApplication.comicsListService.comicsSearch(searchText)
                     uiThread {
                         showData()
@@ -52,7 +52,7 @@ public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                async {
+                async() {
                     result = ComicsDBApplication.comicsListService.comicsList(lastPage)
                     uiThread {
                         showData()

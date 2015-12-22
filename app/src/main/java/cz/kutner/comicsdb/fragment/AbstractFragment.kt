@@ -12,10 +12,10 @@ import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
-import kotlinx.android.synthetic.fragment.*
-import kotlinx.android.synthetic.view_empty.*
-import kotlinx.android.synthetic.view_error.*
-import kotlinx.android.synthetic.view_progress.*
+import kotlinx.android.synthetic.main.fragment.*
+import kotlinx.android.synthetic.main.view_empty.*
+import kotlinx.android.synthetic.main.view_error.*
+import kotlinx.android.synthetic.main.view_progress.*
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter

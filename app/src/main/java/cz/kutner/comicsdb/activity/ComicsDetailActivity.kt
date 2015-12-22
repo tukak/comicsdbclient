@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.ComicsDetailFragment
-import kotlinx.android.synthetic.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop

@@ -40,7 +40,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                async {
+                async() {
                     result = ComicsDBApplication.seriesService.searchSeries(searchText)
                     uiThread {
                         showData()
@@ -50,7 +50,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                async {
+                async() {
                     result = ComicsDBApplication.seriesService.getSeriesList(lastPage)
                     uiThread {
                         showData()

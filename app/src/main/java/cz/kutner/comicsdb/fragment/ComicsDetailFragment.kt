@@ -16,10 +16,10 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter
 import cz.kutner.comicsdb.model.Comics
-import kotlinx.android.synthetic.fragment.*
-import kotlinx.android.synthetic.view_empty.*
-import kotlinx.android.synthetic.view_error.*
-import kotlinx.android.synthetic.view_progress.*
+import kotlinx.android.synthetic.main.fragment.*
+import kotlinx.android.synthetic.main.view_empty.*
+import kotlinx.android.synthetic.main.view_error.*
+import kotlinx.android.synthetic.main.view_progress.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.uiThread
@@ -52,7 +52,7 @@ public class ComicsDetailFragment : Fragment() {
 
     private fun loadData() {
         val id = this.arguments.getInt("id")
-        async {
+        async() {
             comics = ComicsDBApplication.comicsService.getComics(id)
             uiThread {
                 showData()

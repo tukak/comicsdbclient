@@ -13,8 +13,8 @@ import com.crashlytics.android.answers.ContentViewEvent
 import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import kotlinx.android.synthetic.fragment_about.about_donate
-import kotlinx.android.synthetic.fragment_about.about_first
+import kotlinx.android.synthetic.main.fragment_about.about_donate
+import kotlinx.android.synthetic.main.fragment_about.about_first
 
 public class AboutFragment : Fragment() {
 
