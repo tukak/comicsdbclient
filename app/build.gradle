@@ -28,8 +28,8 @@ android {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 20
-        versionName "20"
+        versionCode 21
+        versionName "21"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         com.android.ddmlib.DdmPreferences.setTimeOut(60000)
     }
