@@ -38,6 +38,13 @@ public class ComicsParser {
                 comics.coverUrl = Utils.fixUrl(coverURI)
             }
         }
+        val fullCoverURIElements = doc.select("a[data-title=Obálka]")
+        if (fullCoverURIElements.size > 0) {
+            val fullCoverURI = fullCoverURIElements.first().attr("href")
+            if (!fullCoverURI.isEmpty()) {
+                comics.fullCoverUrl = Utils.fixUrl(fullCoverURI)
+            }
+        }
 
         for (titulek in doc.select(".titulek")) {
             val title_name = titulek.text().substring(0, titulek.text().length - 1)

@@ -17,11 +17,13 @@ import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
+import cz.kutner.comicsdb.activity.ImageViewActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.find
+import org.jetbrains.anko.onClick
 
 class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -107,6 +109,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
         return v
     }
 
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
         if (i == 0) {
             // zaznam komiksu
@@ -163,6 +166,11 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
                 vh.series.movementMethod = LinkMovementMethod.getInstance()
             }
             Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
+            vh.cover.onClick {
+                val intent = Intent(vh.cover.context, ImageViewActivity::class.java)
+                intent.putExtra(ImageViewActivity.IMAGE_URL, comics.fullCoverUrl)
+                vh.cover.context.startActivity(intent)
+            }
             vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
         } else {

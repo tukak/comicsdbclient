@@ -30,5 +30,6 @@
     <string name="author">Autoři</string>
     <string name="news">Novinky</string>
     <string name="author_photo_description">Fotka autora</string>
+    <string name="picture">Obrázek</string>
 
 </resources>

@@ -24,6 +24,7 @@ data class Comics(var name: String, var id: Int) {
     var comments: ArrayList<Comment> = ArrayList()
         private set
     var coverUrl: String? = null
+    var fullCoverUrl: String? = null
 
     fun addComment(comment: Comment) {
         comments.add(comment)
