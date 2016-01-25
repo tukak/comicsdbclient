@@ -1,3 +1,5 @@
+import com.android.ddmlib.DdmPreferences
+
 buildscript {
     ext.kotlin_version = '1.0.0-beta-4589'
     repositories {
@@ -26,12 +28,12 @@ android {
 
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 21
         versionName "21"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        com.android.ddmlib.DdmPreferences.setTimeOut(60000)
+        DdmPreferences.setTimeOut(60000)
     }
     buildTypes {
         release {
