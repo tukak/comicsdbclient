@@ -2,6 +2,9 @@ package cz.kutner.comicsdb
 
 import android.content.Context
 import android.net.ConnectivityManager
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
+import com.google.android.gms.analytics.HitBuilders
 
 public object Utils {
 
@@ -19,4 +22,13 @@ public object Utils {
             return url
         }
     }
+
+    public fun logVisit(screenName: String, category: String, action: String?, contentName: String, contentType: String, contentId: String?) {
+        val tracker = ComicsDBApplication.tracker
+        tracker.setScreenName(screenName)
+        tracker.send(HitBuilders.ScreenViewBuilder().build())
+        tracker.send(HitBuilders.EventBuilder().setCategory(category).setAction(action).build())
+        Answers.getInstance().logContentView(ContentViewEvent().putContentName(contentName).putContentType(contentType).putContentId(contentId))
+    }
+
 }
