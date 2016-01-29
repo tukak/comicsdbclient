@@ -6,10 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.holder.AuthorViewHolder
 import cz.kutner.comicsdb.model.Author
 import org.jetbrains.anko.async
@@ -64,16 +62,13 @@ public class AuthorFragment : AbstractFragment<Author>() {
     override fun onStart() {
         super.onStart()
         val args = this.arguments
-        val tracker = ComicsDBApplication.tracker
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            tracker.setScreenName("AuthorFragment - Search")
-            tracker.send(HitBuilders.ScreenViewBuilder().build())
+            Utils.logVisitToGoogleAnalytics(screenName = "AuthorFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
-            tracker.setScreenName("AuthorFragment - List")
-            tracker.send(HitBuilders.ScreenViewBuilder().build())
-            Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení seznamu autorů").putContentType("Autor"))
+            Utils.logVisitToGoogleAnalytics(screenName = "AuthorFragment - List")
+            Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
         }
     }
 

@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.holder.ClassifiedViewHolder
 import cz.kutner.comicsdb.model.Classified
@@ -50,10 +48,8 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        val tracker = ComicsDBApplication.tracker
-        tracker.setScreenName("ClassifiedFragment")
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení inzerátů").putContentType("Inzerát"))
+        Utils.logVisitToGoogleAnalytics(screenName = "ClassifiedFragment")
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 
     companion object {

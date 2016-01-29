@@ -35,7 +35,8 @@ public class AuthorDetailFragment : AbstractDetailFragment() {
             recycler_view.adapter = adapter
             recycler_view.setHasFixedSize(true)
             switcher.showContentView()
-            Utils.logVisit("AuthorDetailFragment", "Detail", existing_author.name, "Zobrazení detailu autora", "Autor", existing_author.name)
+            Utils.logVisitToGoogleAnalytics(screenName = "AuthorDetailFragment", category = "Detail", action = existing_author.name)
+            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = existing_author.name)
         }
     }
 

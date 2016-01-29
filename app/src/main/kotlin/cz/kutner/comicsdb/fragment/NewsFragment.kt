@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.holder.NewsViewHolder
 import cz.kutner.comicsdb.model.NewsItem
 import org.jetbrains.anko.async
@@ -47,11 +45,9 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
 
     override fun onStart() {
         super.onStart()
-        val tracker = ComicsDBApplication.tracker
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
-        tracker.setScreenName("NewsFragment")
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení novinek").putContentType("Novinky"))
+        Utils.logVisitToGoogleAnalytics(screenName = "NewsFragment")
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 
     companion object {

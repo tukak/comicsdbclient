@@ -35,7 +35,8 @@ public class SeriesDetailFragment : AbstractDetailFragment() {
             recycler_view.adapter = adapter
             recycler_view.setHasFixedSize(true)
             switcher.showContentView()
-            Utils.logVisit("SeriesDetailFragment", "Detail", existing_series.name, "Zobrazení detailu série", "Série", existing_series.name)
+            Utils.logVisitToGoogleAnalytics(screenName = "SeriesDetailFragment", category = "Detail", action = existing_series.name)
+            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = existing_series.name)
         }
     }
 

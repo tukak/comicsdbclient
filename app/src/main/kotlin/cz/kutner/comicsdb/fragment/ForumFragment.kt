@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.holder.ForumViewHolder
 import cz.kutner.comicsdb.model.ForumEntry
@@ -49,10 +47,8 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        val tracker = ComicsDBApplication.tracker
-        tracker.setScreenName("ForumFragment")
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení fór").putContentType("Fórum"))
+        Utils.logVisitToGoogleAnalytics(screenName = "ForumFragment")
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 
     companion object {

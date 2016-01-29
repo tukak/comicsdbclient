@@ -33,7 +33,8 @@ public class ComicsDetailFragment : AbstractDetailFragment() {
             recycler_view.adapter = adapter
             recycler_view.setHasFixedSize(true)
             switcher.showContentView()
-            Utils.logVisit("ComicsDetailFragment", "Detail", existing_comics.name, "Zobrazení detailu komiksu", "Comics", existing_comics.name)
+            Utils.logVisitToGoogleAnalytics(screenName = "ComicsDetailFragment", category = "Detail", action = existing_comics.name)
+            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = existing_comics.name)
         }
     }
 

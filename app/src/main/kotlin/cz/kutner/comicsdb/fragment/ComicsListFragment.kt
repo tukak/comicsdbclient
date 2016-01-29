@@ -6,10 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
 import org.jetbrains.anko.AnkoLogger
@@ -66,16 +64,13 @@ public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
     override fun onStart() {
         super.onStart()
         val args = this.arguments
-        val tracker = ComicsDBApplication.tracker
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            tracker.setScreenName("ComicsListFragment - Search")
-            tracker.send(HitBuilders.ScreenViewBuilder().build())
+            Utils.logVisitToGoogleAnalytics(screenName = "ComicsListFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
-            tracker.setScreenName("ComicsListFragment - List")
-            tracker.send(HitBuilders.ScreenViewBuilder().build())
-            Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení seznamu comicsů").putContentType("Comics"))
+            Utils.logVisitToGoogleAnalytics(screenName = "ComicsListFragment - List")
+            Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
         }
     }
 

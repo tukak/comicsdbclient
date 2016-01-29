@@ -8,13 +8,9 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.google.android.gms.analytics.HitBuilders
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import kotlinx.android.synthetic.main.fragment_about.about_donate
-import kotlinx.android.synthetic.main.fragment_about.about_first
+import cz.kutner.comicsdb.Utils
+import kotlinx.android.synthetic.main.fragment_about.*
 
 public class AboutFragment : Fragment() {
 
@@ -32,10 +28,8 @@ public class AboutFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        val tracker = ComicsDBApplication.tracker
-        tracker.setScreenName("AboutFragment")
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName("Zobrazení O aplikaci"))
+        Utils.logVisitToGoogleAnalytics(screenName = "AboutFragment")
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení O aplikaci")
     }
 
     companion object {

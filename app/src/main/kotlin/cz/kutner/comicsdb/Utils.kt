@@ -23,12 +23,32 @@ public object Utils {
         }
     }
 
-    public fun logVisit(screenName: String, category: String, action: String?, contentName: String, contentType: String, contentId: String?) {
+    public fun logVisitToGoogleAnalytics(screenName: String, category: String? = null, action: String? = null) {
         val tracker = ComicsDBApplication.tracker
         tracker.setScreenName(screenName)
         tracker.send(HitBuilders.ScreenViewBuilder().build())
-        tracker.send(HitBuilders.EventBuilder().setCategory(category).setAction(action).build())
-        Answers.getInstance().logContentView(ContentViewEvent().putContentName(contentName).putContentType(contentType).putContentId(contentId))
+        val eventBuilder = HitBuilders.EventBuilder()
+        if (category != null) {
+            eventBuilder.setCategory(category)
+        }
+        if (action != null) {
+            eventBuilder.setAction(action)
+        }
+        tracker.send(eventBuilder.build())
+    }
+
+    public fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
+        val contentViewEvent = ContentViewEvent()
+        if (contentName != null) {
+            contentViewEvent.putContentName(contentName)
+        }
+        if (contentType != null) {
+            contentViewEvent.putContentType(contentType)
+        }
+        if (contentId != null) {
+            contentViewEvent.putContentId(contentId)
+        }
+        Answers.getInstance().logContentView(contentViewEvent)
     }
 
 }
