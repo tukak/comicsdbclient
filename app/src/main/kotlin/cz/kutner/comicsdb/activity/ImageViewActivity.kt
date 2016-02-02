@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.squareup.picasso.Picasso
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import kotlinx.android.synthetic.main.activity_image_view.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.jetbrains.anko.ctx
 
 
 public class ImageViewActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ public class ImageViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image_view)
         setupToolbar()
         val url = intent.getStringExtra(ImageViewActivity.IMAGE_URL)
-        Picasso.with(ComicsDBApplication.context).load(url).into(imageView)
+        Picasso.with(ctx).load(url).into(imageView)
 
     }
 

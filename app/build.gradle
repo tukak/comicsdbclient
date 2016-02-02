@@ -65,6 +65,11 @@ dependencies {
         transitive = true;
     }
     compile 'com.squareup.okhttp:okhttp:2.7.1'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'

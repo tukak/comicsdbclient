@@ -3,8 +3,7 @@ package cz.kutner.comicsdb
 import android.content.Context
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
-import com.google.android.gms.analytics.GoogleAnalytics
-import com.google.android.gms.analytics.Tracker
+import com.squareup.leakcanary.LeakCanary
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
@@ -19,6 +18,7 @@ class ComicsDBApplication : android.app.Application() {
         if (BuildConfig.DEBUG) {
             Picasso.with(applicationContext).setIndicatorsEnabled(true)
         }
+        LeakCanary.install(this)
         context = applicationContext
     }
 
@@ -26,11 +26,6 @@ class ComicsDBApplication : android.app.Application() {
         //TODO tady bych se rád zbavil těch otazníků
         var context: Context? = null
             set
-        val tracker: Tracker by lazy {
-            val analytics = GoogleAnalytics.getInstance(context).newTracker(context?.getString(R.string.google_analytics_id))
-            analytics.enableExceptionReporting(true)
-            analytics
-        }
 
         val adapter: RestAdapter.Builder by lazy { RestAdapter.Builder().setEndpoint(context?.getString(R.string.url_comicsdb)) }
         val seriesService: SeriesService by lazy { adapter.setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
