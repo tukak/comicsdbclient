@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.connector.service.ComicsListService
 import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
 import org.jetbrains.anko.AnkoLogger
@@ -15,14 +16,20 @@ import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
+import javax.inject.Inject
 
 class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
+    @Inject lateinit var comicsListService: ComicsListService
 
     init {
         preloadCount = 20
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = EasyRecyclerAdapter(
@@ -41,7 +48,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = ComicsDBApplication.comicsListService.comicsSearch(searchText)
+                    result = comicsListService.comicsSearch(searchText)
                     uiThread {
                         showData()
                         lastPage++
@@ -51,7 +58,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
             } else {
                 //zobrazujeme nejnovější
                 async() {
-                    result = ComicsDBApplication.comicsListService.comicsList(lastPage)
+                    result = comicsListService.comicsList(lastPage)
                     uiThread {
                         showData()
                         lastPage++

@@ -5,15 +5,22 @@ import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.picasso.Picasso
-import cz.kutner.comicsdb.connector.converter.*
-import cz.kutner.comicsdb.connector.service.*
+import cz.kutner.comicsdb.di.AndroidModule
+import cz.kutner.comicsdb.di.DaggerNetComponent
+import cz.kutner.comicsdb.di.NetComponent
+import cz.kutner.comicsdb.di.NetModule
 import io.fabric.sdk.android.Fabric
-import retrofit.RestAdapter
 
 class ComicsDBApplication : android.app.Application() {
 
+    public lateinit var netComponent: NetComponent
+        get
+
     override fun onCreate() {
         super.onCreate()
+
+        netComponent = DaggerNetComponent.builder().androidModule(AndroidModule(this)).netModule(NetModule(applicationContext.getString(R.string.url_comicsdb))).build()
+
         Fabric.with(this, Crashlytics.Builder().core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build())
         if (BuildConfig.DEBUG) {
             Picasso.with(applicationContext).setIndicatorsEnabled(true)
@@ -26,16 +33,5 @@ class ComicsDBApplication : android.app.Application() {
         //TODO tady bych se rád zbavil těch otazníků
         var context: Context? = null
             set
-
-        val adapter: RestAdapter.Builder by lazy { RestAdapter.Builder().setEndpoint(context?.getString(R.string.url_comicsdb)) }
-        val seriesService: SeriesService by lazy { adapter.setConverter(SeriesConverter()).build().create(SeriesService::class.java) }
-        val seriesDetailService: SeriesDetailService by lazy { adapter.setConverter(SeriesDetailConverter()).build().create(SeriesDetailService::class.java) }
-        val authorService: AuthorService by lazy { adapter.setConverter(AuthorConverter()).build().create(AuthorService::class.java) }
-        val authorDetailService: AuthorDetailService by lazy { adapter.setConverter(AuthorDetailConverter()).build().create(AuthorDetailService::class.java) }
-        val newsService: NewsService by lazy { adapter.setConverter(NewsConverter()).build().create(NewsService::class.java) }
-        val forumService: ForumService by lazy { adapter.setConverter(ForumConverter()).build().create(ForumService::class.java) }
-        val classifiedService: ClassifiedService by lazy { adapter.setConverter(ClassifiedConverter()).build().create(ClassifiedService::class.java) }
-        val comicsListService: ComicsListService by lazy { adapter.setConverter(ComicsListConverter()).build().create(ComicsListService::class.java) }
-        val comicsService: ComicsService by lazy { adapter.setConverter(ComicsConverter()).build().create(ComicsService::class.java) }
     }
 }

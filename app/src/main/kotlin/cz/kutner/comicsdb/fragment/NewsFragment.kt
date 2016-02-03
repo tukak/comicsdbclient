@@ -7,20 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.connector.service.NewsService
 import cz.kutner.comicsdb.holder.NewsViewHolder
 import cz.kutner.comicsdb.model.NewsItem
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
+import javax.inject.Inject
 
 class NewsFragment : AbstractFragment<NewsItem>() {
 
+    @Inject lateinit var newsService: NewsService
 
     init {
         preloadCount = 0
         endless = false
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = EasyRecyclerAdapter(
@@ -34,7 +41,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
         if (!searchRunning) {
             searchRunning = true
             async() {
-                result = ComicsDBApplication.newsService.listNews()
+                result = newsService.listNews()
                 uiThread {
                     showData()
                     lastPage++

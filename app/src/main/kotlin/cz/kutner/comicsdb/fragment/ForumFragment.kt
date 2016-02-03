@@ -8,18 +8,27 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ForumHelper
+import cz.kutner.comicsdb.connector.service.ForumService
 import cz.kutner.comicsdb.holder.ForumViewHolder
 import cz.kutner.comicsdb.model.ForumEntry
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
+import javax.inject.Inject
 
 class ForumFragment : AbstractFragment<ForumEntry>() {
+
+    @Inject lateinit var forumService: ForumService
 
     init {
         preloadCount = 20
         spinnerEnabled = true
         spinnerValues = arrayOf("Všechna fora", "* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub", "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,7 +44,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
             searchRunning = true
             val searchText = ""
             async() {
-                result = ComicsDBApplication.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+                result = forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
                 uiThread {
                     showData()
                     lastPage++

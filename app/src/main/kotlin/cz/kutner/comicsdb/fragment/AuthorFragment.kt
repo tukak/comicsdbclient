@@ -8,19 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.connector.service.AuthorService
 import cz.kutner.comicsdb.holder.AuthorViewHolder
 import cz.kutner.comicsdb.model.Author
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
+import javax.inject.Inject
 
 class AuthorFragment : AbstractFragment<Author>() {
+
+    @Inject lateinit var authorService: AuthorService
 
     init {
         preloadCount = 20
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = EasyRecyclerAdapter(
@@ -39,7 +47,7 @@ class AuthorFragment : AbstractFragment<Author>() {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = ComicsDBApplication.authorService.authorSearch(searchText)
+                    result = authorService.authorSearch(searchText)
                     uiThread {
                         showData()
                         lastPage++
@@ -49,7 +57,7 @@ class AuthorFragment : AbstractFragment<Author>() {
             } else {
                 //zobrazujeme nejnovější
                 async() {
-                    result = ComicsDBApplication.authorService.listAuthors(lastPage)
+                    result = authorService.listAuthors(lastPage)
                     uiThread {
                         showData()
                         lastPage++

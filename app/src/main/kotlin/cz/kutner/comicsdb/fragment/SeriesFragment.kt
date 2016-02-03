@@ -8,18 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.connector.service.SeriesService
 import cz.kutner.comicsdb.holder.SeriesViewHolder
 import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
+import javax.inject.Inject
 
 class SeriesFragment : AbstractFragment<Series>() {
 
+    @Inject lateinit var seriesService: SeriesService
 
     init {
         preloadCount = 20
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,7 +47,7 @@ class SeriesFragment : AbstractFragment<Series>() {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = ComicsDBApplication.seriesService.searchSeries(searchText)
+                    result = seriesService.searchSeries(searchText)
                     uiThread {
                         showData()
                         lastPage++
@@ -49,7 +57,7 @@ class SeriesFragment : AbstractFragment<Series>() {
             } else {
                 //zobrazujeme nejnovější
                 async() {
-                    result = ComicsDBApplication.seriesService.getSeriesList(lastPage)
+                    result = seriesService.getSeriesList(lastPage)
                     uiThread {
                         showData()
                         lastPage++

@@ -8,19 +8,27 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
+import cz.kutner.comicsdb.connector.service.ClassifiedService
 import cz.kutner.comicsdb.holder.ClassifiedViewHolder
 import cz.kutner.comicsdb.model.Classified
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
+import javax.inject.Inject
 
 class ClassifiedFragment : AbstractFragment<Classified>() {
 
+    @Inject lateinit var classifiedService: ClassifiedService
 
     init {
         preloadCount = 8
         spinnerEnabled = true
         spinnerValues = arrayOf("Všechny inzeráty", "Prodám", "Koupím", "Vyměním", "Ostatní")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).netComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,7 +44,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
             searchRunning = true
             val searchText = ""
             async() {
-                result = ComicsDBApplication.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+                result = classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
                 uiThread {
                     showData()
                     lastPage++
