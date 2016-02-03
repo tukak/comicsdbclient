@@ -34,6 +34,10 @@ public object Utils {
     public fun logVisitToGoogleAnalytics(screenName: String, category: String? = null, action: String? = null) {
         tracker.setScreenName(screenName)
         tracker.send(HitBuilders.ScreenViewBuilder().build())
+        logEventToGoogleAnalytics(category = category, action = action)
+    }
+
+    public fun logEventToGoogleAnalytics(category: String?, action: String?) {
         val eventBuilder = HitBuilders.EventBuilder()
         if (category != null) {
             eventBuilder.setCategory(category)
@@ -42,10 +46,6 @@ public object Utils {
             eventBuilder.setAction(action)
         }
         tracker.send(eventBuilder.build())
-    }
-
-    public fun logEventToGoogleAnalytics(category: String, action: String){
-        tracker.send(HitBuilders.EventBuilder().setCategory(category).setAction(action).build())
     }
 
     public fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
