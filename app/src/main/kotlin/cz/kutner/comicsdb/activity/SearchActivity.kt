@@ -11,13 +11,13 @@ import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_search.*
 
-public class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         val actionBar = supportActionBar
-        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
         var fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)

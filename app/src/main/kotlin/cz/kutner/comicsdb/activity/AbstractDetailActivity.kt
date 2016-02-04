@@ -12,7 +12,7 @@ import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
-public abstract class AbstractDetailActivity : AppCompatActivity() {
+abstract class AbstractDetailActivity : AppCompatActivity() {
 
     abstract val prefix: String
     abstract val extraName: String
@@ -47,7 +47,7 @@ public abstract class AbstractDetailActivity : AppCompatActivity() {
     fun setupToolbar() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
             searchView.visibility = View.GONE
         }
     }

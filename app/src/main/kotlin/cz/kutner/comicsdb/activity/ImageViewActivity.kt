@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.ctx
 
 
-public class ImageViewActivity : AppCompatActivity() {
+class ImageViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ public class ImageViewActivity : AppCompatActivity() {
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
             searchView.visibility = View.GONE
         }
     }
@@ -38,6 +38,6 @@ public class ImageViewActivity : AppCompatActivity() {
     }
 
     companion object {
-        public val IMAGE_URL: String = "cz.kutner.comicsdbclient.comicsdbclient.image_url"
+        val IMAGE_URL: String = "cz.kutner.comicsdbclient.comicsdbclient.image_url"
     }
 }

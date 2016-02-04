@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.toolbar.searchView
 import kotlinx.android.synthetic.main.toolbar.toolbar
 
 
-public abstract class AbstractActivity : AppCompatActivity() {
+abstract class AbstractActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ public abstract class AbstractActivity : AppCompatActivity() {
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
             toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
             toolbar.setNavigationOnClickListener { v -> drawer_layout.openDrawer(GravityCompat.START) }
         }
