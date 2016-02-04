@@ -15,7 +15,6 @@ interface NetComponent {
     fun inject(comicsListFragment: ComicsListFragment)
     fun inject(forumFragment: ForumFragment)
     fun inject(newsFragment: NewsFragment)
-    /*fun inject(abstractDetailFragment: AbstractDetailFragment)*/
     fun inject(seriesDetailFragment: SeriesDetailFragment)
     fun inject(comicsDetailFragment: ComicsDetailFragment)
     fun inject(authorDetailFragment: AuthorDetailFragment)
