@@ -17,21 +17,21 @@ import uk.co.ribot.easyadapter.annotations.ViewId
 
 @LayoutId(R.layout.list_item_classified) class ClassifiedViewHolder(view: View) : ItemViewHolder<Classified>(view) {
     @ViewId(R.id.classified_nick_icon)
-    var classifiedNickIcon: ImageView? = null
+    lateinit var classifiedNickIcon: ImageView
     @ViewId(R.id.classified_nick)
-    var classifiedNick: TextView? = null
+    lateinit var classifiedNick: TextView
     @ViewId(R.id.classified_category)
-    var classifiedCategory: TextView? = null
+    lateinit var classifiedCategory: TextView
     @ViewId(R.id.classified_time)
-    var classifiedTime: TextView? = null
+    lateinit var classifiedTime: TextView
     @ViewId(R.id.classified_text)
-    var classifiedText: TextView? = null
+    lateinit var classifiedText: TextView
 
     override fun onSetValues(classified: Classified, positionInfo: PositionInfo) {
-        classifiedNick?.text = classified.nick
-        classifiedTime?.text = classified.time
-        classifiedText?.text = Html.fromHtml(classified.text)
+        classifiedNick.text = classified.nick
+        classifiedTime.text = classified.time
+        classifiedText.text = Html.fromHtml(classified.text)
         Picasso.with(ComicsDBApplication.context).load(classified.iconUrl).into(classifiedNickIcon)
-        classifiedCategory?.text = classified.category
+        classifiedCategory.text = classified.category
     }
 }

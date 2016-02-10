@@ -18,17 +18,17 @@ import uk.co.ribot.easyadapter.annotations.ViewId
 class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
 
     @ViewId(R.id.comics_name)
-    internal var comicsName: TextView? = null
+    internal lateinit var comicsName: TextView
     @ViewId(R.id.comics_published)
-    internal var comicsPublished: TextView? = null
+    internal lateinit var comicsPublished: TextView
     @ViewId(R.id.comics_rating)
-    internal var comicsRating: TextView? = null
+    internal lateinit var comicsRating: TextView
     internal var comicsId: Int? = null
     @ViewId(R.id.card_view_comics)
-    internal var card_view_comics: CardView? = null
+    internal lateinit var card_view_comics: CardView
 
     init {
-        card_view_comics?.onClick {
+        card_view_comics.onClick {
             val intent = Intent(view.context, ComicsDetailActivity::class.java)
             if (comicsId != null) {
                 intent.putExtra(MainActivity.COMICS_ID, comicsId as Int)
@@ -38,12 +38,12 @@ class ComicsViewHolder(view: View) : ItemViewHolder<Comics>(view) {
     }
 
     override fun onSetValues(comics: Comics, positionInfo: PositionInfo) {
-        comicsName?.text = comics.name
-        comicsPublished?.text = comics.published
+        comicsName.text = comics.name
+        comicsPublished.text = comics.published
         if (comics.rating.toInt() > 0) {
-            comicsRating?.text = comics.rating.toString()
+            comicsRating.text = comics.rating.toString()
         } else {
-            comicsRating?.text = " "
+            comicsRating.text = " "
         }
         comicsId = comics.id
     }

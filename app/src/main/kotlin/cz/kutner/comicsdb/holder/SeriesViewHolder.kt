@@ -17,15 +17,15 @@ import uk.co.ribot.easyadapter.annotations.ViewId
 
 @LayoutId(R.layout.list_item_series) class SeriesViewHolder(view: View) : ItemViewHolder<Series>(view) {
     @ViewId(R.id.series_name)
-    var seriesName: TextView? = null
+    lateinit var seriesName: TextView
     @ViewId(R.id.seriesNumberOfComicses)
-    var seriesNumberOfComicses: TextView? = null
+    lateinit var seriesNumberOfComicses: TextView
     @ViewId(R.id.card_view_series)
-    internal var card_view_series: CardView? = null
+    internal lateinit var card_view_series: CardView
     internal var seriesId: Int? = null
 
     init {
-        card_view_series?.onClick {
+        card_view_series.onClick {
             val intent = Intent(view.context, SeriesDetailActivity::class.java)
             if (seriesId != null) {
                 intent.putExtra(MainActivity.SERIES_ID, seriesId as Int)
@@ -35,8 +35,8 @@ import uk.co.ribot.easyadapter.annotations.ViewId
     }
 
     override fun onSetValues(series: Series, positionInfo: PositionInfo) {
-        seriesName?.text = series.name
-        seriesNumberOfComicses?.text = series.numberOfComicses?.toString()
+        seriesName.text = series.name
+        seriesNumberOfComicses.text = series.numberOfComicses?.toString()
         seriesId = series.id
     }
 }

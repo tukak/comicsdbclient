@@ -14,7 +14,7 @@ import org.jetbrains.anko.uiThread
 
 class SeriesDetailFragment : AbstractDetailFragment() {
 
-    private var series: Series? = null
+    private lateinit var series: Series
 
     override fun loadData() {
         val id = this.arguments.getInt("id")
@@ -24,20 +24,16 @@ class SeriesDetailFragment : AbstractDetailFragment() {
                 showData()
             }
         }
-
     }
 
     override fun showData() {
-        if (series != null) {
-            var existing_series: Series = series as Series
-            (activity as AppCompatActivity).supportActionBar?.title = existing_series.name
-            val adapter = SeriesDetailRVAdapter(existing_series)
-            recycler_view.adapter = adapter
-            recycler_view.setHasFixedSize(true)
-            switcher.showContentView()
-            Utils.logVisitToGoogleAnalytics(screenName = "SeriesDetailFragment", category = "Detail", action = existing_series.name)
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = existing_series.name)
-        }
+        (activity as AppCompatActivity).supportActionBar?.title = series.name
+        val adapter = SeriesDetailRVAdapter(series)
+        recycler_view.adapter = adapter
+        recycler_view.setHasFixedSize(true)
+        switcher.showContentView()
+        Utils.logVisitToGoogleAnalytics(screenName = "SeriesDetailFragment", category = "Detail", action = series.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = series.name)
     }
 
     companion object {

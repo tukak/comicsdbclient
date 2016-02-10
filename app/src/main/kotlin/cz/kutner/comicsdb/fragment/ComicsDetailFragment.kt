@@ -13,7 +13,7 @@ import org.jetbrains.anko.uiThread
 
 class ComicsDetailFragment : AbstractDetailFragment() {
 
-    private var comics: Comics? = null
+    private lateinit var comics: Comics
 
     override fun loadData() {
         val id = this.arguments.getInt("id")
@@ -26,16 +26,13 @@ class ComicsDetailFragment : AbstractDetailFragment() {
     }
 
     override fun showData() {
-        if (comics != null) {
-            val existing_comics: Comics = comics as Comics
-            (activity as AppCompatActivity).supportActionBar?.title = existing_comics.name
-            val adapter = ComicsDetailRVAdapter(existing_comics)
-            recycler_view.adapter = adapter
-            recycler_view.setHasFixedSize(true)
-            switcher.showContentView()
-            Utils.logVisitToGoogleAnalytics(screenName = "ComicsDetailFragment", category = "Detail", action = existing_comics.name)
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = existing_comics.name)
-        }
+        (activity as AppCompatActivity).supportActionBar?.title = comics.name
+        val adapter = ComicsDetailRVAdapter(comics)
+        recycler_view.adapter = adapter
+        recycler_view.setHasFixedSize(true)
+        switcher.showContentView()
+        Utils.logVisitToGoogleAnalytics(screenName = "ComicsDetailFragment", category = "Detail", action = comics.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = comics.name)
     }
 
     companion object {

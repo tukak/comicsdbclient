@@ -14,23 +14,23 @@ import uk.co.ribot.easyadapter.annotations.ViewId
 
 @LayoutId(R.layout.list_item_news) class NewsViewHolder(view: View) : ItemViewHolder<NewsItem>(view) {
     @ViewId(R.id.newsItemTitle)
-    var newsItemTitle: TextView? = null
+    lateinit var newsItemTitle: TextView
     @ViewId(R.id.newsItemNick)
-    var newsItemNick: TextView? = null
+    lateinit var newsItemNick: TextView
     @ViewId(R.id.newsItemTime)
-    var newsItemTime: TextView? = null
+    lateinit var newsItemTime: TextView
     @ViewId(R.id.newsItemText)
-    var newsItemText: TextView? = null
+    lateinit var newsItemText: TextView
 
     init {
-        newsItemText?.movementMethod = LinkMovementMethod.getInstance()
+        newsItemText.movementMethod = LinkMovementMethod.getInstance()
 
     }
 
     override fun onSetValues(newsItem: NewsItem, positionInfo: PositionInfo) {
-        newsItemNick?.text = newsItem.nick
-        newsItemText?.text = Html.fromHtml(newsItem.text)
-        newsItemTime?.text = newsItem.time
-        newsItemTitle?.text = newsItem.title
+        newsItemNick.text = newsItem.nick
+        newsItemText.text = Html.fromHtml(newsItem.text)
+        newsItemTime.text = newsItem.time
+        newsItemTitle.text = newsItem.title
     }
 }

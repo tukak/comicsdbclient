@@ -17,16 +17,16 @@ import uk.co.ribot.easyadapter.annotations.ViewId
 
 @LayoutId(R.layout.list_item_authors) class AuthorViewHolder(view: View) : ItemViewHolder<Author>(view) {
     @ViewId(R.id.authorName)
-    var authorName: TextView? = null
+    lateinit var authorName: TextView
     @ViewId(R.id.authorCountry)
-    var authorCountry: TextView? = null
+    lateinit var authorCountry: TextView
     @ViewId(R.id.card_view_authors)
-    internal var card_view_authors: CardView? = null
+    internal lateinit var card_view_authors: CardView
     internal var authorId: Int? = null
 
 
     init {
-        card_view_authors?.onClick {
+        card_view_authors.onClick {
             val intent = Intent(view.context, AuthorDetailActivity::class.java)
             if (authorId != null) {
                 intent.putExtra(MainActivity.AUTHOR_ID, authorId as Int)
@@ -36,8 +36,8 @@ import uk.co.ribot.easyadapter.annotations.ViewId
     }
 
     override fun onSetValues(author: Author, positionInfo: PositionInfo) {
-        authorName?.text = author.name
-        authorCountry?.text = author.country
+        authorName.text = author.name
+        authorCountry.text = author.country
         authorId = author.id
     }
 }

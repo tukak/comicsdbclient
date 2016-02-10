@@ -14,7 +14,7 @@ import org.jetbrains.anko.uiThread
 
 class AuthorDetailFragment : AbstractDetailFragment() {
 
-    private var author: Author? = null
+    private lateinit var author: Author
 
     override fun loadData() {
         val id = this.arguments.getInt("id")
@@ -24,20 +24,16 @@ class AuthorDetailFragment : AbstractDetailFragment() {
                 showData()
             }
         }
-
     }
 
     override fun showData() {
-        if (author != null) {
-            val existing_author: Author = author as Author
-            (activity as AppCompatActivity).supportActionBar?.title = existing_author.name
-            val adapter = AuthorDetailRVAdapter(existing_author)
-            recycler_view.adapter = adapter
-            recycler_view.setHasFixedSize(true)
-            switcher.showContentView()
-            Utils.logVisitToGoogleAnalytics(screenName = "AuthorDetailFragment", category = "Detail", action = existing_author.name)
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = existing_author.name)
-        }
+        (activity as AppCompatActivity).supportActionBar?.title = author.name
+        val adapter = AuthorDetailRVAdapter(author)
+        recycler_view.adapter = adapter
+        recycler_view.setHasFixedSize(true)
+        switcher.showContentView()
+        Utils.logVisitToGoogleAnalytics(screenName = "AuthorDetailFragment", category = "Detail", action = author.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = author.name)
     }
 
     companion object {
