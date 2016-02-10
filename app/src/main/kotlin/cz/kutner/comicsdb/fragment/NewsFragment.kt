@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.service.NewsService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.NewsViewHolder
 import cz.kutner.comicsdb.model.NewsItem
 import org.jetbrains.anko.async
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class NewsFragment : AbstractFragment<NewsItem>() {
 
     @Inject lateinit var newsService: NewsService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 0
@@ -26,7 +28,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,7 +55,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
-        Utils.logVisitToGoogleAnalytics(screenName = "NewsFragment")
+        tracker.logVisit(screenName = "NewsFragment")
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 

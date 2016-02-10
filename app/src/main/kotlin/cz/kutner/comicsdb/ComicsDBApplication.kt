@@ -10,13 +10,17 @@ import io.fabric.sdk.android.Fabric
 
 class ComicsDBApplication : android.app.Application() {
 
-    lateinit var retrofitComponent: RetrofitComponent
+    lateinit var applicationComponent: ApplicationComponent
         get
 
     override fun onCreate() {
         super.onCreate()
 
-        retrofitComponent = DaggerRetrofitComponent.builder().androidModule(AndroidModule(this)).retrofitModule(RetrofitModule(applicationContext.getString(R.string.url_comicsdb))).build()
+        applicationComponent = DaggerApplicationComponent.builder()
+                .androidModule(AndroidModule(this))
+                .retrofitModule(RetrofitModule(applicationContext.getString(R.string.url_comicsdb)))
+                .googleAnalyticsTracker(GoogleAnalyticsTracker(applicationContext))
+                .build()
 
         Fabric.with(this, Crashlytics.Builder().core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build())
         if (BuildConfig.DEBUG) {

@@ -7,6 +7,7 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.AuthorDetailRVAdapter
 import cz.kutner.comicsdb.connector.service.AuthorDetailService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Author
 import kotlinx.android.synthetic.main.fragment.*
 import org.jetbrains.anko.async
@@ -17,12 +18,13 @@ import javax.inject.Inject
 class AuthorDetailFragment : AbstractDetailFragment() {
 
     @Inject lateinit var authorDetailService: AuthorDetailService
+    @Inject lateinit var tracker: Tracker
 
     private lateinit var author: Author
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun loadData() {
@@ -41,7 +43,7 @@ class AuthorDetailFragment : AbstractDetailFragment() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        Utils.logVisitToGoogleAnalytics(screenName = "AuthorDetailFragment", category = "Detail", action = author.name)
+        tracker.logVisit(screenName = "AuthorDetailFragment", category = "Detail", action = existing_author.name)
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = author.name)
     }
 

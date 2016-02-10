@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.ContentViewEvent
 import com.google.android.gms.analytics.GoogleAnalytics
-import com.google.android.gms.analytics.HitBuilders
 import com.google.android.gms.analytics.Tracker
 
 object Utils {
@@ -29,23 +28,6 @@ object Utils {
         } else {
             return url
         }
-    }
-
-    fun logVisitToGoogleAnalytics(screenName: String, category: String? = null, action: String? = null) {
-        tracker.setScreenName(screenName)
-        tracker.send(HitBuilders.ScreenViewBuilder().build())
-        logEventToGoogleAnalytics(category = category, action = action)
-    }
-
-    fun logEventToGoogleAnalytics(category: String?, action: String?) {
-        val eventBuilder = HitBuilders.EventBuilder()
-        if (category != null) {
-            eventBuilder.setCategory(category)
-        }
-        if (action != null) {
-            eventBuilder.setAction(action)
-        }
-        tracker.send(eventBuilder.build())
     }
 
     fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {

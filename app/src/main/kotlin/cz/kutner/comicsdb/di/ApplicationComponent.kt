@@ -1,13 +1,14 @@
 package cz.kutner.comicsdb.di
 
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.activity.SearchActivity
 import cz.kutner.comicsdb.fragment.*
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AndroidModule::class, RetrofitModule::class))
-interface RetrofitComponent {
+@Component(modules = arrayOf(AndroidModule::class, RetrofitModule::class, GoogleAnalyticsTracker::class))
+interface ApplicationComponent {
     fun inject(application: ComicsDBApplication)
     fun inject(seriesFragment: SeriesFragment)
     fun inject(authorFragment: AuthorFragment)
@@ -18,4 +19,6 @@ interface RetrofitComponent {
     fun inject(seriesDetailFragment: SeriesDetailFragment)
     fun inject(comicsDetailFragment: ComicsDetailFragment)
     fun inject(authorDetailFragment: AuthorDetailFragment)
+    fun inject(aboutFragment: AboutFragment)
+    fun inject(searchActivity: SearchActivity)
 }

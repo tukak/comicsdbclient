@@ -9,6 +9,7 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.connector.service.ClassifiedService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.ClassifiedViewHolder
 import cz.kutner.comicsdb.model.Classified
 import org.jetbrains.anko.async
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class ClassifiedFragment : AbstractFragment<Classified>() {
 
     @Inject lateinit var classifiedService: ClassifiedService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 8
@@ -28,7 +30,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,7 +58,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        Utils.logVisitToGoogleAnalytics(screenName = "ClassifiedFragment")
+        tracker.logVisit(screenName = "ClassifiedFragment")
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 

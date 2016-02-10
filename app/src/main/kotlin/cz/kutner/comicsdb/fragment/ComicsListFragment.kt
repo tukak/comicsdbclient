@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.service.ComicsListService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
 import org.jetbrains.anko.AnkoLogger
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
     @Inject lateinit var comicsListService: ComicsListService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -28,7 +30,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -73,10 +75,10 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            Utils.logVisitToGoogleAnalytics(screenName = "ComicsListFragment - Search")
+            tracker.logVisit(screenName = "ComicsListFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
-            Utils.logVisitToGoogleAnalytics(screenName = "ComicsListFragment - List")
+            tracker.logVisit(screenName = "ComicsListFragment - List")
             Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
         }
     }

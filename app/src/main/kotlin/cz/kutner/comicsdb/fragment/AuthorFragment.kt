@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.service.AuthorService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.AuthorViewHolder
 import cz.kutner.comicsdb.model.Author
 import org.jetbrains.anko.async
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class AuthorFragment : AbstractFragment<Author>() {
 
     @Inject lateinit var authorService: AuthorService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -27,7 +29,7 @@ class AuthorFragment : AbstractFragment<Author>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -72,10 +74,10 @@ class AuthorFragment : AbstractFragment<Author>() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            Utils.logVisitToGoogleAnalytics(screenName = "AuthorFragment - Search")
+            tracker.logVisit(screenName = "AuthorFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
-            Utils.logVisitToGoogleAnalytics(screenName = "AuthorFragment - List")
+            tracker.logVisit(screenName = "AuthorFragment - List")
             Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
         }
     }

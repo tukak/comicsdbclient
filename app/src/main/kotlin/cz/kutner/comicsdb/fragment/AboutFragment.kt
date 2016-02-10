@@ -8,12 +8,21 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.di.Tracker
 import kotlinx.android.synthetic.main.fragment_about.*
+import javax.inject.Inject
 
 class AboutFragment : Fragment() {
 
+    @Inject lateinit var tracker: Tracker
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
+    }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_about, container, false)
@@ -28,7 +37,7 @@ class AboutFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        Utils.logVisitToGoogleAnalytics(screenName = "AboutFragment")
+        tracker.logVisit(screenName = "AboutFragment")
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení O aplikaci")
     }
 

@@ -9,6 +9,7 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.connector.service.ForumService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.ForumViewHolder
 import cz.kutner.comicsdb.model.ForumEntry
 import org.jetbrains.anko.async
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class ForumFragment : AbstractFragment<ForumEntry>() {
 
     @Inject lateinit var forumService: ForumService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -28,7 +30,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,7 +58,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        Utils.logVisitToGoogleAnalytics(screenName = "ForumFragment")
+        tracker.logVisit(screenName = "ForumFragment")
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 

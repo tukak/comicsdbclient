@@ -6,15 +6,19 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.SearchEvent
+import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
+import cz.kutner.comicsdb.di.Tracker
 import kotlinx.android.synthetic.main.activity_search.*
+import javax.inject.Inject
 
 class SearchActivity : AppCompatActivity() {
+    @Inject lateinit var tracker: Tracker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (this.application as ComicsDBApplication).applicationComponent.inject(this)
         setContentView(R.layout.activity_search)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
@@ -23,6 +27,6 @@ class SearchActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
         Answers.getInstance().logSearch(SearchEvent().putQuery(query))
-        Utils.logEventToGoogleAnalytics(category = "Search", action = query)
+        tracker.logEvent(category = "Search", action = query)
     }
 }

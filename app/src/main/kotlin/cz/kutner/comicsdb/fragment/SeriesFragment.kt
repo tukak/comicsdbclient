@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.Utils
 import cz.kutner.comicsdb.connector.service.SeriesService
+import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.holder.SeriesViewHolder
 import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.async
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class SeriesFragment : AbstractFragment<Series>() {
 
     @Inject lateinit var seriesService: SeriesService
+    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -27,7 +29,7 @@ class SeriesFragment : AbstractFragment<Series>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
+        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -72,10 +74,10 @@ class SeriesFragment : AbstractFragment<Series>() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            Utils.logVisitToGoogleAnalytics(screenName = "SeriesFragment - Search")
+            tracker.logVisit(screenName = "SeriesFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Serie"
-            Utils.logVisitToGoogleAnalytics(screenName = "SeriesFragment - List")
+            tracker.logVisit(screenName = "SeriesFragment - List")
             Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu sérií", contentType = "Série")
         }
     }
