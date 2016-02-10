@@ -8,7 +8,7 @@ import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.HitBuilders
 import com.google.android.gms.analytics.Tracker
 
-public object Utils {
+object Utils {
 
     val tracker: Tracker by lazy {
         val analytics = GoogleAnalytics.getInstance(ComicsDBApplication.context).newTracker(ComicsDBApplication.context?.getString(R.string.google_analytics_id))
@@ -16,13 +16,13 @@ public object Utils {
         analytics
     }
 
-    public fun isConnected(): Boolean {
+    fun isConnected(): Boolean {
         val cm = ComicsDBApplication.context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
-    public fun fixUrl(url: String, prefix: String = ""): String {
+    fun fixUrl(url: String, prefix: String = ""): String {
         val real_prefix = if (prefix.length > 0) prefix else ComicsDBApplication.context?.getString(R.string.url_comicsdb)
         if (!url.startsWith("http") && !url.startsWith("data")) {
             return real_prefix + url
@@ -31,13 +31,13 @@ public object Utils {
         }
     }
 
-    public fun logVisitToGoogleAnalytics(screenName: String, category: String? = null, action: String? = null) {
+    fun logVisitToGoogleAnalytics(screenName: String, category: String? = null, action: String? = null) {
         tracker.setScreenName(screenName)
         tracker.send(HitBuilders.ScreenViewBuilder().build())
         logEventToGoogleAnalytics(category = category, action = action)
     }
 
-    public fun logEventToGoogleAnalytics(category: String?, action: String?) {
+    fun logEventToGoogleAnalytics(category: String?, action: String?) {
         val eventBuilder = HitBuilders.EventBuilder()
         if (category != null) {
             eventBuilder.setCategory(category)
@@ -48,7 +48,7 @@ public object Utils {
         tracker.send(eventBuilder.build())
     }
 
-    public fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
+    fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
         val contentViewEvent = ContentViewEvent()
         if (contentName != null) {
             contentViewEvent.putContentName(contentName)

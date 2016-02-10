@@ -11,7 +11,7 @@ import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 import java.util.*
 
-public class NewsConverter : Converter, AnkoLogger {
+class NewsConverter : Converter, AnkoLogger {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {

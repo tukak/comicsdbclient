@@ -12,8 +12,7 @@ import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
 import uk.co.ribot.easyadapter.annotations.ViewId
 
-@LayoutId(R.layout.list_item_news)
-public class NewsViewHolder(view: View) : ItemViewHolder<NewsItem>(view) {
+@LayoutId(R.layout.list_item_news) class NewsViewHolder(view: View) : ItemViewHolder<NewsItem>(view) {
     @ViewId(R.id.newsItemTitle)
     var newsItemTitle: TextView? = null
     @ViewId(R.id.newsItemNick)

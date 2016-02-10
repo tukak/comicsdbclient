@@ -12,7 +12,7 @@ import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 
 
-public class SeriesDetailFragment : AbstractDetailFragment() {
+class SeriesDetailFragment : AbstractDetailFragment() {
 
     private var series: Series? = null
 
@@ -41,7 +41,7 @@ public class SeriesDetailFragment : AbstractDetailFragment() {
     }
 
     companion object {
-        public fun newInstance(): SeriesDetailFragment {
+        fun newInstance(): SeriesDetailFragment {
             val args = Bundle()
             val fragment = SeriesDetailFragment()
             fragment.arguments = args

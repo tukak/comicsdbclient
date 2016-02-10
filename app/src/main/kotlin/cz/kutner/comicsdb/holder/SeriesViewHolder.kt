@@ -15,8 +15,7 @@ import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
 import uk.co.ribot.easyadapter.annotations.ViewId
 
-@LayoutId(R.layout.list_item_series)
-public class SeriesViewHolder(view: View) : ItemViewHolder<Series>(view) {
+@LayoutId(R.layout.list_item_series) class SeriesViewHolder(view: View) : ItemViewHolder<Series>(view) {
     @ViewId(R.id.series_name)
     var seriesName: TextView? = null
     @ViewId(R.id.seriesNumberOfComicses)

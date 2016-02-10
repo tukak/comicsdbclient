@@ -15,8 +15,7 @@ import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
 import uk.co.ribot.easyadapter.annotations.ViewId
 
-@LayoutId(R.layout.list_item_forum)
-public class ForumViewHolder(view: View) : ItemViewHolder<ForumEntry>(view) {
+@LayoutId(R.layout.list_item_forum) class ForumViewHolder(view: View) : ItemViewHolder<ForumEntry>(view) {
 
     @ViewId(R.id.forum_nick_icon)
     var forumNickIcon: ImageView? = null

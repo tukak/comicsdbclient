@@ -11,7 +11,7 @@ import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 import java.util.*
 
-public class ClassifiedConverter : Converter {
+class ClassifiedConverter : Converter {
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
         val result = ArrayList<Classified>()

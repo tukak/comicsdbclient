@@ -15,7 +15,7 @@ import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
-public class AuthorFragment : AbstractFragment<Author>() {
+class AuthorFragment : AbstractFragment<Author>() {
 
     init {
         preloadCount = 20
@@ -74,7 +74,7 @@ public class AuthorFragment : AbstractFragment<Author>() {
 
     companion object {
 
-        public fun newInstance(): AuthorFragment {
+        fun newInstance(): AuthorFragment {
 
             val args = Bundle()
 

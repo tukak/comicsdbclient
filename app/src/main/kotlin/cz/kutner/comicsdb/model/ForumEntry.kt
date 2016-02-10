@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.model
 
-public data class ForumEntry(public val nick: String, public val time: String, public val forum: String, public val text: String) {
-    public var iconUrl: String? = null
+data class ForumEntry(val nick: String, val time: String, val forum: String, val text: String) {
+    var iconUrl: String? = null
 }
 
 

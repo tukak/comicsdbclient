@@ -16,7 +16,7 @@ import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
-public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
+class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
 
     init {
@@ -76,7 +76,7 @@ public class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
 
     companion object {
 
-        public fun newInstance(): ComicsListFragment {
+        fun newInstance(): ComicsListFragment {
 
             val args = Bundle()
 

@@ -10,7 +10,7 @@ import org.jsoup.parser.Parser
 import java.io.InputStream
 import java.util.*
 
-public class AuthorParser {
+class AuthorParser {
     fun parseAuthorDetail(html: InputStream, encoding: String = "windows-1250"): Author {
         val doc: Document
         doc = Jsoup.parse(html, encoding, "")

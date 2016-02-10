@@ -13,7 +13,7 @@ import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
-public class NewsFragment : AbstractFragment<NewsItem>() {
+class NewsFragment : AbstractFragment<NewsItem>() {
 
 
     init {
@@ -52,7 +52,7 @@ public class NewsFragment : AbstractFragment<NewsItem>() {
 
     companion object {
 
-        public fun newInstance(): NewsFragment {
+        fun newInstance(): NewsFragment {
 
             val args = Bundle()
 

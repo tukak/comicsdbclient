@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.connector.helper
 
-public object ForumHelper {
-    public fun getForumId(forumName: String): Int {
+object ForumHelper {
+    fun getForumId(forumName: String): Int {
         var forumId = 0
         when (forumName) {
             "* Připomínky a návrhy" -> forumId = 1

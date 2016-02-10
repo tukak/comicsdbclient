@@ -15,7 +15,7 @@ import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 
-public class SeriesFragment : AbstractFragment<Series>() {
+class SeriesFragment : AbstractFragment<Series>() {
 
 
     init {
@@ -74,7 +74,7 @@ public class SeriesFragment : AbstractFragment<Series>() {
 
     companion object {
 
-        public fun newInstance(): SeriesFragment {
+        fun newInstance(): SeriesFragment {
 
             val args = Bundle()
 

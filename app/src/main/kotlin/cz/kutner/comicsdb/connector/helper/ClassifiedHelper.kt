@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.connector.helper
 
-public object ClassifiedHelper {
-    public fun getCategoryId(categoryName: String): Int {
+object ClassifiedHelper {
+    fun getCategoryId(categoryName: String): Int {
         var categoryId = 0
         when (categoryName) {
             "Prodám" -> categoryId = 1

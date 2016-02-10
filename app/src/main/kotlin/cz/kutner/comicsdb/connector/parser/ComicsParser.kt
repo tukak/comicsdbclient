@@ -11,7 +11,7 @@ import org.jsoup.nodes.Node
 import org.jsoup.parser.Parser
 import java.io.InputStream
 
-public class ComicsParser {
+class ComicsParser {
     fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): Comics {
         val comics = Comics("", 0)
         val doc: Document

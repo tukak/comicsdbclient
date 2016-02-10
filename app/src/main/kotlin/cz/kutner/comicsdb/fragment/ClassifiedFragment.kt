@@ -14,7 +14,7 @@ import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
-public class ClassifiedFragment : AbstractFragment<Classified>() {
+class ClassifiedFragment : AbstractFragment<Classified>() {
 
 
     init {
@@ -54,7 +54,7 @@ public class ClassifiedFragment : AbstractFragment<Classified>() {
 
     companion object {
 
-        public fun newInstance(): ClassifiedFragment {
+        fun newInstance(): ClassifiedFragment {
 
             val args = Bundle()
 

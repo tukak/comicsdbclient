@@ -11,7 +11,7 @@ import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 import java.util.*
 
-public class ComicsListConverter : Converter {
+class ComicsListConverter : Converter {
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
         val result = ArrayList<Comics>()

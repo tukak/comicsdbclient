@@ -21,7 +21,7 @@ import pl.aprilapps.switcher.Switcher
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.util.*
 
-public abstract class AbstractFragment<Item : Any> : Fragment() {
+abstract class AbstractFragment<Item : Any> : Fragment() {
     var lastPage: Int = 0
     private var firstLoad: Boolean = false
     var searchRunning: Boolean = false
@@ -100,7 +100,7 @@ public abstract class AbstractFragment<Item : Any> : Fragment() {
         }
     }
 
-    public fun showData() {
+    fun showData() {
         if (activity?.isFinishing == false) {
             searchRunning = false
             if (firstLoad) {

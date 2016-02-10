@@ -48,7 +48,7 @@ abstract class AbstractActivity : AppCompatActivity() {
                 R.id.navigation_item_about -> AboutFragment.newInstance()
                 else -> ComicsListFragment.newInstance()
             }
-            menuItem.setChecked(true)
+            menuItem.isChecked = true
             supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
             drawer_layout.closeDrawers()
             true

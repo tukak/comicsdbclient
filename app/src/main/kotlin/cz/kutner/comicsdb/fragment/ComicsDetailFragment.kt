@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 
-public class ComicsDetailFragment : AbstractDetailFragment() {
+class ComicsDetailFragment : AbstractDetailFragment() {
 
     private var comics: Comics? = null
 
@@ -39,7 +39,7 @@ public class ComicsDetailFragment : AbstractDetailFragment() {
     }
 
     companion object {
-        public fun newInstance(): ComicsDetailFragment {
+        fun newInstance(): ComicsDetailFragment {
             val args = Bundle()
             val fragment = ComicsDetailFragment()
             fragment.arguments = args

@@ -15,8 +15,7 @@ import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
 import uk.co.ribot.easyadapter.annotations.ViewId
 
-@LayoutId(R.layout.list_item_authors)
-public class AuthorViewHolder(view: View) : ItemViewHolder<Author>(view) {
+@LayoutId(R.layout.list_item_authors) class AuthorViewHolder(view: View) : ItemViewHolder<Author>(view) {
     @ViewId(R.id.authorName)
     var authorName: TextView? = null
     @ViewId(R.id.authorCountry)

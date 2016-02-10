@@ -14,7 +14,7 @@ import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 
-public class ForumFragment : AbstractFragment<ForumEntry>() {
+class ForumFragment : AbstractFragment<ForumEntry>() {
 
     init {
         preloadCount = 20
@@ -53,7 +53,7 @@ public class ForumFragment : AbstractFragment<ForumEntry>() {
 
     companion object {
 
-        public fun newInstance(): ForumFragment {
+        fun newInstance(): ForumFragment {
 
             val args = Bundle()
 

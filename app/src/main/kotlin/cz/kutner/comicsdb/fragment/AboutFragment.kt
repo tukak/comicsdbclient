@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.Utils
 import kotlinx.android.synthetic.main.fragment_about.*
 
-public class AboutFragment : Fragment() {
+class AboutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,7 +34,7 @@ public class AboutFragment : Fragment() {
 
     companion object {
 
-        public fun newInstance(): AboutFragment {
+        fun newInstance(): AboutFragment {
             val args = Bundle()
             val fragment = AboutFragment()
             fragment.arguments = args

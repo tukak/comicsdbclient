@@ -5,7 +5,7 @@ import android.os.Bundle
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.ComicsListFragment
 
-public class MainActivity : AbstractActivity() {
+class MainActivity : AbstractActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,8 +15,8 @@ public class MainActivity : AbstractActivity() {
     }
 
     companion object {
-        public val COMICS_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
-        public val AUTHOR_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.author_id"
-        public val SERIES_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.series_id"
+        val COMICS_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
+        val AUTHOR_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.author_id"
+        val SERIES_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.series_id"
     }
 }

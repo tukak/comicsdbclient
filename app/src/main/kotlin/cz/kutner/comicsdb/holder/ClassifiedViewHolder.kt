@@ -15,8 +15,7 @@ import uk.co.ribot.easyadapter.PositionInfo
 import uk.co.ribot.easyadapter.annotations.LayoutId
 import uk.co.ribot.easyadapter.annotations.ViewId
 
-@LayoutId(R.layout.list_item_classified)
-public class ClassifiedViewHolder(view: View) : ItemViewHolder<Classified>(view) {
+@LayoutId(R.layout.list_item_classified) class ClassifiedViewHolder(view: View) : ItemViewHolder<Classified>(view) {
     @ViewId(R.id.classified_nick_icon)
     var classifiedNickIcon: ImageView? = null
     @ViewId(R.id.classified_nick)

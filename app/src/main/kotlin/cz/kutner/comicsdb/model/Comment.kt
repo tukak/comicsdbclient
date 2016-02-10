@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.model
 
-public data class Comment(public val nick: String, public val stars: Int?, public val text: String, public val time: String) {
-    public var iconUrl: String? = null
+data class Comment(val nick: String, val stars: Int?, val text: String, val time: String) {
+    var iconUrl: String? = null
 
 }

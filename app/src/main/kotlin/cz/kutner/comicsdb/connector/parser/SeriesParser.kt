@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element
 import java.io.InputStream
 import java.util.*
 
-public class SeriesParser : AnkoLogger {
+class SeriesParser : AnkoLogger {
     fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): Series {
         val doc: Document
         doc = Jsoup.parse(html, encoding, "")

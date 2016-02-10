@@ -7,7 +7,7 @@ import retrofit.mime.TypedInput
 import retrofit.mime.TypedOutput
 import java.lang.reflect.Type
 
-public class SeriesDetailConverter : Converter {
+class SeriesDetailConverter : Converter {
 
     @Throws(ConversionException::class)
     override fun fromBody(body: TypedInput, type: Type): Any {
