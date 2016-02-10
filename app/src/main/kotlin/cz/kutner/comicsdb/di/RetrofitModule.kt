@@ -8,7 +8,7 @@ import retrofit.RestAdapter
 import javax.inject.Singleton
 
 @Module
-public class NetModule(val baseUrl: String) {
+public class RetrofitModule(val baseUrl: String) {
 
     @Provides
     @Singleton

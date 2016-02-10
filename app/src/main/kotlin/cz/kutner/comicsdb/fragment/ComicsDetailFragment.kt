@@ -21,7 +21,7 @@ class ComicsDetailFragment : AbstractDetailFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).netComponent.inject(this)
+        (activity.application as ComicsDBApplication).retrofitComponent.inject(this)
     }
 
     override fun loadData() {
