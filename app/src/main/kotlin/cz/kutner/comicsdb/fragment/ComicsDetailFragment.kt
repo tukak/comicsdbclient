@@ -42,7 +42,7 @@ class ComicsDetailFragment : AbstractDetailFragment() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = existing_comics.name)
+        tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = comics.name)
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = comics.name)
     }
 

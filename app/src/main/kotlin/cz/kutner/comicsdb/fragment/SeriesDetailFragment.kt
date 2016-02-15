@@ -43,7 +43,7 @@ class SeriesDetailFragment : AbstractDetailFragment() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "SeriesDetailFragment", category = "Detail", action = existing_series.name)
+        tracker.logVisit(screenName = "SeriesDetailFragment", category = "Detail", action = series.name)
         Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = series.name)
     }
 
