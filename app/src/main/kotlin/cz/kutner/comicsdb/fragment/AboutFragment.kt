@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.di.Tracker
 import kotlinx.android.synthetic.main.fragment_about.*
 import javax.inject.Inject

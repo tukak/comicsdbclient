@@ -4,7 +4,7 @@ package cz.kutner.comicsdb.fragment
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.adapter.AuthorDetailRVAdapter
 import cz.kutner.comicsdb.connector.service.AuthorDetailService
 import cz.kutner.comicsdb.di.Tracker

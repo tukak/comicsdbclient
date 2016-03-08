@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.loadUrl
+import cz.kutner.comicsdb.utils.loadUrl
 import cz.kutner.comicsdb.model.Classified
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo

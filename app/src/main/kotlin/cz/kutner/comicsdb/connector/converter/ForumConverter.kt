@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.connector.converter
 
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.model.ForumEntry
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error

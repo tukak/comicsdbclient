@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb
 
+import cz.kutner.comicsdb.utils.Utils
 import org.junit.Test
 
 import org.junit.Assert.*

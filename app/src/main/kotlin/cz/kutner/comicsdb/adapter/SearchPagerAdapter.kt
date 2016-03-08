@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.fragment.AuthorFragment
 import cz.kutner.comicsdb.fragment.ComicsListFragment
 import cz.kutner.comicsdb.fragment.SeriesFragment

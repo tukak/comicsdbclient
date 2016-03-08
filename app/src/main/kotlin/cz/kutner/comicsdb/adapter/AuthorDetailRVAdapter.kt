@@ -12,8 +12,8 @@ import android.widget.TextView
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
-import cz.kutner.comicsdb.loadUrl
 import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.utils.loadUrl
 import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
 

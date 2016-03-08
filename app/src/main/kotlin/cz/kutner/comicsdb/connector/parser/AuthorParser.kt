@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.connector.parser
 
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Comics
 import org.jsoup.Jsoup

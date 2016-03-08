@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.connector.converter
 
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.model.Classified
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document

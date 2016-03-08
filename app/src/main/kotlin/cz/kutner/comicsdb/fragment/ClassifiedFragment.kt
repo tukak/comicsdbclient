@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.connector.service.ClassifiedService
 import cz.kutner.comicsdb.di.Tracker

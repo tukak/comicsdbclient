@@ -18,7 +18,7 @@ import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.ImageViewActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
-import cz.kutner.comicsdb.loadUrl
+import cz.kutner.comicsdb.utils.loadUrl
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.find

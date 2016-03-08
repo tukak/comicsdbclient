@@ -5,6 +5,7 @@ import com.crashlytics.android.core.CrashlyticsCore
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.*
+import cz.kutner.comicsdb.utils.Utils
 import io.fabric.sdk.android.Fabric
 
 class ComicsDBApplication : android.app.Application() {

@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb
+package cz.kutner.comicsdb.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,6 +6,11 @@ import android.widget.ImageView
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.ContentViewEvent
 import com.squareup.picasso.Picasso
+import cz.kutner.comicsdb.R
+
+fun ImageView.loadUrl(url: String?) {
+    Picasso.with(context).load(url).into(this)
+}
 
 object Utils {
 
@@ -39,10 +44,6 @@ object Utils {
             contentViewEvent.putContentId(contentId)
         }
         Answers.getInstance().logContentView(contentViewEvent)
-    }
-
-    fun ImageView.loadUrl(url: String) {
-        Picasso.with(context).load(url).into(this)
     }
 
 }

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.Utils
+import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
