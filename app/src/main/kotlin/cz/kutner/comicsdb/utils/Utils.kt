@@ -6,13 +6,14 @@ import android.widget.ImageView
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.ContentViewEvent
 import com.squareup.picasso.Picasso
-import cz.kutner.comicsdb.R
 
 fun ImageView.loadUrl(url: String?) {
     Picasso.with(context).load(url).into(this)
 }
 
 object Utils {
+
+    val COMICSDB_URL = "http://comicsdb.cz" //R.string.url_comicsdb
 
     lateinit var context: Context
         set
@@ -23,10 +24,9 @@ object Utils {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
-    fun fixUrl(url: String, prefix: String = ""): String {
-        val real_prefix = if (prefix.length > 0) prefix else context.getString(R.string.url_comicsdb)
+    fun fixUrl(url: String): String {
         if (!url.startsWith("http") && !url.startsWith("data")) {
-            return real_prefix + url
+            return COMICSDB_URL + url
         } else {
             return url
         }
