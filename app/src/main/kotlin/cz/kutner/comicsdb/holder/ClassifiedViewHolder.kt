@@ -4,11 +4,8 @@ import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-
-import com.squareup.picasso.Picasso
-
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.loadUrl
 import cz.kutner.comicsdb.model.Classified
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo
@@ -31,7 +28,7 @@ import uk.co.ribot.easyadapter.annotations.ViewId
         classifiedNick.text = classified.nick
         classifiedTime.text = classified.time
         classifiedText.text = Html.fromHtml(classified.text)
-        Picasso.with(ComicsDBApplication.context).load(classified.iconUrl).into(classifiedNickIcon)
+        classifiedNickIcon.loadUrl(classified.iconUrl)
         classifiedCategory.text = classified.category
     }
 }

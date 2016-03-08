@@ -13,13 +13,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import com.squareup.picasso.Picasso
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.ImageViewActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
+import cz.kutner.comicsdb.loadUrl
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Series
 import org.jetbrains.anko.find
@@ -165,13 +164,13 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
                 vh.series.text = seriesString
                 vh.series.movementMethod = LinkMovementMethod.getInstance()
             }
-            Picasso.with(ComicsDBApplication.context).load(comics.coverUrl).into(vh.cover)
+            vh.cover.loadUrl(comics.coverUrl)
             vh.cover.onClick {
                 val intent = Intent(vh.cover.context, ImageViewActivity::class.java)
                 intent.putExtra(ImageViewActivity.IMAGE_URL, comics.fullCoverUrl)
                 vh.cover.context.startActivity(intent)
             }
-            vh.url.text = ComicsDBApplication.context!!.getString(R.string.url_comics_detail) + comics.id.toString()
+            vh.url.text = vh.url.context.getString(R.string.url_comics_detail) + comics.id.toString()
             vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
         } else {
             val j = i - 1 //i je o 1 větší, tak to musíme zmenšit, kvůli poli
@@ -180,7 +179,7 @@ class ComicsDetailRVAdapter(private var comics: Comics) : RecyclerView.Adapter<R
             vh.commentTime.text = comics.comments[j].time
             vh.commentText.text = comics.comments[j].text
             vh.commentRatingBar.rating = comics.comments[j].stars!!.toFloat()
-            Picasso.with(ComicsDBApplication.context).load(comics.comments[j].iconUrl).into(vh.nickIcon)
+            vh.nickIcon.loadUrl(comics.comments[j].iconUrl)
         }
     }
 }

@@ -4,11 +4,8 @@ import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-
-import com.squareup.picasso.Picasso
-
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.loadUrl
 import cz.kutner.comicsdb.model.ForumEntry
 import uk.co.ribot.easyadapter.ItemViewHolder
 import uk.co.ribot.easyadapter.PositionInfo
@@ -32,7 +29,7 @@ import uk.co.ribot.easyadapter.annotations.ViewId
         forumCommentNick.text = forumEntry.nick
         forumCommentTime.text = forumEntry.time
         forumCommentText.text = Html.fromHtml(forumEntry.text)
-        Picasso.with(ComicsDBApplication.context).load(forumEntry.iconUrl).into(forumNickIcon)
+        forumNickIcon.loadUrl(forumEntry.iconUrl)
         forumCommentForum.text = forumEntry.forum
     }
 }
