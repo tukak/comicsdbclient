@@ -1,7 +1,10 @@
 package cz.kutner.comicsdb.di
 
 import cz.kutner.comicsdb.ComicsDBApplication
+import cz.kutner.comicsdb.activity.AuthorDetailActivity
+import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.SearchActivity
+import cz.kutner.comicsdb.activity.SeriesDetailActivity
 import cz.kutner.comicsdb.fragment.*
 import dagger.Component
 import javax.inject.Singleton
@@ -16,9 +19,9 @@ interface ApplicationComponent {
     fun inject(comicsListFragment: ComicsListFragment)
     fun inject(forumFragment: ForumFragment)
     fun inject(newsFragment: NewsFragment)
-    fun inject(seriesDetailFragment: SeriesDetailFragment)
-    fun inject(comicsDetailFragment: ComicsDetailFragment)
-    fun inject(authorDetailFragment: AuthorDetailFragment)
     fun inject(aboutFragment: AboutFragment)
     fun inject(searchActivity: SearchActivity)
+    fun inject(authorDetailActivity: AuthorDetailActivity)
+    fun inject(comicsDetailActivity: ComicsDetailActivity)
+    fun inject(seriesDetailActivity: SeriesDetailActivity)
 }
