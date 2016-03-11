@@ -30,8 +30,8 @@ android {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 21
-        versionName "21"
+        versionCode 22
+        versionName "22"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         DdmPreferences.setTimeOut(60000)
         vectorDrawables.useSupportLibrary = true
