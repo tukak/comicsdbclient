@@ -13,7 +13,7 @@ object ForumHelper {
             "Sběratelský klub" -> forumId = 6
             "Slevy, výprodeje, bazary" -> forumId = 11
             "Srazy, cony, festivaly" -> forumId = 8
-            "Stripy, jouky, fejky :)" -> forumId = 8
+            "Stripy, jouky, fejky :)" -> forumId = 7
         }
         return forumId
     }
