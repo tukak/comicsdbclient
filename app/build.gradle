@@ -2,7 +2,7 @@ import com.android.ddmlib.DdmPreferences
 
 buildscript {
     ext.kotlin_version = '1.0.1'
-    ext.support_library_version = '23.2.1'
+    ext.support_library_version = '23.3.0'
     repositories {
         maven { url 'https://maven.fabric.io/public' }
         mavenCentral()
@@ -34,7 +34,6 @@ android {
         versionName "22"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         DdmPreferences.setTimeOut(60000)
-        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
