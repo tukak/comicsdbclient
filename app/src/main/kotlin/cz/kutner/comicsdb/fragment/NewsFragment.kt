@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.adapter.NewsListAdapter
 import cz.kutner.comicsdb.connector.service.NewsService
 import cz.kutner.comicsdb.di.Tracker
-import cz.kutner.comicsdb.holder.NewsViewHolder
 import cz.kutner.comicsdb.model.NewsItem
+import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import javax.inject.Inject
 
 class NewsFragment : AbstractFragment<NewsItem>() {
@@ -32,10 +31,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = EasyRecyclerAdapter(
-                context,
-                NewsViewHolder::class.java,
-                data as List<NewsItem>)
+        adapter = NewsListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

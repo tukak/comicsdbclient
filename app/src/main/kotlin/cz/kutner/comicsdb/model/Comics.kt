@@ -2,7 +2,7 @@ package cz.kutner.comicsdb.model
 
 import java.util.*
 
-data class Comics(var name: String, var id: Int) {
+data class Comics(var name: String, var id: Int): Item {
     var published: String? = null
     var voteCount: Int? = null
     var rating: Int = 0

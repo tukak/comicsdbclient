@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.adapter.ForumListAdapter
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.connector.service.ForumService
 import cz.kutner.comicsdb.di.Tracker
-import cz.kutner.comicsdb.holder.ForumViewHolder
 import cz.kutner.comicsdb.model.ForumEntry
+import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import javax.inject.Inject
 
 class ForumFragment : AbstractFragment<ForumEntry>() {
@@ -34,10 +33,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = EasyRecyclerAdapter(
-                context,
-                ForumViewHolder::class.java,
-                data as List<ForumEntry>)
+        adapter = ForumListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.adapter.SeriesListAdapter
 import cz.kutner.comicsdb.connector.service.SeriesService
 import cz.kutner.comicsdb.di.Tracker
-import cz.kutner.comicsdb.holder.SeriesViewHolder
 import cz.kutner.comicsdb.model.Series
+import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 import javax.inject.Inject
 
@@ -33,10 +32,7 @@ class SeriesFragment : AbstractFragment<Series>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = EasyRecyclerAdapter(
-                context,
-                SeriesViewHolder::class.java,
-                data as List<Any>?)
+        adapter = SeriesListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

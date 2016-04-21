@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.activity
 import android.os.Bundle
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.adapter.ComicsDetailRVAdapter
+import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
 import cz.kutner.comicsdb.connector.service.ComicsService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
@@ -39,7 +39,7 @@ class ComicsDetailActivity : AbstractDetailActivity() {
 
     override fun showData() {
         supportActionBar?.title = comics.name
-        val adapter = ComicsDetailRVAdapter(comics)
+        val adapter = ComicsDetailAdapter(this, listOf(comics) + comics.comments)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()

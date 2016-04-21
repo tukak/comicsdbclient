@@ -7,15 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.adapter.ComicsListAdapter
 import cz.kutner.comicsdb.connector.service.ComicsListService
 import cz.kutner.comicsdb.di.Tracker
-import cz.kutner.comicsdb.holder.ComicsViewHolder
 import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.text.Normalizer
 import javax.inject.Inject
 
@@ -34,10 +33,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = EasyRecyclerAdapter(
-                context,
-                ComicsViewHolder::class.java,
-                data as List<Any>?)
+        adapter = ComicsListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

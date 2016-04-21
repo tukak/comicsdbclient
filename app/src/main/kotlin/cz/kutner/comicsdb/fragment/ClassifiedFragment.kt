@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.connector.service.ClassifiedService
 import cz.kutner.comicsdb.di.Tracker
-import cz.kutner.comicsdb.holder.ClassifiedViewHolder
 import cz.kutner.comicsdb.model.Classified
+import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import javax.inject.Inject
 
 class ClassifiedFragment : AbstractFragment<Classified>() {
@@ -34,10 +33,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = EasyRecyclerAdapter(
-                context,
-                ClassifiedViewHolder::class.java,
-                data as List<Classified>)
+        adapter = ClassifiedListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

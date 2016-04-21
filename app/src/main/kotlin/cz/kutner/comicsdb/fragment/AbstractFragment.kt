@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
-import uk.co.ribot.easyadapter.EasyRecyclerAdapter
 import java.util.*
 
 abstract class AbstractFragment<Item : Any> : Fragment() {
@@ -31,7 +30,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     private var pastVisibleItems: Int = 0
     private var visibleItemCount: Int = 0
     private var totalItemCount: Int = 0
-    var adapter: EasyRecyclerAdapter<Any>? = null
+    lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     var preloadCount: Int = 0
     var endless: Boolean = false
     var spinnerEnabled: Boolean = false
@@ -130,7 +129,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
                     data.addAll(result)
                 }
             }
-            adapter?.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
             loading = false
         }
     }
