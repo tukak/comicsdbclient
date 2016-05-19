@@ -1,9 +1,6 @@
 package cz.kutner.comicsdb.connector.parser
 
-import cz.kutner.comicsdb.model.Author
-import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.model.Comment
-import cz.kutner.comicsdb.model.Series
+import cz.kutner.comicsdb.model.*
 import cz.kutner.comicsdb.utils.Utils
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -43,6 +40,21 @@ class ComicsParser {
             if (!previewURI.isEmpty()) {
                 comics.cover.previewUrl = Utils.fixUrl(previewURI)
             }
+        }
+
+        val samples = doc.select("a[data-title*=Ukázka]")
+        for (sample in samples) {
+            val sampleImage: Image = Image(null, null)
+            val fullImageURI = sample.attr("href")
+            if (!fullImageURI.isEmpty()) {
+                sampleImage.fullUrl = Utils.fixUrl(fullImageURI)
+            }
+            val preview = sample.select("img")
+            val previewURI = preview.first().attr("src")
+            if (!previewURI.isEmpty()) {
+                sampleImage.previewUrl = Utils.fixUrl(previewURI)
+            }
+            comics.samples.add(sampleImage)
         }
 
         for (titulek in doc.select(".titulek")) {
