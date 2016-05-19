@@ -1,4 +1,4 @@
 package cz.kutner.comicsdb.model
 
-data class Image(val previewUrl:String, val fullUrl:String) {
+data class Image(var previewUrl:String?, var fullUrl:String?) {
 }

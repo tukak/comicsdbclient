@@ -1,6 +1,9 @@
 package cz.kutner.comicsdb.connector.parser
 
-import cz.kutner.comicsdb.model.*
+import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.Comment
+import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -28,24 +31,20 @@ class ComicsParser {
             comics.rating = 0
             comics.voteCount = 0
         }
-        var coverUrl:String = ""
-        var fullCoverUrl:String = ""
 
-        val coverElements = doc.select("img[title=Obálka]")
-        if (coverElements.size > 0) {
-            val coverURI = coverElements.first().attr("src")
-            if (!coverURI.isEmpty()) {
-                 coverUrl= Utils.fixUrl(coverURI)
-            }
-        }
-        val fullCoverURIElements = doc.select("a[data-title=Obálka]")
-        if (fullCoverURIElements.size > 0) {
-            val fullCoverURI = fullCoverURIElements.first().attr("href")
+        val cover = doc.select("a[data-title=Obálka]")
+        if (cover.size > 0) {
+            val fullCoverURI = cover.first().attr("href")
             if (!fullCoverURI.isEmpty()) {
-                fullCoverUrl = Utils.fixUrl(fullCoverURI)
+                comics.cover.fullUrl = Utils.fixUrl(fullCoverURI)
+            }
+            val preview = cover.select("img")
+            val previewURI = preview.first().attr("src")
+            if (!previewURI.isEmpty()) {
+                comics.cover.previewUrl = Utils.fixUrl(previewURI)
             }
         }
-        comics.cover = Image(coverUrl, fullCoverUrl)
+
         for (titulek in doc.select(".titulek")) {
             val title_name = titulek.text().substring(0, titulek.text().length - 1)
             val title_value = titulek.nextSibling()
@@ -115,7 +114,7 @@ class ComicsParser {
                         }
                     }
                 }
-                "Série" -> comics.series = Series(name=Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false), id=Integer.parseInt(title_value.attr("href").removePrefix("serie.php?id=")), numberOfComicses = 0)
+                "Série" -> comics.series = Series(name = Parser.unescapeEntities(Jsoup.parse(title_value.outerHtml()).text(), false), id = Integer.parseInt(title_value.attr("href").removePrefix("serie.php?id=")), numberOfComicses = 0)
             }
         }
         for (comment in doc.select("div#prispevek")) {

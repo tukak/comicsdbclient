@@ -23,7 +23,7 @@ data class Comics(var name: String, var id: Int): Item {
     var series: Series? = null
     var comments: ArrayList<Comment> = ArrayList()
         private set
-    var cover: Image? = null
+    var cover: Image = Image(null, null)
     var samples: ArrayList<Image> = ArrayList()
 
     fun addComment(comment: Comment) {
