@@ -62,7 +62,7 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
             vh.description.text = Html.fromHtml(comics.description)
         }
 
-        var authors = SpannableStringBuilder();
+        val authors = SpannableStringBuilder();
 
         for (author in comics.authors) {
             val formerLength = authors.length
@@ -78,16 +78,16 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         vh.authors.movementMethod = LinkMovementMethod.getInstance()
         val series: Series? = comics.series
         if (series != null) {
-            var seriesString = SpannableStringBuilder();
+            val seriesString = SpannableStringBuilder();
             seriesString.append(series.name)
             seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             vh.series.text = seriesString
             vh.series.movementMethod = LinkMovementMethod.getInstance()
         }
-        vh.cover.loadUrl(comics.coverUrl)
+        vh.cover.loadUrl(comics.cover?.previewUrl)
         vh.cover.onClick {
             val intent = Intent(vh.cover.context, ImageViewActivity::class.java)
-            intent.putExtra(ImageViewActivity.IMAGE_URL, comics.fullCoverUrl)
+            intent.putExtra(ImageViewActivity.IMAGE_URL, comics.cover?.fullUrl)
             vh.cover.context.startActivity(intent)
         }
         vh.url.text = vh.url.context.getString(R.string.url_comics_detail) + comics.id.toString()

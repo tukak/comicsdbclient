@@ -1,10 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
+import cz.kutner.comicsdb.model.*
 import cz.kutner.comicsdb.utils.Utils
-import cz.kutner.comicsdb.model.Author
-import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.model.Comment
-import cz.kutner.comicsdb.model.Series
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Node
@@ -31,21 +28,24 @@ class ComicsParser {
             comics.rating = 0
             comics.voteCount = 0
         }
+        var coverUrl:String = ""
+        var fullCoverUrl:String = ""
+
         val coverElements = doc.select("img[title=Obálka]")
         if (coverElements.size > 0) {
             val coverURI = coverElements.first().attr("src")
             if (!coverURI.isEmpty()) {
-                comics.coverUrl = Utils.fixUrl(coverURI)
+                 coverUrl= Utils.fixUrl(coverURI)
             }
         }
         val fullCoverURIElements = doc.select("a[data-title=Obálka]")
         if (fullCoverURIElements.size > 0) {
             val fullCoverURI = fullCoverURIElements.first().attr("href")
             if (!fullCoverURI.isEmpty()) {
-                comics.fullCoverUrl = Utils.fixUrl(fullCoverURI)
+                fullCoverUrl = Utils.fixUrl(fullCoverURI)
             }
         }
-
+        comics.cover = Image(coverUrl, fullCoverUrl)
         for (titulek in doc.select(".titulek")) {
             val title_name = titulek.text().substring(0, titulek.text().length - 1)
             val title_value = titulek.nextSibling()
