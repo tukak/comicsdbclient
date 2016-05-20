@@ -32,29 +32,27 @@ class ComicsParser {
         val cover = doc.select("a[data-title=Obálka]")
         if (cover.size > 0) {
             val fullCoverURI = cover.first().attr("href")
-            if (!fullCoverURI.isEmpty()) {
-                comics.cover.fullUrl = Utils.fixUrl(fullCoverURI)
-            }
             val preview = cover.select("img")
             val previewURI = preview.first().attr("src")
-            if (!previewURI.isEmpty()) {
-                comics.cover.previewUrl = Utils.fixUrl(previewURI)
-            }
+
+            val previewUrl = Utils.fixUrl(previewURI)
+            val fullUrl = Utils.fixUrl(fullCoverURI)
+            val caption = preview.attr("title")
+
+            comics.cover = Image(previewUrl, fullUrl, caption)
         }
 
         val samples = doc.select("a[data-title*=Ukázka]")
         for (sample in samples) {
-            val sampleImage: Image = Image(null, null)
             val fullImageURI = sample.attr("href")
-            if (!fullImageURI.isEmpty()) {
-                sampleImage.fullUrl = Utils.fixUrl(fullImageURI)
-            }
             val preview = sample.select("img")
             val previewURI = preview.first().attr("src")
-            if (!previewURI.isEmpty()) {
-                sampleImage.previewUrl = Utils.fixUrl(previewURI)
-            }
-            comics.samples.add(sampleImage)
+
+            val previewUrl = Utils.fixUrl(previewURI)
+            val fullUrl = Utils.fixUrl(fullImageURI)
+            val caption = preview.attr("title")
+
+            comics.samples.add(Image(previewUrl, fullUrl, caption))
         }
 
         for (titulek in doc.select(".titulek")) {
@@ -114,7 +112,7 @@ class ComicsParser {
                                 val authorId = Integer.parseInt(sibling.attr("href").removePrefix("autor.php?id="))
                                 val author = Author(authorName, null, authorId)
                                 author.role = authorRole
-                                comics.addAuthor(author)
+                                comics.authors.add(author)
                             }
                         }
                         sibling = sibling?.nextSibling()
@@ -142,7 +140,7 @@ class ComicsParser {
             if (!iconUrl.isEmpty()) {
                 commentObject.iconUrl = Utils.fixUrl(iconUrl)
             }
-            comics.addComment(commentObject)
+            comics.comments.add(commentObject)
         }
         return comics
     }

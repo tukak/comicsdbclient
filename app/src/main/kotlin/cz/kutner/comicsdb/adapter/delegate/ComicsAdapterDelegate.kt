@@ -84,10 +84,10 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
             vh.series.text = seriesString
             vh.series.movementMethod = LinkMovementMethod.getInstance()
         }
-        vh.cover.loadUrl(comics.cover?.previewUrl)
+        vh.cover.loadUrl(comics.cover.previewUrl)
         vh.cover.onClick {
             val intent = Intent(vh.cover.context, ImageViewActivity::class.java)
-            intent.putExtra(ImageViewActivity.IMAGE_URL, comics.cover?.fullUrl)
+            intent.putExtra(ImageViewActivity.IMAGE_URL, comics.cover.fullUrl)
             vh.cover.context.startActivity(intent)
         }
         vh.url.text = vh.url.context.getString(R.string.url_comics_detail) + comics.id.toString()
