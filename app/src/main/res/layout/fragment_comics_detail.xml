@@ -49,12 +49,12 @@
             tools:text="Žánr" />
 
         <RatingBar
+            android:id="@+id/comics_detail_rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/comics_detail_rating_bar"
             android:layout_alignBottom="@+id/cover"
-            android:layout_alignLeft="@+id/cover"
-            style="?android:attr/ratingBarStyleSmall" />
+            android:layout_alignLeft="@+id/cover" />
 
         <TextView
             android:id="@+id/rating"
@@ -176,6 +176,50 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="right">
+
+        <ImageView
+            android:id="@+id/sample1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/sample2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/sample3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/sample4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/sample5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="11dp" />
+
+        <ImageView
+            android:id="@+id/sample6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -210,5 +254,9 @@
             android:layout_below="@+id/notes"
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Autoři" />
+
+
     </RelativeLayout>
+
+
 </LinearLayout>

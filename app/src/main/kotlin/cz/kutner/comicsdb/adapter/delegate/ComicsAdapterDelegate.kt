@@ -92,6 +92,13 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         }
         vh.url.text = vh.url.context.getString(R.string.url_comics_detail) + comics.id.toString()
         vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
+
+        if (comics.samples.size > 0) vh.sample1.loadUrl(comics.samples[0].previewUrl)
+        if (comics.samples.size > 1) vh.sample2.loadUrl(comics.samples[1].previewUrl)
+        if (comics.samples.size > 2) vh.sample3.loadUrl(comics.samples[2].previewUrl)
+        if (comics.samples.size > 3) vh.sample4.loadUrl(comics.samples[3].previewUrl)
+        if (comics.samples.size > 4) vh.sample5.loadUrl(comics.samples[4].previewUrl)
+        if (comics.samples.size > 5) vh.sample6.loadUrl(comics.samples[5].previewUrl)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
@@ -152,5 +159,13 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         internal var description: TextView = itemView.find<TextView>(R.id.description)
         internal var notes: TextView = itemView.find<TextView>(R.id.notes)
         internal var authors: TextView = itemView.find<TextView>(R.id.authors)
+        internal var sample1: ImageView = itemView.find<ImageView>(R.id.sample1)
+        internal var sample2: ImageView = itemView.find<ImageView>(R.id.sample2)
+        internal var sample3: ImageView = itemView.find<ImageView>(R.id.sample3)
+        internal var sample4: ImageView = itemView.find<ImageView>(R.id.sample4)
+        internal var sample5: ImageView = itemView.find<ImageView>(R.id.sample5)
+        internal var sample6: ImageView = itemView.find<ImageView>(R.id.sample6)
+
+
     }
 }

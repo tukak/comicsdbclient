@@ -2,13 +2,15 @@ package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.*
 import cz.kutner.comicsdb.utils.Utils
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Node
 import org.jsoup.parser.Parser
 import java.io.InputStream
 
-class ComicsParser {
+class ComicsParser:AnkoLogger {
     fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): Comics {
         val comics = Comics("", 0)
         val doc: Document
@@ -51,7 +53,7 @@ class ComicsParser {
             val previewUrl = Utils.fixUrl(previewURI)
             val fullUrl = Utils.fixUrl(fullImageURI)
             val caption = preview.attr("title")
-
+            info(previewUrl)
             comics.samples.add(Image(previewUrl, fullUrl, caption))
         }
 
