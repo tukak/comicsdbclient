@@ -149,6 +149,10 @@
             android:name="cz.kutner.comicsdb.activity.ImageViewActivity">
         </activity>
 
+        <activity
+            android:name="cz.kutner.comicsdb.activity.ImageViewSliderActivity">
+        </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a98fa6c81a3663d862992751fa15139595a3efe3" />

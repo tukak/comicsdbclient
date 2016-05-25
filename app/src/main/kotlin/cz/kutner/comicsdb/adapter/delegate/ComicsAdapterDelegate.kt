@@ -17,15 +17,17 @@ import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
-import cz.kutner.comicsdb.activity.ImageViewActivity
+import cz.kutner.comicsdb.activity.ImageViewSliderActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
 import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.loadUrl
 import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
+import java.util.*
 
 
 class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -84,12 +86,7 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
             vh.series.text = seriesString
             vh.series.movementMethod = LinkMovementMethod.getInstance()
         }
-        vh.cover.loadUrl(comics.cover.previewUrl)
-        vh.cover.onClick {
-            val intent = Intent(vh.cover.context, ImageViewActivity::class.java)
-            intent.putExtra(ImageViewActivity.IMAGE_URL, comics.cover.fullUrl)
-            vh.cover.context.startActivity(intent)
-        }
+
         vh.url.text = vh.url.context.getString(R.string.url_comics_detail) + comics.id.toString()
         vh.comicsDetailRatingBar.rating = Math.round(comics.rating.toFloat() / 20).toFloat()
 
@@ -99,6 +96,27 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         if (comics.samples.size > 3) vh.sample4.loadUrl(comics.samples[3].previewUrl)
         if (comics.samples.size > 4) vh.sample5.loadUrl(comics.samples[4].previewUrl)
         if (comics.samples.size > 5) vh.sample6.loadUrl(comics.samples[5].previewUrl)
+
+        val allImages: ArrayList<Image> = ArrayList()
+        allImages.add(comics.cover)
+        allImages.addAll(comics.samples)
+
+        vh.cover.loadUrl(comics.cover.previewUrl)
+
+        vh.cover.onClick { showImage(allImages, 0) }
+        vh.sample1.onClick { showImage(allImages, 1)}
+        vh.sample2.onClick { showImage(allImages, 2)}
+        vh.sample3.onClick { showImage(allImages, 3)}
+        vh.sample4.onClick { showImage(allImages, 4)}
+        vh.sample5.onClick { showImage(allImages, 5)}
+        vh.sample6.onClick { showImage(allImages, 6)}
+    }
+
+    fun showImage(images: ArrayList<Image>, position:Int) {
+        val intent = Intent(inflater.context, ImageViewSliderActivity::class.java)
+        intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, images)
+        intent.putExtra(ImageViewSliderActivity.POSTITION, position)
+        inflater.context.startActivity(intent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {

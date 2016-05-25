@@ -1,10 +1,7 @@
 package cz.kutner.comicsdb.di
 
 import cz.kutner.comicsdb.ComicsDBApplication
-import cz.kutner.comicsdb.activity.AuthorDetailActivity
-import cz.kutner.comicsdb.activity.ComicsDetailActivity
-import cz.kutner.comicsdb.activity.SearchActivity
-import cz.kutner.comicsdb.activity.SeriesDetailActivity
+import cz.kutner.comicsdb.activity.*
 import cz.kutner.comicsdb.fragment.*
 import dagger.Component
 import javax.inject.Singleton
@@ -24,4 +21,5 @@ interface ApplicationComponent {
     fun inject(authorDetailActivity: AuthorDetailActivity)
     fun inject(comicsDetailActivity: ComicsDetailActivity)
     fun inject(seriesDetailActivity: SeriesDetailActivity)
+    fun inject(imageViewSliderActivity: ImageViewSliderActivity)
 }

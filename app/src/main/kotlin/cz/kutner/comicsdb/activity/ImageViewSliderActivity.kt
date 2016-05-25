@@ -1,20 +1,17 @@
 package cz.kutner.comicsdb.activity
 
-import android.app.SearchManager
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.SearchEvent
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.adapter.SearchPagerAdapter
-import cz.kutner.comicsdb.di.Tracker
+import cz.kutner.comicsdb.adapter.ImagePagerAdapter
+import cz.kutner.comicsdb.model.Image
 import kotlinx.android.synthetic.main.activity_tabbed.*
-import javax.inject.Inject
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
-class SearchActivity : AppCompatActivity() {
-    @Inject lateinit var tracker: Tracker
+class ImageViewSliderActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +19,18 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tabbed)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        var fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent)
+
+        val images = intent.getParcelableArrayListExtra<Image>(IMAGES)
+        val position = intent.getIntExtra(POSTITION, 0)
+        val fragmentPagerAdapter: FragmentStatePagerAdapter = ImagePagerAdapter(supportFragmentManager, images, position)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
-        val query = intent.getStringExtra(SearchManager.QUERY)
-        Answers.getInstance().logSearch(SearchEvent().putQuery(query))
-        tracker.logEvent(category = "Search", action = query)
+
+    }
+
+    companion object {
+        val IMAGES: String = "cz.kutner.comicsdbclient.comicsdbclient.images"
+        val POSTITION: String = "cz.kutner.comicsdbclient.comicsdbclient.image_position"
+
     }
 }
