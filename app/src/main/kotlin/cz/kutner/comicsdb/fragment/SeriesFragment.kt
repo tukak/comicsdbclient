@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.SeriesListAdapter
-import cz.kutner.comicsdb.connector.service.SeriesService
+import cz.kutner.comicsdb.connector.service.SeriesListService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class SeriesFragment : AbstractFragment<Series>() {
 
-    @Inject lateinit var seriesService: SeriesService
+    @Inject lateinit var seriesListService: SeriesListService
     @Inject lateinit var tracker: Tracker
 
     init {
@@ -45,7 +45,7 @@ class SeriesFragment : AbstractFragment<Series>() {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = seriesService.searchSeries(searchText)
+                    result = seriesListService.searchSeries(searchText).execute().body()
                     uiThread {
                         showData()
                         lastPage++
@@ -55,7 +55,7 @@ class SeriesFragment : AbstractFragment<Series>() {
             } else {
                 //zobrazujeme nejnovější
                 async() {
-                    result = seriesService.getSeriesList(lastPage)
+                    result = seriesListService.getSeriesList(lastPage).execute().body()
                     uiThread {
                         showData()
                         lastPage++

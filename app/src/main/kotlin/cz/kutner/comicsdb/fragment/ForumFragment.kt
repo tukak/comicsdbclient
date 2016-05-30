@@ -42,7 +42,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
             searchRunning = true
             val searchText = ""
             async() {
-                result = forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+                result = forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText).execute().body()
                 uiThread {
                     showData()
                     lastPage++

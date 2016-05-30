@@ -1,14 +1,15 @@
 package cz.kutner.comicsdb.connector.service
 
 import cz.kutner.comicsdb.model.Comics
-import retrofit.http.GET
-import retrofit.http.Query
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ComicsListService {
     @GET("/comicslist.php")
-    fun comicsList(@Query("str") page: Int): List<Comics>
+    fun comicsList(@Query("str") page: Int): Call<List<Comics>>
 
     @GET("/search.php")
-    fun comicsSearch(@Query("searchfor") keyword: String): List<Comics>
+    fun comicsSearch(@Query("searchfor") keyword: String): Call<List<Comics>>
 
 }

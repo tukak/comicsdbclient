@@ -30,7 +30,7 @@ class SeriesDetailActivity : AbstractDetailActivity() {
 
     override fun loadData() {
         async() {
-            series = seriesDetailService.seriesDetail(id)
+            series = seriesDetailService.seriesDetail(id).execute().body()
             uiThread {
                 showData()
             }

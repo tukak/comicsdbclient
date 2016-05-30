@@ -39,7 +39,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
         if (!searchRunning) {
             searchRunning = true
             async() {
-                result = newsService.listNews()
+                result = newsService.listNews().execute().body()
                 uiThread {
                     showData()
                     lastPage++

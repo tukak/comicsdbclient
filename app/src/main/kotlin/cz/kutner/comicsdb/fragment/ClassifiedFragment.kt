@@ -42,7 +42,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
             searchRunning = true
             val searchText = ""
             async() {
-                result = classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+                result = classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText).execute().body()
                 uiThread {
                     showData()
                     lastPage++

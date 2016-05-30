@@ -1,9 +1,10 @@
 package cz.kutner.comicsdb.connector.service
 
 import cz.kutner.comicsdb.model.NewsItem
-import retrofit.http.GET
+import retrofit2.Call
+import retrofit2.http.GET
 
 interface NewsService {
     @GET("/index.php")
-    fun listNews(): List<NewsItem>
+    fun listNews(): Call<List<NewsItem>>
 }

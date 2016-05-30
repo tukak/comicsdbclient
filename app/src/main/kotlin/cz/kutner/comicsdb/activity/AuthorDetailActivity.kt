@@ -30,7 +30,7 @@ class AuthorDetailActivity : AbstractDetailActivity() {
 
     override fun loadData() {
         async() {
-            author = authorDetailService.authorDetail(id)
+            author = authorDetailService.authorDetail(id).execute().body()
             uiThread {
                 showData()
             }

@@ -14,6 +14,7 @@ import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
+import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 import java.text.Normalizer
 import javax.inject.Inject
@@ -46,7 +47,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = comicsListService.comicsSearch(searchText)
+                    result = comicsListService.comicsSearch(searchText).execute().body()
                     uiThread {
                         showData()
                         lastPage++
@@ -55,9 +56,18 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
+                info("Spouštíme")
                 async() {
-                    result = comicsListService.comicsList(lastPage)
+                    info("Spouštíme 1")
+                    info(comicsListService.toString())
+                    val call = comicsListService.comicsList(lastPage)
+                    info("Spouštíme 2")
+                    val returned = call.execute()
+                    info("Spouštíme 3")
+                    result = returned.body()
+                    info("Spouštíme 4")
                     uiThread {
+                        info("Spouštíme 5")
                         showData()
                         lastPage++
                     }

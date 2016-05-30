@@ -38,19 +38,13 @@
 
 -dontwarn rx.internal.util.unsafe.*
 
--dontwarn com.squareup.okhttp.**
--keep class com.squareup.okhttp.** { *; }
--keep interface com.squareup.okhttp.** { *; }
-
--dontwarn retrofit.**
--dontwarn retrofit.appengine.UrlFetchClient
--keep class retrofit.** { *; }
--keepclasseswithmembers class * {
-    @retrofit.http.* <methods>;
-}
--keepattributes Signature
--keepattributes *Annotation*
+-dontwarn okhttp3.internal.huc.HttpURLConnectionImpl
 
 -dontwarn kotlin.**
 -dontwarn org.w3c.dom.events.*
 -dontwarn org.jetbrains.annotations.NonNls
+
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions

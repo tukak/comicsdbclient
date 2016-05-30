@@ -5,7 +5,6 @@ import cz.kutner.comicsdb.connector.parser.ComicsParser
 import cz.kutner.comicsdb.connector.parser.SeriesParser
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import retrofit.converter.ConversionException
 import java.io.File
 
 
@@ -18,7 +17,7 @@ class ConverterTest {
             assertEquals(8, batman.comicses.count())
             assertEquals(355, batman.id)
             assertEquals(batman.comicses.count(), batman.numberOfComicses)
-        } catch (e: ConversionException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -32,7 +31,7 @@ class ConverterTest {
             assertEquals(335, miller.id)
             assertEquals(44, miller.comicses.count())
             assertEquals("http://comicsdb.cz/picautor/xid335.jpg.pagespeed.ic.52Q4ZzHlgf.jpg", miller.photoUrl)
-        } catch (e: ConversionException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -49,7 +48,7 @@ class ConverterTest {
             assertEquals("999 Kč", comics_300.price)
             assertEquals("historický, dobrodružný, drama", comics_300.genre)
             assertEquals(94, comics_300.rating)
-        } catch (e: ConversionException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 

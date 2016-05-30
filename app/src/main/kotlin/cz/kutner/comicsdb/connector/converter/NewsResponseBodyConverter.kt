@@ -1,23 +1,19 @@
 package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.model.NewsItem
+import okhttp3.ResponseBody
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import org.jsoup.Jsoup
-import retrofit.converter.ConversionException
-import retrofit.converter.Converter
-import retrofit.mime.TypedInput
-import retrofit.mime.TypedOutput
-import java.lang.reflect.Type
+import retrofit2.Converter
 import java.util.*
 
-class NewsConverter : Converter, AnkoLogger {
+class NewsResponseBodyConverter : Converter<ResponseBody, List<NewsItem>>, AnkoLogger {
 
-    @Throws(ConversionException::class)
-    override fun fromBody(body: TypedInput, type: Type): Any {
+    override fun convert(value: ResponseBody): List<NewsItem>? {
         val result = ArrayList<NewsItem>()
         try {
-            val doc = Jsoup.parse(body.`in`(), "windows-1250", "")
+            val doc = Jsoup.parse(value.byteStream(), "windows-1250", "")
             val news = doc.select(".news")
             for (newsRow in news) {
                 val title = newsRow.select(".news-tit").first().text()
@@ -36,9 +32,5 @@ class NewsConverter : Converter, AnkoLogger {
         }
 
         return result
-    }
-
-    override fun toBody(`object`: Any): TypedOutput? {
-        return null
     }
 }

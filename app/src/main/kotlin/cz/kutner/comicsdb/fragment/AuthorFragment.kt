@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.AuthorListAdapter
-import cz.kutner.comicsdb.connector.service.AuthorService
+import cz.kutner.comicsdb.connector.service.AuthorListService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.Utils
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class AuthorFragment : AbstractFragment<Author>() {
 
-    @Inject lateinit var authorService: AuthorService
+    @Inject lateinit var authorListService: AuthorListService
     @Inject lateinit var tracker: Tracker
 
     init {
@@ -45,7 +45,7 @@ class AuthorFragment : AbstractFragment<Author>() {
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
                 async() {
-                    result = authorService.authorSearch(searchText)
+                    result = authorListService.authorSearch(searchText).execute().body()
                     uiThread {
                         showData()
                         lastPage++
@@ -55,7 +55,7 @@ class AuthorFragment : AbstractFragment<Author>() {
             } else {
                 //zobrazujeme nejnovější
                 async() {
-                    result = authorService.listAuthors(lastPage)
+                    result = authorListService.listAuthors(lastPage).execute().body()
                     uiThread {
                         showData()
                         lastPage++
