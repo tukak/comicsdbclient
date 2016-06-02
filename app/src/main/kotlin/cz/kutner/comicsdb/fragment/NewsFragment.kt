@@ -11,11 +11,13 @@ import cz.kutner.comicsdb.connector.service.NewsService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
+import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-class NewsFragment : AbstractFragment<NewsItem>() {
+class NewsFragment : AbstractFragment<NewsItem>(), AnkoLogger {
 
     @Inject lateinit var newsService: NewsService
     @Inject lateinit var tracker: Tracker
@@ -39,7 +41,9 @@ class NewsFragment : AbstractFragment<NewsItem>() {
         if (!searchRunning) {
             searchRunning = true
             async() {
+                info(newsService.toString())
                 result = newsService.listNews().execute().body()
+                info("Vráceno")
                 uiThread {
                     showData()
                     lastPage++

@@ -4,7 +4,6 @@ import cz.kutner.comicsdb.model.Comics
 import okhttp3.ResponseBody
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
-import org.jetbrains.anko.info
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -13,7 +12,6 @@ import java.util.*
 
 class ComicsListResponseBodyConverter : Converter<ResponseBody, List<Comics>>, AnkoLogger {
     override fun convert(value: ResponseBody): List<Comics>? {
-        info("Začínáme konvertovat")
         val result = ArrayList<Comics>()
         val doc: Document
         val table: Element
@@ -39,7 +37,6 @@ class ComicsListResponseBodyConverter : Converter<ResponseBody, List<Comics>>, A
                 comics.rating = Integer.valueOf(rating)
                 result.add(comics)
             }
-            info("Konverze hotova")
         } catch (e: Exception) {
             error(e.message)
         }
