@@ -10,6 +10,7 @@ import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.fragment_image_view.*
 import org.jetbrains.anko.AnkoLogger
+import uk.co.senab.photoview.PhotoViewAttacher
 
 class ImageViewFragment : Fragment(),AnkoLogger {
 
@@ -24,6 +25,7 @@ class ImageViewFragment : Fragment(),AnkoLogger {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         imageView.loadUrl(image.fullUrl)
+        PhotoViewAttacher(imageView)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
