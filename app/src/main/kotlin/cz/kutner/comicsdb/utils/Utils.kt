@@ -11,6 +11,9 @@ fun ImageView.loadUrl(url: String?) {
     Picasso.with(context).load(url).into(this)
 }
 
+fun ImageView.loadUrlFullScreen(url: String?) {
+    Picasso.with(context).load(url).fit().into(this)
+}
 object Utils {
 
     val COMICSDB_URL = "http://comicsdb.cz" //R.string.url_comicsdb
