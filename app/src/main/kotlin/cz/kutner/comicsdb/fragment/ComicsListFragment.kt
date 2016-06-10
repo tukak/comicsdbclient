@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.async
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.Normalizer
 import javax.inject.Inject
@@ -45,7 +45,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                async() {
+                doAsync() {
                     result = comicsListService.comicsSearch(searchText).execute().body()
                     uiThread {
                         showData()
@@ -55,7 +55,7 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                async() {
+                doAsync() {
                     result = comicsListService.comicsList(lastPage).execute().body()
                     uiThread {
                         showData()

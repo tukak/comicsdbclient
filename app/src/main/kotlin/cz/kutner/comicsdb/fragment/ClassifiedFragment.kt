@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.connector.service.ClassifiedService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.async
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
@@ -41,7 +41,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            async() {
+            doAsync() {
                 result = classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText).execute().body()
                 uiThread {
                     showData()

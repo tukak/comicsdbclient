@@ -9,7 +9,7 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.jetbrains.anko.async
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
@@ -29,7 +29,7 @@ class ComicsDetailActivity : AbstractDetailActivity() {
     }
 
     override fun loadData() {
-        async() {
+        doAsync() {
             comics = comicsDetailService.getComics(id).execute().body()
             uiThread {
                 showData()

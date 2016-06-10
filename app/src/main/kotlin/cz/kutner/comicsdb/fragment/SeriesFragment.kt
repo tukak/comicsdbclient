@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.connector.service.SeriesListService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.async
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.Normalizer
 import javax.inject.Inject
@@ -44,7 +44,7 @@ class SeriesFragment : AbstractFragment<Series>() {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                async() {
+                doAsync() {
                     result = seriesListService.searchSeries(searchText).execute().body()
                     uiThread {
                         showData()
@@ -54,7 +54,7 @@ class SeriesFragment : AbstractFragment<Series>() {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                async() {
+                doAsync() {
                     result = seriesListService.getSeriesList(lastPage).execute().body()
                     uiThread {
                         showData()

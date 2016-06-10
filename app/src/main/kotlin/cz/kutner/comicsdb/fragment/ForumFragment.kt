@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.connector.service.ForumService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.async
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
@@ -41,7 +41,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            async() {
+            doAsync() {
                 result = forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText).execute().body()
                 uiThread {
                     showData()
