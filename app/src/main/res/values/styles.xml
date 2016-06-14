@@ -20,12 +20,11 @@
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
     </style>
 
-    <style name="AppTheme" parent="AppThemeActionBar">
-          
-        <item name="windowActionBar">false</item>
-            
+    <style name="AppTheme" parent="AppThemeActionBar">  
+        <item name="windowActionBar">false</item>    
         <item name="windowNoTitle">true</item>
     </style>
+
 
 
     <style name="menuItemColor">
