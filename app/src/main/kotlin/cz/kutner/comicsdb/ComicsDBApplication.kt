@@ -2,7 +2,6 @@ package cz.kutner.comicsdb
 
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
-import com.squareup.leakcanary.LeakCanary
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.*
 import cz.kutner.comicsdb.utils.Utils
@@ -23,8 +22,6 @@ class ComicsDBApplication : android.app.Application() {
             Picasso.with(applicationContext).setIndicatorsEnabled(true)
         }
 
-        LeakCanary.install(this)
-
         Utils.context = applicationContext
     }
 
@@ -32,7 +29,7 @@ class ComicsDBApplication : android.app.Application() {
         applicationComponent = DaggerApplicationComponent.builder()
                 .androidModule(AndroidModule(this))
                 .retrofitModule(RetrofitModule(applicationContext.getString(R.string.url_comicsdb)))
-                .googleAnalyticsTracker(GoogleAnalyticsTracker(applicationContext))
+                .googleAnalyticsTracker(GoogleAnalyticsTracker())
                 .build()
     }
 }

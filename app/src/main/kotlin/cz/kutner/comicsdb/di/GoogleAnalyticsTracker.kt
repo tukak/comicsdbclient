@@ -9,10 +9,10 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class GoogleAnalyticsTracker(context: Context) : Tracker {
-
+class GoogleAnalyticsTracker() : Tracker {
+    private lateinit var ctx: Context
     val tracker: com.google.android.gms.analytics.Tracker by lazy {
-        val analytics = GoogleAnalytics.getInstance(context).newTracker(context.getString(R.string.google_analytics_id))
+        val analytics = GoogleAnalytics.getInstance(ctx).newTracker(ctx.getString(R.string.google_analytics_id))
         analytics.enableExceptionReporting(true)
         analytics
     }
@@ -36,7 +36,8 @@ class GoogleAnalyticsTracker(context: Context) : Tracker {
 
     @Provides
     @Singleton
-    fun provideTracker(): Tracker {
+    fun provideTracker(context: Context): Tracker {
+        ctx = context
         return this
     }
 }
