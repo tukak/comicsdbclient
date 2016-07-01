@@ -5,15 +5,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.fragment.AuthorFragment
 import cz.kutner.comicsdb.fragment.ComicsListFragment
 import cz.kutner.comicsdb.fragment.SeriesFragment
+import cz.kutner.comicsdb.utils.Utils
 
 class SearchPagerAdapter(fm: FragmentManager, val intent: Intent) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        var fragment: Fragment
+        val fragment: Fragment
         when (position) {
             0 -> fragment = ComicsListFragment.newInstance()
             1 -> fragment = SeriesFragment.newInstance()

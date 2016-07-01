@@ -17,7 +17,7 @@ class AuthorParser {
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
         val id = doc.select("#filtrform > input:nth-child(2)").attr("value").toInt()
         val country = doc.select("div#wrapper div#leftcolumn").html().substringBefore("<br").substringAfter("</h5>").trim()
-        var result = Author(name, country, id)
+        val result = Author(name, country, id)
         val photoElements = doc.select("div#comicspic img")
         if (photoElements.size > 0) {
             val photoURI = photoElements.first().attr("src")
