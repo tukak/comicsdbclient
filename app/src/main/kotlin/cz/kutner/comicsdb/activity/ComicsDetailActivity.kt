@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class ComicsDetailActivity : AbstractDetailActivity() {
 
-    override val prefix by lazy { getString(R.string.url_comics_detail) }
+    override val prefix: String by lazy { getString(R.string.url_comics_detail) }
     override val extraName = MainActivity.COMICS_ID
 
     @Inject lateinit var comicsDetailService: ComicsDetailService
