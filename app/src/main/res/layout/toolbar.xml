@@ -11,11 +11,4 @@
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:layout_scrollFlags="scroll|enterAlways|snap">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:iconifiedByDefault="true" />
-
 </android.support.v7.widget.Toolbar>

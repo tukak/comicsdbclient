@@ -55,10 +55,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val cn = ComponentName(this, SearchActivity::class.java)
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
-
+     //   searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
+        //TODO v androidu N se nezobrazuje psaný text při vyhledávání
         return true
     }
 
