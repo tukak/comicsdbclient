@@ -2,7 +2,6 @@ package cz.kutner.comicsdb.adapter.delegate
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
 import org.jetbrains.anko.find
 
@@ -29,7 +29,7 @@ class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<I
 
         vh.classifiedNick.text = classified.nick
         vh.classifiedTime.text = classified.time
-        vh.classifiedText.text = Html.fromHtml(classified.text)
+        vh.classifiedText.text = Utils.fromHtml(classified.text)
         vh.classifiedNickIcon.loadUrl(classified.iconUrl)
         vh.classifiedCategory.text = classified.category
     }

@@ -15,7 +15,6 @@ import cz.kutner.comicsdb.fragment.*
 import kotlinx.android.synthetic.main.activity.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 class MainActivity : AppCompatActivity(), AnkoLogger {
 
@@ -61,7 +60,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         menuInflater.inflate(R.menu.options_menu, menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val cn = ComponentName(this, SearchActivity::class.java)
-        info(menu.findItem(R.id.searchView).actionView)
         val searchView = menu.findItem(R.id.searchView).actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
         return true

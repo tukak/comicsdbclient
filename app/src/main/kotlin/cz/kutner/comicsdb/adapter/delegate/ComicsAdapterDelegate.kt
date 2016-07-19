@@ -3,7 +3,6 @@ package cz.kutner.comicsdb.adapter.delegate
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
@@ -24,6 +23,7 @@ import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
+import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
 import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
@@ -58,10 +58,10 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         }
         vh.price.text = "Cena: ${comics.price ?: ""}"
         if (comics.notes != null) {
-            vh.notes.text = Html.fromHtml(comics.notes)
+            vh.notes.text = Utils.fromHtml(comics.notes)
         }
         if (comics.description != null) {
-            vh.description.text = Html.fromHtml(comics.description)
+            vh.description.text = Utils.fromHtml(comics.description)
         }
 
         val authors = SpannableStringBuilder()

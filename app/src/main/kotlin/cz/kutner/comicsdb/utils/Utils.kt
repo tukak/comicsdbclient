@@ -2,6 +2,8 @@ package cz.kutner.comicsdb.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.text.Html
+import android.text.Spanned
 import android.widget.ImageView
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.ContentViewEvent
@@ -46,4 +48,11 @@ object Utils {
         Answers.getInstance().logContentView(contentViewEvent)
     }
 
+    fun fromHtml(text: String?): Spanned {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return Html.fromHtml(text,Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            return Html.fromHtml(text)
+        }
+    }
 }
