@@ -23,6 +23,6 @@ data class Comics(var name: String, var id: Int): Item {
     var series: Series? = null
     var comments: ArrayList<Comment> = ArrayList()
         private set
-    lateinit var cover: Image
+    var cover: Image? = null
     var samples: ArrayList<Image> = ArrayList()
 }

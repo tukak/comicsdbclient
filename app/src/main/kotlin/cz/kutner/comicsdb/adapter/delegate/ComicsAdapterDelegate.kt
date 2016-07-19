@@ -64,7 +64,7 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
             vh.description.text = Html.fromHtml(comics.description)
         }
 
-        val authors = SpannableStringBuilder();
+        val authors = SpannableStringBuilder()
 
         for (author in comics.authors) {
             val formerLength = authors.length
@@ -73,14 +73,14 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
             authors.append(author.name)
             authors.append("\n")
             if (author.id != null && author.name != null) {
-                authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
         vh.authors.text = authors
         vh.authors.movementMethod = LinkMovementMethod.getInstance()
         val series: Series? = comics.series
         if (series != null) {
-            val seriesString = SpannableStringBuilder();
+            val seriesString = SpannableStringBuilder()
             seriesString.append(series.name)
             seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             vh.series.text = seriesString
@@ -98,10 +98,12 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
         if (comics.samples.size > 5) vh.sample6.loadUrl(comics.samples[5].previewUrl)
 
         val allImages: ArrayList<Image> = ArrayList()
-        allImages.add(comics.cover)
+        if (comics.cover != null) {
+            allImages.add(comics.cover as Image)
+        }
         allImages.addAll(comics.samples)
 
-        vh.cover.loadUrl(comics.cover.previewUrl)
+        vh.cover.loadUrl(comics.cover?.previewUrl)
 
         vh.cover.onClick { showImage(allImages, 0) }
         vh.sample1.onClick { showImage(allImages, 1)}
