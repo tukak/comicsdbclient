@@ -48,7 +48,7 @@ class SeriesParser : AnkoLogger {
         val result = ArrayList<Series>()
         val doc: Document
         val table: Element
-        doc = Jsoup.parse(html, "windows-1250", "")
+        doc = Jsoup.parse(html, encoding, "")
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
             table = doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").first()
         } else {
