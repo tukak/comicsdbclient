@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cz.kutner.comicsdb.activity.MainActivity">
     <item  android:id="@+id/searchView"
-        app:showAsAction="collapseActionView|ifRoom"
-        android:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:iconifiedByDefault="true"
-        android:title="Test" />
+        android:icon="@drawable/ic_search_24dp"
+        android:title="" />
 </menu>

@@ -62,7 +62,7 @@ abstract class AbstractDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            searchView.visibility = View.GONE
+            //searchView.visibility = View.GONE
         }
     }
 

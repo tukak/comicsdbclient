@@ -8,13 +8,16 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.widget.SearchView
 
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
 import kotlinx.android.synthetic.main.activity.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +61,9 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.options_menu, menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val cn = ComponentName(this, SearchActivity::class.java)
-     //   searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
-        //TODO v androidu N se nezobrazuje psaný text při vyhledávání
+        info(menu.findItem(R.id.searchView).actionView)
+        val searchView = menu.findItem(R.id.searchView).actionView as SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
         return true
     }
 
