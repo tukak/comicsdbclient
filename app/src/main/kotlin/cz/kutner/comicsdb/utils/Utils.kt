@@ -48,6 +48,7 @@ object Utils {
         Answers.getInstance().logContentView(contentViewEvent)
     }
 
+    @Suppress("DEPRECATION")
     fun fromHtml(text: String?): Spanned {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             return Html.fromHtml(text,Html.FROM_HTML_MODE_LEGACY)
