@@ -13,7 +13,7 @@ class ComicsListConverterFactory : Converter.Factory(), AnkoLogger {
 
     companion object {
         fun create(): ComicsListConverterFactory {
-            return ComicsListConverterFactory();
+            return ComicsListConverterFactory()
         }
     }
 }

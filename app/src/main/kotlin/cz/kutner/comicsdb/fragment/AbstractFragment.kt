@@ -59,7 +59,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         recycler_view.adapter = adapter
         try_again.onClick {
             if (Utils.isConnected()) {
-                checkConnectionAndLoadData();
+                checkConnectionAndLoadData()
             }
         }
 

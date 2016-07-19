@@ -13,7 +13,7 @@ class NewsConverterFactory : Converter.Factory(), AnkoLogger {
 
     companion object {
         fun create(): NewsConverterFactory {
-            return NewsConverterFactory();
+            return NewsConverterFactory()
         }
     }
 }

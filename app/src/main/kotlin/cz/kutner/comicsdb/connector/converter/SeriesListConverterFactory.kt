@@ -13,7 +13,7 @@ class SeriesListConverterFactory : Converter.Factory(),AnkoLogger {
 
     companion object {
         fun create(): SeriesListConverterFactory {
-            return SeriesListConverterFactory();
+            return SeriesListConverterFactory()
         }
     }
 }

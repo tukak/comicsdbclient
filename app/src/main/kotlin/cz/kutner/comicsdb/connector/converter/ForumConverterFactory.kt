@@ -13,7 +13,7 @@ class ForumConverterFactory : Converter.Factory(), AnkoLogger {
 
     companion object {
         fun create(): ForumConverterFactory {
-            return ForumConverterFactory();
+            return ForumConverterFactory()
         }
     }
 }

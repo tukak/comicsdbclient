@@ -13,7 +13,7 @@ class AuthorDetailConverterFactory : Converter.Factory(), AnkoLogger {
 
     companion object {
         fun create(): AuthorDetailConverterFactory {
-            return AuthorDetailConverterFactory();
+            return AuthorDetailConverterFactory()
         }
     }
 }

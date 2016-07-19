@@ -13,7 +13,7 @@ class ClassifiedConverterFactory : Converter.Factory(), AnkoLogger {
 
     companion object {
         fun create(): ClassifiedConverterFactory {
-            return ClassifiedConverterFactory();
+            return ClassifiedConverterFactory()
         }
     }
 }
