@@ -17,6 +17,9 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 abstract class AbstractFragment<Item : Any> : Fragment() {
@@ -132,6 +135,24 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             adapter.notifyDataSetChanged()
             loading = false
         }
+    }
+
+    fun runAsync(call: Call<List<Item>>) {
+        call.enqueue(object : Callback<List<Item>> {
+            override fun onResponse(call: Call<List<Item>>?, response: Response<List<Item>>?) {
+                if (response != null && response.isSuccessful) {
+                    result = response.body()
+                    showData()
+                    lastPage++
+                } else {
+                    switcher.showErrorView()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Item>>?, t: Throwable?) {
+                switcher.showErrorView()
+            }
+        })
     }
 
     private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {

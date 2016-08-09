@@ -12,8 +12,6 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
 class NewsFragment : AbstractFragment<NewsItem>(), AnkoLogger {
@@ -39,13 +37,8 @@ class NewsFragment : AbstractFragment<NewsItem>(), AnkoLogger {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            doAsync() {
-                result = newsService.listNews().execute().body()
-                uiThread {
-                    showData()
-                    lastPage++
-                }
-            }
+            val call = newsService.listNews()
+            runAsync(call)
         }
     }
 

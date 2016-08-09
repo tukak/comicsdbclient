@@ -25,12 +25,8 @@
 }
 
 -keepattributes *Annotation*
--keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
-    public <init>(...);
- }
 
--dontwarn okio.**
--dontwarn retrofit.appengine.UrlFetchClient
+#-dontwarn retrofit.appengine.UrlFetchClient
 
 -dontwarn com.google.android.gms.**
 
@@ -38,19 +34,37 @@
 
 -dontwarn rx.internal.util.unsafe.*
 
--dontwarn okhttp3.internal.huc.HttpURLConnectionImpl
+#-dontwarn okhttp3.internal.huc.HttpURLConnectionImpl
 
 -dontwarn kotlin.**
 -dontwarn org.w3c.dom.events.*
 -dontwarn org.jetbrains.annotations.NonNls
+
+# Retrofit 2.X
+## https://square.github.io/retrofit/ ##
 
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
 
--keep class com.squareup.okhttp.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
 
--keep interface com.squareup.okhttp.** { *; }
+# OkHttp
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
 
--dontwarn com.squareup.picasso.**
+## Square Picasso specific rules ##
+## https://square.github.io/picasso/ ##
+
+-dontwarn com.squareup.okhttp.**
+
+# Okio
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn okio.**
