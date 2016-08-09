@@ -9,11 +9,9 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-class ComicsDetailActivity : AbstractDetailActivity() {
+class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
 
     override val prefix: String by lazy { getString(R.string.url_comics_detail) }
     override val extraName = MainActivity.COMICS_ID
@@ -21,29 +19,22 @@ class ComicsDetailActivity : AbstractDetailActivity() {
     @Inject lateinit var comicsDetailService: ComicsDetailService
     @Inject lateinit var tracker: Tracker
 
-    private lateinit var comics: Comics
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun loadData() {
-        doAsync() {
-            comics = comicsDetailService.getComics(id).execute().body()
-            uiThread {
-                showData()
-            }
-        }
+        runAsync(comicsDetailService.getComics(id))
     }
 
     override fun showData() {
-        supportActionBar?.title = comics.name
-        val adapter = ComicsDetailAdapter(this, listOf(comics) + comics.comments)
+        supportActionBar?.title = result.name
+        val adapter = ComicsDetailAdapter(this, listOf(result) + result.comments)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = comics.name)
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = comics.name)
+        tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = result.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
     }
 }

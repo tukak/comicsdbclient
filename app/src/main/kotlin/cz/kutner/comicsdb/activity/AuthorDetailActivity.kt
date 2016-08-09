@@ -9,11 +9,9 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-class AuthorDetailActivity : AbstractDetailActivity() {
+class AuthorDetailActivity : AbstractDetailActivity<Author>() {
 
     override val prefix: String by lazy { getString(R.string.url_author_detail) }
     override val extraName = MainActivity.AUTHOR_ID
@@ -21,29 +19,22 @@ class AuthorDetailActivity : AbstractDetailActivity() {
     @Inject lateinit var authorDetailService: AuthorDetailService
     @Inject lateinit var tracker: Tracker
 
-    private lateinit var author: Author
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun loadData() {
-        doAsync() {
-            author = authorDetailService.authorDetail(id).execute().body()
-            uiThread {
-                showData()
-            }
-        }
+        runAsync(authorDetailService.authorDetail(id))
     }
 
     override fun showData() {
-        supportActionBar?.title = author.name
-        val adapter = AuthorDetailAdapter(this, listOf(author) + author.comicses)
+        supportActionBar?.title = result.name
+        val adapter = AuthorDetailAdapter(this, listOf(result) + result.comicses)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "AuthorDetailFragment", category = "Detail", action = author.name)
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = author.name)
+        tracker.logVisit(screenName = "AuthorDetailFragment", category = "Detail", action = result.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = result.name)
     }
 }

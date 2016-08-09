@@ -9,11 +9,9 @@ import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-class SeriesDetailActivity : AbstractDetailActivity() {
+class SeriesDetailActivity : AbstractDetailActivity<Series>() {
 
     override val prefix: String by lazy { getString(R.string.url_series_detail) }
     override val extraName = MainActivity.SERIES_ID
@@ -21,30 +19,23 @@ class SeriesDetailActivity : AbstractDetailActivity() {
     @Inject lateinit var seriesDetailService: SeriesDetailService
     @Inject lateinit var tracker: Tracker
 
-    private lateinit var series: Series
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as ComicsDBApplication).applicationComponent.inject(this)
     }
 
     override fun loadData() {
-        doAsync() {
-            series = seriesDetailService.seriesDetail(id).execute().body()
-            uiThread {
-                showData()
-            }
-        }
+        runAsync(seriesDetailService.seriesDetail(id))
     }
 
     override fun showData() {
-        supportActionBar?.title = series.name
-        val adapter = SeriesDetailAdapter(this, listOf(series) + series.comicses)
+        supportActionBar?.title = result.name
+        val adapter = SeriesDetailAdapter(this, listOf(result) + result.comicses)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "SeriesDetailFragment", category = "Detail", action = series.name)
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = series.name)
+        tracker.logVisit(screenName = "SeriesDetailFragment", category = "Detail", action = result.name)
+        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu série", contentType = "Série", contentId = result.name)
     }
 
 }

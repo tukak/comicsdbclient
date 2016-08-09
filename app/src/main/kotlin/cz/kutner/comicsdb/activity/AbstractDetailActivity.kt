@@ -18,11 +18,15 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.singleTop
 import pl.aprilapps.switcher.Switcher
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-abstract class AbstractDetailActivity : AppCompatActivity() {
+abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
 
     abstract val prefix: String
     abstract val extraName: String
+    lateinit var result: Item
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
     val id: Int by lazy {
         val intent = intent
@@ -81,6 +85,23 @@ abstract class AbstractDetailActivity : AppCompatActivity() {
             switcher.showProgressView()
             loadData()
         }
+    }
+
+    fun runAsync(call: Call<Item>) {
+        call.enqueue(object : Callback<Item> {
+            override fun onResponse(call: Call<Item>?, response: Response<Item>?) {
+                if (response != null && response.isSuccessful) {
+                    result = response.body()
+                    showData()
+                } else {
+                    switcher.showErrorView()
+                }
+            }
+
+            override fun onFailure(call: Call<Item>?, t: Throwable?) {
+                switcher.showErrorView()
+            }
+        })
     }
 
     abstract fun loadData()
