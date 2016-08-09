@@ -11,10 +11,9 @@ import cz.kutner.comicsdb.connector.service.NewsService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.AnkoLogger
 import javax.inject.Inject
 
-class NewsFragment : AbstractFragment<NewsItem>(), AnkoLogger {
+class NewsFragment : AbstractFragment<NewsItem>() {
 
     @Inject lateinit var newsService: NewsService
     @Inject lateinit var tracker: Tracker

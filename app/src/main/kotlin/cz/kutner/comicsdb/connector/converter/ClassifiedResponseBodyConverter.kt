@@ -3,14 +3,12 @@ package cz.kutner.comicsdb.connector.converter
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.utils.Utils
 import okhttp3.ResponseBody
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import retrofit2.Converter
 import java.util.*
 
-class ClassifiedResponseBodyConverter : Converter<ResponseBody, List<Classified>>, AnkoLogger {
+class ClassifiedResponseBodyConverter : Converter<ResponseBody, List<Classified>> {
     override fun convert(value: ResponseBody): List<Classified>? {
         val result = ArrayList<Classified>()
         val doc: Document
@@ -32,7 +30,7 @@ class ClassifiedResponseBodyConverter : Converter<ResponseBody, List<Classified>
                 result.add(classified)
             }
         } catch (e: Exception) {
-            error(e.message)
+           // error(e.message)
         }
 
         return result

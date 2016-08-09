@@ -2,13 +2,11 @@ package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.model.NewsItem
 import okhttp3.ResponseBody
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import retrofit2.Converter
 import java.util.*
 
-class NewsResponseBodyConverter : Converter<ResponseBody, List<NewsItem>>, AnkoLogger {
+class NewsResponseBodyConverter : Converter<ResponseBody, List<NewsItem>> {
 
     override fun convert(value: ResponseBody): List<NewsItem>? {
         val result = ArrayList<NewsItem>()
@@ -28,7 +26,7 @@ class NewsResponseBodyConverter : Converter<ResponseBody, List<NewsItem>>, AnkoL
                 result.add(newsItem)
             }
         } catch (e: Exception) {
-            error(e.message)
+           // error(e.message)
         }
 
         return result

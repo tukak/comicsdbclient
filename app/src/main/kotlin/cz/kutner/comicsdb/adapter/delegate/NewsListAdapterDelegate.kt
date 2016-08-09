@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.list_item_news.view.*
 
 
 class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -36,10 +36,10 @@ class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> 
     }
 
     internal class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var newsItemTitle: TextView = itemView.find(R.id.newsItemTitle)
-        var newsItemNick: TextView = itemView.find(R.id.newsItemNick)
-        var newsItemTime: TextView = itemView.find(R.id.newsItemTime)
-        var newsItemText: TextView = itemView.find(R.id.newsItemText)
+        var newsItemTitle: TextView = itemView.newsItemTitle
+        var newsItemNick: TextView = itemView.newsItemNick
+        var newsItemTime: TextView = itemView.newsItemTime
+        var newsItemText: TextView = itemView.newsItemText
 
         init {
             newsItemText.movementMethod = LinkMovementMethod.getInstance()

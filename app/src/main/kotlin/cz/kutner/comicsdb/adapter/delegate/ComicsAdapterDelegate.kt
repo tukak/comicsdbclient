@@ -25,8 +25,7 @@ import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
-import org.jetbrains.anko.find
-import org.jetbrains.anko.onClick
+import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 import java.util.*
 
 
@@ -105,13 +104,13 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
 
         vh.cover.loadUrl(comics.cover?.previewUrl)
 
-        vh.cover.onClick { showImage(allImages, 0) }
-        vh.sample1.onClick { showImage(allImages, 1)}
-        vh.sample2.onClick { showImage(allImages, 2)}
-        vh.sample3.onClick { showImage(allImages, 3)}
-        vh.sample4.onClick { showImage(allImages, 4)}
-        vh.sample5.onClick { showImage(allImages, 5)}
-        vh.sample6.onClick { showImage(allImages, 6)}
+        vh.cover.setOnClickListener { showImage(allImages, 0) }
+        vh.sample1.setOnClickListener { showImage(allImages, 1)}
+        vh.sample2.setOnClickListener { showImage(allImages, 2)}
+        vh.sample3.setOnClickListener { showImage(allImages, 3)}
+        vh.sample4.setOnClickListener { showImage(allImages, 4)}
+        vh.sample5.setOnClickListener { showImage(allImages, 5)}
+        vh.sample6.setOnClickListener { showImage(allImages, 6)}
     }
 
     fun showImage(images: ArrayList<Image>, position:Int) {
@@ -162,30 +161,29 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
     }
 
     class ComicsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var cover: ImageView = itemView.find<ImageView>(R.id.cover)
-        internal var name: TextView = itemView.find<TextView>(R.id.name)
-        internal var genre: TextView = itemView.find<TextView>(R.id.genre)
-        internal var comicsDetailRatingBar: RatingBar = itemView.find<RatingBar>(R.id.comics_detail_rating_bar)
-        internal var rating: TextView = itemView.find<TextView>(R.id.rating)
-        internal var publisher: TextView = itemView.find<TextView>(R.id.publisher)
-        internal var pagesCount: TextView = itemView.find<TextView>(R.id.pagesCount)
-        internal var price: TextView = itemView.find<TextView>(R.id.price)
-        internal var originalName: TextView = itemView.find<TextView>(R.id.originalName)
-        internal var binding: TextView = itemView.find<TextView>(R.id.binding)
-        internal var series: TextView = itemView.find<TextView>(R.id.series)
-        internal var issueNumber: TextView = itemView.find<TextView>(R.id.issueNumber)
-        internal var format: TextView = itemView.find<TextView>(R.id.format)
-        internal var url: TextView = itemView.find<TextView>(R.id.url)
-        internal var description: TextView = itemView.find<TextView>(R.id.description)
-        internal var notes: TextView = itemView.find<TextView>(R.id.notes)
-        internal var authors: TextView = itemView.find<TextView>(R.id.authors)
-        internal var sample1: ImageView = itemView.find<ImageView>(R.id.sample1)
-        internal var sample2: ImageView = itemView.find<ImageView>(R.id.sample2)
-        internal var sample3: ImageView = itemView.find<ImageView>(R.id.sample3)
-        internal var sample4: ImageView = itemView.find<ImageView>(R.id.sample4)
-        internal var sample5: ImageView = itemView.find<ImageView>(R.id.sample5)
-        internal var sample6: ImageView = itemView.find<ImageView>(R.id.sample6)
-
+        internal var cover: ImageView = itemView.cover
+        internal var name: TextView = itemView.name
+        internal var genre: TextView = itemView.genre
+        internal var comicsDetailRatingBar: RatingBar = itemView.comics_detail_rating_bar
+        internal var rating: TextView = itemView.rating
+        internal var publisher: TextView = itemView.publisher
+        internal var pagesCount: TextView = itemView.pagesCount
+        internal var price: TextView = itemView.price
+        internal var originalName: TextView = itemView.originalName
+        internal var binding: TextView = itemView.binding
+        internal var series: TextView = itemView.series
+        internal var issueNumber: TextView = itemView.issueNumber
+        internal var format: TextView = itemView.format
+        internal var url: TextView = itemView.url
+        internal var description: TextView = itemView.description
+        internal var notes: TextView = itemView.notes
+        internal var authors: TextView = itemView.authors
+        internal var sample1: ImageView = itemView.sample1
+        internal var sample2: ImageView = itemView.sample2
+        internal var sample3: ImageView = itemView.sample3
+        internal var sample4: ImageView = itemView.sample4
+        internal var sample5: ImageView = itemView.sample5
+        internal var sample6: ImageView = itemView.sample6
 
     }
 }

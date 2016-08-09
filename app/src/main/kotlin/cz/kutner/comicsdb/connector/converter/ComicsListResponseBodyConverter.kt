@@ -2,15 +2,13 @@ package cz.kutner.comicsdb.connector.converter
 
 import cz.kutner.comicsdb.model.Comics
 import okhttp3.ResponseBody
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import retrofit2.Converter
 import java.util.*
 
-class ComicsListResponseBodyConverter : Converter<ResponseBody, List<Comics>>, AnkoLogger {
+class ComicsListResponseBodyConverter : Converter<ResponseBody, List<Comics>> {
     override fun convert(value: ResponseBody): List<Comics>? {
         val result = ArrayList<Comics>()
         val doc: Document
@@ -38,7 +36,7 @@ class ComicsListResponseBodyConverter : Converter<ResponseBody, List<Comics>>, A
                 result.add(comics)
             }
         } catch (e: Exception) {
-            error(e.message)
+            //error(e.message)
         }
         return result
     }

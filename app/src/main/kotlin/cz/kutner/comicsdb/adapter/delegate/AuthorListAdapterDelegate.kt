@@ -14,9 +14,7 @@ import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item
-import org.jetbrains.anko.find
-import org.jetbrains.anko.onClick
-
+import kotlinx.android.synthetic.main.list_item_authors.view.*
 
 class AuthorListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
     private val inflater: LayoutInflater = activity.layoutInflater
@@ -39,13 +37,13 @@ class AuthorListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
     }
 
     internal class AuthorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var authorName: TextView = itemView.find(R.id.authorName)
-        internal var authorCountry: TextView = itemView.find(R.id.authorCountry)
-        internal var card_view_authors: CardView = itemView.find(R.id.card_view_authors)
+        internal var authorName: TextView = itemView.authorName
+        internal var authorCountry: TextView = itemView.authorCountry
+        internal var card_view_authors: CardView = itemView.card_view_authors
         internal var authorId: Int? = null
 
         init {
-            card_view_authors.onClick {
+            card_view_authors.setOnClickListener {
                 val intent = Intent(itemView.context, AuthorDetailActivity::class.java)
                 if (authorId != null) {
                     intent.putExtra(MainActivity.AUTHOR_ID, authorId as Int)

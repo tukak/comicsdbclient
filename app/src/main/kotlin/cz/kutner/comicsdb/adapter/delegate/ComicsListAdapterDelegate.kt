@@ -14,9 +14,7 @@ import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Item
-import org.jetbrains.anko.find
-import org.jetbrains.anko.onClick
-
+import kotlinx.android.synthetic.main.list_item_comics.view.*
 
 class ComicsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
     private val inflater: LayoutInflater = activity.layoutInflater
@@ -44,14 +42,14 @@ class ComicsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
     }
 
     internal class ComicsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var comicsName: TextView = itemView.find(R.id.comics_name)
-        internal var comicsPublished: TextView = itemView.find(R.id.comics_published)
-        internal var comicsRating: TextView = itemView.find(R.id.comics_rating)
+        internal var comicsName: TextView = itemView.comics_name
+        internal var comicsPublished: TextView = itemView.comics_published
+        internal var comicsRating: TextView = itemView.comics_rating
         internal var comicsId: Int? = null
-        internal var card_view_comics: CardView = itemView.find(R.id.card_view_comics)
+        internal var card_view_comics: CardView = itemView.card_view_comics
 
         init {
-            card_view_comics.onClick {
+            card_view_comics.setOnClickListener {
                 val intent = Intent(itemView.context, ComicsDetailActivity::class.java)
                 if (comicsId != null) {
                     intent.putExtra(MainActivity.COMICS_ID, comicsId as Int)

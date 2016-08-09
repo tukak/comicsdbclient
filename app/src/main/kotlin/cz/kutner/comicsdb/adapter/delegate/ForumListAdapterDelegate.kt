@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.list_item_forum.view.*
 
 
 class ForumListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -38,11 +38,11 @@ class ForumListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>
     }
 
     internal class ForumEntryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var forumNickIcon: ImageView = itemView.find(R.id.forum_nick_icon)
-        var forumCommentNick: TextView  = itemView.find(R.id.forum_comment_nick)
-        var forumCommentForum: TextView  = itemView.find(R.id.forum_comment_forum)
-        var forumCommentTime: TextView = itemView.find(R.id.forum_comment_time)
-        var forumCommentText: TextView = itemView.find(R.id.forum_comment_text)
+        var forumNickIcon: ImageView = itemView.forum_nick_icon
+        var forumCommentNick: TextView  = itemView.forum_comment_nick
+        var forumCommentForum: TextView  = itemView.forum_comment_forum
+        var forumCommentTime: TextView = itemView.forum_comment_time
+        var forumCommentText: TextView = itemView.forum_comment_text
     }
 
 }

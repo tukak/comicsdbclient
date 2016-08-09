@@ -2,14 +2,13 @@ package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Series
-import org.jetbrains.anko.AnkoLogger
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.io.InputStream
 import java.util.*
 
-class SeriesParser : AnkoLogger {
+class SeriesParser  {
     fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): Series {
         val doc: Document
         doc = Jsoup.parse(html, encoding, "")

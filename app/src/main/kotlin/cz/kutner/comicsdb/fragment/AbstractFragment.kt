@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
-import org.jetbrains.anko.onClick
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,7 +59,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         val llm = LinearLayoutManager(view?.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
-        try_again.onClick {
+        try_again.setOnClickListener {
             if (Utils.isConnected()) {
                 checkConnectionAndLoadData()
             }

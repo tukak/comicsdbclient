@@ -4,12 +4,11 @@ import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
 import dagger.Module
 import dagger.Provides
-import org.jetbrains.anko.AnkoLogger
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-class RetrofitModule(val baseUrl: String): AnkoLogger {
+class RetrofitModule(val baseUrl: String) {
     
     @Provides
     @Singleton

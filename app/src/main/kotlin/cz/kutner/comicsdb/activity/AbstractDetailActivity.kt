@@ -13,10 +13,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
-import org.jetbrains.anko.clearTop
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.onClick
-import org.jetbrains.anko.singleTop
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,7 +46,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
         setupToolbar()
 
         val llm = LinearLayoutManager(this)
-        try_again.onClick {
+        try_again.setOnClickListener {
             if (Utils.isConnected()) {
                 onResume()
             }
@@ -72,7 +68,9 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            startActivity(intentFor<MainActivity>().singleTop().clearTop())
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

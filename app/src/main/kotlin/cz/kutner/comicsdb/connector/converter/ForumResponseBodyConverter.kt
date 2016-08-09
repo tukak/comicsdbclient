@@ -3,14 +3,12 @@ package cz.kutner.comicsdb.connector.converter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.Utils
 import okhttp3.ResponseBody
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import retrofit2.Converter
 import java.util.*
 
-class ForumResponseBodyConverter : Converter<ResponseBody, List<ForumEntry>>, AnkoLogger {
+class ForumResponseBodyConverter : Converter<ResponseBody, List<ForumEntry>> {
 
     override fun convert(value: ResponseBody): List<ForumEntry>? {
         val result = ArrayList<ForumEntry>()
@@ -33,7 +31,7 @@ class ForumResponseBodyConverter : Converter<ResponseBody, List<ForumEntry>>, An
                 result.add(forumEntry)
             }
         } catch (e: Exception) {
-            error(e.message)
+            //error(e.message)
         }
         return result
     }

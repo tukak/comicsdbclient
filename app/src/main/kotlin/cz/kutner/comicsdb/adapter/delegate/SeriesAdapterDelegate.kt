@@ -10,7 +10,7 @@ import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.fragment_series_detail.view.*
 
 
 class SeriesAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -31,6 +31,6 @@ class SeriesAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
     }
 
     class SeriesViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var name: TextView = itemView.find<TextView>(R.id.name)
+        internal var name: TextView = itemView.name
     }
 }

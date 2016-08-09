@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Comment
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.loadUrl
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.list_item_comment.view.*
 
 
 class CommentsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -38,10 +38,10 @@ class CommentsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> 
     }
 
     class CommentsViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var commentNick: TextView = itemView.find<TextView>(R.id.commentNick)
-        internal var commentTime: TextView = itemView.find<TextView>(R.id.commentTime)
-        internal var commentRatingBar: RatingBar = itemView.find<RatingBar>(R.id.commentRatingBar)
-        internal var commentText: TextView = itemView.find<TextView>(R.id.commentText)
-        internal var nickIcon: ImageView = itemView.find<ImageView>(R.id.nickIcon)
+        internal var commentNick: TextView = itemView.commentNick
+        internal var commentTime: TextView = itemView.commentTime
+        internal var commentRatingBar: RatingBar = itemView.commentRatingBar
+        internal var commentText: TextView = itemView.commentText
+        internal var nickIcon: ImageView = itemView.nickIcon
     }
 }

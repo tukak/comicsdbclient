@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.list_item_classified.view.*
 
 
 class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -39,11 +39,11 @@ class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<I
     }
 
     internal class ClassifiedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var classifiedNickIcon: ImageView = itemView.find(R.id.classified_nick_icon)
-        var classifiedNick: TextView = itemView.find(R.id.classified_nick)
-        var classifiedCategory: TextView  = itemView.find(R.id.classified_category)
-        var classifiedTime: TextView  = itemView.find(R.id.classified_time)
-        var classifiedText: TextView  = itemView.find(R.id.classified_text)
+        var classifiedNickIcon: ImageView = itemView.classified_nick_icon
+        var classifiedNick: TextView = itemView.classified_nick
+        var classifiedCategory: TextView  = itemView.classified_category
+        var classifiedTime: TextView  = itemView.classified_time
+        var classifiedText: TextView  = itemView.classified_text
 
     }
 

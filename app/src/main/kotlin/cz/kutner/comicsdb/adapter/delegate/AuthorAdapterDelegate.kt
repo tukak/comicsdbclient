@@ -13,7 +13,7 @@ import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.Utils
 import cz.kutner.comicsdb.utils.loadUrl
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.fragment_author_detail.view.*
 
 
 class AuthorAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
@@ -38,10 +38,10 @@ class AuthorAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
     }
 
     class AuthorViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var name: TextView = itemView.find<TextView>(R.id.name)
-        internal var country: TextView = itemView.find<TextView>(R.id.country)
-        internal var bio: TextView = itemView.find<TextView>(R.id.bio)
-        internal var notes: TextView = itemView.find<TextView>(R.id.notes)
-        internal var photo: ImageView = itemView.find<ImageView>(R.id.authorPhoto)
+        internal var name: TextView = itemView.name
+        internal var country: TextView = itemView.country
+        internal var bio: TextView = itemView.bio
+        internal var notes: TextView = itemView.notes
+        internal var photo: ImageView = itemView.authorPhoto
     }
 }

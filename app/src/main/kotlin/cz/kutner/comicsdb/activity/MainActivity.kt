@@ -9,14 +9,12 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
-
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
 import kotlinx.android.synthetic.main.activity.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.AnkoLogger
 
-class MainActivity : AppCompatActivity(), AnkoLogger {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

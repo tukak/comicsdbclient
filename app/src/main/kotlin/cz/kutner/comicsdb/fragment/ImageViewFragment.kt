@@ -9,9 +9,8 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.fragment_image_view.*
-import org.jetbrains.anko.AnkoLogger
 
-class ImageViewFragment : Fragment(),AnkoLogger {
+class ImageViewFragment : Fragment() {
 
     private lateinit var image: Image
 
