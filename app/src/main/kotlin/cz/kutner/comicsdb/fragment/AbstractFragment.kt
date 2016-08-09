@@ -37,7 +37,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     var spinnerValues: Array<String>? = null
     var filter: String
     private var spinnerPosition: Int? = null
-    private val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     init {
         lastPage = 1

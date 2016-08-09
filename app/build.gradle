@@ -1,12 +1,14 @@
 import com.android.ddmlib.DdmPreferences
 
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.0.4-eap-62'
     ext.support_library_version = '24.1.1'
     ext.anko_version = '0.9'
     repositories {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+
     }
 
     dependencies {
@@ -22,11 +24,12 @@ apply plugin: 'kotlin-android-extensions'
 repositories {
     jcenter()
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
 }
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.0'
+    buildToolsVersion '24.0.1'
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 16

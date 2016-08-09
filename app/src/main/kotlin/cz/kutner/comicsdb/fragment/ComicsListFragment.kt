@@ -12,13 +12,13 @@ import cz.kutner.comicsdb.connector.service.ComicsListService
 import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.Normalizer
 import javax.inject.Inject
 
-class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
+class ComicsListFragment : AbstractFragment<Comics>() {
 
     @Inject lateinit var comicsListService: ComicsListService
     @Inject lateinit var tracker: Tracker
@@ -45,23 +45,41 @@ class ComicsListFragment : AbstractFragment<Comics>(), AnkoLogger {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                doAsync() {
-                    result = comicsListService.comicsSearch(searchText).execute().body()
-                    uiThread {
-                        showData()
-                        lastPage++
+                val call = comicsListService.comicsSearch(searchText)
+                call.enqueue(object : Callback<List<Comics>> {
+                    override fun onResponse(call: Call<List<Comics>>?, response: Response<List<Comics>>?) {
+                        if (response != null && response.isSuccessful) {
+                            result = response.body()
+                            showData()
+                            lastPage++
+                        } else {
+                            switcher.showErrorView()
+                        }
                     }
-                }
+
+                    override fun onFailure(call: Call<List<Comics>>?, t: Throwable?) {
+                        switcher.showErrorView()
+                    }
+                })
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                doAsync() {
-                    result = comicsListService.comicsList(lastPage).execute().body()
-                    uiThread {
-                        showData()
-                        lastPage++
+                val call = comicsListService.comicsList(lastPage)
+                call.enqueue(object : Callback<List<Comics>> {
+                    override fun onResponse(call: Call<List<Comics>>?, response: Response<List<Comics>>?) {
+                        if (response != null && response.isSuccessful) {
+                            result = response.body()
+                            showData()
+                            lastPage++
+                        } else {
+                            switcher.showErrorView()
+                        }
                     }
-                }
+
+                    override fun onFailure(call: Call<List<Comics>>?, t: Throwable?) {
+                        switcher.showErrorView()
+                    }
+                })
             }
         }
     }
