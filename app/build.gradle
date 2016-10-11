@@ -65,7 +65,7 @@ dependencies {
 
     compile 'org.jsoup:jsoup:1.9.2'
     compile 'com.pnikosis:materialish-progress:1.7'
-    compile 'com.github.jkwiecien:Switcher:2.0.7'
+    compile 'com.github.jkwiecien:Switcher:2.0.8'
     compile 'com.google.android.gms:play-services-analytics:9.6.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
