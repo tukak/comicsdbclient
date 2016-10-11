@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.ComicsDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
@@ -16,14 +16,14 @@ import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.list_item_comics.view.*
 
-class ComicsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
+class ComicsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is Comics
     }
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder) {
+    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: ComicsViewHolder = holder as ComicsViewHolder
         val comics: Comics = items[position] as Comics
 

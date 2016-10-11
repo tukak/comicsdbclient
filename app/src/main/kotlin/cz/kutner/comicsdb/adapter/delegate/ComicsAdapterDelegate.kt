@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.ImageViewSliderActivity
@@ -29,10 +29,10 @@ import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 import java.util.*
 
 
-class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
+class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder) {
+    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as ComicsViewHolder
         val comics = items[position] as Comics
         vh.name.text = comics.name

@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 import kotlinx.android.synthetic.main.fragment_series_detail.view.*
 
 
-class SeriesAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
+class SeriesAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder) {
+    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as SeriesViewHolder
         val series = items[position] as Series
         vh.name.text = series.name

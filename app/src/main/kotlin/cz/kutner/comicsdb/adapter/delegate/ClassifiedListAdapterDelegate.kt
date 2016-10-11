@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
@@ -16,14 +16,14 @@ import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.list_item_classified.view.*
 
 
-class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
+class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is Classified
     }
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder) {
+    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: ClassifiedViewHolder = holder as ClassifiedViewHolder
         val classified: Classified = items[position] as Classified
 

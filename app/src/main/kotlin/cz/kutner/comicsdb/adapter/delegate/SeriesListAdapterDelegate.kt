@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.hannesdorfmann.adapterdelegates2.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
@@ -16,14 +16,14 @@ import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 import kotlinx.android.synthetic.main.list_item_series.view.*
 
-class SeriesListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>> {
+class SeriesListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is Series
     }
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder) {
+    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: SeriesViewHolder = holder as SeriesViewHolder
         val series: Series = items[position] as Series
 
