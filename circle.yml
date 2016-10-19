@@ -7,27 +7,12 @@ machine:
 
 dependencies:
     pre:
-
+        - wget "https://services.gradle.org/distributions/gradle-2.14.1-bin.zip"; unzip gradle-2.14.1-bin.zip
         - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-24,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-24.0.3
-
-dependencies:
-    pre:
-        - wget "https://services.gradle.org/distributions/gradle-2.14.1-bin.zip"; unzip gradle-2.14.1-bin.zip
-        - echo y | android update sdk --no-ui --all --filter tools
-        - echo y | android update sdk --no-ui --all --filter platform-tools
-        - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
-        - echo y | android update sdk --no-ui --all --filter extra-android-support
-        - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
-        - echo y | android update sdk --no-ui --all --filter extra-google-m2repository
-        - echo y | android update sdk --no-ui --all --filter android-24
-        - echo y | android update sdk --no-ui --all --filter build-tools-24.0.3
-        - echo y | android update sdk -a -u -t sys-img-armeabi-v7a-google_apis-24
 test:
   override:
-    - echo no | android create avd -n custom-android24-googleapis -t "android-24" --abi google_apis/armeabi-v7a
-    - android list avd
-    - emulator -avd custom-android24-googleapis -no-window:
+    - emulator -avd circleci-android22 -no-audio -no-window:
           background: true
           parallel: true
     - circle-android wait-for-boot
