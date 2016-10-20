@@ -2,7 +2,7 @@ import com.android.ddmlib.DdmPreferences
 
 buildscript {
     ext.kotlin_version = '1.0.4'
-    ext.support_library_version = '24.2.1'
+    ext.support_library_version = '25.0.0'
     repositories {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
@@ -27,12 +27,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion '24.0.3'
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 27
         versionName "27"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
