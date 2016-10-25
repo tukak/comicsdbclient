@@ -30,7 +30,8 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
         if (Intent.ACTION_VIEW == intent.action) {
             //volá nás někdo přes URL
             try {
-                idTmp = Integer.parseInt(intent.dataString.removePrefix(prefix))
+                val url = intent.dataString.replace("www.", "")
+                idTmp = Integer.parseInt(url.removePrefix(prefix))
             } catch (e: Exception) {
             }
 

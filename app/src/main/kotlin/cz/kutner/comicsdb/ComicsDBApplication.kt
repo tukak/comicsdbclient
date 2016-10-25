@@ -6,6 +6,7 @@ import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.*
 import cz.kutner.comicsdb.utils.Utils
 import io.fabric.sdk.android.Fabric
+import timber.log.Timber
 
 class ComicsDBApplication : android.app.Application() {
 
@@ -23,6 +24,10 @@ class ComicsDBApplication : android.app.Application() {
         }
 
         Utils.context = applicationContext
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
     private fun setupComponent() {
