@@ -63,7 +63,7 @@ class ComicsListFragment : AbstractFragment<Comics>() {
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
             tracker.logVisit(screenName = "ComicsListFragment - List")
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
+            Utils.logVisit(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
         }
     }
 

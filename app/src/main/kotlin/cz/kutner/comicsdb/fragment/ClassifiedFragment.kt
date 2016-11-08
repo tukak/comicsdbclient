@@ -48,7 +48,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
         tracker.logVisit(screenName = "ClassifiedFragment")
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
+        Utils.logVisit(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 
     companion object {

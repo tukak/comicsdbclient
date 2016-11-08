@@ -48,7 +48,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
         tracker.logVisit(screenName = "ForumFragment")
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení fór", contentType = "Fórum")
+        Utils.logVisit(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 
     companion object {

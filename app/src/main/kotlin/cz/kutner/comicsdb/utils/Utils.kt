@@ -2,11 +2,13 @@ package cz.kutner.comicsdb.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.ContentViewEvent
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.picasso.Picasso
 
 fun ImageView.loadUrl(url: String?) {
@@ -19,6 +21,8 @@ object Utils {
 
     lateinit var context: Context
         set
+
+    val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(context) }
 
     fun isConnected(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -34,7 +38,7 @@ object Utils {
         }
     }
 
-    fun logVisitToFabricAnswers(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
+    fun logVisit(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
         val contentViewEvent = ContentViewEvent()
         if (contentName != null) {
             contentViewEvent.putContentName(contentName)
@@ -46,11 +50,17 @@ object Utils {
             contentViewEvent.putContentId(contentId)
         }
         Answers.getInstance().logContentView(contentViewEvent)
+
+        val bundle: Bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, contentId)
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType)
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, contentName)
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
     fun fromHtml(text: String?): Spanned {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            return Html.fromHtml(text,Html.FROM_HTML_MODE_LEGACY)
+            return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY)
         } else {
             @Suppress("DEPRECATION")
             return Html.fromHtml(text)

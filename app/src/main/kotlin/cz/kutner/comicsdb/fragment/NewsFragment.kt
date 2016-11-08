@@ -45,7 +45,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
         tracker.logVisit(screenName = "NewsFragment")
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení novinek", contentType = "Novinky")
+        Utils.logVisit(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 
     companion object {

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.SearchEvent
+import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
@@ -28,5 +29,11 @@ class SearchActivity : AppCompatActivity() {
         val query = intent.getStringExtra(SearchManager.QUERY)
         Answers.getInstance().logSearch(SearchEvent().putQuery(query))
         tracker.logEvent(category = "Search", action = query)
+
+        val bundle: Bundle = Bundle()
+        val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, query)
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
+
     }
 }

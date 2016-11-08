@@ -62,7 +62,7 @@ class SeriesFragment : AbstractFragment<Series>() {
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Serie"
             tracker.logVisit(screenName = "SeriesFragment - List")
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu sérií", contentType = "Série")
+            Utils.logVisit(contentName = "Zobrazení seznamu sérií", contentType = "Série")
         }
     }
 

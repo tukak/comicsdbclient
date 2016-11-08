@@ -35,6 +35,6 @@ class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
         tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = result.name)
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
+        Utils.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
     }
 }

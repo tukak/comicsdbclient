@@ -62,7 +62,7 @@ class AuthorFragment : AbstractFragment<Author>() {
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
             tracker.logVisit(screenName = "AuthorFragment - List")
-            Utils.logVisitToFabricAnswers(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
+            Utils.logVisit(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
         }
     }
 

@@ -38,7 +38,7 @@ class AboutFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
         tracker.logVisit(screenName = "AboutFragment")
-        Utils.logVisitToFabricAnswers(contentName = "Zobrazení O aplikaci")
+        Utils.logVisit(contentName = "Zobrazení O aplikaci")
     }
 
     companion object {

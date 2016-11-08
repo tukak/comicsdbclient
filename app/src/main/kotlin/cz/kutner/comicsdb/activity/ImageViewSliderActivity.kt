@@ -27,7 +27,7 @@ class ImageViewSliderActivity : AppCompatActivity() {
         image_tabs.setupWithViewPager(image_pager)
         image_pager.currentItem = position
         tracker.logVisit(screenName = "ImageViewSliderActivity")
-        Utils.logVisitToFabricAnswers(contentName = "Prohlížení obrázků", contentType = "Image")
+        Utils.logVisit(contentName = "Prohlížení obrázků", contentType = "Image")
     }
 
     companion object {
