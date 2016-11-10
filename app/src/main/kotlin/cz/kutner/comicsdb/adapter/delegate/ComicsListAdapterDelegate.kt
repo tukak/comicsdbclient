@@ -29,7 +29,7 @@ class ComicsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
 
         vh.comicsName.text = comics.name
         vh.comicsPublished.text = comics.published
-        if (comics.rating.toInt() > 0) {
+        if (comics.rating > 0) {
             vh.comicsRating.text = comics.rating.toString()
         } else {
             vh.comicsRating.text = " "

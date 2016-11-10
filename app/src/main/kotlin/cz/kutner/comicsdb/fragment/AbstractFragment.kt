@@ -122,7 +122,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
                 switcher.showContentView()
                 firstLoad = false
             }
-            if (result.size > 0) {
+            if (result.isNotEmpty()) {
                 if (lastItem == null || lastItem != result[0]) {
                     lastItem = result[0]
                     if (!endless) {

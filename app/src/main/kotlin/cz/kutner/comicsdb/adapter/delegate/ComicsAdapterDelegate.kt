@@ -36,8 +36,8 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
         val vh = holder as ComicsViewHolder
         val comics = items[position] as Comics
         vh.name.text = comics.name
-        if (comics.rating.toInt() > 0) {
-            vh.rating.text = "${comics.rating.toString()}% (${comics.voteCount.toString()})"
+        if (comics.rating > 0) {
+            vh.rating.text = "${comics.rating}% (${comics.voteCount.toString()})"
         } else {
             vh.rating.text = "< 5 hodnocení"
         }

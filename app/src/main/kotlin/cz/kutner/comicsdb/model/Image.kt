@@ -17,7 +17,7 @@ data class Image(var previewUrl:String, var fullUrl:String, var caption:String) 
     }
 
     companion object {
-        @JvmField final val CREATOR: Parcelable.Creator<Image> = object : Parcelable.Creator<Image> {
+        @JvmField val CREATOR: Parcelable.Creator<Image> = object : Parcelable.Creator<Image> {
             override fun createFromParcel(source: Parcel): Image {
                 return Image(source)
             }
