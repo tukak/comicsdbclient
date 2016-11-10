@@ -54,13 +54,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/cover"
-            android:layout_alignLeft="@+id/cover" />
+            android:layout_alignLeft="@+id/cover"
+            android:layout_alignStart="@+id/cover" />
 
         <TextView
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/cover"
+            android:layout_alignStart="@+id/cover"
             android:layout_below="@+id/comics_detail_rating_bar"
             android:textAppearance="?android:attr/textAppearanceMedium"
             tools:text="Hodnocení" />
@@ -181,43 +183,49 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_gravity="right">
+        android:layout_gravity="end">
 
         <ImageView
             android:id="@+id/sample1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
 
         <ImageView
             android:id="@+id/sample2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
 
         <ImageView
             android:id="@+id/sample3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
 
         <ImageView
             android:id="@+id/sample4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
 
         <ImageView
             android:id="@+id/sample5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="11dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
 
         <ImageView
             android:id="@+id/sample6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
     </LinearLayout>
 
     <RelativeLayout

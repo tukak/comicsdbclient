@@ -28,7 +28,8 @@
                 android:minHeight="50dp"
                 android:minWidth="40dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,6 +39,7 @@
                 android:id="@+id/forum_comment_nick"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/forum_nick_icon"
+                android:layout_toEndOf="@+id/forum_nick_icon"
                 android:layout_toLeftOf="@+id/forum_comment_forum"
                 android:layout_toStartOf="@+id/forum_comment_forum"
                 android:textStyle="bold" />
