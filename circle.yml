@@ -10,6 +10,8 @@ dependencies:
         - wget "https://services.gradle.org/distributions/gradle-2.14.1-bin.zip"; unzip gradle-2.14.1-bin.zip
         - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-24.0.3
+        - echo $GOOGLE_SERVICES| base64 --decode > ${HOME}/google-services.json
+        - cat ${HOME}/google-services.json
 test:
   override:
     - emulator -avd circleci-android22 -no-audio -no-window:
