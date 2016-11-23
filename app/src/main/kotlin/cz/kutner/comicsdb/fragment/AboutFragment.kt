@@ -11,13 +11,10 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.utils.Utils
-import cz.kutner.comicsdb.di.Tracker
 import kotlinx.android.synthetic.main.fragment_about.*
-import javax.inject.Inject
 
 class AboutFragment : Fragment() {
 
-    @Inject lateinit var tracker: Tracker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +34,6 @@ class AboutFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        tracker.logVisit(screenName = "AboutFragment")
         Utils.logVisit(contentName = "Zobrazení O aplikaci")
     }
 

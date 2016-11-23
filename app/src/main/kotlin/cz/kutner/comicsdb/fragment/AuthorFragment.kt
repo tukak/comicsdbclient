@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.AuthorListAdapter
 import cz.kutner.comicsdb.connector.service.AuthorListService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.Utils
 import java.text.Normalizer
@@ -18,7 +17,6 @@ import javax.inject.Inject
 class AuthorFragment : AbstractFragment<Author>() {
 
     @Inject lateinit var authorListService: AuthorListService
-    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -58,10 +56,8 @@ class AuthorFragment : AbstractFragment<Author>() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            tracker.logVisit(screenName = "AuthorFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
-            tracker.logVisit(screenName = "AuthorFragment - List")
             Utils.logVisit(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
         }
     }

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.NewsListAdapter
 import cz.kutner.comicsdb.connector.service.NewsService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
 import javax.inject.Inject
@@ -16,7 +15,6 @@ import javax.inject.Inject
 class NewsFragment : AbstractFragment<NewsItem>() {
 
     @Inject lateinit var newsService: NewsService
-    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 0
@@ -44,7 +42,6 @@ class NewsFragment : AbstractFragment<NewsItem>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
-        tracker.logVisit(screenName = "NewsFragment")
         Utils.logVisit(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 

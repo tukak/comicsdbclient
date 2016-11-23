@@ -5,7 +5,6 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
 import cz.kutner.comicsdb.connector.service.ComicsDetailService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -17,7 +16,6 @@ class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
     override val extraName = MainActivity.COMICS_ID
 
     @Inject lateinit var comicsDetailService: ComicsDetailService
-    @Inject lateinit var tracker: Tracker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,6 @@ class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        tracker.logVisit(screenName = "ComicsDetailFragment", category = "Detail", action = result.name)
         Utils.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
     }
 }

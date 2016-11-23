@@ -9,7 +9,6 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ForumListAdapter
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.connector.service.ForumService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.Utils
 import javax.inject.Inject
@@ -17,7 +16,6 @@ import javax.inject.Inject
 class ForumFragment : AbstractFragment<ForumEntry>() {
 
     @Inject lateinit var forumService: ForumService
-    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -47,7 +45,6 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        tracker.logVisit(screenName = "ForumFragment")
         Utils.logVisit(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 

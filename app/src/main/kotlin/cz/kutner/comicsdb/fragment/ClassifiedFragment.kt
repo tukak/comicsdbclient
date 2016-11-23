@@ -9,7 +9,6 @@ import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.connector.service.ClassifiedService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.utils.Utils
 import javax.inject.Inject
@@ -17,7 +16,6 @@ import javax.inject.Inject
 class ClassifiedFragment : AbstractFragment<Classified>() {
 
     @Inject lateinit var classifiedService: ClassifiedService
-    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 8
@@ -47,7 +45,6 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        tracker.logVisit(screenName = "ClassifiedFragment")
         Utils.logVisit(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 

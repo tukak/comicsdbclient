@@ -10,12 +10,9 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
-import cz.kutner.comicsdb.di.Tracker
 import kotlinx.android.synthetic.main.activity_tabbed.*
-import javax.inject.Inject
 
 class SearchActivity : AppCompatActivity() {
-    @Inject lateinit var tracker: Tracker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +25,6 @@ class SearchActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
         Answers.getInstance().logSearch(SearchEvent().putQuery(query))
-        tracker.logEvent(category = "Search", action = query)
 
         val bundle: Bundle = Bundle()
         val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)

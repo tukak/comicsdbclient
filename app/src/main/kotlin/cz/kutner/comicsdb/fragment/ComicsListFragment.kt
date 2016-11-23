@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ComicsListAdapter
 import cz.kutner.comicsdb.connector.service.ComicsListService
-import cz.kutner.comicsdb.di.Tracker
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import java.text.Normalizer
@@ -18,7 +17,6 @@ import javax.inject.Inject
 class ComicsListFragment : AbstractFragment<Comics>() {
 
     @Inject lateinit var comicsListService: ComicsListService
-    @Inject lateinit var tracker: Tracker
 
     init {
         preloadCount = 20
@@ -59,10 +57,8 @@ class ComicsListFragment : AbstractFragment<Comics>() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            tracker.logVisit(screenName = "ComicsListFragment - Search")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
-            tracker.logVisit(screenName = "ComicsListFragment - List")
             Utils.logVisit(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
         }
     }
