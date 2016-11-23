@@ -7,6 +7,7 @@ machine:
 
 dependencies:
     pre:
+        - echo $GOOGLE_SERVICES | base64 --decode > ${HOME}/comicsdbclient/app/google-services.json
         - wget "https://services.gradle.org/distributions/gradle-2.14.1-bin.zip"; unzip gradle-2.14.1-bin.zip
         - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-24.0.3
@@ -18,7 +19,6 @@ test:
     - circle-android wait-for-boot
     - sleep 30
     - adb shell input keyevent 82
-    - echo $GOOGLE_SERVICES | base64 --decode > ${HOME}/app/google-services.json
     - if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
