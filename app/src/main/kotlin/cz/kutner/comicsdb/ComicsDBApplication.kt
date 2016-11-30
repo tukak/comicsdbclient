@@ -3,7 +3,6 @@ package cz.kutner.comicsdb
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.squareup.picasso.Picasso
-import cz.kutner.comicsdb.di.AndroidModule
 import cz.kutner.comicsdb.di.ApplicationComponent
 import cz.kutner.comicsdb.di.DaggerApplicationComponent
 import cz.kutner.comicsdb.di.RetrofitModule
@@ -35,7 +34,6 @@ class ComicsDBApplication : android.app.Application() {
 
     private fun setupComponent() {
         applicationComponent = DaggerApplicationComponent.builder()
-                .androidModule(AndroidModule(this))
                 .retrofitModule(RetrofitModule(applicationContext.getString(R.string.url_comicsdb)))
                 .build()
     }

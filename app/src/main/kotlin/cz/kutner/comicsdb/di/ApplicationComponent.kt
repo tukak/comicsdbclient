@@ -7,7 +7,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AndroidModule::class, RetrofitModule::class))
+@Component(modules = arrayOf(RetrofitModule::class))
 interface ApplicationComponent {
     fun inject(application: ComicsDBApplication)
     fun inject(seriesFragment: SeriesFragment)
