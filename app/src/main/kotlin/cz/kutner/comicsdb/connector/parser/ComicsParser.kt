@@ -4,9 +4,11 @@ import cz.kutner.comicsdb.model.*
 import cz.kutner.comicsdb.utils.Utils
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import org.jsoup.nodes.Node
 import org.jsoup.parser.Parser
 import java.io.InputStream
+import java.util.*
 
 class ComicsParser {
     fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): Comics {
@@ -142,5 +144,33 @@ class ComicsParser {
             comics.comments.add(commentObject)
         }
         return comics
+    }
+
+    fun parseComicsList(html: InputStream, encoding: String = "windows-1250"): List<Comics> {
+        val result = ArrayList<Comics>()
+        val doc: Document
+        val table: Element
+        doc = Jsoup.parse(html, encoding, "")
+        if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
+            table = doc.select("div.search-title:contains(COMICSY) + table[summary=Přehled comicsů]").first()
+        } else {
+            table = doc.select("table[summary=Přehled comicsů]").first()
+        }
+        for (row in table.select("tbody tr")) {
+            val columns = row.select("td")
+            val title = columns[0].select("a").first().text()
+            //val id = Integer.parseInt(columns.get(0).select("a").first().attr("href").replaceFirst("^.*\\D", "")) //gets the id in the end of the url
+            val id = Integer.parseInt(columns[0].select("a").first().attr("href").removePrefix("comics.php?id="))
+            val year = columns[1].text()
+            var rating = columns[3].text()
+            if (rating.isEmpty()) {
+                rating = "0"
+            }
+            val comics = Comics(title, id)
+            comics.published = year
+            comics.rating = Integer.valueOf(rating)
+            result.add(comics)
+        }
+        return result
     }
 }

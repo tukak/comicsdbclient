@@ -1,38 +1,13 @@
 package cz.kutner.comicsdb.connector.converter
 
+import cz.kutner.comicsdb.connector.parser.ClassifiedParser
 import cz.kutner.comicsdb.model.Classified
-import cz.kutner.comicsdb.utils.Utils
 import okhttp3.ResponseBody
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 import retrofit2.Converter
-import java.util.*
 
 class ClassifiedResponseBodyConverter : Converter<ResponseBody, List<Classified>> {
-    override fun convert(value: ResponseBody): List<Classified>? {
-        val result = ArrayList<Classified>()
-        val doc: Document
-        try {
-            doc = Jsoup.parse(value.byteStream(), "windows-1250", "")
-            for (entry in doc.select("div#prispevek")) {
-                val nick = entry.select("span.prispevek-nick")[0].text()
-                val category = entry.select("span.prispevek-nick")[1].text()
-                val time = entry.select("span.prispevek-cas")[0].text()
-                val iconUrl = entry.select("div#prispevek-icon").select("img").first().attr("src")
-                for (remove in entry.select("span,img")) {
-                    remove.remove()
-                }
-                val text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "")
-                val classified = Classified(nick, time, category, text)
-                if (!iconUrl.isEmpty()) {
-                    classified.iconUrl = Utils.fixUrl(iconUrl)
-                }
-                result.add(classified)
-            }
-        } catch (e: Exception) {
-           // error(e.message)
-        }
 
-        return result
+    override fun convert(value: ResponseBody): List<Classified>? {
+        return ClassifiedParser().parseClassified(value.byteStream())
     }
 }
