@@ -1,5 +1,7 @@
 package cz.kutner.comicsdb.connector.converter
 
+import cz.kutner.comicsdb.connector.parser.SeriesParser
+import cz.kutner.comicsdb.model.Series
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -14,5 +16,12 @@ class SeriesListConverterFactory : Converter.Factory() {
         fun create(): SeriesListConverterFactory {
             return SeriesListConverterFactory()
         }
+    }
+}
+
+class SeriesListResponseBodyConverter : Converter<ResponseBody, List<Series>> {
+
+    override fun convert(value: ResponseBody): List<Series>? {
+        return SeriesParser().parseSeriesList(value.byteStream())
     }
 }
