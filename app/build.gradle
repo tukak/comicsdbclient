@@ -51,7 +51,13 @@ android {
         main.java.srcDirs += 'src/main/java'
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    lintOptions {
+        lintConfig rootProject.file('lint.xml')
+    }
 }
+
+
 
 kapt {
     generateStubs = true
