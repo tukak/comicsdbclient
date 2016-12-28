@@ -8,7 +8,7 @@ import org.junit.Test
 import java.io.File
 
 
-class ConverterTest() {
+class ConverterTest {
     @Test
     fun SeriesDetailTest() {
         try {

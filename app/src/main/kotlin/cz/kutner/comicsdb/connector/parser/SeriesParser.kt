@@ -10,8 +10,7 @@ import java.util.*
 
 class SeriesParser  {
     fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): Series {
-        val doc: Document
-        doc = Jsoup.parse(html, encoding, "")
+        val doc: Document = Jsoup.parse(html, encoding, "")
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
         val id = doc.select("#filtrform > input:nth-child(2)").attr("value").toInt()
         val result = Series(name, id, 0)
@@ -45,9 +44,8 @@ class SeriesParser  {
 
     fun parseSeriesList(html: InputStream, encoding: String = "windows-1250"): ArrayList<Series> {
         val result = ArrayList<Series>()
-        val doc: Document
+        val doc: Document = Jsoup.parse(html, encoding, "")
         val table: Element
-        doc = Jsoup.parse(html, encoding, "")
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
             table = doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").first()
         } else {

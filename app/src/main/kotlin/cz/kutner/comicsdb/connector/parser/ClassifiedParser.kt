@@ -10,8 +10,7 @@ import java.util.*
 class ClassifiedParser {
     fun parseClassified(html: InputStream, encoding: String = "windows-1250"): List<Classified> {
         val result = ArrayList<Classified>()
-        val doc: Document
-        doc = Jsoup.parse(html, encoding, "")
+        val doc: Document = Jsoup.parse(html, encoding, "")
         for (entry in doc.select("div#prispevek")) {
             val nick = entry.select("span.prispevek-nick")[0].text()
             val category = entry.select("span.prispevek-nick")[1].text()

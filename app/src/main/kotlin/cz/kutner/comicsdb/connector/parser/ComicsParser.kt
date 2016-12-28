@@ -13,9 +13,8 @@ import java.util.*
 class ComicsParser {
     fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): Comics {
         val comics = Comics("", 0)
-        val doc: Document
+        val doc: Document = Jsoup.parse(html, encoding, "")
         var sibling: Node?
-        doc = Jsoup.parse(html, encoding, "")
         comics.id = Integer.parseInt(doc.select("input[name=id]").first().attr("value"))
         val name = doc.select("H5").text()
         comics.name = Parser.unescapeEntities(name, false)
@@ -148,9 +147,8 @@ class ComicsParser {
 
     fun parseComicsList(html: InputStream, encoding: String = "windows-1250"): List<Comics> {
         val result = ArrayList<Comics>()
-        val doc: Document
+        val doc: Document = Jsoup.parse(html, encoding, "")
         val table: Element
-        doc = Jsoup.parse(html, encoding, "")
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
             table = doc.select("div.search-title:contains(COMICSY) + table[summary=Přehled comicsů]").first()
         } else {

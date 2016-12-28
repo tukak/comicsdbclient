@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ComicsDB Client</string>
     <string name="action_about">O aplikaci</string>
     <string name="comics_name_search_hint">Hledaný text</string>
@@ -12,7 +12,7 @@
     <string name="cover_content_description">Obálka</string>
     <string name="url_comicsdb">"http://comicsdb.cz"</string>
     <string name="url_comics_detail">http://comicsdb.cz/comics.php?id=</string>
-    <string name="url_author_detail">http://comicsdb.cz/autor.php?id=</string>
+    <string name="url_author_detail" tools:ignore="Typos">http://comicsdb.cz/autor.php?id=</string>
     <string name="url_series_detail">http://comicsdb.cz/serie.php?id=</string>
     <string name="url_comics_search">http://comicsdb.cz/search.php?searchfor=</string>
     <string name="url_comics_list_new">http://comicsdb.cz/comicslist.php</string>

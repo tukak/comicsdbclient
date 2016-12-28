@@ -17,6 +17,7 @@ data class Image(var previewUrl:String, var fullUrl:String, var caption:String) 
     }
 
     companion object {
+        @Suppress("unused")
         @JvmField val CREATOR: Parcelable.Creator<Image> = object : Parcelable.Creator<Image> {
             override fun createFromParcel(source: Parcel): Image {
                 return Image(source)
