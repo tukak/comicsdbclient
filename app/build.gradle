@@ -84,7 +84,7 @@ dependencies {
     }
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
 
-    compile 'com.hannesdorfmann:adapterdelegates3:3.0.0'
+    compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
