@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
-            toolbar.setNavigationOnClickListener { v -> drawer_layout.openDrawer(GravityCompat.START) }
+            toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
         }
     }
 
