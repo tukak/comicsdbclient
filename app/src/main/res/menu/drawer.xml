@@ -3,31 +3,24 @@
         <item
             android:id="@+id/navigation_item_comics"
             android:checked="true"
-            android:icon="@drawable/ic_book_24dp"
             android:title="@string/comics" />
         <item
             android:id="@+id/navigation_item_news"
-            android:icon="@drawable/ic_announcement_24dp"
             android:title="@string/news" />
         <item
             android:id="@+id/navigation_item_series"
-            android:icon="@drawable/ic_format_list_bulleted_24dp"
             android:title="@string/series" />
         <item
             android:id="@+id/navigation_item_author"
-            android:icon="@drawable/ic_create_24dp"
             android:title="@string/author" />
         <item
             android:id="@+id/navigation_item_classified"
-            android:icon="@drawable/ic_attach_money_24dp"
             android:title="@string/classified" />
         <item
             android:id="@+id/navigation_item_forum"
-            android:icon="@drawable/ic_question_answer_24dp"
             android:title="@string/forum" />
         <item
             android:id="@+id/navigation_item_about"
-            android:icon="@drawable/ic_info_outline_24dp"
             android:title="@string/about" />
     </group>
 </menu>

@@ -2,4 +2,6 @@
     <color name="primary">#C00000</color>
     <color name="primary_dark">#730000</color>
     <color name="text_primary">#FFFFFF</color>
+    <color name="accent">@color/material_deep_teal_500</color>
+    <color name="textSpinner">#8a000000</color>
 </resources>

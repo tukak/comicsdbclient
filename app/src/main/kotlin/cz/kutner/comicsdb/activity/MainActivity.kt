@@ -6,9 +6,13 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.LayoutInflaterCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.context.IconicsLayoutInflater
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
 import kotlinx.android.synthetic.main.activity.*
@@ -17,12 +21,14 @@ import kotlinx.android.synthetic.main.toolbar.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        LayoutInflaterCompat.setFactory(layoutInflater, IconicsLayoutInflater(delegate))
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().add(R.id.container, ComicsListFragment.newInstance()).commit()
         }
         setContentView(R.layout.activity)
         setupToolbar()
+        setDrawerIcons()
         setActionsForDrawer()
     }
 
@@ -33,6 +39,17 @@ class MainActivity : AppCompatActivity() {
             toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
             toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
         }
+    }
+
+    private fun setDrawerIcons() {
+        val menu = navigation_view.menu
+        menu.findItem(R.id.navigation_item_comics).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_book_image)
+        menu.findItem(R.id.navigation_item_news).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comment_alert)
+        menu.findItem(R.id.navigation_item_series).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_format_list_bulleted)
+        menu.findItem(R.id.navigation_item_author).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_edit)
+        menu.findItem(R.id.navigation_item_classified).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_money)
+        menu.findItem(R.id.navigation_item_forum).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comments)
+        menu.findItem(R.id.navigation_item_about).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info)
     }
 
     private fun setActionsForDrawer() {

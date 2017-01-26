@@ -1,13 +1,11 @@
 import com.android.ddmlib.DdmPreferences
 
 buildscript {
-    ext.kotlin_version = '1.1.0-beta-17'
     ext.support_library_version = '25.1.0'
     ext.firebase_version = '10.0.1'
     repositories {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
 
     }
 
@@ -25,7 +23,6 @@ apply plugin: 'kotlin-kapt'
 repositories {
     jcenter()
     maven { url 'https://maven.fabric.io/public' }
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
 }
 
 android {
@@ -82,6 +79,10 @@ dependencies {
     compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile 'com.github.daniel-stoneuk:material-about-library:1.6.0'
+    compile "com.mikepenz:iconics-core:2.8.2@aar"
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.6.3'
