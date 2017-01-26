@@ -3,6 +3,7 @@ package cz.kutner.comicsdb.activity
 import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp)
+            toolbar.navigationIcon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_menu).color(Color.WHITE).sizeDp(24)
             toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
         }
     }
