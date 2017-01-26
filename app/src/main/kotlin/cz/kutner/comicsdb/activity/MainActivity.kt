@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDrawerIcons() {
         val menu = navigation_view.menu
-        menu.findItem(R.id.navigation_item_comics).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_book_image)
-        menu.findItem(R.id.navigation_item_news).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comment_alert)
-        menu.findItem(R.id.navigation_item_series).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_format_list_bulleted)
-        menu.findItem(R.id.navigation_item_author).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_edit)
-        menu.findItem(R.id.navigation_item_classified).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_money)
-        menu.findItem(R.id.navigation_item_forum).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comments)
-        menu.findItem(R.id.navigation_item_about).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info)
+        menu.findItem(R.id.navigation_item_comics).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_book_image).sizeDp(24)
+        menu.findItem(R.id.navigation_item_news).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comment_alert).sizeDp(24)
+        menu.findItem(R.id.navigation_item_series).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_format_list_bulleted).sizeDp(24)
+        menu.findItem(R.id.navigation_item_author).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_edit).sizeDp(24)
+        menu.findItem(R.id.navigation_item_classified).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_money).sizeDp(24)
+        menu.findItem(R.id.navigation_item_forum).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comments).sizeDp(24)
+        menu.findItem(R.id.navigation_item_about).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info).sizeDp(24)
     }
 
     private fun setActionsForDrawer() {
