@@ -6,8 +6,6 @@ buildscript {
     ext.firebase_version = '10.0.1'
     repositories {
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
-
     }
 
     dependencies {
@@ -21,8 +19,9 @@ apply plugin: 'kotlin-kapt'
 
 repositories {
     jcenter()
-    maven { url 'https://maven.fabric.io/public' }
 }
+
+def vcode = (int)(((new Date().getTime()/1000) - 1451606400) / 10)
 
 android {
     compileSdkVersion 25
@@ -31,7 +30,7 @@ android {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 32
+        versionCode vcode
         versionName "29"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         DdmPreferences.setTimeOut(60000)
@@ -109,3 +108,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
