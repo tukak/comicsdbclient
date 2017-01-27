@@ -4,8 +4,6 @@ import android.app.SearchManager
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.SearchEvent
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
@@ -24,7 +22,6 @@ class SearchActivity : AppCompatActivity() {
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
-        Answers.getInstance().logSearch(SearchEvent().putQuery(query))
 
         val bundle: Bundle = Bundle()
         val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)

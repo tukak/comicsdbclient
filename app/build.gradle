@@ -11,13 +11,11 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
@@ -33,8 +31,8 @@ android {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 31
-        versionName "28"
+        versionCode 32
+        versionName "29"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         DdmPreferences.setTimeOut(60000)
     }
@@ -72,9 +70,7 @@ dependencies {
     compile 'com.github.jkwiecien:Switcher:2.0.8'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
-    }
+
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
 
     compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'

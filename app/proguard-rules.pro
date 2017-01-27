@@ -16,8 +16,6 @@
 #   public *;
 #}
 
--keepattributes SourceFile,LineNumberTable
-
 -keep class org.jsoup.** { *; }
 
 -keep class org.jetbrains.annotations.** {

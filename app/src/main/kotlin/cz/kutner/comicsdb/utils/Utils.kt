@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
-import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.picasso.Picasso
 
@@ -39,18 +37,6 @@ object Utils {
     }
 
     fun logVisit(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
-        val contentViewEvent = ContentViewEvent()
-        if (contentName != null) {
-            contentViewEvent.putContentName(contentName)
-        }
-        if (contentType != null) {
-            contentViewEvent.putContentType(contentType)
-        }
-        if (contentId != null) {
-            contentViewEvent.putContentId(contentId)
-        }
-        Answers.getInstance().logContentView(contentViewEvent)
-
         val bundle: Bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, contentId)
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType)

@@ -50,7 +50,7 @@ class AboutFragment : MaterialAboutFragment() {
 
         authorCardBuilder.addItem(ConvenienceBuilder.createEmailItem(context,
                 IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_email).sizeDp(18),
-                "Napište své nápady nebo hlašte chyby",
+                "Hlašte chyby nebo pište nápady",
                 true,
                 "lukas@kutner.cz",
                 "Komentář k aplikaci ComicsDB")
@@ -59,12 +59,12 @@ class AboutFragment : MaterialAboutFragment() {
         authorCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(context,
                 IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_twitter).sizeDp(18),
                 "@tukak",
-                true,
+                false,
                 Uri.parse("https://twitter.com/tukak")
-                ))
+        ))
 
         authorCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(context,
-                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_code).sizeDp(18),
+                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_github).sizeDp(18),
                 "Zdrojový kód",
                 true,
                 Uri.parse("https://github.com/tukak/comicsdbclient")
@@ -76,10 +76,28 @@ class AboutFragment : MaterialAboutFragment() {
 
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
                 .text(R.string.about_first)
+                .showIcon(false)
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://www.comicsdb.cz")))
                 .build())
         )
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
                 .text(R.string.about_free)
+                .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_money_off).sizeDp(18))
+                .build())
+        )
+
+        aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
+                .text(R.string.about_donate)
+                .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_money_box).sizeDp(18))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://comicsdb.cz/donate.php")))
+                .build())
+        )
+
+
+        aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
+                .text(getString(R.string.about_firebase))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("https://firebase.google.com/")))
+                .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_alert_circle_o).sizeDp(18))
                 .build())
         )
 
@@ -102,4 +120,4 @@ class AboutFragment : MaterialAboutFragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+}
