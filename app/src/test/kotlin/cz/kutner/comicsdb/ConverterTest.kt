@@ -55,7 +55,7 @@ class ConverterTest {
     }
 
     fun readFile(fileName: String): String {
-        val url = this.javaClass.getResource(fileName)
+        val url = this::class.java.getResource(fileName)
         return File(url.file).readText(charset("windows-1250"))
     }
 }
