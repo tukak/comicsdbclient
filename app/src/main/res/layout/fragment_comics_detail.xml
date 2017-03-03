@@ -1,270 +1,360 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        tools:context=".MainActivity$PlaceholderFragment">
 
-        <ImageView
-            android:id="@+id/cover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/cover_content_description"
-            android:minHeight="200dp"
-            android:minWidth="100dp" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:paddingEnd="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#808080"
-            tools:text="Jméno comicsu" />
-
-        <TextView
-            android:id="@+id/genre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/name"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Žánr" />
-
-        <RatingBar
-            android:id="@+id/comics_detail_rating_bar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/cover"
-            android:layout_alignLeft="@+id/cover"
-            android:layout_alignStart="@+id/cover" />
-
-        <TextView
-            android:id="@+id/rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/cover"
-            android:layout_alignStart="@+id/cover"
-            android:layout_below="@+id/comics_detail_rating_bar"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            tools:text="Hodnocení" />
-
-        <TextView
-            android:id="@+id/publisher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/genre"
-            android:layout_alignStart="@+id/genre"
-            android:layout_below="@+id/genre"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Vydavatel" />
-
-        <TextView
-            android:id="@+id/pagesCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/publisher"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Počet stránek" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/series"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/series"
-            android:layout_below="@+id/pagesCount"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Cena" />
-
-        <TextView
-            android:id="@+id/originalName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/series"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Původní název" />
-
-        <TextView
-            android:id="@+id/binding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/originalName"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Vazba" />
-
-        <TextView
-            android:id="@+id/series"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/price"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Série" />
-
-        <TextView
-            android:id="@+id/issueNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/binding"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/binding"
-            android:layout_below="@+id/binding"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Vydání" />
-
-        <TextView
-            android:id="@+id/format"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/issueNumber"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/issueNumber"
-            android:layout_below="@+id/issueNumber"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Format" />
-
-        <TextView
-            android:id="@+id/url"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/format"
-            android:layout_toLeftOf="@+id/cover"
-            android:layout_toStartOf="@+id/cover"
-            android:autoLink="web"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="URL" />
-
-    </RelativeLayout>
-
-    <LinearLayout
+    <ImageView
+        android:id="@+id/cover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="end">
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@string/cover_content_description"
+        android:minHeight="100dp"
+        android:minWidth="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginTop="8dp" />
 
-        <ImageView
-            android:id="@+id/sample1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
-            android:id="@+id/sample2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
-            android:id="@+id/sample3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
-            android:id="@+id/sample4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
-            android:id="@+id/sample5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
-            android:id="@+id/sample6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        tools:context=".MainActivity$PlaceholderFragment">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#808080"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Jméno comicsu"
+        tools:ignore="RtlSymmetry"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Popis" />
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Žánr"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintLeft_toLeftOf="@+id/name"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
 
-        <TextView
-            android:id="@+id/notes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/description"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Poznámky" />
+    <RatingBar
+        android:id="@+id/comics_detail_rating_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover" />
 
-        <TextView
-            android:id="@+id/authors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/notes"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="Autoři" />
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Hodnocení"
+        app:layout_constraintTop_toBottomOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar" />
+
+    <TextView
+        android:id="@+id/publisher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Vydavatel"
+        app:layout_constraintTop_toBottomOf="@+id/genre"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/genre"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/pagesCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Počet stránek"
+        app:layout_constraintTop_toBottomOf="@+id/publisher"
+        app:layout_constraintLeft_toLeftOf="@+id/publisher"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="-1dp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Cena"
+        app:layout_constraintTop_toBottomOf="@+id/pagesCount"
+        app:layout_constraintLeft_toLeftOf="@+id/pagesCount"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/originalName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Původní název"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintLeft_toLeftOf="@+id/price"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:id="@+id/binding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Vazba"
+        app:layout_constraintTop_toBottomOf="@+id/originalName"
+        app:layout_constraintLeft_toLeftOf="@+id/originalName"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/series"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Série"
+        app:layout_constraintTop_toBottomOf="@+id/binding"
+        app:layout_constraintLeft_toLeftOf="@+id/binding"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/issueNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Vydání"
+        app:layout_constraintTop_toBottomOf="@+id/series"
+        app:layout_constraintLeft_toLeftOf="@+id/series"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/format"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Format"
+        app:layout_constraintTop_toBottomOf="@+id/issueNumber"
+        app:layout_constraintLeft_toLeftOf="@+id/issueNumber"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="-1dp" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="URL"
+        app:layout_constraintTop_toBottomOf="@+id/format"
+        app:layout_constraintLeft_toLeftOf="@+id/format"
+        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp" />
 
 
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/sample1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/rating"
+        app:layout_constraintTop_toBottomOf="@+id/rating"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/sample2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/sample1"
+        app:layout_constraintTop_toTopOf="@+id/sample1"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/sample3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/sample2"
+        app:layout_constraintTop_toTopOf="@+id/sample2"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/sample4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/sample1"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/sample1"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/sample5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        app:layout_constraintTop_toTopOf="@+id/sample4"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/sample4"
+        android:layout_marginLeft="8dp"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/sample6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:minHeight="10dp"
+        tools:minWidth="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/sample5"
+        app:layout_constraintTop_toTopOf="@+id/sample5"
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/url"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="RtlHardcoded"
+        tools:text="„BATMAN A ROBIN nemohou umřít!“  Temný rytíř padl, když se obětoval, aby tak porazil nejvyšší zlo. Tim Drake odložil kostým Robina a vydal se do světa pátrat po tom, jak by svého učitele vrátil do světa živých. Ve městě se zatím objevila nová dynamická dvojice. Dick Grayson, původní Robin, přebírá plášť a netopýří masku po svém někdejším společníkovi a po jeho bok se staví Batmanův syn Damian vychovaný Ligou asasínů. Tento nový, smrtelně nebezpečný Robin je odhodlán bojovat se zločinem všemi dostupnými způsoby. Před novou dvojicí maskovaných hrdinů stojí nelehký úkol - vypořádat se s rostoucí vlnou zločinnosti a násilí, jež město zachvátila a nemá v dějinách Gotham City obdoby. Budou se muset střetnout i s novou dvojicí samozvaných ochránců pořádku, s nimiž je pojí společná minulost. Pokud v tomto nelítostném boji chtějí uspět, budou se muset nejprve naučit vycházet sami se sebou a zbavit se vzájemné rivality. "
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/description"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        tools:ignore="RtlHardcoded"
+        tools:text="Obsahuje sešity Batman Robin #1 - #6" />
+
+    <TextView
+        android:id="@+id/authors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Autoři"
+        app:layout_constraintTop_toBottomOf="@+id/notes"
+        app:layout_constraintLeft_toLeftOf="@+id/notes"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="-8dp" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/url"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="@+id/url"
+        app:layout_constraintRight_toRightOf="@+id/url"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/sample4" />
+
+
+</android.support.constraint.ConstraintLayout>

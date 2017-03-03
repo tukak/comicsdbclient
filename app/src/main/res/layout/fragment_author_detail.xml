@@ -1,62 +1,96 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/authorPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/author_photo_description"
-            android:minWidth="100dp" />
+    <ImageView
+        android:id="@+id/authorPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/author_photo_description"
+        android:cropToPadding="false"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded"
+        tools:layout_conversion_absoluteHeight="0dp"
+        tools:layout_conversion_absoluteWidth="100dp"
+        tools:layout_conversion_absoluteX="284dp"
+        tools:layout_conversion_absoluteY="0dp"
+        tools:minHeight="83dp"
+        tools:minWidth="50dp" />
 
-        <LinearLayout
-            android:id="@+id/authorInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/authorPhoto"
-            android:layout_toStartOf="@+id/authorPhoto"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#808080"
+        tools:text="Jméno autora"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintRight_toLeftOf="@+id/authorPhoto"
+        android:layout_marginRight="8dp" />
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#808080"
-                tools:text="Jméno autora" />
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Země"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/name"
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintRight_toLeftOf="@+id/authorPhoto"
+        android:layout_marginRight="8dp" />
 
-            <TextView
-                android:id="@+id/country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="Země" />
-        </LinearLayout>
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/bio"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Biografie" />
+        tools:text="Biografie"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="47dp"
+        tools:layout_conversion_absoluteWidth="55dp"
+        tools:layout_conversion_absoluteHeight="16dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/country"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/country"
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintRight_toLeftOf="@+id/authorPhoto"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/notes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Poznámky" />
-</LinearLayout>
+        tools:text="Poznámky"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="64dp"
+        tools:layout_conversion_absoluteWidth="64dp"
+        tools:layout_conversion_absoluteHeight="16dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bio"
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintRight_toLeftOf="@+id/authorPhoto"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+</android.support.constraint.ConstraintLayout>
