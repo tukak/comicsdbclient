@@ -29,7 +29,7 @@ def getVersionCode = { ->
             commandLine 'git', 'rev-list', '--first-parent', '--count', 'origin/master'
             standardOutput = stdout
         }
-        return Integer.parseInt(stdout.toString().trim()) * 100 + 3390834
+        return Integer.parseInt(stdout.toString().trim()) * 100 + 4000000
     }
     catch (ignored) {
         return -1;
