@@ -126,8 +126,8 @@ dependencies {
         exclude module: 'design'
     }
 
-    kapt 'com.google.dagger:dagger-compiler:2.9'
-    compile 'com.google.dagger:dagger:2.9'
+    kapt 'com.google.dagger:dagger-compiler:2.10'
+    compile 'com.google.dagger:dagger:2.10'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
