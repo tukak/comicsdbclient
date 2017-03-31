@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.squareup.picasso.Picasso
 
 fun ImageView.loadUrl(url: String?) {
-    Picasso.with(context).load(url).into(this)
+    Glide.with(context).load(url).fitCenter().into(this)
 }
 
 object Utils {

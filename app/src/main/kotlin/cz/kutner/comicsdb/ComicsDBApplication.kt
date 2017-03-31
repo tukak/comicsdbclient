@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb
 
-import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.ApplicationComponent
 import cz.kutner.comicsdb.di.DaggerApplicationComponent
 import cz.kutner.comicsdb.di.RetrofitModule
@@ -15,10 +14,6 @@ class ComicsDBApplication : android.app.Application() {
     override fun onCreate() {
         super.onCreate()
         setupComponent()
-
-        if (BuildConfig.DEBUG) {
-            Picasso.with(applicationContext).setIndicatorsEnabled(true)
-        }
 
         Utils.context = applicationContext
 

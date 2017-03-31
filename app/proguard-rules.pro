@@ -57,12 +57,14 @@
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
 
-## Square Picasso specific rules ##
-## https://square.github.io/picasso/ ##
-
--dontwarn com.squareup.okhttp.**
-
 # Okio
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
+
+# Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
