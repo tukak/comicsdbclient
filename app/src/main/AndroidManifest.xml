@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".ComicsDBApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".ComicsDBApplication">
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -47,13 +47,13 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/comics.php" />
+                    android:pathPrefix="/comics.php"
+                    android:scheme="http" />
                 <data
-                    android:scheme="http"
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/comics.php" />
+                    android:pathPrefix="/comics.php"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
@@ -75,13 +75,13 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/author.php" />
+                    android:pathPrefix="/author.php"
+                    android:scheme="http" />
                 <data
-                    android:scheme="http"
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/autor.php" />
+                    android:pathPrefix="/autor.php"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
@@ -103,13 +103,13 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/serie.php" />
+                    android:pathPrefix="/serie.php"
+                    android:scheme="http" />
                 <data
-                    android:scheme="http"
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/serie.php" />
+                    android:pathPrefix="/serie.php"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
@@ -132,12 +132,15 @@
 
         <activity
             android:name="cz.kutner.comicsdb.activity.ImageViewSliderActivity"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a98fa6c81a3663d862992751fa15139595a3efe3" />
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
     </application>
 
 </manifest>

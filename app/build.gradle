@@ -2,7 +2,7 @@ import com.android.ddmlib.DdmPreferences
 
 buildscript {
     ext.kotlin_version = '1.1.1'
-    ext.support_library_version = '25.3.0'
+    ext.support_library_version = '25.3.1'
     ext.firebase_version = '10.2.0'
     repositories {
         jcenter()
@@ -103,7 +103,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile 'com.github.daniel-stoneuk:material-about-library:1.8.1'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.8.2'
     compile "com.mikepenz:iconics-core:2.8.2@aar"
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
 
