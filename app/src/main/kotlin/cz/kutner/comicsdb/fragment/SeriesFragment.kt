@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.SeriesListAdapter
-import cz.kutner.comicsdb.connector.service.SeriesListService
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.Utils
+import space.traversal.kapsule.Injects
 import java.text.Normalizer
-import javax.inject.Inject
 
-class SeriesFragment : AbstractFragment<Series>() {
+class SeriesFragment : AbstractFragment<Series>(), Injects<RetrofitModule> {
 
-    @Inject lateinit var seriesListService: SeriesListService
+    private val seriesListService by required { seriesListService }
 
     init {
         preloadCount = 20
@@ -24,7 +24,7 @@ class SeriesFragment : AbstractFragment<Series>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
+        inject((activity.application as ComicsDBApplication).retfofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

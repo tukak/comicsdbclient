@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ForumListAdapter
 import cz.kutner.comicsdb.connector.helper.ForumHelper
-import cz.kutner.comicsdb.connector.service.ForumService
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.Utils
-import javax.inject.Inject
+import space.traversal.kapsule.Injects
 
-class ForumFragment : AbstractFragment<ForumEntry>() {
+class ForumFragment : AbstractFragment<ForumEntry>(), Injects<RetrofitModule> {
 
-    @Inject lateinit var forumService: ForumService
+    private val forumService by required { forumService }
 
     init {
         preloadCount = 20
@@ -25,7 +25,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
+        inject((activity.application as ComicsDBApplication).retfofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

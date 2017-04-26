@@ -16,7 +16,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 repositories {
     jcenter()
@@ -32,7 +31,7 @@ def getVersionCode = { ->
         return Integer.parseInt(stdout.toString().trim()) * 100 + 4000000
     }
     catch (ignored) {
-        return -1;
+        return -1
     }
 }
 
@@ -46,7 +45,7 @@ def getVersionName = { ->
         return stdout.toString().trim()
     }
     catch (ignored) {
-        return null;
+        return null
     }
 }
 
@@ -127,9 +126,7 @@ dependencies {
         exclude module: 'design'
     }
 
-    kapt 'com.google.dagger:dagger-compiler:2.10'
-    compile 'com.google.dagger:dagger:2.10'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile "space.traversal.kapsule:kapsule-core:0.2"
 
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
     compile 'com.jakewharton.timber:timber:4.5.1'

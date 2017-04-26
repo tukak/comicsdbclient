@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
-import cz.kutner.comicsdb.connector.service.ClassifiedService
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.utils.Utils
-import javax.inject.Inject
+import space.traversal.kapsule.Injects
 
-class ClassifiedFragment : AbstractFragment<Classified>() {
+class ClassifiedFragment : AbstractFragment<Classified>(), Injects<RetrofitModule> {
 
-    @Inject lateinit var classifiedService: ClassifiedService
+    private val classifiedService by required { classifiedService }
 
     init {
         preloadCount = 8
@@ -25,7 +25,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
+        inject((activity.application as ComicsDBApplication).retfofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
