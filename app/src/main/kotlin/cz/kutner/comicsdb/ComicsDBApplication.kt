@@ -1,14 +1,12 @@
 package cz.kutner.comicsdb
 
-import cz.kutner.comicsdb.di.ApplicationComponent
-import cz.kutner.comicsdb.di.DaggerApplicationComponent
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.utils.Utils
 import timber.log.Timber
 
 class ComicsDBApplication : android.app.Application() {
 
-    lateinit var applicationComponent: ApplicationComponent
+    lateinit var retfofitModule: RetrofitModule
         get
 
     override fun onCreate() {
@@ -23,8 +21,6 @@ class ComicsDBApplication : android.app.Application() {
     }
 
     private fun setupComponent() {
-        applicationComponent = DaggerApplicationComponent.builder()
-                .retrofitModule(RetrofitModule(applicationContext.getString(R.string.url_comicsdb)))
-                .build()
+        retfofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb))
     }
 }

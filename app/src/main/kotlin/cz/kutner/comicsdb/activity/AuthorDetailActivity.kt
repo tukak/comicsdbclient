@@ -4,22 +4,22 @@ import android.os.Bundle
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.AuthorDetailAdapter
-import cz.kutner.comicsdb.connector.service.AuthorDetailService
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
-import javax.inject.Inject
+import space.traversal.kapsule.Injects
 
-class AuthorDetailActivity : AbstractDetailActivity<Author>() {
+class AuthorDetailActivity : AbstractDetailActivity<Author>(), Injects<RetrofitModule> {
 
     override val prefix: String by lazy { getString(R.string.url_author_detail) }
     override val extraName = MainActivity.AUTHOR_ID
 
-    @Inject lateinit var authorDetailService: AuthorDetailService
+    private val authorDetailService by required { authorDetailService }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ComicsDBApplication).applicationComponent.inject(this)
+        inject((application as ComicsDBApplication).retfofitModule)
     }
 
     override fun loadData() {

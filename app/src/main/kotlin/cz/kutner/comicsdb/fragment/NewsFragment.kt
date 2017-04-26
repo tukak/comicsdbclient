@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.NewsListAdapter
-import cz.kutner.comicsdb.connector.service.NewsService
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
-import javax.inject.Inject
+import space.traversal.kapsule.Injects
 
-class NewsFragment : AbstractFragment<NewsItem>() {
+class NewsFragment : AbstractFragment<NewsItem>(), Injects<RetrofitModule> {
 
-    @Inject lateinit var newsService: NewsService
+    private val newsService by required{ newsService }
 
     init {
         preloadCount = 0
@@ -23,7 +23,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity.application as ComicsDBApplication).applicationComponent.inject(this)
+        inject((activity.application as ComicsDBApplication).retfofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

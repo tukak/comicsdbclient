@@ -8,13 +8,14 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
+import cz.kutner.comicsdb.di.RetrofitModule
 import kotlinx.android.synthetic.main.activity_tabbed.*
+import space.traversal.kapsule.Injects
 
 class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (this.application as ComicsDBApplication).applicationComponent.inject(this)
         setContentView(R.layout.activity_tabbed)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
