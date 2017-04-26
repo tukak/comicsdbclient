@@ -135,10 +135,6 @@
             android:theme="@style/AppTheme" />
 
         <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="a98fa6c81a3663d862992751fa15139595a3efe3" />
-
-        <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
     </application>
