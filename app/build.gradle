@@ -1,14 +1,11 @@
 import com.android.ddmlib.DdmPreferences
 
 buildscript {
-    ext.kotlin_version = '1.1.2-eap-77'
+    ext.kotlin_version = '1.1.2'
     ext.support_library_version = '25.3.1'
     ext.firebase_version = '10.2.0'
     repositories {
         jcenter()
-        maven {
-            url  "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
-        }
     }
 
     dependencies {
@@ -23,9 +20,6 @@ apply plugin: 'kotlin-kapt'
 
 repositories {
     jcenter()
-    maven {
-        url  "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
-    }
 }
 
 def getVersionCode = { ->
