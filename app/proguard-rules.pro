@@ -69,5 +69,6 @@
   public *;
 }
 
-#acyncawait
--dontwarn  co.metalab.asyncawait.RxExtensionsKt
+#asyncawait
+-dontwarn rx.Observable
+-dontwarn rx.observables.BlockingObservable
