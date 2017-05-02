@@ -68,3 +68,6 @@
   **[] $VALUES;
   public *;
 }
+
+#acyncawait
+-dontwarn  co.metalab.asyncawait.RxExtensionsKt

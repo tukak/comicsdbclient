@@ -15,7 +15,7 @@ class ComicsDetailActivity : AbstractDetailActivity<Comics>(), Injects<RetrofitM
     override val prefix: String by lazy { getString(R.string.url_comics_detail) }
     override val extraName = MainActivity.COMICS_ID
 
-    private val  comicsDetailService by required { comicsDetailService }
+    private val comicsDetailService by required { comicsDetailService }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

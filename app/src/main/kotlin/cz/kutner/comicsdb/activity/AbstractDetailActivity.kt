@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
+import co.metalab.asyncawait.RetrofitHttpError
+import co.metalab.asyncawait.async
+import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -17,6 +21,7 @@ import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
 
@@ -87,20 +92,15 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     }
 
     fun runAsync(call: Call<Item>) {
-        call.enqueue(object : Callback<Item> {
-            override fun onResponse(call: Call<Item>?, response: Response<Item>?) {
-                if (response != null && response.isSuccessful) {
-                    result = response.body()
-                    showData()
-                } else {
-                    switcher.showErrorView()
-                }
-            }
-
-            override fun onFailure(call: Call<Item>?, t: Throwable?) {
+        async {
+            try {
+                result = awaitSuccessful(call)
+            } catch(e: RetrofitHttpError){
                 switcher.showErrorView()
+                Timber.e(e)
             }
-        })
+            showData()
+        }
     }
 
     abstract fun loadData()

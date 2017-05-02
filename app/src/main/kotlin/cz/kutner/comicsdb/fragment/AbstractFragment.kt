@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import co.metalab.asyncawait.RetrofitHttpError
+import co.metalab.asyncawait.async
+import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -19,6 +22,7 @@ import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import java.util.*
 
 abstract class AbstractFragment<Item : Any> : Fragment() {
@@ -137,21 +141,16 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     }
 
     fun runAsync(call: Call<List<Item>>) {
-        call.enqueue(object : Callback<List<Item>> {
-            override fun onResponse(call: Call<List<Item>>?, response: Response<List<Item>>?) {
-                if (response != null && response.isSuccessful) {
-                    result = response.body()
-                    showData()
-                    lastPage++
-                } else {
-                    switcher.showErrorView()
-                }
-            }
-
-            override fun onFailure(call: Call<List<Item>>?, t: Throwable?) {
+        async {
+            try {
+                result = awaitSuccessful(call)
+            } catch(e: RetrofitHttpError){
                 switcher.showErrorView()
+                Timber.e(e)
             }
-        })
+            showData()
+            lastPage++
+        }
     }
 
     private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {
