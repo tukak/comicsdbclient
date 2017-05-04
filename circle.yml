@@ -13,9 +13,10 @@ machine:
 dependencies:
     pre:
         - echo $GOOGLE_SERVICES | base64 --decode > ~/$CIRCLE_PROJECT_REPONAME/app/google-services.json
-        - mkdir $ANDROID_HOME/licences
-        - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/licences/android-sdk-license
-        - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/licences/android-sdk-preview-license
+        - mkdir "$ANDROID_HOME/licenses" || true
+        - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+        - echo "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+        - echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
         - ls $ANDROID_HOME/licences/
         # Gradle
         - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
