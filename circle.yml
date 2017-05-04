@@ -17,7 +17,8 @@ dependencies:
         - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/licences/android-sdk-license
         - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/licences/android-sdk-preview-license
         - ls $ANDROID_HOME/licences/
-        - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
+        # Gradle
+        - if [ ! -d "/usr/local/android-sdk-linux/platforms/android-$ANDROID_VERSION" ]; then wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip; fi
         # Android SDK Platform
         - if [ ! -d "/usr/local/android-sdk-linux/platforms/android-$ANDROID_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"; fi
         # Android SDK Build-tools
@@ -31,6 +32,7 @@ dependencies:
         - $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION
         - $ANDROID_HOME/extras/android/m2repository
         - $ANDROID_HOME/extras/google/m2repository
+        - ~/$CIRCLE_PROJECT_REPONAME/gradle-$GRADLE_VERSION
 
 test:
   override:
