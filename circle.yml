@@ -13,6 +13,12 @@ dependencies:
         - wget "https://services.gradle.org/distributions/gradle-3.4.1-all.zip"; unzip gradle-3.4.1-all.zip
         - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-25.0.2
+    cache_directories:
+        - /usr/local/android-sdk-linux/platforms/android-25
+        - /usr/local/android-sdk-linux/build-tools/25.0.1
+        - /usr/local/android-sdk-linux/extras/android/m2repository
+        - /usr/local/android-sdk-linux/extras/google/m2repository
+
 test:
   override:
     - emulator -avd circleci-android22 -no-audio -no-window:
