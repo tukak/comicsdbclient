@@ -5,10 +5,11 @@ import cz.kutner.comicsdb.model.Series
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import timber.log.Timber
 import java.io.InputStream
 import java.util.*
 
-class SeriesParser  {
+class SeriesParser {
     fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): Series {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
@@ -47,10 +48,15 @@ class SeriesParser  {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val table: Element
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
-            table = doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").first()
+            if (doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").size > 0) {
+                table = doc.select("div.search-title:contains(SÉRIE) + table[summary=Přehled comicsů]").first()
+            } else {
+                return result
+            }
         } else {
             table = doc.select("table[summary=Přehled comicsů]").first()
         }
+
         for (row in table.select("tbody tr")) {
             val columns = row.select("td")
             val title = columns[0].select("a").first().text()

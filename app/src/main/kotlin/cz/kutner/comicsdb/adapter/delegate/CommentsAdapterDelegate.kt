@@ -25,7 +25,7 @@ class CommentsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>(
         vh.commentNick.text = comment.nick
         vh.commentTime.text = comment.time
         vh.commentText.text = comment.text
-        vh.commentRatingBar.rating = comment.stars!!.toFloat()
+        vh.commentRatingBar.rating = comment.stars.toFloat()
         vh.nickIcon.loadUrl(comment.iconUrl)
     }
 

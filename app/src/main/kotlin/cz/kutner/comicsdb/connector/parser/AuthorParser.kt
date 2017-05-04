@@ -77,7 +77,11 @@ class AuthorParser {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val table: Element?
         if (doc.select("title").text().contentEquals("ComicsDB | vyhledávání")) {
-            table = doc.select("div.search-title:contains(AUTOŘI) + table[summary=Přehled comicsů]").first()
+            if (doc.select("div.search-title:contains(AUTOŘI) + table[summary=Přehled comicsů]").size > 0) {
+                table = doc.select("div.search-title:contains(AUTOŘI) + table[summary=Přehled comicsů]").first()
+            } else {
+                return result
+            }
         } else {
             table = doc.select("table[summary=Přehled comicsů]").first()
         }

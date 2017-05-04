@@ -20,7 +20,7 @@ class SearchActivityTest {
 
     @Test
     fun search() {
-        onView(withId(R.id.searchView)).perform(click()).perform(typeText("Batman"), pressKey(66))
+        onView(withId(R.id.searchView)).perform(click()).perform(typeText("Batman #1"), pressKey(66))
         onView(allOf(withId(R.id.comics_name), withText("Batman #1"))).check(matches(withText("Batman #1")))
     }
 
