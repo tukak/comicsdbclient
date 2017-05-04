@@ -16,7 +16,7 @@ dependencies:
         - mkdir $ANDROID_HOME/licences
         - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/licences/android-sdk-license
         - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/licences/android-sdk-preview-license
-        - less /usr/local/android-sdk-linux/licenses
+        - ls /usr/local/android-sdk-linux/licenses
         - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
         # Android SDK Platform
         - if [ ! -d "/usr/local/android-sdk-linux/platforms/android-$ANDROID_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"; fi
