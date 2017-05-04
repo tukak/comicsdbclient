@@ -34,7 +34,7 @@ test:
     - emulator -avd circleci-android22 -no-audio -no-window:
           background: true
           parallel: true
-    - if [ -e ./gradlew ]; then ./gradlew test assembleDebug connectedAndroidTest -PdisablePreDex;else gradle test assembleDebug connectedAndroidTest -PdisablePreDex;fi
+    - if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex;else gradle test assembleDebug -PdisablePreDex;fi
     - circle-android wait-for-boot
     - sleep 30
     - adb shell input keyevent 82
