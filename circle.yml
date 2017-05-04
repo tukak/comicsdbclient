@@ -8,6 +8,8 @@ machine:
 dependencies:
     pre:
         - echo $GOOGLE_SERVICES | base64 --decode > ~/$CIRCLE_PROJECT_REPONAME/app/google-services.json
+        - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/android-sdk-license
+        - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/android-sdk-preview-license
         - wget "https://services.gradle.org/distributions/gradle-3.4.1-all.zip"; unzip gradle-3.4.1-all.zip
         - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter build-tools-25.0.2
