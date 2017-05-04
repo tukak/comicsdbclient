@@ -17,7 +17,6 @@ dependencies:
         - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
         - echo "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
         - echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
-        - ls "$ANDROID_HOME/licenses"
         # Gradle
         - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
         # Android SDK Platform
@@ -34,11 +33,14 @@ test:
     - emulator -avd circleci-android22 -no-audio -no-window:
           background: true
           parallel: true
+    - if [ -e ./gradlew ]; then ./gradlew stop;else gradle stop;fi
     - if [ -e ./gradlew ]; then ./gradlew --no-daemon test assembleDebug -PdisablePreDex;else gradle --no-daemon test assembleDebug -PdisablePreDex;fi
     - circle-android wait-for-boot
     - sleep 30
     - adb shell input keyevent 82
+    - if [ -e ./gradlew ]; then ./gradlew stop;else gradle stop;fi
     - if [ -e ./gradlew ]; then ./gradlew --no-daemon test connectedAndroidTest -PdisablePreDex;else gradle --no-daemon test connectedAndroidTest -PdisablePreDex;fi
+    - if [ -e ./gradlew ]; then ./gradlew stop;else gradle stop;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
