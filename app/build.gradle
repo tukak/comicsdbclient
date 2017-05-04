@@ -96,7 +96,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'co.metalab.asyncawait:asyncawait:1.0.0'
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
 
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
 
@@ -105,7 +105,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile 'com.github.daniel-stoneuk:material-about-library:1.9.0'
-    compile "com.mikepenz:iconics-core:2.8.3@aar"
+    compile "com.mikepenz:iconics-core:2.8.4@aar"
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
 
     testCompile 'junit:junit:4.12'
