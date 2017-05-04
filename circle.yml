@@ -3,6 +3,8 @@ machine:
     ANDROID_HOME: /usr/local/android-sdk-linux
     GRADLE_VERSION: 3.4.1
     BUILD_TOOLS_VERSION: 25.0.2
+    ANDROID_SUPPORT_REPOSITORY_VERSION: 25.3.1
+    GOOGLE_SUPPORT_REPOSITORY_VERSION: 10.2.4
     ANDROID_VERSION: 25
     PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-$GRADLE_VERSION/bin:$PATH"
     TERM: "dumb"
@@ -14,9 +16,16 @@ dependencies:
         - mkdir $ANDROID_HOME/licences
         - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/licences/android-sdk-license
         - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/licences/android-sdk-preview-license
+        - less /usr/local/android-sdk-linux/licenses
         - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
-        - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter tools,platform-tools,android-$ANDROID_VERSION,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
-        - echo y | android update sdk --no-ui --all --filter build-tools-$BUILD_TOOLS_VERSION
+        # Android SDK Platform
+        - if [ ! -d "/usr/local/android-sdk-linux/platforms/android-$ANDROID_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"; fi
+        # Android SDK Build-tools
+        - if [ ! -d "/usr/local/android-sdk-linux/build-tools/$BUILD_TOOLS_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"; fi
+        # Android Support Repository
+        - if [ ! -d "/usr/local/android-sdk-linux/extras/android/m2repository/com/android/support/support-v4/$SUPPORT_REPOSITORY_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"; fi
+        # Google Support Repository
+        - if [ ! -d "/usr/local/android-sdk-linux/extras/google/m2repository/com/google/firebase/firebase-core/$GOOGLE_SUPPORT_REPOSITORY_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"; fi
     cache_directories:
         - $ANDROID_HOME/platforms/android-$ANDROID_VERSION
         - $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION
