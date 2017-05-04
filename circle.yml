@@ -4,13 +4,14 @@ machine:
     GRADLE_VERSION: 3.4.1
     BUILD_TOOLS_VERSION: 25.0.2
     ANDROID_VERSION: 25
-    PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-3.4.1/bin:$PATH"
+    PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-$GRADLE_VERSION/bin:$PATH"
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
 
 dependencies:
     pre:
         - echo $GOOGLE_SERVICES | base64 --decode > ~/$CIRCLE_PROJECT_REPONAME/app/google-services.json
+        - mkdir $ANDROID_HOME/licences
         - echo $ANDROID_SDK_LICENCE > $ANDROID_HOME/licences/android-sdk-license
         - echo $ANDROID_SDK_PREVIEW_LICENCE > $ANDROID_HOME/licences/android-sdk-preview-license
         - wget "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"; unzip gradle-$GRADLE_VERSION-all.zip
