@@ -28,11 +28,11 @@ dependencies:
         # Google Support Repository
         - if [ ! -d "/usr/local/android-sdk-linux/extras/google/m2repository/com/google/firebase/firebase-core/$GOOGLE_SUPPORT_REPOSITORY_VERSION" ]; then echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"; fi
     cache_directories:
-        - $ANDROID_HOME/platforms/android-$ANDROID_VERSION
-        - $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION
-        - $ANDROID_HOME/extras/android/m2repository
-        - $ANDROID_HOME/extras/google/m2repository
-        - ~/$CIRCLE_PROJECT_REPONAME/gradle-$GRADLE_VERSION
+        - /usr/local/android-sdk-linux/platforms/android-25
+        - /usr/local/android-sdk-linux/build-tools/25.0.2
+        - /usr/local/android-sdk-linux/extras/android/m2repository
+        - /usr/local/android-sdk-linux/extras/google/m2repository
+        - gradle-3.4.1
 
 test:
   override:
