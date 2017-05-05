@@ -126,6 +126,11 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'design'
     }
+    androidTestCompile ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0') {
+        exclude module: 'okio'
+        exclude module: 'support-annotations'
+        exclude module: 'okhttp'
+    }
 
     compile "space.traversal.kapsule:kapsule-core:0.2"
 
