@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb
 
+import cz.kutner.comicsdb.di.OkHttpProvider
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.utils.Utils
 import timber.log.Timber
@@ -21,6 +22,6 @@ class ComicsDBApplication : android.app.Application() {
     }
 
     private fun setupComponent() {
-        retrofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb))
+        retrofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb), OkHttpProvider.okHttpClient)
     }
 }
