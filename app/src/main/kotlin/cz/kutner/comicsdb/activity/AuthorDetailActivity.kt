@@ -19,7 +19,7 @@ class AuthorDetailActivity : AbstractDetailActivity<Author>(), Injects<RetrofitM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject((application as ComicsDBApplication).retfofitModule)
+        inject((application as ComicsDBApplication).retrofitModule)
     }
 
     override fun loadData() {

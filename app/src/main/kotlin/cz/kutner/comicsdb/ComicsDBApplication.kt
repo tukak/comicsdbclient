@@ -6,7 +6,7 @@ import timber.log.Timber
 
 class ComicsDBApplication : android.app.Application() {
 
-    lateinit var retfofitModule: RetrofitModule
+    lateinit var retrofitModule: RetrofitModule
         get
 
     override fun onCreate() {
@@ -21,6 +21,6 @@ class ComicsDBApplication : android.app.Application() {
     }
 
     private fun setupComponent() {
-        retfofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb))
+        retrofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb))
     }
 }

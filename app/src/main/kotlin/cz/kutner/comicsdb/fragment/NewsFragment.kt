@@ -23,7 +23,7 @@ class NewsFragment : AbstractFragment<NewsItem>(), Injects<RetrofitModule> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject((activity.application as ComicsDBApplication).retfofitModule)
+        inject((activity.application as ComicsDBApplication).retrofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
