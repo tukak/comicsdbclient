@@ -10,7 +10,6 @@ import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -19,8 +18,6 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {

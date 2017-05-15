@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb
 
-import android.os.SystemClock
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.IdlingPolicies
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -24,6 +24,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.TimeUnit
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -35,13 +36,15 @@ class MainActivityTest {
     val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", OkHttpProvider.okHttpClient)}
 
     fun espressoWait() {
-        while (!Espresso.getIdlingResources()[0].isIdleNow) {
+        /*while (!Espresso.getIdlingResources()[0].isIdleNow) {
             SystemClock.sleep(1500)
-        }
+        }*/
     }
 
     @Before
     fun registerIdlingResource() {
+        IdlingPolicies.setIdlingResourceTimeout(120, TimeUnit.MINUTES)
+        IdlingPolicies.setMasterPolicyTimeout(120, TimeUnit.MINUTES)
         Espresso.registerIdlingResources(idlingResource)
     }
 

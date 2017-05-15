@@ -5,7 +5,6 @@ import cz.kutner.comicsdb.model.Series
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
-import timber.log.Timber
 import java.io.InputStream
 import java.util.*
 

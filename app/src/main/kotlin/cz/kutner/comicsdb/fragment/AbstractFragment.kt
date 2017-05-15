@@ -20,8 +20,6 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 import java.util.*
 
