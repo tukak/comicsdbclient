@@ -1,6 +1,7 @@
 import com.android.ddmlib.DdmPreferences
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -73,6 +74,7 @@ dependencies {
 
     compile "com.google.firebase:firebase-core:$firebase_version"
     releaseCompile  "com.google.firebase:firebase-crash:$firebase_version"
+    compile "com.google.firebase:firebase-perf:$firebase_version"
 
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.pnikosis:materialish-progress:1.7'
