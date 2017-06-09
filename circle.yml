@@ -2,7 +2,7 @@ machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
     GRADLE_VERSION: 3.4.1
-    BUILD_TOOLS_VERSION: 25.0.2
+    BUILD_TOOLS_VERSION: 26.0.0
     ANDROID_SUPPORT_REPOSITORY_VERSION: 25.3.1
     GOOGLE_SUPPORT_REPOSITORY_VERSION: 10.2.4
     ANDROID_VERSION: 26
@@ -22,11 +22,11 @@ dependencies:
         # Android SDK Platform
         - echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"
         # Android SDK Build-tools
-        - echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"
+        #- echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"
         # Android Support Repository
-        - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
+        #- echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
         # Google Support Repository
-        - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"
+        #- echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"
 
 test:
   override:
