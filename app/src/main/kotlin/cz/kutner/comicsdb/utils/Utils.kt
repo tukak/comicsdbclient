@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 
 fun ImageView.loadUrl(url: String?) {
-    Glide.with(context).load(url).fitCenter().into(this)
+    Glide.with(context).load(url).into(this)
 }
 
 object Utils {
