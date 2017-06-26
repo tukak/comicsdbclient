@@ -13,7 +13,7 @@
         app:tabIndicatorColor="@color/primary_dark"
         app:tabSelectedTextColor="@android:color/black"/>
 
-    <android.support.v4.view.ViewPager
+    <cz.kutner.comicsdb.utils.HackyViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
