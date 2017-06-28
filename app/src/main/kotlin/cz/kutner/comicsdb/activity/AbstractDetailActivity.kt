@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.activity
 
+import android.app.getKoin
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +11,7 @@ import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -26,6 +28,8 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     abstract val extraName: String
     lateinit var result: Item
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
+
     val id: Int by lazy {
         val intent = intent
         var idTmp = 0

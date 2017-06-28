@@ -5,16 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.NewsListAdapter
-import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.Utils
-import space.traversal.kapsule.Injects
 
-class NewsFragment : AbstractFragment<NewsItem>(), Injects<RetrofitModule> {
-
-    private val newsService by required{ newsService }
+class NewsFragment : AbstractFragment<NewsItem>() {
 
     init {
         preloadCount = 0
@@ -23,7 +18,6 @@ class NewsFragment : AbstractFragment<NewsItem>(), Injects<RetrofitModule> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject((activity.application as ComicsDBApplication).retrofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,7 +28,7 @@ class NewsFragment : AbstractFragment<NewsItem>(), Injects<RetrofitModule> {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = newsService.listNews()
+            val call = retrofitModule.newsService.listNews()
             runAsync(call)
         }
     }

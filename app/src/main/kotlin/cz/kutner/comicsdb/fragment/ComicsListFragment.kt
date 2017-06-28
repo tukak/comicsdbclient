@@ -6,17 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ComicsListAdapter
-import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.Utils
-import space.traversal.kapsule.Injects
 import java.text.Normalizer
 
-class ComicsListFragment : AbstractFragment<Comics>(), Injects<RetrofitModule> {
-
-    private val comicsListService by required { comicsListService }
+class ComicsListFragment : AbstractFragment<Comics>() {
 
     init {
         preloadCount = 20
@@ -24,7 +19,6 @@ class ComicsListFragment : AbstractFragment<Comics>(), Injects<RetrofitModule> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject((activity.application as ComicsDBApplication).retrofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,12 +35,12 @@ class ComicsListFragment : AbstractFragment<Comics>(), Injects<RetrofitModule> {
                 //neco vyhledavame
                 var searchText: String = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                val call = comicsListService.comicsSearch(searchText)
+                val call = retrofitModule.comicsListService.comicsSearch(searchText)
                 runAsync(call)
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                val call = comicsListService.comicsList(lastPage)
+                val call = retrofitModule.comicsListService.comicsList(lastPage)
                 runAsync(call)
             }
         }

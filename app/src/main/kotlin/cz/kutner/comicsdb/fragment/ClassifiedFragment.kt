@@ -5,17 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cz.kutner.comicsdb.ComicsDBApplication
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
-import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.utils.Utils
-import space.traversal.kapsule.Injects
 
-class ClassifiedFragment : AbstractFragment<Classified>(), Injects<RetrofitModule> {
-
-    private val classifiedService by required { classifiedService }
+class ClassifiedFragment : AbstractFragment<Classified>() {
 
     init {
         preloadCount = 8
@@ -25,7 +20,6 @@ class ClassifiedFragment : AbstractFragment<Classified>(), Injects<RetrofitModul
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject((activity.application as ComicsDBApplication).retrofitModule)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,7 +31,7 @@ class ClassifiedFragment : AbstractFragment<Classified>(), Injects<RetrofitModul
         if (!searchRunning) {
             searchRunning = true
             val searchText = ""
-            val call = classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
             runAsync(call)
         }
     }

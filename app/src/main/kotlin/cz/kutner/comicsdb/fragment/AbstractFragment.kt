@@ -13,6 +13,8 @@ import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.di.RetrofitModule
+import cz.kutner.comicsdb.di.getKoin
 import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
@@ -42,6 +44,8 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     var filter: String
     private var spinnerPosition: Int? = null
     val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+
+    val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
 
     init {
         lastPage = 1

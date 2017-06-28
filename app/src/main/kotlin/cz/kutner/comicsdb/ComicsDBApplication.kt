@@ -1,27 +1,19 @@
 package cz.kutner.comicsdb
 
-import cz.kutner.comicsdb.di.OkHttpProvider
-import cz.kutner.comicsdb.di.RetrofitModule
+import cz.kutner.comicsdb.di.KoinModule
 import cz.kutner.comicsdb.utils.Utils
+import org.koin.android.KoinApplication
 import timber.log.Timber
 
-class ComicsDBApplication : android.app.Application() {
-
-    lateinit var retrofitModule: RetrofitModule
-        get
+class ComicsDBApplication : KoinApplication(KoinModule::class) {
 
     override fun onCreate() {
         super.onCreate()
-        setupComponent()
 
         Utils.context = applicationContext
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-    }
-
-    private fun setupComponent() {
-        retrofitModule = RetrofitModule(applicationContext.getString(R.string.url_comicsdb), OkHttpProvider.okHttpClient)
     }
 }
