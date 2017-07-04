@@ -1,7 +1,7 @@
 machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
-    GRADLE_VERSION: 4.0
+    GRADLE_VERSION: 4.1-milestone-1
     BUILD_TOOLS_VERSION: 26.0.0
     ANDROID_SUPPORT_REPOSITORY_VERSION: 25.3.1
     GOOGLE_SUPPORT_REPOSITORY_VERSION: 10.2.4

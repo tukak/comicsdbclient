@@ -11,7 +11,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.list_item_classified.view.*
 
@@ -29,7 +29,7 @@ class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<I
 
         vh.classifiedNick.text = classified.nick
         vh.classifiedTime.text = classified.time
-        vh.classifiedText.text = Utils.fromHtml(classified.text)
+        vh.classifiedText.text = classified.text.fromHtml()
         vh.classifiedNickIcon.loadUrl(classified.iconUrl)
         vh.classifiedCategory.text = classified.category
     }

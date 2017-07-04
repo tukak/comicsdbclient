@@ -23,7 +23,7 @@ import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 import java.util.*
@@ -57,10 +57,10 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
         }
         vh.price.text = "Cena: ${comics.price ?: ""}"
         if (comics.notes != null) {
-            vh.notes.text = Utils.fromHtml(comics.notes)
+            vh.notes.text = comics.notes?.fromHtml()
         }
         if (comics.description != null) {
-            vh.description.text = Utils.fromHtml(comics.description)
+            vh.description.text = comics.description?.fromHtml()
         }
 
         val authors = SpannableStringBuilder()

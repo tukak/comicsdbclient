@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.*
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -36,8 +36,8 @@ class ComicsParser {
             val preview = cover.select("img")
             val previewURI = preview.first().attr("src")
 
-            val previewUrl = Utils.fixUrl(previewURI)
-            val fullUrl = Utils.fixUrl(fullCoverURI)
+            val previewUrl = previewURI.fixUrl()
+            val fullUrl = fullCoverURI.fixUrl()
             val caption = preview.attr("title")
 
             comics.cover = Image(previewUrl, fullUrl, caption)
@@ -49,8 +49,8 @@ class ComicsParser {
             val preview = sample.select("img")
             val previewURI = preview.first().attr("src")
 
-            val previewUrl = Utils.fixUrl(previewURI)
-            val fullUrl = Utils.fixUrl(fullImageURI)
+            val previewUrl = previewURI.fixUrl()
+            val fullUrl = fullImageURI.fixUrl()
             val caption = preview.attr("title")
             comics.samples.add(Image(previewUrl, fullUrl, caption))
         }
@@ -138,7 +138,7 @@ class ComicsParser {
             val commentText = comment.text().replace("| ", "")
             val commentObject = Comment(nick, stars, commentText, time)
             if (!iconUrl.isEmpty()) {
-                commentObject.iconUrl = Utils.fixUrl(iconUrl)
+                commentObject.iconUrl = iconUrl.fixUrl()
             }
             comics.comments.add(commentObject)
         }

@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.ForumEntry
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.InputStream
@@ -22,7 +22,7 @@ class ForumParser {
                 val text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "")
                 val forumEntry = ForumEntry(nick, time, forum, text)
                 if (!iconUrl.isEmpty()) {
-                    forumEntry.iconUrl = Utils.fixUrl(iconUrl)
+                    forumEntry.iconUrl = iconUrl.fixUrl()
                 }
                 result.add(forumEntry)
             }

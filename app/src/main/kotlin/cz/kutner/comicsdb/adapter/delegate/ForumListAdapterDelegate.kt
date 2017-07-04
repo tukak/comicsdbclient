@@ -11,7 +11,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.model.Item
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.list_item_forum.view.*
 
@@ -28,7 +28,7 @@ class ForumListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>
         val forumEntry: ForumEntry = items[position] as ForumEntry
         vh.forumCommentNick.text = forumEntry.nick
         vh.forumCommentTime.text = forumEntry.time
-        vh.forumCommentText.text = Utils.fromHtml(forumEntry.text)
+        vh.forumCommentText.text = forumEntry.text.fromHtml()
         vh.forumNickIcon.loadUrl(forumEntry.iconUrl)
         vh.forumCommentForum.text = forumEntry.forum
     }

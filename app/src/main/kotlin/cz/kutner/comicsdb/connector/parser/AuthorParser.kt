@@ -2,7 +2,7 @@ package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -21,7 +21,7 @@ class AuthorParser {
         if (photoElements.size > 0) {
             val photoURI = photoElements.first().attr("src")
             if (!photoURI.isEmpty()) {
-                result.photoUrl= Utils.fixUrl(photoURI)
+                result.photoUrl= photoURI.fixUrl()
             }
         }
         for (titulek in doc.select(".titulek")) {

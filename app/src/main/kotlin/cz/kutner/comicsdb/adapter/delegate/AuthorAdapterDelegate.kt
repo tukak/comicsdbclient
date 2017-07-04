@@ -11,7 +11,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 import kotlinx.android.synthetic.main.fragment_author_detail.view.*
 
@@ -24,9 +24,9 @@ class AuthorAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
         val vh = holder as AuthorViewHolder
         val author = items[position] as Author
         vh.name.text = author.name
-        vh.bio.text = Utils.fromHtml(author.bio)
+        vh.bio.text = author.bio?.fromHtml()
         vh.country.text = author.country
-        vh.notes.text = Utils.fromHtml(author.notes)
+        vh.notes.text = author.notes?.fromHtml()
         vh.photo.loadUrl(author.photoUrl)
     }
 

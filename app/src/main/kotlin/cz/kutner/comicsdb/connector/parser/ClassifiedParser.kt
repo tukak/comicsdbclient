@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.Classified
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.InputStream
@@ -22,7 +22,7 @@ class ClassifiedParser {
             val text = entry.select("div#prispevek-text").html().replace("| ", "").replace("<br></br>", "")
             val classified = Classified(nick, time, category, text)
             if (!iconUrl.isEmpty()) {
-                classified.iconUrl = Utils.fixUrl(iconUrl)
+                classified.iconUrl = iconUrl.fixUrl()
             }
             result.add(classified)
         }

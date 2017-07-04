@@ -11,7 +11,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.NewsItem
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.fromHtml
 import kotlinx.android.synthetic.main.list_item_news.view.*
 
 
@@ -26,7 +26,7 @@ class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>(
         val vh: NewsViewHolder = holder as NewsViewHolder
         val newsItem: NewsItem = items[position] as NewsItem
         vh.newsItemNick.text = newsItem.nick
-        vh.newsItemText.text = Utils.fromHtml(newsItem.text)
+        vh.newsItemText.text = newsItem.text?.fromHtml()
         vh.newsItemTime.text = newsItem.time
         vh.newsItemTitle.text = newsItem.title
     }
