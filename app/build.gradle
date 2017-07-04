@@ -39,7 +39,7 @@ android {
     buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode getVersionCode()
         versionName getVersionName()
