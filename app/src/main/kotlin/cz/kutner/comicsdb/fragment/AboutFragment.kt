@@ -11,13 +11,17 @@ import com.danielstone.materialaboutlibrary.MaterialAboutFragment
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.di.getKoin
+import cz.kutner.comicsdb.utils.logVisit
 
 
 class AboutFragment : MaterialAboutFragment() {
+
+    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
 
     override fun getMaterialAboutList(context: Context?): MaterialAboutList {
 
@@ -108,7 +112,7 @@ class AboutFragment : MaterialAboutFragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        Utils.logVisit(contentName = "Zobrazení O aplikaci")
+        firebase.logVisit(contentName = "Zobrazení O aplikaci")
     }
 
     companion object {

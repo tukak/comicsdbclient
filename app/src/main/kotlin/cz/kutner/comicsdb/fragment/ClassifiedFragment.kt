@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.model.Classified
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.logVisit
 
 class ClassifiedFragment : AbstractFragment<Classified>() {
 
@@ -39,7 +39,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        Utils.logVisit(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
+        firebase.logVisit(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.activity
 
 import android.app.SearchManager
+import android.app.getKoin
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
@@ -10,21 +11,21 @@ import cz.kutner.comicsdb.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_tabbed.*
 
 class SearchActivity : AppCompatActivity() {
+    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabbed)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        val fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent)
+        val fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
 
         val bundle: Bundle = Bundle()
-        val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, query)
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
+        firebase.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
 
     }
 }

@@ -1,7 +1,10 @@
 package cz.kutner.comicsdb.di
 
 import android.app.getKoin
+import android.content.Context
+import android.net.ConnectivityManager
 import android.support.v4.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
@@ -14,17 +17,36 @@ class KoinModule : AndroidModule() {
 
     override fun context() =
             declareContext {
-                provide { createClient() }
+                provide { createOkHttpClient() }
                 provide { createRetrofitModule(get(), resources.getString(R.string.url_comicsdb)) }
+                provide { createFirebaseAnalytics() }
+                provide { createNetworkModule() }
             }
 
-    private fun createClient(): OkHttpClient {
+    private fun createOkHttpClient(): OkHttpClient {
         val okHttpClient: OkHttpClient by lazy { OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS).build() }
         return okHttpClient
     }
 
     private fun createRetrofitModule(okHttpClient: OkHttpClient, baseUrl: String): RetrofitModule {
         return RetrofitModule(okHttpClient, baseUrl)
+    }
+
+    private fun createFirebaseAnalytics(): FirebaseAnalytics {
+        val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(applicationContext) }
+        return firebaseAnalytics
+    }
+
+    private fun createNetworkModule(): NetworkModule {
+        return NetworkModule(applicationContext)
+    }
+}
+
+class NetworkModule(val applicationContext: Context) {
+    fun isConnected(): Boolean {
+        val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 }
 

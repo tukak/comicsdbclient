@@ -10,9 +10,10 @@ import android.view.View
 import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
+import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.di.NetworkModule
 import cz.kutner.comicsdb.di.RetrofitModule
-import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
@@ -29,6 +30,8 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     lateinit var result: Item
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
     val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
+    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
+    val networkModule by lazy { getKoin().get<NetworkModule>() }
 
     val id: Int by lazy {
         val intent = intent
@@ -54,7 +57,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
 
         val llm = LinearLayoutManager(this)
         try_again.setOnClickListener {
-            if (Utils.isConnected()) {
+            if (networkModule.isConnected()) {
                 onResume()
             }
         }
@@ -84,7 +87,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (!Utils.isConnected()) {
+        if (!networkModule.isConnected()) {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()

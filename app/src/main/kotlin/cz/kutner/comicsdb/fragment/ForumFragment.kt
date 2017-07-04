@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ForumListAdapter
 import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.model.ForumEntry
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.logVisit
 
 class ForumFragment : AbstractFragment<ForumEntry>() {
 
@@ -39,7 +39,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        Utils.logVisit(contentName = "Zobrazení fór", contentType = "Fórum")
+        firebase.logVisit(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 
     companion object {

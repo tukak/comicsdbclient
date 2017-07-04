@@ -1,5 +1,7 @@
 package cz.kutner.comicsdb.fragment
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,10 +14,11 @@ import android.widget.ArrayAdapter
 import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
+import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.di.NetworkModule
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.di.getKoin
-import cz.kutner.comicsdb.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
@@ -46,6 +49,8 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
+    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
+    val networkModule by lazy { getKoin().get<NetworkModule>() }
 
     init {
         lastPage = 1
@@ -66,7 +71,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
         try_again.setOnClickListener {
-            if (Utils.isConnected()) {
+            if (networkModule.isConnected()) {
                 checkConnectionAndLoadData()
             }
         }
@@ -96,8 +101,14 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         checkConnectionAndLoadData()
     }
 
+    fun isConnected(): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+    }
+
     private fun checkConnectionAndLoadData() {
-        if (!Utils.isConnected()) {
+        if (!isConnected()) {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
@@ -146,7 +157,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         async {
             try {
                 result = awaitSuccessful(call)
-            } catch(e: RetrofitHttpError){
+            } catch(e: RetrofitHttpError) {
                 switcher.showErrorView()
                 Timber.e(e)
             }

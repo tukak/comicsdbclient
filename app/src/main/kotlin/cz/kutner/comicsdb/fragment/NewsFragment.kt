@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.NewsListAdapter
 import cz.kutner.comicsdb.model.NewsItem
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.logVisit
 
 class NewsFragment : AbstractFragment<NewsItem>() {
 
@@ -36,7 +36,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
-        Utils.logVisit(contentName = "Zobrazení novinek", contentType = "Novinky")
+        firebase.logVisit(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 
     companion object {

@@ -4,7 +4,7 @@ import android.os.Bundle
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
 import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
@@ -26,6 +26,6 @@ class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        Utils.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
+        firebase.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
     }
 }

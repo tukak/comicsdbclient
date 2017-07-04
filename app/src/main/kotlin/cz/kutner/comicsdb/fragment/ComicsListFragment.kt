@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ComicsListAdapter
 import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.utils.Utils
+import cz.kutner.comicsdb.utils.logVisit
 import java.text.Normalizer
 
 class ComicsListFragment : AbstractFragment<Comics>() {
@@ -53,7 +53,7 @@ class ComicsListFragment : AbstractFragment<Comics>() {
             (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
-            Utils.logVisit(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
+            firebase.logVisit(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")
         }
     }
 
