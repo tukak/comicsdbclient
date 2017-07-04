@@ -11,12 +11,12 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 class KoinModule : AndroidModule() {
-    override fun onLoad() {
-        declareContext {
-            provide { createClient() }
-            provide { createRetrofitModule(get(), resources.getString(R.string.url_comicsdb)) }
-        }
-    }
+
+    override fun context() =
+            declareContext {
+                provide { createClient() }
+                provide { createRetrofitModule(get(), resources.getString(R.string.url_comicsdb)) }
+            }
 
     private fun createClient(): OkHttpClient {
         val okHttpClient: OkHttpClient by lazy { OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS).build() }
@@ -40,4 +40,4 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     val newsService: NewsService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(NewsConverterFactory.create()).build().create(NewsService::class.java) }
 }
 
-fun Fragment.getKoin(): org.koin.Context = this.activity.application.getKoin()
+fun Fragment.getKoin(): org.koin.KoinContext = this.activity.application.getKoin()

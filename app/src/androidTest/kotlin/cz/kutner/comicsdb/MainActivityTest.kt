@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb
 
+import android.app.getKoin
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.IdlingPolicies
@@ -16,7 +17,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import cz.kutner.comicsdb.activity.MainActivity
-import cz.kutner.comicsdb.di.OkHttpProvider
+import okhttp3.OkHttpClient
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
 import org.junit.After
@@ -33,13 +34,7 @@ class MainActivityTest {
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", OkHttpProvider.okHttpClient)}
-
-    fun espressoWait() {
-        /*while (!Espresso.getIdlingResources()[0].isIdleNow) {
-            SystemClock.sleep(1500)
-        }*/
-    }
+    val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get<OkHttpClient>() )}
 
     @Before
     fun registerIdlingResource() {
@@ -51,7 +46,6 @@ class MainActivityTest {
 
     @Test
     fun comicsListandDetail() {
-        espressoWait()
         onView(allOf(withId(R.id.recycler_view), hasDescendant(withId(R.id.card_view_comics)))).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.name)).check(matches(notNullValue()))
     }
@@ -115,14 +109,12 @@ class MainActivityTest {
     @Test
     fun search() {
         onView(withId(R.id.searchView)).perform(click()).perform(ViewActions.typeText("Batman #1"), ViewActions.pressKey(66))
-        espressoWait()
         onView(allOf(withId(R.id.comics_name), ViewMatchers.withText("Batman #1"))).check(matches(ViewMatchers.withText("Batman #1")))
     }
 
     @Test
     fun searchSwipe() {
         onView(withId(R.id.searchView)).perform(click()).perform(ViewActions.typeText("Batman"), ViewActions.pressKey(66))
-        espressoWait()
         onView(withId(R.id.pager)).perform(ViewActions.swipeLeft(), ViewActions.swipeLeft(), ViewActions.swipeRight(), ViewActions.swipeRight())
     }
 
