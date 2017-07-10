@@ -11,8 +11,6 @@ import android.support.v4.view.LayoutInflaterCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.GoogleApiAvailability
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.context.IconicsLayoutInflater
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
@@ -20,7 +18,6 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
 import kotlinx.android.synthetic.main.activity.*
 import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().add(R.id.container, ComicsListFragment.newInstance()).commit()
         }
         setContentView(R.layout.activity)
-        checkGooglePlayServices()
         setupToolbar()
         setDrawerIcons()
         setActionsForDrawer()
@@ -89,19 +85,5 @@ class MainActivity : AppCompatActivity() {
         val COMICS_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
         val AUTHOR_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.author_id"
         val SERIES_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.series_id"
-    }
-
-    private fun checkGooglePlayServices() {
-        val PLAY_SERVICES_RESOLUTION_REQUEST = 9000
-        val googleAPI = GoogleApiAvailability.getInstance()
-        val result = googleAPI.isGooglePlayServicesAvailable(this)
-        Timber.i("Checking Play Services")
-        if (result != ConnectionResult.SUCCESS) {
-            if (googleAPI.isUserResolvableError(result)) {
-                //prompt the dialog to update google play
-                googleAPI.getErrorDialog(this, result, PLAY_SERVICES_RESOLUTION_REQUEST).show()
-
-            }
-        }
     }
 }
