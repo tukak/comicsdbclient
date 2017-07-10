@@ -20,9 +20,9 @@ dependencies:
         # Android SDK Build-tools
         - echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"
         # Android Support Repository
-        - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
+        #- echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
         # Google Support Repository
-        - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"
+        #- echo y | android update sdk --no-ui --all --filter "extra-google-m2repository, extra-google-google_play_services"
         - if [ -e ./gradlew ]; then chmod u+x gradlew;fi
 
 test:
