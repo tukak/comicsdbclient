@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.utils
 
+import android.databinding.BindingAdapter
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
@@ -34,6 +35,11 @@ fun String.fromHtml(): Spanned {
         @Suppress("DEPRECATION")
         return Html.fromHtml(this)
     }
+}
+
+@BindingAdapter("imageUrl")
+fun bitmapSource(view: ImageView, uri: String) {
+    Glide.with(view.context).load(uri).into(view)
 }
 
 object Utils {

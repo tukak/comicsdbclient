@@ -3,17 +3,11 @@ package cz.kutner.comicsdb.adapter.delegate
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.ListItemClassifiedBinding
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
-import cz.kutner.comicsdb.utils.fromHtml
-import cz.kutner.comicsdb.utils.loadUrl
-import kotlinx.android.synthetic.main.list_item_classified.view.*
 
 
 class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
@@ -27,24 +21,19 @@ class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<I
         val vh: ClassifiedViewHolder = holder as ClassifiedViewHolder
         val classified: Classified = items[position] as Classified
 
-        vh.classifiedNick.text = classified.nick
-        vh.classifiedTime.text = classified.time
-        vh.classifiedText.text = classified.text.fromHtml()
-        vh.classifiedNickIcon.loadUrl(classified.iconUrl)
-        vh.classifiedCategory.text = classified.category
+        vh.bind(classified)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-        return ClassifiedViewHolder(inflater.inflate(R.layout.list_item_classified, parent, false))
+        val classifiedBinding = ListItemClassifiedBinding.inflate(inflater, parent, false)
+        return ClassifiedViewHolder(classifiedBinding)
     }
 
-    internal class ClassifiedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var classifiedNickIcon: ImageView = itemView.classified_nick_icon
-        var classifiedNick: TextView = itemView.classified_nick
-        var classifiedCategory: TextView  = itemView.classified_category
-        var classifiedTime: TextView  = itemView.classified_time
-        var classifiedText: TextView  = itemView.classified_text
-
+    internal class ClassifiedViewHolder(val binding: ListItemClassifiedBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(classified: Classified) {
+            binding.classified = classified
+            binding.executePendingBindings()
+        }
     }
 
 }

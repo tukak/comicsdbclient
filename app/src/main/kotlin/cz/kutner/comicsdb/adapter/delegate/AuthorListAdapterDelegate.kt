@@ -5,13 +5,11 @@ import android.content.Intent
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
+import cz.kutner.comicsdb.databinding.ListItemAuthorsBinding
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.list_item_authors.view.*
@@ -27,18 +25,16 @@ class AuthorListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
         val vh: AuthorViewHolder = holder as AuthorViewHolder
         val author: Author = items[position] as Author
 
-        vh.authorName.text = author.name
-        vh.authorCountry.text = author.country
+        vh.bind(author)
         vh.authorId = author.id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-        return AuthorViewHolder(inflater.inflate(R.layout.list_item_authors, parent, false))
+        val authorBinding = ListItemAuthorsBinding.inflate(inflater, parent, false)
+        return AuthorViewHolder(authorBinding)
     }
 
-    internal class AuthorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        internal var authorName: TextView = itemView.authorName
-        internal var authorCountry: TextView = itemView.authorCountry
+    internal class AuthorViewHolder(val binding:ListItemAuthorsBinding) : RecyclerView.ViewHolder(binding.root) {
         internal var card_view_authors: CardView = itemView.card_view_authors
         internal var authorId: Int? = null
 
@@ -50,6 +46,11 @@ class AuthorListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
                     itemView.context.startActivity(intent)
                 }
             }
+        }
+
+        fun bind(author: Author) {
+            binding.author = author
+            binding.executePendingBindings()
         }
     }
 
