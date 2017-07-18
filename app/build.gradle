@@ -92,8 +92,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile 'com.github.daniel-stoneuk:material-about-library:2.1.0'
-    compile "com.mikepenz:iconics-core:2.8.9@aar"
-    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
+    compile "com.mikepenz:iconics-core:2.9.0@aar"
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.3@aar'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.8.47'
