@@ -1,361 +1,389 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:layout_editor_absoluteY="25dp"
-    tools:layout_editor_absoluteX="0dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <ImageView
-        android:id="@+id/cover"
-        android:layout_width="80dp"
-        android:layout_height="123dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/cover_content_description"
-        android:minHeight="100dp"
-        android:minWidth="50dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlHardcoded"
-        tools:layout_editor_absoluteX="296dp" />
+        <variable
+            name="comics"
+            type="cz.kutner.comicsdb.model.Comics" />
+    </data>
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:paddingEnd="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#808080"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Jméno comicsu"
-        tools:ignore="RtlSymmetry"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/genre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Žánr"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintLeft_toLeftOf="@+id/name"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <RatingBar
-        android:id="@+id/comics_detail_rating_bar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="80dp"
-        android:layout_height="14dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cover" />
-
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:text="Hodnocení"
-        app:layout_constraintTop_toBottomOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar" />
-
-    <TextView
-        android:id="@+id/publisher"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Vydavatel"
-        app:layout_constraintTop_toBottomOf="@+id/genre"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/genre"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/pagesCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Počet stránek"
-        app:layout_constraintTop_toBottomOf="@+id/publisher"
-        app:layout_constraintLeft_toLeftOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="-1dp" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Cena"
-        app:layout_constraintTop_toBottomOf="@+id/pagesCount"
-        app:layout_constraintLeft_toLeftOf="@+id/pagesCount"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="2dp" />
-
-    <TextView
-        android:id="@+id/originalName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Původní název"
-        app:layout_constraintTop_toBottomOf="@+id/price"
-        app:layout_constraintLeft_toLeftOf="@+id/price"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="-1dp"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp" />
-
-    <TextView
-        android:id="@+id/binding"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Vazba"
-        app:layout_constraintTop_toBottomOf="@+id/originalName"
-        app:layout_constraintLeft_toLeftOf="@+id/originalName"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/series"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Série"
-        app:layout_constraintTop_toBottomOf="@+id/binding"
-        app:layout_constraintLeft_toLeftOf="@+id/binding"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/issueNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Vydání"
-        app:layout_constraintTop_toBottomOf="@+id/series"
-        app:layout_constraintLeft_toLeftOf="@+id/series"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/format"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Format"
-        app:layout_constraintTop_toBottomOf="@+id/issueNumber"
-        app:layout_constraintLeft_toLeftOf="@+id/issueNumber"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="-1dp" />
-
-    <TextView
-        android:id="@+id/url"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="URL"
-        app:layout_constraintTop_toBottomOf="@+id/format"
-        app:layout_constraintLeft_toLeftOf="@+id/format"
-        app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="25dp">
 
 
-    <ImageView
-        android:id="@+id/sample1"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/rating"
-        app:layout_constraintTop_toBottomOf="@+id/rating"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="80dp"
+            android:layout_height="123dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/cover_content_description"
+            android:minHeight="100dp"
+            android:minWidth="50dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded"
+            tools:layout_editor_absoluteX="296dp"
+            app:imageUrl="@{comics.cover.previewUrl}"/>
 
-    <ImageView
-        android:id="@+id/sample2"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/sample1"
-        app:layout_constraintTop_toTopOf="@+id/sample1"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#808080"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="Jméno comicsu"
+            android:text="@{comics.name}"/>
 
-    <ImageView
-        android:id="@+id/sample3"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/sample2"
-        app:layout_constraintTop_toTopOf="@+id/sample2"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <TextView
+            android:id="@+id/genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/name"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:ignore="RtlHardcoded"
+            tools:text="Žánr"
+            android:text="@{comics.genre}"/>
 
-    <ImageView
-        android:id="@+id/sample4"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/sample1"
-        app:layout_constraintTop_toBottomOf="@+id/sample1"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <RatingBar
+            android:id="@+id/comics_detail_rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cover"
+            android:rating="@{comics.getStars()}"/>
 
-    <ImageView
-        android:id="@+id/sample5"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/sample4"
-        app:layout_constraintTop_toTopOf="@+id/sample4"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comics_detail_rating_bar"
+            tools:text="Hodnocení"
+            android:text="@{comics.rating > 0 ? Integer.toString(comics.rating) + `% (` + comics.voteCount + `)` : `&lt; 5 hodnocení`}"/>
 
-    <ImageView
-        android:id="@+id/sample6"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/sample5"
-        app:layout_constraintTop_toTopOf="@+id/sample5"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:minHeight="10dp"
-        tools:minWidth="10dp" />
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/genre"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/genre"
+            tools:ignore="RtlHardcoded"
+            tools:text="Vydavatel"
+            android:text='@{comics.publisher + " " + comics.published}'/>
+
+        <TextView
+            android:id="@+id/pagesCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="-1dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/publisher"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/publisher"
+            tools:ignore="RtlHardcoded"
+            tools:text="Počet stránek"
+            android:text="@{`Stran: ` + comics.pagesCount}"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/pagesCount"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/pagesCount"
+            tools:ignore="RtlHardcoded"
+            tools:text="Cena"
+            android:text="@{`Cena: ` + comics.price}"/>
+
+        <TextView
+            android:id="@+id/originalName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="-1dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintLeft_toLeftOf="@+id/price"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            tools:ignore="RtlHardcoded"
+            tools:text="Původní název"
+            android:text="@{comics.getOriginals()}"/>
+
+        <TextView
+            android:id="@+id/binding"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/originalName"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/originalName"
+            tools:ignore="RtlHardcoded"
+            tools:text="Vazba"
+            android:text="@{`Vazba: ` + comics.binding}"/>
+
+        <TextView
+            android:id="@+id/series"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/binding"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/binding"
+            tools:ignore="RtlHardcoded"
+            tools:text="Série" />
+
+        <TextView
+            android:id="@+id/issueNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/series"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/series"
+            tools:ignore="RtlHardcoded"
+            tools:text="Vydání"
+            android:text="@{`Vydání: ` + comics.issueNumber + ` tisk: ` + comics.print}"/>
+
+        <TextView
+            android:id="@+id/format"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="-1dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/issueNumber"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/issueNumber"
+            tools:ignore="RtlHardcoded"
+            tools:text="Format"
+            android:text="@{`Formát: ` + comics.format}"/>
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:autoLink="web"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/format"
+            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/format"
+            tools:ignore="RtlHardcoded"
+            tools:text="URL"
+            android:text="@{@string/url_comics_detail + Integer.toString(comics.id)}"/>
 
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/url"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="RtlHardcoded"
-        tools:text="„BATMAN A ROBIN nemohou umřít!“  Temný rytíř padl, když se obětoval, aby tak porazil nejvyšší zlo. Tim Drake odložil kostým Robina a vydal se do světa pátrat po tom, jak by svého učitele vrátil do světa živých. Ve městě se zatím objevila nová dynamická dvojice. Dick Grayson, původní Robin, přebírá plášť a netopýří masku po svém někdejším společníkovi a po jeho bok se staví Batmanův syn Damian vychovaný Ligou asasínů. Tento nový, smrtelně nebezpečný Robin je odhodlán bojovat se zločinem všemi dostupnými způsoby. Před novou dvojicí maskovaných hrdinů stojí nelehký úkol - vypořádat se s rostoucí vlnou zločinnosti a násilí, jež město zachvátila a nemá v dějinách Gotham City obdoby. Budou se muset střetnout i s novou dvojicí samozvaných ochránců pořádku, s nimiž je pojí společná minulost. Pokud v tomto nelítostném boji chtějí uspět, budou se muset nejprve naučit vycházet sami se sebou a zbavit se vzájemné rivality. "
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        <ImageView
+            android:id="@+id/sample1"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/rating"
+            app:layout_constraintTop_toBottomOf="@+id/rating"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 0 ? comics.samples[0].previewUrl : ""}'/>
 
-    <TextView
-        android:id="@+id/notes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/description"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        tools:ignore="RtlHardcoded"
-        tools:text="Obsahuje sešity Batman Robin #1 - #6" />
+        <ImageView
+            android:id="@+id/sample2"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/sample1"
+            app:layout_constraintTop_toTopOf="@+id/sample1"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 1 ? comics.samples[1].previewUrl : ""}'/>
 
-    <TextView
-        android:id="@+id/authors"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Autoři"
-        app:layout_constraintTop_toBottomOf="@+id/notes"
-        app:layout_constraintLeft_toLeftOf="@+id/notes"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="-8dp" />
+        <ImageView
+            android:id="@+id/sample3"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/sample2"
+            app:layout_constraintTop_toTopOf="@+id/sample2"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 2 ? comics.samples[2].previewUrl : ""}'/>
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="0dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/url"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintLeft_toLeftOf="@+id/url"
-        app:layout_constraintRight_toRightOf="@+id/url"
-        tools:ignore="RtlHardcoded"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/sample4" />
+        <ImageView
+            android:id="@+id/sample4"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/sample1"
+            app:layout_constraintTop_toBottomOf="@+id/sample1"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 3 ? comics.samples[3].previewUrl : ""}'/>
+
+        <ImageView
+            android:id="@+id/sample5"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/sample4"
+            app:layout_constraintTop_toTopOf="@+id/sample4"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 4 ? comics.samples[4].previewUrl : ""}'/>
+
+        <ImageView
+            android:id="@+id/sample6"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/sample5"
+            app:layout_constraintTop_toTopOf="@+id/sample5"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:minHeight="10dp"
+            tools:minWidth="10dp"
+            app:imageUrl='@{comics.samples.size > 5 ? comics.samples[5].previewUrl : ""}'/>
 
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/url"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/space"
+            tools:ignore="RtlHardcoded"
+            tools:text="„BATMAN A ROBIN nemohou umřít!“  Temný rytíř padl, když se obětoval, aby tak porazil nejvyšší zlo. Tim Drake odložil kostým Robina a vydal se do světa pátrat po tom, jak by svého učitele vrátil do světa živých. Ve městě se zatím objevila nová dynamická dvojice. Dick Grayson, původní Robin, přebírá plášť a netopýří masku po svém někdejším společníkovi a po jeho bok se staví Batmanův syn Damian vychovaný Ligou asasínů. Tento nový, smrtelně nebezpečný Robin je odhodlán bojovat se zločinem všemi dostupnými způsoby. Před novou dvojicí maskovaných hrdinů stojí nelehký úkol - vypořádat se s rostoucí vlnou zločinnosti a násilí, jež město zachvátila a nemá v dějinách Gotham City obdoby. Budou se muset střetnout i s novou dvojicí samozvaných ochránců pořádku, s nimiž je pojí společná minulost. Pokud v tomto nelítostném boji chtějí uspět, budou se muset nejprve naučit vycházet sami se sebou a zbavit se vzájemné rivality. "
+            android:text="@{comics.getDescriptionFromHtml()}"/>
+
+        <TextView
+            android:id="@+id/notes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/description"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            tools:ignore="RtlHardcoded"
+            tools:text="Obsahuje sešity Batman Robin #1 - #6"
+            android:text="@{comics.getNotesFromHtml()}"/>
+
+        <TextView
+            android:id="@+id/authors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="-8dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/notes"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notes"
+            tools:ignore="RtlHardcoded"
+            tools:text="Autoři" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/url"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintLeft_toLeftOf="@+id/url"
+            app:layout_constraintRight_toRightOf="@+id/url"
+            app:layout_constraintTop_toBottomOf="@+id/sample4"
+            tools:ignore="RtlHardcoded" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

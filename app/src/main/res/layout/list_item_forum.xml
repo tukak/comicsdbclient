@@ -1,87 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
+    <data>
+
+        <variable
+            name="forumEntry"
+            type="cz.kutner.comicsdb.model.ForumEntry" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardUseCompatPadding="true"
-        android:id="@+id/card_view_comments">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            app:cardUseCompatPadding="true">
 
-            <ImageView
-                android:id="@+id/forum_nick_icon"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:maxHeight="50dp"
-                android:maxWidth="40dp"
-                android:minHeight="50dp"
-                android:minWidth="40dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="Jméno"
-                android:id="@+id/forum_comment_nick"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/forum_nick_icon"
-                android:layout_toEndOf="@+id/forum_nick_icon"
-                android:layout_toLeftOf="@+id/forum_comment_forum"
-                android:layout_toStartOf="@+id/forum_comment_forum"
-                android:textStyle="bold" />
+                android:padding="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="Fórum"
-                android:id="@+id/forum_comment_forum"
-                android:layout_alignTop="@+id/forum_comment_nick"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/forum_nick_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="5dp"
+                    android:maxHeight="50dp"
+                    android:maxWidth="40dp"
+                    android:minHeight="50dp"
+                    android:minWidth="40dp"
+                    app:imageUrl="@{forumEntry.iconUrl}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="Čas"
-                android:id="@+id/forum_comment_time"
-                android:layout_below="@+id/forum_comment_nick"
-                android:layout_alignLeft="@+id/forum_comment_nick"
-                android:layout_alignStart="@+id/forum_comment_nick"
-                android:layout_alignRight="@+id/forum_comment_nick"
-                android:layout_alignEnd="@+id/forum_comment_nick" />
+                <TextView
+                    android:id="@+id/forum_comment_nick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/forum_nick_icon"
+                    android:layout_toStartOf="@+id/forum_comment_forum"
+                    android:text="@{forumEntry.nick}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold"
+                    tools:text="Jméno" />
+
+                <TextView
+                    android:id="@+id/forum_comment_forum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/forum_comment_nick"
+                    android:text="@{forumEntry.forum}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold"
+                    tools:text="Fórum" />
+
+                <TextView
+                    android:id="@+id/forum_comment_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/forum_comment_nick"
+                    android:layout_alignStart="@+id/forum_comment_nick"
+                    android:layout_below="@+id/forum_comment_nick"
+                    android:text="@{forumEntry.time}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:text="Čas" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="Vlastní text komentáře, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí"
-                android:id="@+id/forum_comment_text"
-                android:layout_below="@+id/forum_comment_time"
-                android:layout_alignLeft="@+id/forum_comment_nick"
-                android:layout_alignStart="@+id/forum_comment_nick"
-                android:autoLink="web"
-                android:paddingTop="5dp" />
+                <TextView
+                    android:id="@+id/forum_comment_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/forum_comment_nick"
+                    android:layout_below="@+id/forum_comment_time"
+                    android:autoLink="web"
+                    android:paddingTop="5dp"
+                    android:text="@{forumEntry.getTextFromHtml()}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:text="Vlastní text komentáře, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

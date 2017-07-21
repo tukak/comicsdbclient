@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="android.text.Html" />
-        <import type="cz.kutner.comicsdb.utils.UtilsKt" />
         <variable
             name="classified"
             type="cz.kutner.comicsdb.model.Classified" />
@@ -84,7 +82,7 @@
                     android:layout_below="@+id/classified_time"
                     android:autoLink="web|phone|email"
                     android:paddingTop="5dp"
-                    android:text="@{UtilsKt.fromHtml(classified.text)}"
+                    android:text="@{classified.getTextFromHtml()}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="Vlastní text komentáře, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí" />
 

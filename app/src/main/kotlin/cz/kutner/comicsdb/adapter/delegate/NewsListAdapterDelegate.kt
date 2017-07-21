@@ -4,20 +4,16 @@ import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.ListItemNewsBinding
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.NewsItem
-import cz.kutner.comicsdb.utils.fromHtml
 import kotlinx.android.synthetic.main.list_item_news.view.*
 
 
 class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
-
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is NewsItem
     }
@@ -25,24 +21,23 @@ class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>(
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: NewsViewHolder = holder as NewsViewHolder
         val newsItem: NewsItem = items[position] as NewsItem
-        vh.newsItemNick.text = newsItem.nick
-        vh.newsItemText.text = newsItem.text?.fromHtml()
-        vh.newsItemTime.text = newsItem.time
-        vh.newsItemTitle.text = newsItem.title
+        vh.bind(newsItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-        return NewsViewHolder(inflater.inflate(R.layout.list_item_news, parent, false))
+        val newsBinding = ListItemNewsBinding.inflate(inflater, parent, false)
+        return NewsViewHolder(newsBinding)
     }
 
-    internal class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var newsItemTitle: TextView = itemView.newsItemTitle
-        var newsItemNick: TextView = itemView.newsItemNick
-        var newsItemTime: TextView = itemView.newsItemTime
-        var newsItemText: TextView = itemView.newsItemText
+    internal class NewsViewHolder(val binding: ListItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            newsItemText.movementMethod = LinkMovementMethod.getInstance()
+            itemView.newsItemText.movementMethod = LinkMovementMethod.getInstance()
+        }
+
+        fun bind(newsItem: NewsItem) {
+            binding.newsItem = newsItem
+            binding.executePendingBindings()
         }
     }
 
