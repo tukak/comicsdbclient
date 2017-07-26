@@ -30,5 +30,10 @@
     <string name="news">Novinky</string>
     <string name="author_photo_description">Fotka autora</string>
     <string name="picture">Obrázek</string>
+    <string name="number_of_pages">Počet stran: %s</string>
+    <string name="price">Cena: %s</string>
+    <string name="binding">Vazba: %s</string>
+    <string name="issue_and_print">Vydání: %s tisk: %s</string>
+    <string name="format">Formát: %s</string>
 
 </resources>

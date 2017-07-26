@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/publisher"
             tools:ignore="RtlHardcoded"
             tools:text="Počet stránek"
-            android:text="@{`Stran: ` + comics.pagesCount}"/>
+            android:text="@{@string/number_of_pages(comics.pagesCount)}"/>
 
         <TextView
             android:id="@+id/price"
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pagesCount"
             tools:ignore="RtlHardcoded"
             tools:text="Cena"
-            android:text="@{`Cena: ` + comics.price}"/>
+            android:text="@{@string/price(comics.price)}"/>
 
         <TextView
             android:id="@+id/originalName"
@@ -175,7 +175,7 @@
             app:layout_constraintTop_toBottomOf="@+id/originalName"
             tools:ignore="RtlHardcoded"
             tools:text="Vazba"
-            android:text="@{`Vazba: ` + comics.binding}"/>
+            android:text="@{@string/binding(comics.binding)}"/>
 
         <TextView
             android:id="@+id/series"
@@ -206,7 +206,7 @@
             app:layout_constraintTop_toBottomOf="@+id/series"
             tools:ignore="RtlHardcoded"
             tools:text="Vydání"
-            android:text="@{`Vydání: ` + comics.issueNumber + ` tisk: ` + comics.print}"/>
+            android:text="@{@string/issue_and_print(comics.issueNumber, comics.print)}"/>
 
         <TextView
             android:id="@+id/format"
@@ -222,7 +222,7 @@
             app:layout_constraintTop_toBottomOf="@+id/issueNumber"
             tools:ignore="RtlHardcoded"
             tools:text="Format"
-            android:text="@{`Formát: ` + comics.format}"/>
+            android:text="@{@string/format(comics.format)}"/>
 
         <TextView
             android:id="@+id/url"
