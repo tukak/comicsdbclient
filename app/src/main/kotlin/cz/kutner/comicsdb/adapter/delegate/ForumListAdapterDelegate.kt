@@ -27,7 +27,7 @@ class ForumListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>
         return ForumEntryViewHolder(forumBinding)
     }
 
-    internal class ForumEntryViewHolder(val binding:ListItemForumBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class ForumEntryViewHolder(val binding: ListItemForumBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(forumEntry: ForumEntry) {
             binding.forumEntry = forumEntry
             binding.executePendingBindings()

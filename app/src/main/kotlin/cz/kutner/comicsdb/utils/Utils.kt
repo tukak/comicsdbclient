@@ -39,7 +39,7 @@ fun String.fromHtml(): Spanned {
 
 @BindingAdapter("imageUrl")
 fun bitmapSource(view: ImageView, uri: String) {
-    Glide.with(view.context).load(uri).into(view)
+    view.loadUrl(uri)
 }
 
 object Utils {

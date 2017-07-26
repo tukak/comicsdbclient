@@ -8,6 +8,9 @@
         <variable
             name="comics"
             type="cz.kutner.comicsdb.model.Comics" />
+        <variable
+            name="handlers"
+            type="cz.kutner.comicsdb.handlers.ClickHandlers" />
     </data>
 
     <LinearLayout
@@ -22,7 +25,9 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            android:onClick="@{(view) -> handlers.onClickComics(view, comics.id)}"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -28,7 +28,6 @@ import java.util.*
 
 class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
     private val inflater: LayoutInflater = activity.layoutInflater
-    /* TODO databinding */
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as ComicsViewHolder
         val comics = items[position] as Comics
