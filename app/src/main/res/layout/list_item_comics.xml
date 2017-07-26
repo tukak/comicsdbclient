@@ -8,6 +8,7 @@
         <variable
             name="comics"
             type="cz.kutner.comicsdb.model.Comics" />
+
         <variable
             name="handlers"
             type="cz.kutner.comicsdb.handlers.ClickHandlers" />
@@ -25,9 +26,8 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardUseCompatPadding="true"
             android:onClick="@{(view) -> handlers.onClickComics(view, comics.id)}"
-            >
+            app:cardUseCompatPadding="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -41,8 +41,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_toStartOf="@+id/comics_rating"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@{comics.name}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="name" />
 
                 <TextView
@@ -53,8 +53,8 @@
                     android:layout_alignStart="@+id/comics_name"
                     android:layout_below="@+id/comics_name"
                     android:layout_toStartOf="@+id/comics_rating"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@{comics.published}"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="published" />
 
                 <TextView
@@ -65,9 +65,9 @@
                     android:layout_alignParentTop="true"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
+                    android:text="@{comics.rating > 0 ? String.valueOf(comics.rating): null}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="30sp"
-                    android:text="@{comics.rating > 0 ? String.valueOf(comics.rating): null}"
                     tools:text="98" />
 
             </RelativeLayout>

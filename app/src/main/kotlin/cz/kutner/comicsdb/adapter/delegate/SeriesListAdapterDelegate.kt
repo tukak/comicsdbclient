@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.databinding.ListItemSeriesBinding
+import cz.kutner.comicsdb.handlers.ClickHandlers
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 
@@ -24,6 +25,7 @@ class SeriesListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
         val seriesBinding = ListItemSeriesBinding.inflate(inflater, parent, false)
+        seriesBinding.handlers = ClickHandlers()
         return SeriesViewHolder(seriesBinding)
     }
 
