@@ -20,7 +20,7 @@
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal">
+    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
