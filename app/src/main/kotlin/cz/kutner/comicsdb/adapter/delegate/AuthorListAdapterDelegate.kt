@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import cz.kutner.comicsdb.handlers.ClickHandlers
+import cz.kutner.comicsdb.helpers.ClickHandlers
 import cz.kutner.comicsdb.databinding.ListItemAuthorsBinding
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.databinding.ListItemComicsBinding
-import cz.kutner.comicsdb.handlers.ClickHandlers
+import cz.kutner.comicsdb.helpers.ClickHandlers
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Item
 

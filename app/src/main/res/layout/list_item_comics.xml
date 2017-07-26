@@ -11,7 +11,7 @@
 
         <variable
             name="handlers"
-            type="cz.kutner.comicsdb.handlers.ClickHandlers" />
+            type="cz.kutner.comicsdb.helpers.ClickHandlers" />
     </data>
 
     <LinearLayout

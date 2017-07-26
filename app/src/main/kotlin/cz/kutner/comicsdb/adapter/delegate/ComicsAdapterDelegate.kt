@@ -46,7 +46,6 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
             }
         }
         vh.authors.text = authors
-        vh.authors.movementMethod = LinkMovementMethod.getInstance()
 
         val series: Series? = comics.series
         if (series != null) {
@@ -54,7 +53,6 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
             seriesString.append(series.name)
             seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             vh.series.text = seriesString
-            vh.series.movementMethod = LinkMovementMethod.getInstance()
         }
 
         val allImages: ArrayList<Image> = ArrayList()
@@ -130,6 +128,10 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
         internal var sample4: ImageView = itemView.sample4
         internal var sample5: ImageView = itemView.sample5
         internal var sample6: ImageView = itemView.sample6
+        init {
+            itemView.authors.movementMethod = LinkMovementMethod.getInstance()
+            itemView.series.movementMethod = LinkMovementMethod.getInstance()
+        }
 
         fun bind(comics: Comics) {
             binding.comics = comics

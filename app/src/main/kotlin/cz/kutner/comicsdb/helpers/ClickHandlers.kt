@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.handlers
+package cz.kutner.comicsdb.helpers
 
 import android.content.Intent
 import android.view.View
