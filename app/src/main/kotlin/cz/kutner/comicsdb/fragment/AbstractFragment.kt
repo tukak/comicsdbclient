@@ -3,6 +3,7 @@ package cz.kutner.comicsdb.fragment
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.support.inject
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -18,7 +19,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.di.NetworkModule
 import cz.kutner.comicsdb.di.RetrofitModule
-import cz.kutner.comicsdb.di.getKoin
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
@@ -48,9 +48,9 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     private var spinnerPosition: Int? = null
     val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
-    val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
-    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
-    val networkModule by lazy { getKoin().get<NetworkModule>() }
+    val retrofitModule by inject<RetrofitModule>()
+    val firebase by inject<FirebaseAnalytics>()
+    val networkModule by inject<NetworkModule>()
 
     init {
         lastPage = 1

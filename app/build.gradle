@@ -95,7 +95,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile 'com.github.daniel-stoneuk:material-about-library:2.2.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.2.1'
     compile "com.mikepenz:iconics-core:2.9.0@aar"
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.3@aar'
 
@@ -124,6 +124,7 @@ dependencies {
     }
 
     compile 'org.koin:koin-android:0.2.1'
+    compile 'org.koin:koin-android-support:0.2.1'
 
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
     compile 'com.jakewharton.timber:timber:4.5.1'

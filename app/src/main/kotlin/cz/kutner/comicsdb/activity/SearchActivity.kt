@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.activity
 
 import android.app.SearchManager
-import android.app.getKoin
+import android.app.inject
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
@@ -11,7 +11,7 @@ import cz.kutner.comicsdb.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_tabbed.*
 
 class SearchActivity : AppCompatActivity() {
-    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
+    val firebase by inject<FirebaseAnalytics>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

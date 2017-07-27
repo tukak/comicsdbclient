@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.activity
 
-import android.app.getKoin
+import android.app.inject
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -29,9 +29,9 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     abstract val extraName: String
     lateinit var result: Item
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
-    val retrofitModule by lazy { getKoin().get<RetrofitModule>() }
-    val firebase by lazy { getKoin().get<FirebaseAnalytics>() }
-    val networkModule by lazy { getKoin().get<NetworkModule>() }
+    val retrofitModule by inject<RetrofitModule>()
+    val firebase by inject<FirebaseAnalytics>()
+    val networkModule by inject<NetworkModule>()
 
     val id: Int by lazy {
         val intent = intent

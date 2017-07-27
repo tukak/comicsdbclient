@@ -1,9 +1,7 @@
 package cz.kutner.comicsdb.di
 
-import android.app.getKoin
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.v4.app.Fragment
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.connector.converter.*
@@ -61,5 +59,3 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     val forumService: ForumService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(ForumConverterFactory.create()).build().create(ForumService::class.java) }
     val newsService: NewsService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(NewsConverterFactory.create()).build().create(NewsService::class.java) }
 }
-
-fun Fragment.getKoin(): org.koin.KoinContext = this.activity.application.getKoin()
