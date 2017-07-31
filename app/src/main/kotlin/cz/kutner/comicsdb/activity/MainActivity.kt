@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.context.IconicsLayoutInflater
+import com.mikepenz.iconics.context.IconicsLayoutInflater2
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.fragment.*
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        LayoutInflaterCompat.setFactory(layoutInflater, IconicsLayoutInflater(delegate))
+        LayoutInflaterCompat.setFactory2(layoutInflater, IconicsLayoutInflater2(delegate))
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().add(R.id.container, ComicsListFragment.newInstance()).commit()
