@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/spinner"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:layoutAnimation="@anim/layout_animation_fall_down"/>
 
             <Spinner
                 android:id="@+id/spinner"
