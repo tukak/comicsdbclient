@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.databinding.FragmentAuthorDetailBinding
-import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.model.Item
 
 
@@ -16,7 +16,7 @@ class AuthorAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
 
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as AuthorViewHolder
-        val author = items[position] as Author
+        val author = items[position] as AuthorDetail
 
         vh.bind(author)
     }
@@ -27,13 +27,13 @@ class AuthorAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
     }
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is Author
+        return items[position] is AuthorDetail
     }
 
     class AuthorViewHolder(val binding: FragmentAuthorDetailBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(author: Author) {
-            binding.author = author
+        fun bind(author: AuthorDetail) {
+            binding.authorDetail = author
             binding.executePendingBindings()
         }
     }

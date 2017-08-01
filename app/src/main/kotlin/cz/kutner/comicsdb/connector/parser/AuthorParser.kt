@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
@@ -11,12 +12,12 @@ import java.io.InputStream
 import java.util.*
 
 class AuthorParser {
-    fun parseAuthorDetail(html: InputStream, encoding: String = "windows-1250"): Author {
+    fun parseAuthorDetail(html: InputStream, encoding: String = "windows-1250"): AuthorDetail {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
         val id = doc.select("#filtrform > input:nth-child(2)").attr("value").toInt()
         val country = doc.select("div#wrapper div#leftcolumn").html().substringBefore("<br").substringAfter("</h5>").trim()
-        val result = Author(name, country, id)
+        val result = AuthorDetail(name, country, id)
         val photoElements = doc.select("div#comicspic img")
         if (photoElements.size > 0) {
             val photoURI = photoElements.first().attr("src")

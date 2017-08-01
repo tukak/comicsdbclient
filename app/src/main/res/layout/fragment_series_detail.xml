@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="series"
-            type="cz.kutner.comicsdb.model.Series" />
+            name="seriesDetail"
+            type="cz.kutner.comicsdb.model.SeriesDetail" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#808080"
             tools:text="Název série"
-            android:text="@{series.name}"/>
+            android:text="@{seriesDetail.name}"/>
 
     </LinearLayout>
 </layout>

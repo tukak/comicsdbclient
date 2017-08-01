@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="comics"
-            type="cz.kutner.comicsdb.model.Comics" />
+            name="comicsDetail"
+            type="cz.kutner.comicsdb.model.ComicsDetail" />
 
         <variable
             name="handlers"
@@ -32,8 +32,8 @@
             android:contentDescription="@string/cover_content_description"
             android:minHeight="100dp"
             android:minWidth="50dp"
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 0)}"
-            app:imageUrl="@{comics.cover.previewUrl}"
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 0)}"
+            app:imageUrl="@{comicsDetail.cover.previewUrl}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlHardcoded"
@@ -50,7 +50,7 @@
             android:layout_marginTop="0dp"
             android:paddingEnd="5dp"
             android:paddingTop="5dp"
-            android:text="@{comics.name}"
+            android:text="@{comicsDetail.name}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#808080"
             app:layout_constraintHorizontal_bias="0.0"
@@ -67,7 +67,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{comics.genre}"
+            android:text="@{comicsDetail.genre}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/name"
@@ -83,7 +83,7 @@
             android:layout_height="14dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="0dp"
-            android:rating="@{comics.getStars()}"
+            android:rating="@{comicsDetail.getStars()}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cover" />
 
@@ -94,7 +94,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{comics.rating > 0 ? @string/rating(comics.rating, comics.voteCount) : @string/norating}"
+            android:text="@{comicsDetail.rating > 0 ? @string/rating(comicsDetail.rating, comicsDetail.voteCount) : @string/norating}"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar"
@@ -110,7 +110,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text='@{comics.publisher + " " + comics.published}'
+            android:text='@{comicsDetail.publisher + " " + comicsDetail.published}'
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/genre"
@@ -126,7 +126,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="-1dp"
-            android:text="@{@string/number_of_pages(comics.pagesCount)}"
+            android:text="@{@string/number_of_pages(comicsDetail.pagesCount)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/publisher"
@@ -142,7 +142,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="2dp"
-            android:text="@{@string/price(comics.price)}"
+            android:text="@{@string/price(comicsDetail.price)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="@+id/pagesCount"
@@ -159,7 +159,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="-1dp"
-            android:text="@{comics.getOriginals()}"
+            android:text="@{comicsDetail.getOriginals()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintLeft_toLeftOf="@+id/price"
             app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
@@ -174,7 +174,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{@string/binding(comics.binding)}"
+            android:text="@{@string/binding(comicsDetail.binding)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/originalName"
@@ -195,7 +195,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/binding"
             app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
             app:layout_constraintTop_toBottomOf="@+id/binding"
-            app:spannableSeries="@{comics}"
+            app:spannableSeries="@{comicsDetail}"
             tools:ignore="RtlHardcoded"
             tools:text="Série" />
 
@@ -206,7 +206,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{@string/issue_and_print(comics.issueNumber, comics.print)}"
+            android:text="@{@string/issue_and_print(comicsDetail.issueNumber, comicsDetail.print)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="@+id/series"
@@ -222,7 +222,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="-1dp"
-            android:text="@{@string/format(comics.format)}"
+            android:text="@{@string/format(comicsDetail.format)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/issueNumber"
@@ -239,7 +239,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
             android:autoLink="web"
-            android:text="@{@string/url_comics_detail + Integer.toString(comics.id)}"
+            android:text="@{@string/url_comics_detail + Integer.toString(comicsDetail.id)}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/format"
@@ -255,8 +255,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 1)}"
-            app:imageUrl='@{comics.samples.size > 0 ? comics.samples[0].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 1)}"
+            app:imageUrl='@{comicsDetail.samples.size > 0 ? comicsDetail.samples[0].previewUrl : ""}'
             app:layout_constraintLeft_toLeftOf="@+id/rating"
             app:layout_constraintTop_toBottomOf="@+id/rating"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -269,8 +269,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            app:imageUrl='@{comics.samples.size > 1 ? comics.samples[1].previewUrl : ""}'
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 2)}"
+            app:imageUrl='@{comicsDetail.samples.size > 1 ? comicsDetail.samples[1].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 2)}"
             app:layout_constraintLeft_toRightOf="@+id/sample1"
             app:layout_constraintTop_toTopOf="@+id/sample1"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -283,8 +283,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            app:imageUrl='@{comics.samples.size > 2 ? comics.samples[2].previewUrl : ""}'
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 3)}"
+            app:imageUrl='@{comicsDetail.samples.size > 2 ? comicsDetail.samples[2].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 3)}"
             app:layout_constraintLeft_toRightOf="@+id/sample2"
             app:layout_constraintTop_toTopOf="@+id/sample2"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -297,8 +297,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
-            app:imageUrl='@{comics.samples.size > 3 ? comics.samples[3].previewUrl : ""}'
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 4)}"
+            app:imageUrl='@{comicsDetail.samples.size > 3 ? comicsDetail.samples[3].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 4)}"
             app:layout_constraintLeft_toLeftOf="@+id/sample1"
             app:layout_constraintTop_toBottomOf="@+id/sample1"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -311,8 +311,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            app:imageUrl='@{comics.samples.size > 4 ? comics.samples[4].previewUrl : ""}'
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 5)}"
+            app:imageUrl='@{comicsDetail.samples.size > 4 ? comicsDetail.samples[4].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 5)}"
             app:layout_constraintLeft_toRightOf="@+id/sample4"
             app:layout_constraintTop_toTopOf="@+id/sample4"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -325,8 +325,8 @@
             android:layout_height="30dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            app:imageUrl='@{comics.samples.size > 5 ? comics.samples[5].previewUrl : ""}'
-            android:onClick="@{(view) -> handlers.onClickImage(view, comics, 6)}"
+            app:imageUrl='@{comicsDetail.samples.size > 5 ? comicsDetail.samples[5].previewUrl : ""}'
+            android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 6)}"
             app:layout_constraintLeft_toRightOf="@+id/sample5"
             app:layout_constraintTop_toTopOf="@+id/sample5"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -341,7 +341,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{comics.getDescriptionFromHtml()}"
+            android:text="@{comicsDetail.getDescriptionFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/url"
@@ -357,7 +357,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{comics.getNotesFromHtml()}"
+            android:text="@{comicsDetail.getNotesFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/description"
@@ -378,7 +378,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/notes"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notes"
-            app:spannableAuthors="@{comics}"
+            app:spannableAuthors="@{comicsDetail}"
             tools:ignore="RtlHardcoded"
             tools:text="Autoři" />
 

@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.helpers
 import android.content.Intent
 import android.view.View
 import cz.kutner.comicsdb.activity.*
-import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.model.Image
 import java.util.*
 
@@ -26,7 +26,7 @@ class ClickHandlers {
         view.context.startActivity(intent)
     }
 
-    fun onClickImage(view: View, comics: Comics, position: Int) {
+    fun onClickImage(view: View, comics: ComicsDetail, position: Int) {
         val allImages: ArrayList<Image> = ArrayList()
         if (comics.cover != null) {
             allImages.add(comics.cover as Image)

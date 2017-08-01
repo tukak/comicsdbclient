@@ -3,11 +3,11 @@ package cz.kutner.comicsdb.activity
 import android.os.Bundle
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
-import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
 
-class ComicsDetailActivity : AbstractDetailActivity<Comics>() {
+class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
 
     override val prefix: String by lazy { getString(R.string.url_comics_detail) }
     override val extraName = MainActivity.COMICS_ID
