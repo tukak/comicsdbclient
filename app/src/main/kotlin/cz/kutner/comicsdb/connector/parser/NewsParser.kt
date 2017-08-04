@@ -1,11 +1,13 @@
 package cz.kutner.comicsdb.connector.parser
 
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.model.NewsItem
 import org.jsoup.Jsoup
 import java.io.InputStream
 import java.util.*
 
 class NewsParser {
+    @AddTrace(name = "parseNews")
     fun parseNews(html: InputStream, encoding: String = "windows-1250"): List<NewsItem> {
         val result = ArrayList<NewsItem>()
         val doc = Jsoup.parse(html, encoding, "")

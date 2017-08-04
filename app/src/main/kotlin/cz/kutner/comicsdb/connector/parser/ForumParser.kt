@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.connector.parser
 
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.fixUrl
 import org.jsoup.Jsoup
@@ -8,6 +9,7 @@ import java.io.InputStream
 import java.util.*
 
 class ForumParser {
+    @AddTrace(name = "parseForum")
     fun parseForum(html: InputStream, encoding: String = "windows-1250"): List<ForumEntry> {
         val result = ArrayList<ForumEntry>()
         val doc: Document = Jsoup.parse(html, encoding, "")

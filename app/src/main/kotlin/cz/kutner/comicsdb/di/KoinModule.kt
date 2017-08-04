@@ -3,6 +3,7 @@ package cz.kutner.comicsdb.di
 import android.content.Context
 import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.connector.converter.*
 import cz.kutner.comicsdb.connector.service.*
@@ -12,7 +13,7 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 class KoinModule : AndroidModule() {
-
+    @AddTrace(name = "initKoinModule")
     override fun context() =
             declareContext {
                 provide { createOkHttpClient() }

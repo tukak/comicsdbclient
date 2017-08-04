@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.connector.parser
 
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.model.Comics
@@ -12,6 +13,7 @@ import java.io.InputStream
 import java.util.*
 
 class AuthorParser {
+    @AddTrace(name = "parseAuthorDetail")
     fun parseAuthorDetail(html: InputStream, encoding: String = "windows-1250"): AuthorDetail {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
@@ -72,7 +74,7 @@ class AuthorParser {
         }
         return result
     }
-
+    @AddTrace(name = "parseAuthorList")
     fun parseAuthorList(html: InputStream, encoding: String = "windows-1250"): ArrayList<Author> {
         val result = ArrayList<Author>()
         val doc: Document = Jsoup.parse(html, encoding, "")

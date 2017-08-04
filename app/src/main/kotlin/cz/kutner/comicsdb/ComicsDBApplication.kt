@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb
 
 import android.app.Application
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.di.KoinModule
 import org.koin.Koin
 import org.koin.KoinContext
@@ -13,7 +14,7 @@ class ComicsDBApplication : Application(), KoinContextAware {
     lateinit var context: KoinContext
 
     override fun getKoin(): KoinContext = context
-
+    @AddTrace(name = "onCreateApplication")
     override fun onCreate() {
         super.onCreate()
 
