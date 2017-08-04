@@ -2,6 +2,7 @@ package cz.kutner.comicsdb.connector.parser
 
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.model.Series
+import cz.kutner.comicsdb.model.SeriesDetail
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -9,11 +10,11 @@ import java.io.InputStream
 import java.util.*
 
 class SeriesParser {
-    fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): Series {
+    fun parseSeriesDetail(html: InputStream, encoding: String = "windows-1250"): SeriesDetail {
         val doc: Document = Jsoup.parse(html, encoding, "")
         val name = doc.select("div#wrapper div#leftcolumn h5").text()
         val id = doc.select("#filtrform > input:nth-child(2)").attr("value").toInt()
-        val result = Series(name, id, 0)
+        val result = SeriesDetail(name, id, 0)
         for (titulek in doc.select(".titulek")) {
             val title_name = titulek.text().substring(0, titulek.text().length - 1)
             val title_value = titulek.nextSibling()

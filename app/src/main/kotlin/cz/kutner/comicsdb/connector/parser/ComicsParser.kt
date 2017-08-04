@@ -11,8 +11,8 @@ import java.io.InputStream
 import java.util.*
 
 class ComicsParser {
-    fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): Comics {
-        val comics = Comics("", 0)
+    fun parseComicsDetail(html: InputStream, encoding: String = "windows-1250"): ComicsDetail {
+        val comics = ComicsDetail("", 0)
         val doc: Document = Jsoup.parse(html, encoding, "")
         var sibling: Node?
         comics.id = Integer.parseInt(doc.select("input[name=id]").first().attr("value"))

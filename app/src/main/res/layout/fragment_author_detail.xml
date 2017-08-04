@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="author"
-            type="cz.kutner.comicsdb.model.Author" />
+            name="authorDetail"
+            type="cz.kutner.comicsdb.model.AuthorDetail" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -24,7 +24,7 @@
             android:adjustViewBounds="false"
             android:contentDescription="@string/author_photo_description"
             android:cropToPadding="false"
-            app:imageUrl="@{author.photoUrl}"
+            app:imageUrl="@{authorDetail.photoUrl}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlHardcoded"
@@ -43,7 +43,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:paddingTop="5dp"
-            android:text="@{author.name}"
+            android:text="@{authorDetail.name}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#808080"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -59,7 +59,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{author.country}"
+            android:text="@{authorDetail.country}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintLeft_toLeftOf="@+id/name"
             app:layout_constraintRight_toLeftOf="@+id/authorPhoto"
@@ -75,7 +75,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{author.getBioFromHtml()}"
+            android:text="@{authorDetail.getBioFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/country"
@@ -95,7 +95,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="1dp"
-            android:text="@{author.getNotesFromHtml()}"
+            android:text="@{authorDetail.getNotesFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/bio"

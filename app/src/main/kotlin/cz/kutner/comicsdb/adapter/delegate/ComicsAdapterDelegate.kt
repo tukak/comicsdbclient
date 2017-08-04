@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import cz.kutner.comicsdb.databinding.FragmentComicsDetailBinding
 import cz.kutner.comicsdb.helpers.ClickHandlers
-import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 
@@ -17,7 +17,7 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
     private val inflater: LayoutInflater = activity.layoutInflater
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as ComicsViewHolder
-        val comics = items[position] as Comics
+        val comics = items[position] as ComicsDetail
 
         vh.bind(comics)
     }
@@ -29,7 +29,7 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
     }
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is Comics
+        return items[position] is ComicsDetail
     }
 
     class ComicsViewHolder(val binding: FragmentComicsDetailBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -38,8 +38,8 @@ class ComicsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() 
             itemView.series.movementMethod = LinkMovementMethod.getInstance()
         }
 
-        fun bind(comics: Comics) {
-            binding.comics = comics
+        fun bind(comics: ComicsDetail) {
+            binding.comicsDetail = comics
             binding.executePendingBindings()
         }
 

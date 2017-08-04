@@ -11,7 +11,7 @@ import android.widget.TextView
 import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
-import cz.kutner.comicsdb.model.Comics
+import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.loadUrl
 
 
@@ -21,7 +21,7 @@ fun bitmapSource(view: ImageView, uri: String) {
 }
 
 @BindingAdapter("spannableSeries")
-fun getSpannableSeries(textView: TextView, comics: Comics) {
+fun getSpannableSeries(textView: TextView, comics: ComicsDetail) {
     val series = comics.series
     if (series != null) {
         val seriesString = SpannableStringBuilder()
@@ -32,7 +32,7 @@ fun getSpannableSeries(textView: TextView, comics: Comics) {
 }
 
 @BindingAdapter("spannableAuthors")
-fun getSpannableAuthors(textView: TextView, comics: Comics) {
+fun getSpannableAuthors(textView: TextView, comics: ComicsDetail) {
     val authors = SpannableStringBuilder()
     for (author in comics.authors) {
         val formerLength = authors.length
