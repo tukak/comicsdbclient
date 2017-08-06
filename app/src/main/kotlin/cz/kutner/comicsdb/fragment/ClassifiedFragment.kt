@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.model.Classified
@@ -27,6 +28,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    @AddTrace(name = "ClassifiedLoadData")
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true

@@ -16,8 +16,10 @@ import cz.kutner.comicsdb.utils.loadUrl
 
 
 @BindingAdapter("imageUrl")
-fun bitmapSource(view: ImageView, uri: String) {
-    view.loadUrl(uri)
+fun bitmapSource(view: ImageView, uri: String?) {
+    if (uri != null) {
+        view.loadUrl(uri)
+    }
 }
 
 @BindingAdapter("spannableSeries")
