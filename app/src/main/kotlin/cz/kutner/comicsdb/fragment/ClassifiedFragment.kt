@@ -32,8 +32,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val searchText = ""
-            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter), searchText)
+            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage, ClassifiedHelper.getCategoryId(filter))
             runAsync(call)
         }
     }

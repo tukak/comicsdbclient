@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ClassifiedService {
-    @GET("/bazar.php")
-    fun filteredClassifiedList(@Query("str") page: Int, @Query("id") categoryId: Int, @Query("val") searchText: String): Call<List<Classified>>
+    @GET("/api.php")
+    fun filteredClassifiedList(@Query("str") page: Int, @Query("id") categoryId: Int): Call<List<Classified>>
 }
