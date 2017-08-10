@@ -10,7 +10,7 @@ import cz.kutner.comicsdb.connector.service.*
 import okhttp3.OkHttpClient
 import org.koin.android.AndroidModule
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 class KoinModule : AndroidModule() {
@@ -55,7 +55,7 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     val seriesDetailService: SeriesDetailService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(SeriesDetailConverterFactory.create()).build().create(SeriesDetailService::class.java) }
     val authorDetailService: AuthorDetailService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(AuthorDetailConverterFactory.create()).build().create(AuthorDetailService::class.java) }
     val authorListService: AuthorListService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(AuthorListConverterFactory.create()).build().create(AuthorListService::class.java) }
-    val classifiedService: ClassifiedService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).build().create(ClassifiedService::class.java) }
+    val classifiedService: ClassifiedService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(MoshiConverterFactory.create()).build().create(ClassifiedService::class.java) }
     val comicsDetailService: ComicsDetailService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(ComicsDetailConverterFactory.create()).build().create(ComicsDetailService::class.java) }
     val comicsListService: ComicsListService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(ComicsListConverterFactory.create()).build().create(ComicsListService::class.java) }
     val forumService: ForumService by lazy { Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(ForumConverterFactory.create()).build().create(ForumService::class.java) }
