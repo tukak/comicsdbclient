@@ -32,7 +32,7 @@ data class ComicsDetail(var name: String, var id: Int): Item {
     fun getDescriptionFromHtml(): Spanned = description.fromHtml()
     fun getStars(): Float = Math.round(rating.toFloat() / 20).toFloat()
     fun getOriginals(): String {
-        var text: String = ""
+        var text = ""
         if (originalName != "") {
             text = "Původně: $originalName"
             if (originalPublisher != "") {

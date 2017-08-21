@@ -17,7 +17,7 @@ class ImageViewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            image = arguments.getParcelable<Image>(IMAGE)
+            image = arguments.getParcelable(IMAGE)
         }
     }
 
@@ -26,8 +26,7 @@ class ImageViewFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_image_view, null)
-        return view
+        return inflater?.inflate(R.layout.fragment_image_view, null)
     }
 
     companion object {

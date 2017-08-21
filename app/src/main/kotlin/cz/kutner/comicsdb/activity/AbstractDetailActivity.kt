@@ -31,7 +31,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
     val retrofitModule by inject<RetrofitModule>()
     val firebase by inject<FirebaseAnalytics>()
-    val networkModule by inject<NetworkModule>()
+    private val networkModule by inject<NetworkModule>()
 
     val id: Int by lazy {
         val intent = intent
@@ -68,7 +68,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
         switcher.showProgressView()
     }
 
-    fun setupToolbar() {
+    private fun setupToolbar() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)

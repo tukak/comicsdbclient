@@ -12,7 +12,7 @@ fun ImageView.loadUrl(url: String?) {
 }
 
 fun FirebaseAnalytics.logVisit(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
-    val bundle: Bundle = Bundle()
+    val bundle = Bundle()
     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, contentId)
     bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType)
     bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, contentName)
@@ -20,10 +20,10 @@ fun FirebaseAnalytics.logVisit(contentName: String? = null, contentType: String?
 }
 
 fun String.fixUrl(): String {
-    if (!this.startsWith("http") && !this.startsWith("data")) {
-        return Utils.COMICSDB_URL + this
+    return if (!this.startsWith("http") && !this.startsWith("data")) {
+        Utils.COMICSDB_URL + this
     } else {
-        return this
+        this
     }
 }
 

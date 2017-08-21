@@ -17,7 +17,6 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import cz.kutner.comicsdb.activity.MainActivity
-import okhttp3.OkHttpClient
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
 import org.junit.After
@@ -34,7 +33,7 @@ class MainActivityTest {
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get<OkHttpClient>() )}
+    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get() )}
 
     @Before
     fun registerIdlingResource() {

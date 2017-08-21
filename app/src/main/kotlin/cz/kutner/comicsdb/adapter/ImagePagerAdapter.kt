@@ -7,11 +7,10 @@ import cz.kutner.comicsdb.fragment.ImageViewFragment
 import cz.kutner.comicsdb.model.Image
 import java.util.*
 
-class ImagePagerAdapter(fm: FragmentManager, val images: ArrayList<Image>) : FragmentStatePagerAdapter(fm) {
+class ImagePagerAdapter(fm: FragmentManager, private val images: ArrayList<Image>) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        val fragment = ImageViewFragment.newInstance(images[position])
-        return fragment
+        return ImageViewFragment.newInstance(images[position])
     }
 
     override fun getPageTitle(position: Int): CharSequence {

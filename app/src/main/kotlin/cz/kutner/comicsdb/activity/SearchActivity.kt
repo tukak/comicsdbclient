@@ -23,7 +23,7 @@ class SearchActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
 
-        val bundle: Bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, query)
         firebase.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
 

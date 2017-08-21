@@ -41,7 +41,7 @@ class KoinModule : AndroidModule() {
     }
 }
 
-class NetworkModule(val applicationContext: Context) {
+class NetworkModule(private val applicationContext: Context) {
     fun isConnected(): Boolean {
         val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo

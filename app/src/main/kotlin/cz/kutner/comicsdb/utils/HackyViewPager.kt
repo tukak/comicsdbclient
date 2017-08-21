@@ -7,10 +7,10 @@ import android.view.MotionEvent
 
 class HackyViewPager(context: Context, attributeSet: AttributeSet) : ViewPager(context, attributeSet) {
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        try {
-            return super.onInterceptTouchEvent(ev)
+        return try {
+            super.onInterceptTouchEvent(ev)
         } catch (e: IllegalArgumentException) {
-            return false
+            false
         }
     }
 }
