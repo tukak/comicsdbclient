@@ -13,7 +13,6 @@ import cz.kutner.comicsdb.utils.logVisit
 class ClassifiedFragment : AbstractFragment<Classified>() {
 
     init {
-        preloadCount = 8
         spinnerEnabled = true
         spinnerValues = arrayOf("Všechny inzeráty", "Prodám", "Koupím", "Vyměním", "Ostatní")
     }
@@ -30,7 +29,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage*preloadCount, preloadCount, ClassifiedHelper.getCategoryId(filter))
+            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage * preloadCount, preloadCount, ClassifiedHelper.getCategoryId(filter))
             runAsync(call)
         }
     }

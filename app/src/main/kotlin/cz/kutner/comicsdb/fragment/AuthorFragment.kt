@@ -13,10 +13,6 @@ import java.text.Normalizer
 
 class AuthorFragment : AbstractFragment<Author>() {
 
-    init {
-        preloadCount = 20
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -30,18 +26,13 @@ class AuthorFragment : AbstractFragment<Author>() {
         if (!searchRunning) {
             searchRunning = true
             val args = this.arguments
+            var searchText = ""
             if (args != null && args.containsKey(SearchManager.QUERY)) {
-                //neco vyhledavame
-                var searchText: String = args.getString(SearchManager.QUERY)
+                searchText = args.getString(SearchManager.QUERY)
                 searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-                val call = retrofitModule.authorListService.authorSearch(searchText)
-                runAsync(call)
-                endless = false
-            } else {
-                //zobrazujeme nejnovější
-                    val call = retrofitModule.authorListService.listAuthors(lastPage*preloadCount, preloadCount)
-                    runAsync(call)
             }
+            val call = retrofitModule.authorListService.listAuthors(lastPage * preloadCount, preloadCount, searchText)
+            runAsync(call)
         }
     }
 

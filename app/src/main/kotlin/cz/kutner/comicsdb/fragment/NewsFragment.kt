@@ -11,11 +11,6 @@ import cz.kutner.comicsdb.utils.logVisit
 
 class NewsFragment : AbstractFragment<NewsItem>() {
 
-    init {
-        preloadCount = 0
-        endless = false
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,7 +23,7 @@ class NewsFragment : AbstractFragment<NewsItem>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.newsService.listNews(lastPage*preloadCount, preloadCount)
+            val call = retrofitModule.newsService.listNews(lastPage * preloadCount, preloadCount)
             runAsync(call)
         }
     }

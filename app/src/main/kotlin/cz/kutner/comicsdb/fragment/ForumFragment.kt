@@ -12,7 +12,6 @@ import cz.kutner.comicsdb.utils.logVisit
 class ForumFragment : AbstractFragment<ForumEntry>() {
 
     init {
-        preloadCount = 20
         spinnerEnabled = true
         spinnerValues = arrayOf("Všechna fora", "* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub", "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)")
     }
@@ -29,7 +28,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.forumService.filteredForumList(lastPage*preloadCount, preloadCount)
+            val call = retrofitModule.forumService.filteredForumList(lastPage * preloadCount, preloadCount, 0)
             runAsync(call)
         }
     }

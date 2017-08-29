@@ -7,8 +7,5 @@ import retrofit2.http.Query
 
 interface AuthorListService {
     @GET("/api.php?get=autor_list")
-    fun listAuthors(@Query("start") start: Int, @Query("records") records: Int): Call<List<Author>>
-
-    @GET("/search.php")
-    fun authorSearch(@Query("searchfor") keyword: String): Call<List<Author>>
+    fun listAuthors(@Query("start") start: Int, @Query("records") records: Int, @Query("search") keyword: String): Call<List<Author>>
 }

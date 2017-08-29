@@ -40,8 +40,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     private var visibleItemCount: Int = 0
     private var totalItemCount: Int = 0
     lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
-    var preloadCount: Int = 0
-    var endless: Boolean = false
+    var preloadCount: Int = 20
     var spinnerEnabled: Boolean = false
     var spinnerValues: Array<String>? = null
     var filter: String
@@ -55,7 +54,6 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     init {
         lastPage = 0
         loading = false
-        endless = true
         spinnerEnabled = false
         filter = ""
     }
@@ -76,21 +74,20 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             }
         }
 
-        if (endless) {
-            recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                    visibleItemCount = llm.childCount
-                    totalItemCount = llm.itemCount
-                    pastVisibleItems = llm.findFirstVisibleItemPosition()
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount) {
-                            loading = true
-                            loadData()
-                        }
+        recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                visibleItemCount = llm.childCount
+                totalItemCount = llm.itemCount
+                pastVisibleItems = llm.findFirstVisibleItemPosition()
+                if (!loading) {
+                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount) {
+                        loading = true
+                        loadData()
                     }
                 }
-            })
-        }
+            }
+        })
+
         switcher.showProgressView()
     }
 
@@ -142,9 +139,6 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             if (result.isNotEmpty()) {
                 if (lastItem == null || lastItem != result[0]) {
                     lastItem = result[0]
-                    if (!endless) {
-                        data.clear()
-                    }
                     data.addAll(result)
                 }
             }
@@ -157,7 +151,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         async {
             try {
                 result = awaitSuccessful(call)
-            } catch(e: RetrofitHttpError) {
+            } catch (e: RetrofitHttpError) {
                 switcher.showErrorView()
                 Timber.e(e)
             }
