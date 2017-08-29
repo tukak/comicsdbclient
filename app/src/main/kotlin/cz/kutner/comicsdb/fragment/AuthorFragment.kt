@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.adapter.AuthorListAdapter
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.logVisit
@@ -27,7 +26,6 @@ class AuthorFragment : AbstractFragment<Author>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @AddTrace(name = "AuthorLoadData")
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
@@ -41,7 +39,7 @@ class AuthorFragment : AbstractFragment<Author>() {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                    val call = retrofitModule.authorListService.listAuthors(lastPage)
+                    val call = retrofitModule.authorListService.listAuthors(lastPage*preloadCount, preloadCount)
                     runAsync(call)
             }
         }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.model.Classified
@@ -28,11 +27,10 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @AddTrace(name = "ClassifiedLoadData")
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage, 20, ClassifiedHelper.getCategoryId(filter))
+            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage*preloadCount, preloadCount, ClassifiedHelper.getCategoryId(filter))
             runAsync(call)
         }
     }

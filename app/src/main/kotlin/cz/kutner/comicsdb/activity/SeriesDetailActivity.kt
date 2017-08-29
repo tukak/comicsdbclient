@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.activity
 
 import android.os.Bundle
-import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SeriesDetailAdapter
 import cz.kutner.comicsdb.model.SeriesDetail
@@ -17,7 +16,6 @@ class SeriesDetailActivity : AbstractDetailActivity<SeriesDetail>() {
         super.onCreate(savedInstanceState)
     }
 
-    @AddTrace(name = "SeriesDetailLoadData")
     override fun loadData() {
         runAsync(retrofitModule.seriesDetailService.seriesDetail(id))
     }

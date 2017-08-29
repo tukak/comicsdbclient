@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ComicsDetailService {
-    @GET("/comics.php")
+    @GET("/api.php?get=comics_detail")
     fun getComics(@Query("id") comicsId: Int): Call<ComicsDetail>
 }

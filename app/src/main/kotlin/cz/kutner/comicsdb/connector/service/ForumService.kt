@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ForumService {
-    @GET("/forum.php")
-    fun filteredForumList(@Query("str") page: Int, @Query("id") forumId: Int, @Query("val") searchText: String): Call<List<ForumEntry>>
+    @GET("/api.php?get=forum")
+    fun filteredForumList(@Query("start") start: Int, @Query("records") records: Int): Call<List<ForumEntry>>
 }

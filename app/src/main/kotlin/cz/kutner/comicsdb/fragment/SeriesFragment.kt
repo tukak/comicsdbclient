@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.adapter.SeriesListAdapter
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.logVisit
@@ -27,7 +26,6 @@ class SeriesFragment : AbstractFragment<Series>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @AddTrace(name = "SeriesLoadData")
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
@@ -41,7 +39,7 @@ class SeriesFragment : AbstractFragment<Series>() {
                 endless = false
             } else {
                 //zobrazujeme nejnovější
-                val call = retrofitModule.seriesListService.getSeriesList(lastPage)
+                val call = retrofitModule.seriesListService.getSeriesList(lastPage*preloadCount, preloadCount)
                 runAsync(call)
             }
         }

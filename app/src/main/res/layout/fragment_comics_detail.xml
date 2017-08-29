@@ -94,7 +94,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{comicsDetail.rating > 0 ? @string/rating(comicsDetail.rating, comicsDetail.voteCount) : @string/norating}"
+            android:text="@{comicsDetail.rating > 0 ? @string/rating(comicsDetail.getIntRating(), comicsDetail.voteCount) : @string/norating}"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar"

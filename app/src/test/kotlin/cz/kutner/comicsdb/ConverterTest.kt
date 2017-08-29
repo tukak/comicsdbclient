@@ -1,15 +1,10 @@
 package cz.kutner.comicsdb
 
-import cz.kutner.comicsdb.connector.parser.AuthorParser
-import cz.kutner.comicsdb.connector.parser.ComicsParser
-import cz.kutner.comicsdb.connector.parser.SeriesParser
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import java.io.File
 
 
 class ConverterTest {
-    @Test
+  /*  @Test
     fun SeriesDetailTest() {
         try {
             val batman = SeriesParser().parseSeriesDetail(readFile("/serie_batman.html").byteInputStream(), "utf-8")
@@ -53,7 +48,7 @@ class ConverterTest {
         }
 
     }
-
+*/
     private fun readFile(fileName: String): String {
         val url = this::class.java.getResource(fileName)
         return File(url.file).readText(charset("windows-1250"))

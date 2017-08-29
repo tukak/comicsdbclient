@@ -4,10 +4,10 @@ import android.text.Spanned
 import cz.kutner.comicsdb.utils.fromHtml
 import java.util.*
 
-data class ComicsDetail(var name: String, var id: Int): Item {
+data class ComicsDetail(var name: String, var id: Int) : Item {
     var published: String? = ""
     var voteCount: Int? = null
-    var rating: Int = 0
+    var rating: Double = 0.0
     var genre: String? = ""
     var publisher: String? = ""
     var issn: String? = ""
@@ -41,5 +41,7 @@ data class ComicsDetail(var name: String, var id: Int): Item {
         }
         return text
     }
+
+    fun getIntRating(): Int = Math.round(rating*20).toInt()
 
 }

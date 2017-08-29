@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.adapter.ForumListAdapter
-import cz.kutner.comicsdb.connector.helper.ForumHelper
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit
 
@@ -28,12 +26,10 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @AddTrace(name = "ForumLoadData")
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val searchText = ""
-            val call = retrofitModule.forumService.filteredForumList(lastPage, ForumHelper.getForumId(filter), searchText)
+            val call = retrofitModule.forumService.filteredForumList(lastPage*preloadCount, preloadCount)
             runAsync(call)
         }
     }

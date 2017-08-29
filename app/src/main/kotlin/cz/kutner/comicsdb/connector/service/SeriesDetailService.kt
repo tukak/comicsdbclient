@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface SeriesDetailService {
-    @GET("/serie.php")
+    @GET("/api.php?get=serie_detail")
     fun seriesDetail(@Query("id") id: Int): Call<SeriesDetail>
 }

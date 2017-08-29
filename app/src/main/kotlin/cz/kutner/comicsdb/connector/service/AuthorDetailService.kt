@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AuthorDetailService {
-    @GET("/autor.php")
+    @GET("/api.php?get=autor_detail")
     fun authorDetail(@Query("id") id: Int): Call<AuthorDetail>
 }

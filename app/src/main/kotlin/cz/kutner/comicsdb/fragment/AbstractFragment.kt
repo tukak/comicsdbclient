@@ -53,7 +53,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     private val networkModule by inject<NetworkModule>()
 
     init {
-        lastPage = 1
+        lastPage = 0
         loading = false
         endless = true
         spinnerEnabled = false

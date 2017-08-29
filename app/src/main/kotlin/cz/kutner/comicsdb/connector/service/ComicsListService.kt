@@ -6,8 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ComicsListService {
-    @GET("/comicslist.php")
-    fun comicsList(@Query("str") page: Int): Call<List<Comics>>
+    @GET("/api.php?get=comics_list")
+    fun comicsList(@Query("start") start: Int, @Query("records") records: Int): Call<List<Comics>>
 
     @GET("/search.php")
     fun comicsSearch(@Query("searchfor") keyword: String): Call<List<Comics>>
