@@ -35,7 +35,7 @@
     <string name="binding">Vazba: %s</string>
     <string name="issue_and_print">Vydání: %1$s tisk: %2$s</string>
     <string name="format">Formát: %s</string>
-    <string name="rating">%1$s%% (%2$s)</string>
+    <string name="rating">%1$s (%2$s)</string>
     <string name="norating">&lt; 5 hodnocení</string>
 
 </resources>

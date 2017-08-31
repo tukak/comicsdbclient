@@ -65,10 +65,10 @@
                     android:layout_alignParentTop="true"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
-                    android:text="@{comics.rating > 0 ? String.valueOf(comics.getIntRating()): null}"
+                    android:text='@{comics.rating > 0 ? String.format("%.1f",comics.rating): null}'
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="30sp"
-                    tools:text="98" />
+                    tools:text="4.9" />
 
             </RelativeLayout>
 

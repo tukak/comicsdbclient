@@ -7,7 +7,7 @@ import java.util.*
 data class ComicsDetail(var name: String, var id: Int) : Item {
     var published: String? = ""
     var voteCount: Int? = null
-    var rating: Double = 0.0
+    var rating: Float = 0.0f
     var genre: String? = ""
     var publisher: String? = ""
     var issn: String? = ""
@@ -30,7 +30,6 @@ data class ComicsDetail(var name: String, var id: Int) : Item {
 
     fun getNotesFromHtml(): Spanned = notes.fromHtml()
     fun getDescriptionFromHtml(): Spanned = description.fromHtml()
-    fun getStars(): Float = Math.round(rating.toFloat() / 20).toFloat()
     fun getOriginals(): String {
         var text = ""
         if (originalName != "") {
@@ -41,7 +40,4 @@ data class ComicsDetail(var name: String, var id: Int) : Item {
         }
         return text
     }
-
-    fun getIntRating(): Int = Math.round(rating*20).toInt()
-
 }

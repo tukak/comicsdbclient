@@ -83,7 +83,7 @@
             android:layout_height="14dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="0dp"
-            android:rating="@{comicsDetail.getStars()}"
+            android:rating="@{comicsDetail.rating}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cover" />
 
@@ -94,13 +94,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
-            android:text="@{comicsDetail.rating > 0 ? @string/rating(comicsDetail.getIntRating(), comicsDetail.voteCount) : @string/norating}"
+            android:text='@{comicsDetail.rating > 0 ? @string/rating(String.format("%.1f", comicsDetail.rating), comicsDetail.voteCount) : @string/norating}'
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/comics_detail_rating_bar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comics_detail_rating_bar"
-            tools:text="Hodnocení" />
+            tools:text="4.9 (8)" />
 
 
         <TextView
