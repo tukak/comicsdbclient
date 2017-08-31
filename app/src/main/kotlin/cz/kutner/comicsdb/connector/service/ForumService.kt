@@ -11,5 +11,5 @@ interface ForumService {
     fun filteredForumList(@Query("start") start: Int, @Query("records") records: Int, @Query("id") forumId: Int): Call<List<ForumEntry>>
 
     @GET("/api.php?get=forum_list")
-    fun getForumList(): Call<List<Filter>>
+    fun getForumList(): Call<Array<Filter>>
 }

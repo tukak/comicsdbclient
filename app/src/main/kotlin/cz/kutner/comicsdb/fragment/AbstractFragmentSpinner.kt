@@ -9,12 +9,11 @@ import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Filter
 import kotlinx.android.synthetic.main.fragment_list_spinner.*
-import timber.log.Timber
 
 abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
-    var spinnerValues: Array<Filter>? = null
+    lateinit var spinnerValues: Array<Filter>
     var filter: Int
-    private var spinnerPosition: Int? = null
+    private var spinnerPosition: Int = 0
 
     init {
         lastPage = 0
@@ -30,17 +29,11 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
     override fun showData() {
         if (activity?.isFinishing == false) {
             searchRunning = false
-            Timber.i("firstload = " + firstLoad)
             if (firstLoad) {
-                Timber.i(spinnerValues.toString())
                 val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
                 spinner.adapter = spinnerAdapter
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                if (spinnerPosition != null) {
-                    spinner.setSelection(spinnerPosition!!)
-                } else {
-                    spinnerPosition = 0
-                }
+                spinner.setSelection(spinnerPosition)
                 spinner.onItemSelectedListener = itemSelectedListener()
 
                 switcher.showContentView()
@@ -60,7 +53,7 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
     private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-            if (!spinnerPosition?.equals(pos)!!) {
+            if (!spinnerPosition.equals(pos)) {
                 filter = (spinner.selectedItem as Filter).id
                 data.clear()
                 lastItem = null
