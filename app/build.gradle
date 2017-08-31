@@ -128,8 +128,8 @@ dependencies {
         exclude module: 'okhttp'
     }
 
-    compile 'org.koin:koin-android:0.2.1'
-    compile 'org.koin:koin-android-support:0.2.1'
+    compile 'org.koin:koin-android:0.2.2'
+    compile 'org.koin:koin-android-support:0.2.2'
 
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
     compile 'com.jakewharton.timber:timber:4.5.1'

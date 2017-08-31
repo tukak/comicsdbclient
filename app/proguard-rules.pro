@@ -19,8 +19,6 @@
 #-dontobfuscate
 #-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
 
--keep class org.jsoup.** { *; }
-
 -keep class org.jetbrains.annotations.** {
     public protected *;
 }
