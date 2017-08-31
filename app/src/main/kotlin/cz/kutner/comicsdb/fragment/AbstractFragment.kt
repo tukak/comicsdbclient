@@ -169,7 +169,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
                 lastItem = null
                 switcher.showProgressView()
                 firstLoad = true
-                lastPage = 1
+                lastPage = 0
                 spinnerPosition = pos
                 loadData()
             }
