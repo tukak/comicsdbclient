@@ -4,7 +4,5 @@ import android.text.Spanned
 import cz.kutner.comicsdb.utils.fromHtml
 
 data class NewsItem(val title: String?, val nick: String?, val text: String?, val time: String?) : Item {
-    fun getTextFromHtml(): Spanned? {
-        return text?.fromHtml()
-    }
+    fun getTextFromHtml(): Spanned? = text?.fromHtml()
 }

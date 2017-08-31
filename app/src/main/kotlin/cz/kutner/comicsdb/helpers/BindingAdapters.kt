@@ -12,6 +12,7 @@ import cz.kutner.comicsdb.activity.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
 import cz.kutner.comicsdb.activity.SeriesDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 
 
@@ -40,10 +41,10 @@ fun getSpannableAuthors(textView: TextView, comics: ComicsDetail) {
         val formerLength = authors.length
         authors.append(author.role)
         authors.append(" ")
-        authors.append(author.name)
+        authors.append(author.name?.fromHtml())
         authors.append("\n")
         if (author.id != null && author.name != null) {
-            authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.fromHtml().length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
     textView.text = authors

@@ -43,7 +43,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:paddingTop="5dp"
-            android:text="@{authorDetail.name}"
+            android:text="@{authorDetail.getNameFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#808080"
             app:layout_constraintLeft_toLeftOf="parent"

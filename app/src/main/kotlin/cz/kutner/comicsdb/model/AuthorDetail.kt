@@ -10,11 +10,9 @@ data class AuthorDetail(val name: String?, val country: String?, val id: Int?) :
     var notes: String? = null
     var photoUrl: String? = null
 
-    fun getBioFromHtml(): Spanned? {
-        return bio?.fromHtml()
-    }
+    fun getNameFromHtml(): Spanned? = name?.fromHtml()
 
-    fun getNotesFromHtml(): Spanned? {
-        return notes?.fromHtml()
-    }
+    fun getBioFromHtml(): Spanned? = bio?.fromHtml()
+
+    fun getNotesFromHtml(): Spanned? = notes?.fromHtml()
 }

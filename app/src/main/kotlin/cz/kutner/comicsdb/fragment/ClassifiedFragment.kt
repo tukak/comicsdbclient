@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
-import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.utils.logVisit

@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="@{author.name}"
+                    android:text="@{author.getNameFromHtml()}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="name" />
 
