@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
-import android.view.View
 import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
@@ -63,8 +62,6 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
         }
 
         recycler_view.layoutManager = llm
-        spinner.visibility = View.GONE
-        filter_text.visibility = View.GONE
         switcher.showProgressView()
     }
 

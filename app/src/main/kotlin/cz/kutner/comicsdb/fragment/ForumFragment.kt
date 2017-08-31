@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ForumListAdapter
+import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit
 
-class ForumFragment : AbstractFragment<ForumEntry>() {
+class ForumFragment : AbstractFragmentSpinner<ForumEntry>() {
 
     init {
-        spinnerEnabled = true
-        spinnerValues = arrayOf("Všechna fora", "* Připomínky a návrhy", "Fabula Rasa", "Filmový klub", "Pindárna", "Povinná četba", "Poznej comics nebo postavu", "Sběratelský klub", "Slevy, výprodeje, bazary", "Srazy, cony, festivaly", "Stripy, jouky, fejky :)")
+        spinnerValues = arrayOf(Filter(0, "Všechny inzeráty"),
+                Filter(1, "Prodám"),
+                Filter(2, "Koupím"),
+                Filter(3, "Vyměním"),
+                Filter(10, "Ostatní"))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +32,7 @@ class ForumFragment : AbstractFragment<ForumEntry>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.forumService.filteredForumList(lastPage * preloadCount, preloadCount, 0)
+            val call = retrofitModule.forumService.filteredForumList(lastPage * preloadCount, preloadCount, filter)
             runAsync(call)
         }
     }

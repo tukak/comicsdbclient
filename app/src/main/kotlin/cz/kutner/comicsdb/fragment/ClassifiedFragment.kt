@@ -8,13 +8,17 @@ import android.view.ViewGroup
 import cz.kutner.comicsdb.adapter.ClassifiedListAdapter
 import cz.kutner.comicsdb.connector.helper.ClassifiedHelper
 import cz.kutner.comicsdb.model.Classified
+import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.utils.logVisit
 
-class ClassifiedFragment : AbstractFragment<Classified>() {
+class ClassifiedFragment : AbstractFragmentSpinner<Classified>() {
 
     init {
-        spinnerEnabled = true
-        spinnerValues = arrayOf("Všechny inzeráty", "Prodám", "Koupím", "Vyměním", "Ostatní")
+        spinnerValues = arrayOf(Filter(0, "Všechny inzeráty"),
+                Filter(1, "Prodám"),
+                Filter(2, "Koupím"),
+                Filter(3, "Vyměním"),
+                Filter(10, "Ostatní"))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +33,7 @@ class ClassifiedFragment : AbstractFragment<Classified>() {
     override fun loadData() {
         if (!searchRunning) {
             searchRunning = true
-            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage * preloadCount, preloadCount, ClassifiedHelper.getCategoryId(filter))
+            val call = retrofitModule.classifiedService.filteredClassifiedList(lastPage * preloadCount, preloadCount, filter)
             runAsync(call)
         }
     }

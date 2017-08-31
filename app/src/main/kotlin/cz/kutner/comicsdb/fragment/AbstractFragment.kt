@@ -30,32 +30,26 @@ import java.util.*
 
 abstract class AbstractFragment<Item : Any> : Fragment() {
     var lastPage: Int = 0
-    private var firstLoad: Boolean = false
+    var firstLoad: Boolean = false
     var searchRunning: Boolean = false
-    private var loading: Boolean = false
-    private var lastItem: Item? = null
+    var loading: Boolean = false
+    var lastItem: Item? = null
     var data: MutableList<Item> = ArrayList()
     var result: List<Item> = ArrayList()
-    private var pastVisibleItems: Int = 0
-    private var visibleItemCount: Int = 0
-    private var totalItemCount: Int = 0
+    var pastVisibleItems: Int = 0
+    var visibleItemCount: Int = 0
+    var totalItemCount: Int = 0
     lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     var preloadCount: Int = 20
-    var spinnerEnabled: Boolean = false
-    var spinnerValues: Array<String>? = null
-    var filter: String
-    private var spinnerPosition: Int? = null
     val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     val retrofitModule by inject<RetrofitModule>()
     val firebase by inject<FirebaseAnalytics>()
-    private val networkModule by inject<NetworkModule>()
+    val networkModule by inject<NetworkModule>()
 
     init {
         lastPage = 0
         loading = false
-        spinnerEnabled = false
-        filter = ""
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -98,7 +92,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         checkConnectionAndLoadData()
     }
 
-    private fun isConnected(): Boolean {
+    fun isConnected(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
@@ -114,25 +108,10 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         }
     }
 
-    private fun showData() {
+    open fun showData() {
         if (activity?.isFinishing == false) {
             searchRunning = false
             if (firstLoad) {
-                if (!spinnerEnabled && spinner != null) {
-                    spinner?.visibility = View.GONE
-                    filter_text.visibility = View.GONE
-                }
-                if (spinnerEnabled && spinner != null) {
-                    val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
-                    spinner?.adapter = spinnerAdapter
-                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    if (spinnerPosition != null) {
-                        spinner?.setSelection(spinnerPosition!!)
-                    } else {
-                        spinnerPosition = 0
-                    }
-                    spinner?.onItemSelectedListener = itemSelectedListener()
-                }
                 switcher.showContentView()
                 firstLoad = false
             }
@@ -157,26 +136,6 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             }
             showData()
             lastPage++
-        }
-    }
-
-    private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {
-
-        override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-            if (!spinnerPosition?.equals(pos)!!) {
-                filter = spinner?.selectedItem.toString()
-                data.clear()
-                lastItem = null
-                switcher.showProgressView()
-                firstLoad = true
-                lastPage = 0
-                spinnerPosition = pos
-                loadData()
-            }
-        }
-
-        override fun onNothingSelected(parent: AdapterView<*>) {
-
         }
     }
 }
