@@ -9,6 +9,7 @@ import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
 import cz.kutner.comicsdb.adapter.ForumListAdapter
+import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit
 import timber.log.Timber
@@ -23,7 +24,7 @@ class ForumFragment : AbstractFragmentSpinner<ForumEntry>() {
         val call = retrofitModule.forumService.getForumList()
         async {
             try {
-                spinnerValues = awaitSuccessful(call)
+                spinnerValues = arrayOf(Filter(0, "Všechna fora")).plus(awaitSuccessful(call))
             } catch (e: RetrofitHttpError) {
                 switcher.showErrorView()
                 Timber.e(e)
