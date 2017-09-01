@@ -65,7 +65,7 @@
 
 # Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.AppGlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
@@ -74,3 +74,5 @@
 #asyncawait
 -dontwarn rx.Observable
 -dontwarn rx.observables.BlockingObservable
+
+-keep class cz.kutner.comicsdb.model.** { *; }
