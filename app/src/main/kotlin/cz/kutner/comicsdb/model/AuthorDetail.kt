@@ -4,13 +4,13 @@ import android.text.Spanned
 import cz.kutner.comicsdb.utils.fromHtml
 import java.util.*
 
-data class AuthorDetail(val name: String?, val country: String?, val id: Int?) : Item {
+data class AuthorDetail(val name: String, val country: String?, val id: Int) : Item {
     var comicses: ArrayList<Comics> = ArrayList()
     var bio: String? = null
     var notes: String? = null
     var photoUrl: String? = null
 
-    fun getNameFromHtml(): Spanned? = name?.fromHtml()
+    fun getNameFromHtml(): Spanned? = name.fromHtml()
 
     fun getBioFromHtml(): Spanned? = bio?.fromHtml()
 

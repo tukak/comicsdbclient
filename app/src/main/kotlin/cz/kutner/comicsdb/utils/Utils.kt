@@ -7,7 +7,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 
-fun ImageView.loadUrl(url: String?) {
+fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).into(this)
 }
 
@@ -19,14 +19,6 @@ fun FirebaseAnalytics.logVisit(contentName: String? = null, contentType: String?
     this.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
 }
 
-fun String.fixUrl(): String {
-    return if (!this.startsWith("http") && !this.startsWith("data")) {
-        Utils.COMICSDB_URL + this
-    } else {
-        this
-    }
-}
-
 fun String.fromHtml(): Spanned {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
         return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
@@ -34,10 +26,4 @@ fun String.fromHtml(): Spanned {
         @Suppress("DEPRECATION")
         return Html.fromHtml(this)
     }
-}
-
-object Utils {
-
-    val COMICSDB_URL = "http://comicsdb.cz" //R.string.url_comicsdb
-
 }

@@ -1,24 +1,19 @@
 package cz.kutner.comicsdb.activity
 
-import android.os.Bundle
-import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
 import cz.kutner.comicsdb.model.ComicsDetail
+import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun loadData() {
         runAsync(retrofitModule.comicsDetailService.getComics(id))
     }
 
     override fun showData() {
-        supportActionBar?.title = result.name
+        supportActionBar?.title = result.name.fromHtml()
         val adapter = ComicsDetailAdapter(this, listOf(result) + result.comments)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
