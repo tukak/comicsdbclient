@@ -121,7 +121,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
                     data.addAll(result)
                 }
             }
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemRangeInserted(lastPage*preloadCount, preloadCount)
             loading = false
         }
     }
