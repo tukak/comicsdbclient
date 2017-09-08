@@ -50,12 +50,20 @@
 
                 <data
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/comics.php"
+                    android:pathPrefix="/comics/"
                     android:scheme="http" />
                 <data
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/comics.php"
+                    android:pathPrefix="/comics/"
                     android:scheme="http" />
+                <data
+                    android:host="comicsdb.cz"
+                    android:pathPrefix="/comics/"
+                    android:scheme="https" />
+                <data
+                    android:host="www.comicsdb.cz"
+                    android:pathPrefix="/comics/"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 
@@ -78,12 +86,20 @@
 
                 <data
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/author.php"
+                    android:pathPrefix="/author/"
                     android:scheme="http" />
                 <data
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/autor.php"
+                    android:pathPrefix="/autor/"
                     android:scheme="http" />
+                <data
+                    android:host="comicsdb.cz"
+                    android:pathPrefix="/author/"
+                    android:scheme="https" />
+                <data
+                    android:host="www.comicsdb.cz"
+                    android:pathPrefix="/autor/"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 
@@ -106,12 +122,20 @@
 
                 <data
                     android:host="comicsdb.cz"
-                    android:pathPrefix="/serie.php"
+                    android:pathPrefix="/serie/"
                     android:scheme="http" />
                 <data
                     android:host="www.comicsdb.cz"
-                    android:pathPrefix="/serie.php"
+                    android:pathPrefix="/serie/"
                     android:scheme="http" />
+                <data
+                    android:host="comicsdb.cz"
+                    android:pathPrefix="/serie/"
+                    android:scheme="https" />
+                <data
+                    android:host="www.comicsdb.cz"
+                    android:pathPrefix="/serie/"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 

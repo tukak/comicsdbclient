@@ -1,16 +1,12 @@
 package cz.kutner.comicsdb.activity
 
 import android.os.Bundle
-import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.AuthorDetailAdapter
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class AuthorDetailActivity : AbstractDetailActivity<AuthorDetail>() {
-
-    override val prefix: String by lazy { getString(R.string.url_author_detail) }
-    override val extraName = MainActivity.AUTHOR_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

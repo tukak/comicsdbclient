@@ -51,33 +51,21 @@ fun getSpannableAuthors(textView: TextView, comics: ComicsDetail) {
 }
 
 
-class AuthorClickableSpan(id: Int) : ClickableSpan() {
-    private var id: Int = 0
-
-    init {
-        this.id = id
-    }
-
+class AuthorClickableSpan(val id: Int) : ClickableSpan() {
     override fun onClick(widget: View?) {
         if (widget != null) {
             val intent = Intent(widget.context, AuthorDetailActivity::class.java)
-            intent.putExtra(MainActivity.AUTHOR_ID, id)
+            intent.putExtra(MainActivity.ITEM_ID, id)
             widget.context.startActivity(intent)
         }
     }
 }
 
-class SeriesClickableSpan(id: Int) : ClickableSpan() {
-    private var id: Int = 0
-
-    init {
-        this.id = id
-    }
-
+class SeriesClickableSpan(val id: Int) : ClickableSpan() {
     override fun onClick(widget: View?) {
         if (widget != null) {
             val intent = Intent(widget.context, SeriesDetailActivity::class.java)
-            intent.putExtra(MainActivity.SERIES_ID, id)
+            intent.putExtra(MainActivity.ITEM_ID, id)
             widget.context.startActivity(intent)
         }
     }

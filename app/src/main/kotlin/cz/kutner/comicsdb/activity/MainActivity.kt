@@ -82,8 +82,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        val COMICS_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.comics_id"
-        val AUTHOR_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.author_id"
-        val SERIES_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.series_id"
+        val ITEM_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.item_id"
     }
 }

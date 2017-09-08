@@ -22,10 +22,8 @@ import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import timber.log.Timber
 
-abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
+abstract class AbstractDetailActivity<Item : Any> : AppCompatActivity() {
 
-    abstract val prefix: String
-    abstract val extraName: String
     lateinit var result: Item
     val switcher: Switcher by lazy { Switcher.Builder(this).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
     val retrofitModule by inject<RetrofitModule>()
@@ -33,20 +31,11 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
     private val networkModule by inject<NetworkModule>()
 
     val id: Int by lazy {
-        val intent = intent
-        var idTmp = 0
         if (Intent.ACTION_VIEW == intent.action) {
-            //volá nás někdo přes URL
-            try {
-                val url = intent.dataString.replace("www.", "")
-                idTmp = Integer.parseInt(url.removePrefix(prefix))
-            } catch (e: Exception) {
-            }
-
+            Integer.parseInt(intent.dataString.split("/")[4])
         } else {
-            idTmp = intent.getIntExtra(extraName, 0)
+            intent.getIntExtra(MainActivity.ITEM_ID, 0)
         }
-        idTmp
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +85,7 @@ abstract class AbstractDetailActivity<Item: Any> : AppCompatActivity() {
         async {
             try {
                 result = awaitSuccessful(call)
-            } catch(e: RetrofitHttpError){
+            } catch (e: RetrofitHttpError) {
                 switcher.showErrorView()
                 Timber.e(e)
             }
