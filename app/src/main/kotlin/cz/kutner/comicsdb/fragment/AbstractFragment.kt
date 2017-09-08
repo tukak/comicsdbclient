@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import co.metalab.asyncawait.RetrofitHttpError
 import co.metalab.asyncawait.async
 import co.metalab.asyncawait.awaitSuccessful
@@ -30,7 +28,6 @@ import java.util.*
 
 abstract class AbstractFragment<Item : Any> : Fragment() {
     var lastPage: Int = 0
-    var firstLoad: Boolean = false
     var searchRunning: Boolean = false
     var loading: Boolean = false
     var lastItem: Item? = null
@@ -46,11 +43,6 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     val retrofitModule by inject<RetrofitModule>()
     val firebase by inject<FirebaseAnalytics>()
     val networkModule by inject<NetworkModule>()
-
-    init {
-        lastPage = 0
-        loading = false
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -82,15 +74,10 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             }
         })
 
-        switcher.showProgressView()
+        checkConnectionAndLoadData()
     }
 
     abstract fun loadData()
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        checkConnectionAndLoadData()
-    }
 
     fun isConnected(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -103,7 +90,6 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            firstLoad = true
             loadData()
         }
     }
@@ -111,9 +97,8 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     open fun showData() {
         if (activity?.isFinishing == false) {
             searchRunning = false
-            if (firstLoad) {
+            if (lastItem == null) {
                 switcher.showContentView()
-                firstLoad = false
             }
             if (result.isNotEmpty()) {
                 if (lastItem == null || lastItem != result[0]) {
@@ -121,7 +106,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
                     data.addAll(result)
                 }
             }
-            adapter.notifyItemRangeInserted(lastPage*preloadCount, preloadCount)
+            adapter.notifyItemRangeInserted(lastPage * preloadCount, preloadCount)
             loading = false
         }
     }

@@ -12,14 +12,8 @@ import kotlinx.android.synthetic.main.fragment_list_spinner.*
 
 abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
     lateinit var spinnerValues: Array<Filter>
-    var filter: Int
+    var filter: Int = 0
     private var spinnerPosition: Int = 0
-
-    init {
-        lastPage = 0
-        loading = false
-        filter = 0
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,7 +23,7 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
     override fun showData() {
         if (activity?.isFinishing == false) {
             searchRunning = false
-            if (firstLoad) {
+            if (lastItem == null) {
                 val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
                 spinner.adapter = spinnerAdapter
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -37,7 +31,6 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
                 spinner.onItemSelectedListener = itemSelectedListener()
 
                 switcher.showContentView()
-                firstLoad = false
             }
             if (result.isNotEmpty()) {
                 if (lastItem == null || lastItem != result[0]) {
@@ -58,7 +51,6 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
                 data.clear()
                 lastItem = null
                 switcher.showProgressView()
-                firstLoad = true
                 lastPage = 0
                 spinnerPosition = pos
                 loadData()
