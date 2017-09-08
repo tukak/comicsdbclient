@@ -231,23 +231,6 @@
             tools:ignore="RtlHardcoded"
             tools:text="Format" />
 
-        <TextView
-            android:id="@+id/url"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="0dp"
-            android:autoLink="web"
-            android:text="@{@string/url_comics_detail + Integer.toString(comicsDetail.id)}"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/format"
-            app:layout_constraintRight_toLeftOf="@+id/comics_detail_rating_bar"
-            app:layout_constraintTop_toBottomOf="@+id/format"
-            tools:ignore="RtlHardcoded"
-            tools:text="URL" />
-
 
         <ImageView
             android:id="@+id/sample1"
@@ -344,7 +327,7 @@
             android:text="@{comicsDetail.getDescriptionFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/url"
+            app:layout_constraintLeft_toLeftOf="@+id/format"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space"
             tools:ignore="RtlHardcoded"
@@ -391,10 +374,10 @@
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/url"
+            app:layout_constraintBottom_toBottomOf="@+id/format"
             app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintLeft_toLeftOf="@+id/url"
-            app:layout_constraintRight_toRightOf="@+id/url"
+            app:layout_constraintLeft_toLeftOf="@+id/format"
+            app:layout_constraintRight_toRightOf="@+id/format"
             app:layout_constraintTop_toBottomOf="@+id/sample4"
             tools:ignore="RtlHardcoded" />
 
