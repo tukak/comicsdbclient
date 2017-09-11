@@ -64,7 +64,9 @@
                     android:host="www.comicsdb.cz"
                     android:pathPrefix="/comics/"
                     android:scheme="https" />
+                <data android:pathPrefix="/comics/" />
             </intent-filter>
+
         </activity>
 
         <activity
