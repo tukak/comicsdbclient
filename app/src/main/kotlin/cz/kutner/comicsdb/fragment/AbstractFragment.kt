@@ -42,7 +42,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
 
     val retrofitModule by inject<RetrofitModule>()
     val firebase by inject<FirebaseAnalytics>()
-    val networkModule by inject<NetworkModule>()
+    private val networkModule by inject<NetworkModule>()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -79,7 +79,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
 
     abstract fun loadData()
 
-    fun isConnected(): Boolean {
+    private fun isConnected(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting

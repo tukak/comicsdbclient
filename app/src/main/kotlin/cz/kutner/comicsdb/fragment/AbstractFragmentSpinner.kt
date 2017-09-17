@@ -46,7 +46,7 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
     private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-            if (!spinnerPosition.equals(pos)) {
+            if (spinnerPosition != pos) {
                 filter = (spinner.selectedItem as Filter).id
                 data.clear()
                 lastItem = null

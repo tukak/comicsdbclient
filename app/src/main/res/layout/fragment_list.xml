@@ -14,8 +14,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

@@ -6,7 +6,7 @@ import java.util.*
 
 data class AuthorDetail(val name: String, val country: String?, val id: Int) : Item {
     var comicses: ArrayList<Comics> = ArrayList()
-    var bio: String? = null
+    private var bio: String? = null
     var notes: String? = null
     var photoUrl: String? = null
 
