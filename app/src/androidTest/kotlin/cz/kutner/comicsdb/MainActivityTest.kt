@@ -4,6 +4,7 @@ import android.app.getKoin
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.IdlingPolicies
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -24,6 +25,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 @LargeTest
@@ -33,18 +35,20 @@ class MainActivityTest {
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get() )}
+    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get()) }
 
     @Before
     fun registerIdlingResource() {
         IdlingPolicies.setIdlingResourceTimeout(120, TimeUnit.MINUTES)
         IdlingPolicies.setMasterPolicyTimeout(120, TimeUnit.MINUTES)
         Espresso.registerIdlingResources(idlingResource)
+        //IdlingRegistry.getInstance().register(idlingResource)
     }
 
 
     @Test
     fun comicsListandDetail() {
+        Timber.i("IdlingResource is now idle ${idlingResource.isIdleNow}")
         onView(allOf(withId(R.id.recycler_view), hasDescendant(withId(R.id.card_view_comics)))).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.name)).check(matches(notNullValue()))
     }
@@ -134,5 +138,6 @@ class MainActivityTest {
     @After
     fun unregisterIdlingResource() {
         Espresso.unregisterIdlingResources(idlingResource)
+        //IdlingRegistry.getInstance().unregister(idlingResource)
     }
 }
