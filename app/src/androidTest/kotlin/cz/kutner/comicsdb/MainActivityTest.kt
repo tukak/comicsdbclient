@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb
 
-import android.app.getKoin
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.IdlingPolicies
@@ -25,6 +24,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.android.ext.android.app.getKoin
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 

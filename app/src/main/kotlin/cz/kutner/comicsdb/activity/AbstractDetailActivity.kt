@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.activity
 
-import android.app.inject
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -18,6 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
+import org.koin.android.ext.android.app.inject
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import timber.log.Timber

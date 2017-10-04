@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.activity
 
-import android.app.inject
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +9,7 @@ import cz.kutner.comicsdb.adapter.ImagePagerAdapter
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.activity_view_images.*
+import org.koin.android.ext.android.app.inject
 
 class ImageViewSliderActivity : AppCompatActivity() {
 

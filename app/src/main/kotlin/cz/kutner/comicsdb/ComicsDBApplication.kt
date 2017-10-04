@@ -7,18 +7,16 @@ import org.koin.Koin
 import org.koin.KoinContext
 import org.koin.android.KoinContextAware
 import org.koin.android.init
+import org.koin.android.newKoinContext
 import timber.log.Timber
 
 class ComicsDBApplication : Application(), KoinContextAware {
 
-    lateinit var context: KoinContext
+    override val koinContext = newKoinContext(this, KoinModule())
 
-    override fun getKoin(): KoinContext = context
     @AddTrace(name = "onCreateApplication")
     override fun onCreate() {
         super.onCreate()
-
-        context = Koin().init(this).build(KoinModule())
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

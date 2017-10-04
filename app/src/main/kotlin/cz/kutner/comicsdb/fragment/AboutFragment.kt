@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.inject
 import android.support.v7.app.AppCompatActivity
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment
@@ -17,6 +16,7 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.ext.android.app.inject
 
 class AboutFragment : MaterialAboutFragment() {
 

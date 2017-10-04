@@ -3,7 +3,6 @@ package cz.kutner.comicsdb.fragment
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.inject
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -21,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
+import org.koin.android.ext.android.app.inject
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import timber.log.Timber
