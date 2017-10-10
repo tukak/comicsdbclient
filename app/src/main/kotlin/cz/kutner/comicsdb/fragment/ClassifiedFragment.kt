@@ -20,10 +20,6 @@ class ClassifiedFragment : AbstractFragmentSpinner<Classified>() {
                 Filter(10, "Ostatní"))
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = ClassifiedListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)

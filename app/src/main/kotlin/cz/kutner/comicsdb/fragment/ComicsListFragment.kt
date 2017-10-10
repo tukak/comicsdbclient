@@ -13,10 +13,6 @@ import java.text.Normalizer
 
 class ComicsListFragment : AbstractFragment<Comics>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         adapter = ComicsListAdapter(activity, data)
         return super.onCreateView(inflater, container, savedInstanceState)

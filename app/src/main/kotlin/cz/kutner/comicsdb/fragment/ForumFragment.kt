@@ -16,10 +16,6 @@ import timber.log.Timber
 
 class ForumFragment : AbstractFragmentSpinner<ForumEntry>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     private fun fillSpinnerValues() {
         val call = retrofitModule.forumService.getForumList()
         async {

@@ -3,10 +3,7 @@ package cz.kutner.comicsdb
 import android.app.Application
 import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.di.KoinModule
-import org.koin.Koin
-import org.koin.KoinContext
 import org.koin.android.KoinContextAware
-import org.koin.android.init
 import org.koin.android.newKoinContext
 import timber.log.Timber
 

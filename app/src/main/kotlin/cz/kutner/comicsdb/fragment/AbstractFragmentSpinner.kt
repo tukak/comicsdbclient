@@ -28,7 +28,7 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
                 spinner.adapter = spinnerAdapter
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinner.setSelection(spinnerPosition)
-                spinner.onItemSelectedListener = itemSelectedListener()
+                spinner.onItemSelectedListener = ItemSelectedListener()
 
                 switcher.showContentView()
             }
@@ -43,7 +43,7 @@ abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
         }
     }
 
-    private inner class itemSelectedListener : AdapterView.OnItemSelectedListener {
+    private inner class ItemSelectedListener : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
             if (spinnerPosition != pos) {
