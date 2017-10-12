@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 class KoinModule : AndroidModule() {
     @AddTrace(name = "initKoinModule")
     override fun context() =
-            declareContext {
+            applicationContext {
                 provide { createOkHttpClient() }
                 provide { createRetrofitModule(get(), resources.getString(R.string.url_comicsdb)) }
                 provide { createFirebaseAnalytics() }
