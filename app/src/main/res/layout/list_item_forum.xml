@@ -69,7 +69,7 @@
                     android:layout_alignEnd="@+id/forum_comment_nick"
                     android:layout_alignStart="@+id/forum_comment_nick"
                     android:layout_below="@+id/forum_comment_nick"
-                    android:text="@{forumEntry.time}"
+                    android:text="@{@string/date_format(forumEntry.time)}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="Čas" />
 

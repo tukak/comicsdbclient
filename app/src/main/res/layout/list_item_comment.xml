@@ -58,7 +58,7 @@
                     android:layout_alignEnd="@+id/commentNick"
                     android:layout_alignStart="@+id/commentNick"
                     android:layout_below="@+id/commentNick"
-                    android:text="@{comment.time}"
+                    android:text="@{@string/date_format(comment.time)}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="Čas" />
 

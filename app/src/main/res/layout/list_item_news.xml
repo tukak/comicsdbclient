@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/newsItemNick"
-                    android:text="@{newsItem.time}"
+                    android:text="@{@string/date_format(newsItem.time)}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="Čas" />
 
