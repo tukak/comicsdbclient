@@ -11,7 +11,7 @@ fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).into(this)
 }
 
-fun FirebaseAnalytics.logVisit(contentName: String? = null, contentType: String? = null, contentId: String? = null) {
+fun FirebaseAnalytics.logVisit(contentName: String, contentType: String, contentId: String = "") {
     val bundle = Bundle()
     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, contentId)
     bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType)

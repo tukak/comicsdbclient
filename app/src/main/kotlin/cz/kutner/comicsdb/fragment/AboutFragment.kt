@@ -109,7 +109,7 @@ class AboutFragment : MaterialAboutFragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        firebase.logVisit(contentName = "Zobrazení O aplikaci")
+        firebase.logVisit(contentName = "Zobrazení O aplikaci", contentType = "Aplikace")
     }
 
     companion object {

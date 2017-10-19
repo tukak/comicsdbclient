@@ -6,7 +6,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.google.gson.GsonBuilder
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.connector.service.*
+import cz.kutner.comicsdb.connector.*
 import okhttp3.OkHttpClient
 import org.koin.android.AndroidModule
 import retrofit2.Retrofit
