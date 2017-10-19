@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Image(var previewUrl:String, var fullUrl:String, var caption:String) : Parcelable {
+data class Image(val previewUrl:String, val fullUrl:String, val caption:String) : Parcelable {
     constructor(source: Parcel): this(source.readString(), source.readString(), source.readString())
 
     override fun describeContents(): Int {

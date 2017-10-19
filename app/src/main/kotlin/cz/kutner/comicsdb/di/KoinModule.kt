@@ -44,6 +44,7 @@ class KoinModule : AndroidModule() {
     }
 }
 
+/*TODO přesunout*/
 class NetworkModule(private val applicationContext: Context) {
     fun isConnected(): Boolean {
         val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -51,7 +52,7 @@ class NetworkModule(private val applicationContext: Context) {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 }
-
+/*TODO přesunout*/
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     private val gson = GsonBuilder()
             .setLenient()

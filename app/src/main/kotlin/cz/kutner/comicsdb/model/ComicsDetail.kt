@@ -4,29 +4,10 @@ import android.text.Spanned
 import cz.kutner.comicsdb.utils.fromHtml
 import java.util.*
 
-data class ComicsDetail(var name: String, var id: Int) : Item {
-    var published: String? = ""
-    var voteCount: Int? = null
-    var rating: Float = 0.0f
-    var genre: String? = ""
-    var publisher: String? = ""
-    var issueNumber: String? = ""
-    var binding: String? = ""
-    var format: String? = ""
-    var pagesCount: String? = ""
-    var print: String? = ""
-    private var originalName: String? = ""
-    private var originalPublisher: String? = ""
-    var price: String? = ""
-    private var description: String = ""
-    var notes: String = ""
-    var authors: ArrayList<Author> = ArrayList()
-    var series: Series? = null
-    var comments: ArrayList<Comment> = ArrayList()
-        private set
-    var cover: Image? = null
-    var samples: ArrayList<Image> = ArrayList()
-
+data class ComicsDetail(val name: String, val id: Int, val published: String, val voteCount: Int, val rating: Float = 0.0f, val genre: String, val publisher: String,
+                        val issueNumber: String = "", val binding: String, val format: String, val pagesCount: String, val print: String, private val originalName: String,
+                        private val originalPublisher: String, val price: String, private val description: String, private val notes: String, val authors: ArrayList<Author>,
+                        val series: Series, val comments: ArrayList<Comment>, val cover: Image, val samples: ArrayList<Image>) : Item {
     fun getNotesFromHtml(): Spanned = notes.fromHtml()
     fun getDescriptionFromHtml(): Spanned = description.fromHtml()
     fun getOriginals(): String {

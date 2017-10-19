@@ -4,8 +4,7 @@ import android.text.Spanned
 import cz.kutner.comicsdb.utils.fromHtml
 
 
-data class Classified(val nick: String, val time: String, val category: String, val text: String) : Item {
-    var iconUrl: String? = null
+data class Classified(val nick: String, val time: String, val category: String, val text: String, val iconUrl: String) : Item {
     fun getTextFromHtml(): Spanned = text.fromHtml()
 }
 

@@ -26,12 +26,10 @@ fun bitmapSource(view: ImageView, uri: String?) {
 @BindingAdapter("spannableSeries")
 fun getSpannableSeries(textView: TextView, comics: ComicsDetail) {
     val series = comics.series
-    if (series != null) {
-        val seriesString = SpannableStringBuilder()
-        seriesString.append(series.name)
-        seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = seriesString
-    }
+    val seriesString = SpannableStringBuilder()
+    seriesString.append(series.name)
+    seriesString.setSpan(SeriesClickableSpan(series.id), 0, series.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    textView.text = seriesString
 }
 
 @BindingAdapter("spannableAuthors")
@@ -43,7 +41,7 @@ fun getSpannableAuthors(textView: TextView, comics: ComicsDetail) {
         authors.append(" ")
         authors.append(author.name.fromHtml())
         authors.append("\n")
-        authors.setSpan(AuthorClickableSpan(author.id), formerLength + (author.role?.length ?: 0) + 1, formerLength + (author.role?.length ?: 0) + author.name.fromHtml().length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        authors.setSpan(AuthorClickableSpan(author.id), formerLength + author.role.length + 1, formerLength + author.role.length + author.name.fromHtml().length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
     }
     textView.text = authors

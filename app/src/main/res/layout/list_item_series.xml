@@ -51,7 +51,7 @@
                     android:layout_alignParentTop="true"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
-                    android:text="@{series.numberOfComicses.toString()}"
+                    android:text="@{Integer.toString(series.numberOfComicses)}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="8" />
             </RelativeLayout>

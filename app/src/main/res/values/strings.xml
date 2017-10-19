@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">ComicsDB Client</string>
     <string name="action_about">O aplikaci</string>
     <string name="comics_name_search_hint">Hledaný text</string>

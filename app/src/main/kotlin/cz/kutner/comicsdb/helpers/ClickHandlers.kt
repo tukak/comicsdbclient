@@ -28,9 +28,7 @@ class ClickHandlers {
 
     fun onClickImage(view: View, comics: ComicsDetail, position: Int) {
         val allImages: ArrayList<Image> = ArrayList()
-        if (comics.cover != null) {
-            allImages.add(comics.cover as Image)
-        }
+        allImages.add(comics.cover)
         allImages.addAll(comics.samples)
         val intent = Intent(view.context, ImageViewSliderActivity::class.java)
         intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
