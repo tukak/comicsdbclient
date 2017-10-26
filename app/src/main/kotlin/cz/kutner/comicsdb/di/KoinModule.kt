@@ -5,14 +5,12 @@ import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.google.gson.GsonBuilder
-import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.connector.*
 import okhttp3.OkHttpClient
-import org.koin.android.AndroidModule
+import org.koin.android.module.AndroidModule
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
 
 
 class KoinModule : AndroidModule() {
@@ -20,7 +18,7 @@ class KoinModule : AndroidModule() {
     override fun context() =
             applicationContext {
                 provide { createOkHttpClient() }
-                provide { createRetrofitModule(get(), resources.getString(R.string.url_comicsdb)) }
+                provide { createRetrofitModule(get(), getProperty(KoinModule.SERVER_URL)) }
                 provide { createFirebaseAnalytics() }
                 provide { createNetworkModule() }
             }
@@ -42,6 +40,10 @@ class KoinModule : AndroidModule() {
     private fun createNetworkModule(): NetworkModule {
         return NetworkModule(applicationContext)
     }
+
+    companion object {
+        const val SERVER_URL = "SERVER_URL"
+    }
 }
 
 /*TODO přesunout*/
@@ -52,6 +54,7 @@ class NetworkModule(private val applicationContext: Context) {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 }
+
 /*TODO přesunout*/
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     private val gson = GsonBuilder()

@@ -9,7 +9,7 @@ import cz.kutner.comicsdb.adapter.ImagePagerAdapter
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.activity_view_images.*
-import org.koin.android.ext.android.app.inject
+import org.koin.android.ext.android.inject
 
 class ImageViewSliderActivity : AppCompatActivity() {
 

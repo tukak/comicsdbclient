@@ -8,7 +8,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.adapter.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_tabbed.*
-import org.koin.android.ext.android.app.inject
+import org.koin.android.ext.android.inject
 
 class SearchActivity : AppCompatActivity() {
     val firebase by inject<FirebaseAnalytics>()

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
-import org.koin.android.ext.android.app.inject
+import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
 import retrofit2.Call
 import timber.log.Timber

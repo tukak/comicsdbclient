@@ -16,7 +16,7 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.ext.android.app.inject
+import org.koin.android.ext.android.inject
 
 class AboutFragment : MaterialAboutFragment() {
 
