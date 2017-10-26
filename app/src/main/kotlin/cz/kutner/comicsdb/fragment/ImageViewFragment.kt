@@ -12,21 +12,13 @@ import kotlinx.android.synthetic.main.fragment_image_view.*
 
 class ImageViewFragment : Fragment() {
 
-    private lateinit var image: Image
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            image = arguments.getParcelable(IMAGE)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val image: Image? = arguments?.getParcelable(IMAGE)
+        if (image != null) imageView.loadUrl(image.fullUrl)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        imageView.loadUrl(image.fullUrl)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_image_view, null)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_image_view, null)
     }
 
     companion object {

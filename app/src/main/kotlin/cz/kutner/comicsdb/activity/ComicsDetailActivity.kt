@@ -14,7 +14,7 @@ class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
 
     override fun showData() {
         supportActionBar?.title = result.name.fromHtml()
-        val adapter = ComicsDetailAdapter(this, listOf(result) + result.comments)
+        val adapter = ComicsDetailAdapter(layoutInflater, listOf(result) + result.comments)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()

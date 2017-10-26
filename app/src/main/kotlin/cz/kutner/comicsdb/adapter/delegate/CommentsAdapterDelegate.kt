@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.adapter.delegate
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,8 +9,7 @@ import cz.kutner.comicsdb.model.Comment
 import cz.kutner.comicsdb.model.Item
 
 
-class CommentsAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
-    private val inflater: LayoutInflater = activity.layoutInflater
+class CommentsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as CommentsViewHolder
         val comment = items[position] as Comment

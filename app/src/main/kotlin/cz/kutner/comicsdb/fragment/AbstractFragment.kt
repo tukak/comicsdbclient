@@ -38,20 +38,20 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     var totalItemCount: Int = 0
     lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     var preloadCount: Int = 20
-    val switcher: Switcher by lazy { Switcher.Builder(activity).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     val retrofitModule by inject<RetrofitModule>()
     val firebase by inject<FirebaseAnalytics>()
     private val networkModule by inject<NetworkModule>()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_list, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val llm = LinearLayoutManager(view?.context)
+        val llm = LinearLayoutManager(view.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
         try_again.setOnClickListener {
@@ -80,7 +80,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
     abstract fun loadData()
 
     private fun isConnected(): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }

@@ -11,8 +11,8 @@ import cz.kutner.comicsdb.utils.logVisit
 
 class NewsFragment : AbstractFragment<NewsItem>() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = NewsListAdapter(activity, data)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        adapter = NewsListAdapter(inflater, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

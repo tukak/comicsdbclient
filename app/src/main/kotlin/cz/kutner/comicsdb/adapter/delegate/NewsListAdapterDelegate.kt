@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.adapter.delegate
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.NewsItem
 import kotlinx.android.synthetic.main.list_item_news.view.*
 
-
-class NewsListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
-    private val inflater: LayoutInflater = activity.layoutInflater
+class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is NewsItem
     }

@@ -14,7 +14,7 @@ class AuthorDetailActivity : AbstractDetailActivity<AuthorDetail>() {
 
     override fun showData() {
         supportActionBar?.title = result.name.fromHtml()
-        val adapter = AuthorDetailAdapter(this, listOf(result) + result.comicses)
+        val adapter = AuthorDetailAdapter(layoutInflater, listOf(result) + result.comicses)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()

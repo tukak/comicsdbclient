@@ -13,8 +13,8 @@ import java.text.Normalizer
 
 class AuthorFragment : AbstractFragment<Author>() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = AuthorListAdapter(activity, data)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        adapter = AuthorListAdapter(inflater, data)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

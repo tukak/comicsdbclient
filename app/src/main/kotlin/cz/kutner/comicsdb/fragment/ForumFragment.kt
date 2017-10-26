@@ -29,8 +29,8 @@ class ForumFragment : AbstractFragmentSpinner<ForumEntry>() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = ForumListAdapter(activity, data)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        adapter = ForumListAdapter(inflater, data)
         fillSpinnerValues()
         return super.onCreateView(inflater, container, savedInstanceState)
     }

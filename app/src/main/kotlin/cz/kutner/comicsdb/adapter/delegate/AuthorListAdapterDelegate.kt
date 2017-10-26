@@ -1,17 +1,15 @@
 package cz.kutner.comicsdb.adapter.delegate
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import cz.kutner.comicsdb.helpers.ClickHandlers
 import cz.kutner.comicsdb.databinding.ListItemAuthorsBinding
+import cz.kutner.comicsdb.helpers.ClickHandlers
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.model.Item
 
-class AuthorListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
-    private val inflater: LayoutInflater = activity.layoutInflater
+class AuthorListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is Author

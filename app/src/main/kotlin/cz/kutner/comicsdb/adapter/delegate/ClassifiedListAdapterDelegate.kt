@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.adapter.delegate
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,8 +9,7 @@ import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
 
 
-class ClassifiedListAdapterDelegate(activity: Activity) : AdapterDelegate<List<Item>>() {
-    private val inflater: LayoutInflater = activity.layoutInflater
+class ClassifiedListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
 
     override fun isForViewType(items: List<Item>, position: Int): Boolean {
         return items[position] is Classified
