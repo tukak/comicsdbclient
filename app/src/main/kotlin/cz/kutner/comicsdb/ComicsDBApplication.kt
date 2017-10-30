@@ -4,8 +4,8 @@ import android.app.Application
 import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.di.KoinModule
 import org.koin.android.ext.android.getKoin
+import org.koin.android.ext.android.startAndroidContext
 import org.koin.android.ext.koin.bindString
-import org.koin.android.ext.koin.startAndroidContext
 import timber.log.Timber
 
 class ComicsDBApplication : Application() {
