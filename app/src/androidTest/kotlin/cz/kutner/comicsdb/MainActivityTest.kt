@@ -24,7 +24,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.android.ext.android.getKoin
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 @LargeTest
@@ -47,7 +46,7 @@ class MainActivityTest {
 
     @Test
     fun comicsListandDetail() {
-        Timber.i("IdlingResource is now idle ${idlingResource.isIdleNow}")
+
         onView(allOf(withId(R.id.recycler_view), hasDescendant(withId(R.id.card_view_comics)))).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.name)).check(matches(notNullValue()))
     }
