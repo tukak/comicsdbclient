@@ -100,7 +100,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation 'com.github.daniel-stoneuk:material-about-library:2.2.3-support26.1.0'
-    implementation "com.mikepenz:iconics-core:2.9.4@aar"
+    implementation "com.mikepenz:iconics-core:2.9.5@aar"
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
 
     testImplementation 'junit:junit:4.12'
