@@ -1,8 +1,8 @@
 import com.android.ddmlib.DdmPreferences
 
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
-apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -80,8 +80,11 @@ dependencies {
     implementation "com.android.support:design:$support_library_version"
 
     implementation "com.google.firebase:firebase-core:$firebase_version"
-    releaseImplementation "com.google.firebase:firebase-crash:$firebase_version"
     implementation "com.google.firebase:firebase-perf:$firebase_version"
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
+
 
     implementation 'com.pnikosis:materialish-progress:1.7'
     implementation 'com.github.jkwiecien:Switcher:2.1.5'
