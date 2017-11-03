@@ -54,6 +54,7 @@ abstract class AbstractFragment<Item : Any> : Fragment() {
         val llm = LinearLayoutManager(view.context)
         recycler_view.layoutManager = llm
         recycler_view.adapter = adapter
+        recycler_view.setHasFixedSize(true)
         try_again.setOnClickListener {
             if (networkModule.isConnected()) {
                 checkConnectionAndLoadData()
