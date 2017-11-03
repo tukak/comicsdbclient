@@ -10,9 +10,7 @@ import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.Series
 
 class SeriesListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is Series
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is Series
 
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: SeriesViewHolder = holder as SeriesViewHolder

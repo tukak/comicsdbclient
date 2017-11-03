@@ -11,9 +11,7 @@ import cz.kutner.comicsdb.model.Item
 
 class ClassifiedListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
 
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is Classified
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is Classified
 
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: ClassifiedViewHolder = holder as ClassifiedViewHolder

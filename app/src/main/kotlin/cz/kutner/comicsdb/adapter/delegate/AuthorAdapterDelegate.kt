@@ -22,9 +22,7 @@ class AuthorAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List
         return AuthorViewHolder(authorBinding)
     }
 
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is AuthorDetail
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is AuthorDetail
 
     class AuthorViewHolder(val binding: FragmentAuthorDetailBinding) : RecyclerView.ViewHolder(binding.root) {
 

@@ -26,9 +26,7 @@ class ComicsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List
         return ComicsViewHolder(comicsBinding)
     }
 
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is ComicsDetail
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is ComicsDetail
 
     class ComicsViewHolder(val binding: FragmentComicsDetailBinding) : RecyclerView.ViewHolder(binding.root) {
         init {

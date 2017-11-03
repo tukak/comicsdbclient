@@ -21,9 +21,7 @@ class SeriesAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List
         return SeriesViewHolder(seriesBinding)
     }
 
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is SeriesDetail
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is SeriesDetail
 
     class SeriesViewHolder(val binding: FragmentSeriesDetailBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(series: SeriesDetail) {

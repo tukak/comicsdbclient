@@ -21,9 +21,7 @@ class CommentsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<Li
         return CommentsViewHolder(commentBinding)
     }
 
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is Comment
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is Comment
 
     class CommentsViewHolder(val binding: ListItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {

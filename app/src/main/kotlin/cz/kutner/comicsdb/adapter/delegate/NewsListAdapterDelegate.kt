@@ -11,9 +11,7 @@ import cz.kutner.comicsdb.model.NewsItem
 import kotlinx.android.synthetic.main.list_item_news.view.*
 
 class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun isForViewType(items: List<Item>, position: Int): Boolean {
-        return items[position] is NewsItem
-    }
+    override fun isForViewType(items: List<Item>, position: Int) = items[position] is NewsItem
 
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh: NewsViewHolder = holder as NewsViewHolder
