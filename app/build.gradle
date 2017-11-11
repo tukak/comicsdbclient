@@ -83,7 +83,8 @@ dependencies {
     releaseImplementation "com.google.firebase:firebase-crash:$firebase_version"
     implementation "com.google.firebase:firebase-perf:$firebase_version"
 
-    implementation 'com.github.jkwiecien:Switcher:2.1.5'
+   // implementation 'com.github.jkwiecien:Switcher:2.1.5'
+    implementation 'com.github.tukak:Switcher:master-SNAPSHOT'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
