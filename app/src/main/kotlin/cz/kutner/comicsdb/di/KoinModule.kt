@@ -5,7 +5,10 @@ import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.google.gson.GsonBuilder
+import cz.kutner.comicsdb.authorDetail.AuthorDetailService
+import cz.kutner.comicsdb.comicsDetail.ComicsDetailService
 import cz.kutner.comicsdb.connector.*
+import cz.kutner.comicsdb.seriesDetail.SeriesDetailService
 import okhttp3.OkHttpClient
 import org.koin.android.module.AndroidModule
 import retrofit2.Retrofit

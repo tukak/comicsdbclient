@@ -1,14 +1,13 @@
-package cz.kutner.comicsdb.adapter
+package cz.kutner.comicsdb.seriesDetail
 
 import android.view.LayoutInflater
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import cz.kutner.comicsdb.adapter.delegate.AuthorAdapterDelegate
 import cz.kutner.comicsdb.adapter.delegate.ComicsListAdapterDelegate
 import cz.kutner.comicsdb.model.Item
 
-class AuthorDetailAdapter(inflater: LayoutInflater, items: List<Item>) : ListDelegationAdapter<List<Item>>() {
+class SeriesDetailAdapter(inflater: LayoutInflater, items: List<Item>) : ListDelegationAdapter<List<Item>>() {
     init {
-        delegatesManager.addDelegate(AuthorAdapterDelegate(inflater))
+        delegatesManager.addDelegate(SeriesDetailAdapterDelegate(inflater))
                 .addDelegate(ComicsListAdapterDelegate(inflater))
         setItems(items)
     }

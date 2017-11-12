@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.adapter.delegate
+package cz.kutner.comicsdb.authorDetail
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.model.Item
 
 
-class AuthorAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
+class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as AuthorViewHolder
         val author = items[position] as AuthorDetail

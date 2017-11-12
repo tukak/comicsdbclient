@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.adapter.delegate
+package cz.kutner.comicsdb.comicsDetail
 
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
@@ -12,7 +12,7 @@ import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 
 
-class ComicsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
+class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
         val vh = holder as ComicsViewHolder
         val comics = items[position] as ComicsDetail

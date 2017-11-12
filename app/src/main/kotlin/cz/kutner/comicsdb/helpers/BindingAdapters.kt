@@ -8,9 +8,9 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import cz.kutner.comicsdb.activity.AuthorDetailActivity
+import cz.kutner.comicsdb.authorDetail.AuthorDetailActivity
 import cz.kutner.comicsdb.activity.MainActivity
-import cz.kutner.comicsdb.activity.SeriesDetailActivity
+import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl

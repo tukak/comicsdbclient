@@ -1,6 +1,7 @@
-package cz.kutner.comicsdb.activity
+package cz.kutner.comicsdb.comicsDetail
 
-import cz.kutner.comicsdb.adapter.ComicsDetailAdapter
+import android.arch.lifecycle.ViewModelProviders
+import cz.kutner.comicsdb.activity.AbstractDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.logVisit
@@ -8,11 +9,10 @@ import kotlinx.android.synthetic.main.fragment_list.*
 
 class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
 
-    override fun loadData() {
-        runAsync(retrofitModule.comicsDetailService.getComics(id))
-    }
+    val model by lazy { ViewModelProviders.of(this).get(ComicsDetailViewModel::class.java) }
 
-    override fun showData() {
+    override fun loadData() {
+        val result = model.getComicsDetail(id)
         supportActionBar?.title = result.name.fromHtml()
         val adapter = ComicsDetailAdapter(layoutInflater, listOf(result) + result.comments)
         recycler_view.adapter = adapter
@@ -20,4 +20,5 @@ class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
         switcher.showContentView()
         firebase.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
     }
+
 }

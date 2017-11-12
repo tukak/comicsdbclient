@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.connector
+package cz.kutner.comicsdb.seriesDetail
 
 import cz.kutner.comicsdb.model.SeriesDetail
 import retrofit2.Call
