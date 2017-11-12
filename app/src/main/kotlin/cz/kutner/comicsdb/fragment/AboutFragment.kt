@@ -42,7 +42,7 @@ class AboutFragment : MaterialAboutFragment() {
                 .text("Lukáš Kutner")
                 .subText("tukak")
                 .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_account).sizeDp(18))
-                .setOnClickAction({
+                .setOnClickListener ({
                     val i = Intent(Intent.ACTION_VIEW)
                     i.data = Uri.parse("http://comicsdb.cz/user.php?id=5953")
                     startActivity(i)
@@ -78,7 +78,7 @@ class AboutFragment : MaterialAboutFragment() {
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
                 .text(R.string.about_first)
                 .showIcon(false)
-                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://www.comicsdb.cz")))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://www.comicsdb.cz")))
                 .build())
         )
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
@@ -90,14 +90,14 @@ class AboutFragment : MaterialAboutFragment() {
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
                 .text(R.string.about_donate)
                 .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_money_box).sizeDp(18))
-                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://comicsdb.cz/donate.php")))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("http://comicsdb.cz/donate.php")))
                 .build())
         )
 
 
         aboutCardBuilder.addItem((MaterialAboutActionItem.Builder()
                 .text(getString(R.string.about_firebase))
-                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("https://firebase.google.com/")))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(context, Uri.parse("https://firebase.google.com/")))
                 .icon(IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_alert_circle_o).sizeDp(18))
                 .build())
         )
