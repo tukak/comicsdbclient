@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.adapter.delegate
+package cz.kutner.comicsdb.comicsDetail
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
