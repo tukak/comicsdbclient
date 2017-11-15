@@ -2,7 +2,7 @@ package cz.kutner.comicsdb.seriesDetail
 
 import android.view.LayoutInflater
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import cz.kutner.comicsdb.adapter.delegate.ComicsListAdapterDelegate
+import cz.kutner.comicsdb.comicsList.ComicsListAdapterDelegate
 import cz.kutner.comicsdb.model.Item
 
 class SeriesDetailAdapter(inflater: LayoutInflater, items: List<Item>) : ListDelegationAdapter<List<Item>>() {

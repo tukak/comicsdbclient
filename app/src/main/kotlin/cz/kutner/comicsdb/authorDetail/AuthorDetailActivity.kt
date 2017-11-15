@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.authorDetail
 
 import android.arch.lifecycle.ViewModelProviders
-import cz.kutner.comicsdb.activity.AbstractDetailActivity
+import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.logVisit

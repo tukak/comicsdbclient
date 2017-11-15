@@ -6,9 +6,14 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.google.gson.GsonBuilder
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
+import cz.kutner.comicsdb.authorList.AuthorListService
+import cz.kutner.comicsdb.classified.ClassifiedListService
 import cz.kutner.comicsdb.comicsDetail.ComicsDetailService
-import cz.kutner.comicsdb.connector.*
+import cz.kutner.comicsdb.comicsList.ComicsListService
+import cz.kutner.comicsdb.forumList.ForumListService
+import cz.kutner.comicsdb.newsList.NewsListService
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailService
+import cz.kutner.comicsdb.seriesList.SeriesListService
 import okhttp3.OkHttpClient
 import org.koin.android.module.AndroidModule
 import retrofit2.Retrofit
@@ -73,9 +78,9 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     val seriesDetailService: SeriesDetailService by lazy { retrofit.create(SeriesDetailService::class.java) }
     val authorDetailService: AuthorDetailService by lazy { retrofit.create(AuthorDetailService::class.java) }
     val authorListService: AuthorListService by lazy { retrofit.create(AuthorListService::class.java) }
-    val classifiedService: ClassifiedService by lazy { retrofit.create(ClassifiedService::class.java) }
+    val classifiedListService: ClassifiedListService by lazy { retrofit.create(ClassifiedListService::class.java) }
     val comicsDetailService: ComicsDetailService by lazy { retrofit.create(ComicsDetailService::class.java) }
     val comicsListService: ComicsListService by lazy { retrofit.create(ComicsListService::class.java) }
-    val forumService: ForumService by lazy { retrofit.create(ForumService::class.java) }
-    val newsService: NewsService by lazy { retrofit.create(NewsService::class.java) }
+    val forumListService: ForumListService by lazy { retrofit.create(ForumListService::class.java) }
+    val newsListService: NewsListService by lazy { retrofit.create(NewsListService::class.java) }
 }

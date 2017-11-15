@@ -2,9 +2,10 @@ package cz.kutner.comicsdb.helpers
 
 import android.content.Intent
 import android.view.View
-import cz.kutner.comicsdb.activity.*
+import cz.kutner.comicsdb.main.*
 import cz.kutner.comicsdb.authorDetail.AuthorDetailActivity
 import cz.kutner.comicsdb.comicsDetail.ComicsDetailActivity
+import cz.kutner.comicsdb.image.ImageViewSliderActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity

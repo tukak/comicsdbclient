@@ -15,7 +15,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import cz.kutner.comicsdb.activity.MainActivity
+import cz.kutner.comicsdb.main.MainActivity
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
 import org.junit.After
