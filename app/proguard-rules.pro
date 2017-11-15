@@ -26,10 +26,10 @@
 -keepattributes *Annotation*
 
 #Crashlytics
-#-keepattributes SourceFile,LineNumberTable
-#-keep public class * extends java.lang.Exception
-#-keep class com.crashlytics.** { *; }
-#-dontwarn com.crashlytics.**
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
 
 #-dontwarn retrofit.appengine.UrlFetchClient
 
