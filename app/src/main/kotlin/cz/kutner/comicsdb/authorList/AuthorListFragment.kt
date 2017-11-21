@@ -1,9 +1,8 @@
 package cz.kutner.comicsdb.authorList
 
 import android.app.SearchManager
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -25,15 +24,10 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
-import timber.log.Timber
 import java.text.Normalizer
-import java.util.*
 
 class AuthorListFragment : Fragment() {
-    var lastPage: Int = 0
-    var searchRunning: Boolean = false
-    var loading: Boolean = false
-    var lastItem: Author? = null
+    var loading = true
     var data: MutableList<Author> = ArrayList()
     var pastVisibleItems: Int = 0
     var visibleItemCount: Int = 0
@@ -41,8 +35,8 @@ class AuthorListFragment : Fragment() {
     lateinit var adapter: AuthorListAdapter
     var preloadCount: Int = 20
     val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
-
     val model by lazy { ViewModelProviders.of(this).get(AuthorListViewModel::class.java) }
+
     private val firebase by inject<FirebaseAnalytics>()
     private val networkModule by inject<NetworkModule>()
 
@@ -52,38 +46,48 @@ class AuthorListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val llm = LinearLayoutManager(view.context)
-        adapter = AuthorListAdapter(layoutInflater, data)
-        recycler_view.layoutManager = llm
-        recycler_view.adapter = adapter
-        recycler_view.setHasFixedSize(true)
+        setupTryAgainButton()
+        setupRecyclerView(view)
+        setupTitleAndSearchText()
+        checkConnectionAndLoadData()
+    }
+
+    private fun setupTryAgainButton() {
         try_again.setOnClickListener {
             if (networkModule.isConnected()) {
                 checkConnectionAndLoadData()
             }
         }
+    }
 
+    private fun setupRecyclerView(view: View) {
+        val llm = LinearLayoutManager(view.context)
+        adapter = AuthorListAdapter(layoutInflater, data)
+        recycler_view.layoutManager = llm
+        recycler_view.adapter = adapter
+        recycler_view.setHasFixedSize(true)
         recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 visibleItemCount = llm.childCount
                 totalItemCount = llm.itemCount
                 pastVisibleItems = llm.findFirstVisibleItemPosition()
-                if (!loading) {
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount) {
-                        loading = true
-                        Timber.i("Getting new data, because $visibleItemCount + $pastVisibleItems >= $totalItemCount - $preloadCount")
-                        model.loadMoreAuthors("") //TODO fix - searchText do vm?
-                        loadData()
-                        loading = false
-                    }
-                    else {
-                        Timber.i("Not new data, because $visibleItemCount + $pastVisibleItems < $totalItemCount - $preloadCount")
-                    }
+                if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount && !loading) {
+                    loading = true
+                    model.loadAuthors()
                 }
             }
         })
+    }
 
-        checkConnectionAndLoadData()
+    private fun setupTitleAndSearchText() {
+        val args = this.arguments
+        if (args != null && args.containsKey(SearchManager.QUERY)) {
+            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
+            model.searchText = Normalizer.normalize(args.getString(SearchManager.QUERY), Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+        } else {
+            (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
+            firebase.logVisit(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
+        }
     }
 
     private fun checkConnectionAndLoadData() {
@@ -91,34 +95,14 @@ class AuthorListFragment : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            loadData()
-        }
-    }
-
-    fun loadData() {
-        val args = this.arguments
-        var searchText = ""
-        if (args != null && args.containsKey(SearchManager.QUERY)) {
-            searchText = args.getString(SearchManager.QUERY)
-            searchText = Normalizer.normalize(searchText, Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-        }
-        val oldData = adapter.items
-        Timber.i("Old data ${oldData.size}")
-        adapter.items = model.getAuthors(searchText)
-        Timber.i("New data ${adapter.items.size}")
-        adapter.updateList(oldData)
-        Timber.i("New new data ${adapter.items.size}")
-        switcher.showContentView()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val args = this.arguments
-        if (args != null && args.containsKey(SearchManager.QUERY)) {
-            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-        } else {
-            (activity as AppCompatActivity).supportActionBar?.title = "Autoři"
-            firebase.logVisit(contentName = "Zobrazení seznamu autorů", contentType = "Autor")
+            model.getAuthors().observe(this, Observer<List<Author>?> { newList ->
+                val oldData = adapter.items
+                adapter.items = newList
+                val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
+                diffResult.dispatchUpdatesTo(adapter)
+                loading = false
+                switcher.showContentView()
+            })
         }
     }
 
@@ -131,5 +115,3 @@ class AuthorListFragment : Fragment() {
         }
     }
 }
-
-
