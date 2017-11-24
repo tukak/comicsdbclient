@@ -72,10 +72,6 @@
   public *;
 }
 
-#asyncawait
--dontwarn rx.Observable
--dontwarn rx.observables.BlockingObservable
-
 -keep class cz.kutner.comicsdb.model.** { *; }
 
 -dontwarn cz.kutner.comicsdb.model.**
