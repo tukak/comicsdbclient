@@ -23,17 +23,18 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.android.ext.android.getKoin
 import java.util.concurrent.TimeUnit
+import org.koin.test.KoinTest
+import org.koin.test.get
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class MainActivityTest : KoinTest {
 
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", activityRule.activity.getKoin().get()) }
+    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", get())}
 
     @Before
     fun registerIdlingResource() {

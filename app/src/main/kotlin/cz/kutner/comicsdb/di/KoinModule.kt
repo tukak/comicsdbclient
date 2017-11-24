@@ -33,12 +33,12 @@ class KoinModule : AndroidModule() {
     }
 
     private fun createFirebaseAnalytics(): FirebaseAnalytics {
-        val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(applicationContext) }
+        val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(androidApplication) }
         return firebaseAnalytics
     }
 
     private fun createNetworkModule(): NetworkModule {
-        return NetworkModule(applicationContext)
+        return NetworkModule(androidApplication)
     }
 
     companion object {

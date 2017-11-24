@@ -132,7 +132,8 @@ dependencies {
         exclude module: 'okhttp'
     }
 
-    implementation 'org.koin:koin-android:0.5.1'
+    implementation 'org.koin:koin-android:0.6.0'
+    androidTestImplementation "org.koin:koin-test:0.6.0"
 
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     implementation 'com.jakewharton.timber:timber:4.6.0'
