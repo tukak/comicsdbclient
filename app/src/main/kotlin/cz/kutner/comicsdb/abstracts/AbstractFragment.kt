@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
+import timber.log.Timber
 
 abstract class AbstractFragment<Data : Item> : Fragment() {
     var data: MutableList<Data> = ArrayList()
@@ -82,16 +83,20 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
         } else {
             switcher.showProgressView()
             model.getData().observe(this, Observer<List<Data>?> { newList ->
-                if (newList != null) {
-                    val oldData = adapter.items
-                    adapter.items = newList
-                    val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
-                    diffResult.dispatchUpdatesTo(adapter)
-                    loading = false
-                    if (firstLoad) {
-                        switcher.showContentView()
-                        firstLoad = false
+                try {
+                    if (newList != null) {
+                        val oldData = adapter.items
+                        adapter.items = newList
+                        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
+                        diffResult.dispatchUpdatesTo(adapter)
+                        loading = false
+                        if (firstLoad) {
+                            switcher.showContentView()
+                            firstLoad = false
+                        }
                     }
+                } catch (e: Exception) {
+                    Timber.e(e)
                 }
             })
         }
