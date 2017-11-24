@@ -13,7 +13,7 @@ import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import timber.log.Timber
 
-open class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application), KoinComponent {
+abstract class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application), KoinComponent {
     val retrofitModule by inject<RetrofitModule>()
     var start = 0
     var count = 20
@@ -30,9 +30,9 @@ open class AbstractAndroidViewModel<Data : Item>(application: Application) : And
     }
 
     fun loadNewData() = async(UI) {
-        val newData = job.await()
         start = 0
-        data.value = newData
+        data.value = null
+        loadData()
     }
 
     open fun loadData() = async(UI) {

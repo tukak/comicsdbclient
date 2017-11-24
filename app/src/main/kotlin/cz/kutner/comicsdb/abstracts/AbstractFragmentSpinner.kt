@@ -27,7 +27,6 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setSelection(spinnerPosition)
         spinner.onItemSelectedListener = ItemSelectedListener()
-        super.setupRecyclerView(view)
     }
 
 
@@ -36,6 +35,7 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
             if (spinnerPosition != pos) {
                 model.filterId = (spinner.selectedItem as Filter).id
+                firstLoad = true
                 switcher.showProgressView()
                 model.loadNewData()
                 spinnerPosition = pos
