@@ -7,10 +7,11 @@ import cz.kutner.comicsdb.model.SeriesDetail
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.runBlocking
-import org.koin.android.ext.android.getKoin
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-class SeriesDetailViewModel(application: Application) : AndroidViewModel(application) {
-    val retrofitModule by lazy { getApplication<Application>().getKoin().get<RetrofitModule>() }
+class SeriesDetailViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
+    val retrofitModule by inject<RetrofitModule>()
 
     private var seriesDetail: SeriesDetail? = null
 

@@ -9,11 +9,12 @@ import cz.kutner.comicsdb.model.Item
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
-import org.koin.android.ext.android.getKoin
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 import timber.log.Timber
 
-open class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application) {
-    val retrofitModule by lazy { getApplication<Application>().getKoin().get<RetrofitModule>() }
+open class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application), KoinComponent {
+    val retrofitModule by inject<RetrofitModule>()
     var start = 0
     var count = 20
     lateinit var job: Deferred<List<Data>?>
