@@ -8,15 +8,9 @@ import java.util.*
 
 class ImagePagerAdapter(fm: FragmentManager, private val images: ArrayList<Image>) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment {
-        return ImageViewFragment.newInstance(images[position])
-    }
+    override fun getItem(position: Int): Fragment = ImageViewFragment.newInstance(images[position])
 
-    override fun getPageTitle(position: Int): CharSequence {
-        return images[position].caption
-    }
+    override fun getPageTitle(position: Int): CharSequence = images[position].caption
 
-    override fun getCount(): Int {
-        return images.count()
-    }
+    override fun getCount(): Int = images.count()
 }

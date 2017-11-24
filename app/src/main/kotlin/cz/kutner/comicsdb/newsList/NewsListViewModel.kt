@@ -1,16 +1,16 @@
-package cz.kutner.comicsdb.authorList
+package cz.kutner.comicsdb.newsList
 
 import android.app.Application
 import cz.kutner.comicsdb.abstracts.AbstractAndroidViewModel
-import cz.kutner.comicsdb.model.Author
+import cz.kutner.comicsdb.model.NewsItem
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 
-class AuthorListViewModel(application: Application) : AbstractAndroidViewModel<Author>(application) {
+class NewsListViewModel(application: Application) : AbstractAndroidViewModel<NewsItem>(application) {
     override fun loadData(): Deferred<Unit> {
         job = async(CommonPool) {
-            retrofitModule.authorListService.listAuthors(start * count, count, searchText).execute().body()
+            retrofitModule.newsListService.listNews(start * count, count).execute().body()
         }
         return super.loadData()
     }

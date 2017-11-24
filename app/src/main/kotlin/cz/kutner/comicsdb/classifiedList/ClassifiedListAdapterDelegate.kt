@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.classified
+package cz.kutner.comicsdb.classifiedList
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

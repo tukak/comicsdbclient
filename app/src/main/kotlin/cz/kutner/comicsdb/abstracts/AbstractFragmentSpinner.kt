@@ -8,52 +8,37 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Filter
+import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.fragment_list_spinner.*
 
-abstract class AbstractFragmentSpinner<Item : Any> : AbstractFragment<Item>() {
+abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     lateinit var spinnerValues: Array<Filter>
     var filter: Int = 0
     private var spinnerPosition: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_list_spinner, container, false)
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_list_spinner, container, false)
+
+    override fun setupRecyclerView(view: View) {
+        super.setupRecyclerView(view)
+        val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
+        spinner.adapter = spinnerAdapter
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.setSelection(spinnerPosition)
+        spinner.onItemSelectedListener = ItemSelectedListener()
+        super.setupRecyclerView(view)
     }
 
-    override fun showData() {
-        if (activity?.isFinishing == false) {
-            searchRunning = false
-            if (lastItem == null) {
-                val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
-                spinner.adapter = spinnerAdapter
-                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.setSelection(spinnerPosition)
-                spinner.onItemSelectedListener = ItemSelectedListener()
-
-                switcher.showContentView()
-            }
-            if (result.isNotEmpty()) {
-                if (lastItem == null || lastItem != result[0]) {
-                    lastItem = result[0]
-                    data.addAll(result)
-                }
-            }
-            adapter.notifyDataSetChanged()
-            loading = false
-        }
-    }
 
     private inner class ItemSelectedListener : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
             if (spinnerPosition != pos) {
-                filter = (spinner.selectedItem as Filter).id
-                data.clear()
-                lastItem = null
+                model.filterId = (spinner.selectedItem as Filter).id
                 switcher.showProgressView()
-                lastPage = 0
+                model.loadNewData()
                 spinnerPosition = pos
-                loadData()
             }
         }
 

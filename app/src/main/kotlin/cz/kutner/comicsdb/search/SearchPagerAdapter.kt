@@ -33,7 +33,5 @@ class SearchPagerAdapter(fm: FragmentManager, private val intent: Intent, val co
         return name
     }
 
-    override fun getCount(): Int {
-        return 3
-    }
+    override fun getCount(): Int = 3
 }

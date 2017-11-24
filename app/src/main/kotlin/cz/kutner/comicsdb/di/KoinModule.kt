@@ -7,7 +7,7 @@ import com.google.firebase.perf.metrics.AddTrace
 import com.google.gson.GsonBuilder
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
-import cz.kutner.comicsdb.classified.ClassifiedListService
+import cz.kutner.comicsdb.classifiedList.ClassifiedListService
 import cz.kutner.comicsdb.comicsDetail.ComicsDetailService
 import cz.kutner.comicsdb.comicsList.ComicsListService
 import cz.kutner.comicsdb.forumList.ForumListService
@@ -36,18 +36,15 @@ class KoinModule : AndroidModule() {
         return okHttpClient
     }
 
-    private fun createRetrofitModule(okHttpClient: OkHttpClient, baseUrl: String): RetrofitModule {
-        return RetrofitModule(okHttpClient, baseUrl)
-    }
+    private fun createRetrofitModule(okHttpClient: OkHttpClient, baseUrl: String): RetrofitModule =
+            RetrofitModule(okHttpClient, baseUrl)
 
     private fun createFirebaseAnalytics(): FirebaseAnalytics {
         val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(androidApplication) }
         return firebaseAnalytics
     }
 
-    private fun createNetworkModule(): NetworkModule {
-        return NetworkModule(androidApplication)
-    }
+    private fun createNetworkModule(): NetworkModule = NetworkModule(androidApplication)
 
     companion object {
         const val SERVER_URL = "SERVER_URL"

@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.search.SearchPagerAdapter
 import kotlinx.android.synthetic.main.activity_tabbed.*
 import org.koin.android.ext.android.inject
 

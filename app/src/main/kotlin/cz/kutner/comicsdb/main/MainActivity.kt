@@ -17,7 +17,7 @@ import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.about.AboutFragment
 import cz.kutner.comicsdb.authorList.AuthorListFragment
-import cz.kutner.comicsdb.classified.ClassifiedListFragment
+import cz.kutner.comicsdb.classifiedList.ClassifiedListFragment
 import cz.kutner.comicsdb.comicsList.ComicsListFragment
 import cz.kutner.comicsdb.forumList.ForumListFragment
 import cz.kutner.comicsdb.newsList.NewsListFragment

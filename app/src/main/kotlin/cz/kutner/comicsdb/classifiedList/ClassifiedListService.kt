@@ -1,4 +1,4 @@
-package cz.kutner.comicsdb.classified
+package cz.kutner.comicsdb.classifiedList
 
 import cz.kutner.comicsdb.model.Classified
 import retrofit2.Call
