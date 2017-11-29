@@ -39,6 +39,12 @@ androidExtensions {
     experimental = true
 }
 
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -145,9 +151,3 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
-
