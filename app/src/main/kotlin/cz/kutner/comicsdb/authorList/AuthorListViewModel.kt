@@ -8,10 +8,7 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 
 class AuthorListViewModel(application: Application) : AbstractAndroidViewModel<Author>(application) {
-    override fun loadData(): Deferred<Unit> {
-        job = async(CommonPool) {
-            retrofitModule.authorListService.listAuthors(start * count, count, searchText).execute().body()
-        }
-        return super.loadData()
+    override fun getJob(): Deferred<List<Author>?> = async(CommonPool) {
+        retrofitModule.authorListService.listAuthors(start * count, count, searchText).execute().body()
     }
 }

@@ -87,8 +87,4 @@ class MainActivity : AppCompatActivity() {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
         return true
     }
-
-    companion object {
-        val ITEM_ID: String = "cz.kutner.comicsdbclient.comicsdbclient.item_id"
-    }
 }

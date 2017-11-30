@@ -28,7 +28,7 @@ abstract class AbstractDetailActivity<Item : Any> : AppCompatActivity() {
         if (Intent.ACTION_VIEW == intent.action) {
             Integer.parseInt(intent.dataString.split("/")[4])
         } else {
-            intent.getIntExtra(MainActivity.ITEM_ID, 0)
+            intent.getIntExtra(Intent.EXTRA_UID, 0)
         }
     }
 

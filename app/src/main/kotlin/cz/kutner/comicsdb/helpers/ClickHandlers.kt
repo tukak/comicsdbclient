@@ -14,19 +14,19 @@ import java.util.*
 class ClickHandlers {
     fun onClickAuthor(view: View, authorId: Int) {
         val intent = Intent(view.context, AuthorDetailActivity::class.java)
-        intent.putExtra(MainActivity.ITEM_ID, authorId)
+        intent.putExtra(Intent.EXTRA_UID, authorId)
         view.context.startActivity(intent)
     }
 
     fun onClickComics(view: View, comicsId: Int) {
         val intent = Intent(view.context, ComicsDetailActivity::class.java)
-        intent.putExtra(MainActivity.ITEM_ID, comicsId)
+        intent.putExtra(Intent.EXTRA_UID, comicsId)
         view.context.startActivity(intent)
     }
 
     fun onClickSeries(view: View, seriesId: Int) {
         val intent = Intent(view.context, SeriesDetailActivity::class.java)
-        intent.putExtra(MainActivity.ITEM_ID, seriesId)
+        intent.putExtra(Intent.EXTRA_UID, seriesId)
         view.context.startActivity(intent)
     }
 

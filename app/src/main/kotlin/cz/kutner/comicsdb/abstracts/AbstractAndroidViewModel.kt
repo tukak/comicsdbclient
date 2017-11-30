@@ -17,7 +17,6 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
     val retrofitModule by inject<RetrofitModule>()
     var start = 0
     var count = 20
-    lateinit var job: Deferred<List<Data>?>
     private val data = MutableLiveData<List<Data>>()
     var filterId = 0
     var searchText = ""
@@ -29,6 +28,8 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
         return data
     }
 
+    abstract fun getJob():Deferred<List<Data>?>
+
     fun loadNewData() = async(UI) {
         start = 0
         data.value = null
@@ -36,7 +37,7 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
     }
 
     open fun loadData() = async(UI) {
-        val newData = job.await()
+        val newData = getJob().await()
         start++
         if (newData != null) {
             if (data.value == null) {

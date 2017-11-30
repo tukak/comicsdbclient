@@ -8,10 +8,7 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 
 class SeriesListViewModel(application: Application) : AbstractAndroidViewModel<Series>(application) {
-    override fun loadData(): Deferred<Unit> {
-        job = async(CommonPool) {
-            retrofitModule.seriesListService.getSeriesList(start * count, count, searchText).execute().body()
-        }
-        return super.loadData()
+    override fun getJob(): Deferred<List<Series>?> = async(CommonPool) {
+        retrofitModule.seriesListService.getSeriesList(start * count, count, searchText).execute().body()
     }
 }
