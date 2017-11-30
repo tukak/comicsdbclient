@@ -11,7 +11,6 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
-import timber.log.Timber
 
 abstract class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application), KoinComponent {
     val retrofitModule by inject<RetrofitModule>()
@@ -21,7 +20,6 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
     var filterId = 0
     var searchText = ""
     fun getData(): LiveData<List<Data>> {
-        Timber.i("Getting data")
         if (data.value == null) {
             loadData()
         }
