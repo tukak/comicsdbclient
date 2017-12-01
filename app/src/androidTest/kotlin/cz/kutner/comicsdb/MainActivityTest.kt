@@ -16,6 +16,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import cz.kutner.comicsdb.main.MainActivity
+import okhttp3.OkHttpClient
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
 import org.junit.After
@@ -23,9 +24,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.standalone.inject
 import java.util.concurrent.TimeUnit
 import org.koin.test.KoinTest
-import org.koin.test.get
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -34,7 +35,8 @@ class MainActivityTest : KoinTest {
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", get())}
+    private val client by inject<OkHttpClient>()
+    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", client)}
 
     @Before
     fun registerIdlingResource() {
