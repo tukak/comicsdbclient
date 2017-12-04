@@ -95,11 +95,11 @@ dependencies {
 
 
    // implementation 'com.github.jkwiecien:Switcher:2.1.5'
-    implementation 'com.github.tukak:Switcher:master-SNAPSHOT'
+    implementation 'com.github.tukak:Switcher:2.2.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20"
 
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.3.1@aar'
