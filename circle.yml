@@ -31,7 +31,7 @@ test:
     - circle-android wait-for-boot
     - sleep 30
     - if [ -e ./gradlew ]; then ./gradlew --stop --console=plain;else gradle --stop --console=plain;fi
-    #- adb shell input keyevent 82
+    - adb shell input keyevent 82
     - adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $CIRCLE_ARTIFACTS/screen-$(date +"%T").png
     - if [ -e ./gradlew ]; then ./gradlew connectedAndroidTest -PdisablePreDex --console=plain;else gradle connectedAndroidTest -PdisablePreDex --console=plain;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
