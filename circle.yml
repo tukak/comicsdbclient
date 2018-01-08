@@ -7,6 +7,7 @@ machine:
     ANDROID_VERSION: 26
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
+    QEMU_AUDIO_DRV: none
 
 dependencies:
     pre:
@@ -29,13 +30,13 @@ test:
     - emulator -avd circleci-android24 -no-audio -no-window:
           background: true
           parallel: true
-    - if [ -e ./gradlew ]; then ./gradlew --stop;else gradle --stop;fi
-    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test assembleDebug -PdisablePreDex;else gradle --no-daemon test assembleDebug -PdisablePreDex;fi
+    - if [ -e ./gradlew ]; then ./gradlew --stop --console=plain;else gradle --stop --console=plain;fi
+    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test assembleDebug -PdisablePreDex --console=plain;else gradle --no-daemon test assembleDebug -PdisablePreDex --console=plain;fi
     - circle-android wait-for-boot
     - sleep 30
     - adb shell input keyevent 82
-    - if [ -e ./gradlew ]; then ./gradlew --stop;else gradle --stop;fi
-    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test connectedAndroidTest -PdisablePreDex;else gradle --no-daemon test connectedAndroidTest -PdisablePreDex;fi
+    - if [ -e ./gradlew ]; then ./gradlew --stop --console=plain;else gradle --stop --console=plain;fi
+    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test connectedAndroidTest -PdisablePreDex --console=plain;else gradle --no-daemon test connectedAndroidTest -PdisablePreDex --console=plain;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS

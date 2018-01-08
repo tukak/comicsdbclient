@@ -15,7 +15,6 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import cz.kutner.comicsdb.main.MainActivity
 import okhttp3.OkHttpClient
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
@@ -27,6 +26,10 @@ import org.junit.runner.RunWith
 import org.koin.standalone.inject
 import java.util.concurrent.TimeUnit
 import org.koin.test.KoinTest
+import android.view.WindowManager
+import cz.kutner.comicsdb.main.MainActivity
+
+
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -46,6 +49,16 @@ class MainActivityTest : KoinTest {
         //IdlingRegistry.getInstance().register(idlingResource)
     }
 
+    @Before
+    fun setUp() {
+        val activity = activityRule.activity
+        val wakeUpDevice = Runnable {
+            activity.window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+        activity.runOnUiThread(wakeUpDevice)
+    }
 
     @Test
     fun comicsListandDetail() {
