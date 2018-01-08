@@ -1,8 +1,6 @@
 machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
-    BUILD_TOOLS_VERSION: 26.0.0
-    ANDROID_VERSION: 26
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
     QEMU_AUDIO_DRV: none
@@ -10,11 +8,11 @@ machine:
 dependencies:
     pre:
         - echo $GOOGLE_SERVICES | base64 --decode > ~/$CIRCLE_PROJECT_REPONAME/app/google-services.json
-        - mkdir "$ANDROID_HOME/licenses" || true
-        - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-        - echo "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-        - echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
-        - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
+        #- mkdir "$ANDROID_HOME/licenses" || true
+        #- echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+        #- echo "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+        #- echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
+        #- echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
         # Android SDK Platform
         #- echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"
         # Android SDK Build-tools
@@ -29,12 +27,13 @@ test:
           background: true
           parallel: true
     - if [ -e ./gradlew ]; then ./gradlew --stop --console=plain;else gradle --stop --console=plain;fi
-    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test assembleDebug -PdisablePreDex --console=plain;else gradle --no-daemon test assembleDebug -PdisablePreDex --console=plain;fi
+    - if [ -e ./gradlew ]; then ./gradlew test assembleDebug -PdisablePreDex --console=plain;else gradle  test assembleDebug -PdisablePreDex --console=plain;fi
     - circle-android wait-for-boot
     - sleep 30
-    - adb shell input keyevent 82
     - if [ -e ./gradlew ]; then ./gradlew --stop --console=plain;else gradle --stop --console=plain;fi
-    - if [ -e ./gradlew ]; then ./gradlew --no-daemon test connectedAndroidTest -PdisablePreDex --console=plain;else gradle --no-daemon test connectedAndroidTest -PdisablePreDex --console=plain;fi
+    - adb shell input keyevent 82
+    - adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $CIRCLE_ARTIFACTS/screen-$(date +"%T").png
+    - if [ -e ./gradlew ]; then ./gradlew connectedAndroidTest -PdisablePreDex --console=plain;else gradle connectedAndroidTest -PdisablePreDex --console=plain;fi
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
