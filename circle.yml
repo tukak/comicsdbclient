@@ -16,11 +16,11 @@ dependencies:
         - echo "d975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
         - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
         # Android SDK Platform
-        - echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"
+        #- echo y | android update sdk --no-ui --all --filter "android-$ANDROID_VERSION,tools,platform-tools"
         # Android SDK Build-tools
-        - echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"
+        #- echo y | android update sdk --no-ui --all --filter "build-tools-$BUILD_TOOLS_VERSION"
         # Google Support Repository
-        - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
+        #- echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
         - if [ -e ./gradlew ]; then chmod u+x gradlew;fi
 
 test:
