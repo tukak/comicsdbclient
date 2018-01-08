@@ -52,6 +52,8 @@ class MainActivityTest : KoinTest {
 
         onView(allOf(withId(R.id.recycler_view), hasDescendant(withId(R.id.card_view_comics)))).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.name)).check(matches(notNullValue()))
+        onView(withId(R.id.cover)).perform(click())
+        onView(withId(R.id.image_pager)).check(matches(notNullValue()))
     }
 
     @Test
