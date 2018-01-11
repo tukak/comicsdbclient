@@ -10,10 +10,15 @@ import com.crashlytics.android.Crashlytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.Item
-import io.fabric.sdk.android.services.common.Crash
 import kotlinx.android.synthetic.main.fragment_list_spinner.*
+import kotlinx.android.synthetic.main.view_empty.*
+import kotlinx.android.synthetic.main.view_error.*
+import kotlinx.android.synthetic.main.view_progress.*
+import pl.aprilapps.switcher.Switcher
 
 abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
+    override val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+
     lateinit var spinnerValues: Array<Filter>
     var filter: Int = 0
     private var spinnerPosition: Int = 0

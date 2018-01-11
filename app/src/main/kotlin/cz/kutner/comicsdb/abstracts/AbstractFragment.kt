@@ -32,7 +32,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     var visibleItemCount: Int = 0
     var totalItemCount: Int = 0
     var preloadCount: Int = 20
-    val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    open val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
 
     private val networkModule by inject<NetworkModule>()
     val firebase by inject<FirebaseAnalytics>()
