@@ -2,6 +2,8 @@ package cz.kutner.comicsdb
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.perf.FirebasePerformance
 import com.google.firebase.perf.metrics.AddTrace
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
@@ -23,6 +25,8 @@ class ComicsDBApplication : Application() {
             Timber.plant(Timber.DebugTree())
         } else {
             Fabric.with(this, Crashlytics())
+            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(true)
+            FirebasePerformance.getInstance().isPerformanceCollectionEnabled = true
         }
     }
 }
