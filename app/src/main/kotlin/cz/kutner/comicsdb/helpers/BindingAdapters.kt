@@ -9,9 +9,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import cz.kutner.comicsdb.authorDetail.AuthorDetailActivity
-import cz.kutner.comicsdb.main.MainActivity
-import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
+import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
 

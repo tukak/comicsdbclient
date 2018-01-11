@@ -31,5 +31,6 @@
     <string name="rating">%1$s (%2$s)</string>
     <string name="norating">&lt; 5 hodnocení</string>
     <string name="date_format">%1$td.%1$tm.%1$tY %1$tH:%1$tM:%1$tS</string>
+    <string name="icon_description">Ikona</string>
 
 </resources>

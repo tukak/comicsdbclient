@@ -37,7 +37,8 @@
                     android:maxWidth="40dp"
                     android:minHeight="50dp"
                     android:minWidth="40dp"
-                    app:imageUrl="@{forumEntry.iconUrl}" />
+                    app:imageUrl="@{forumEntry.iconUrl}"
+                    android:contentDescription="@string/icon_description" />
 
                 <TextView
                     android:id="@+id/forum_comment_nick"
