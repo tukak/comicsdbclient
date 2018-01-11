@@ -5,6 +5,7 @@ import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.perf.FirebasePerformance
 import com.google.firebase.perf.metrics.AddTrace
+import com.squareup.leakcanary.LeakCanary
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
 import org.koin.android.ext.android.bindString
@@ -19,6 +20,10 @@ class ComicsDBApplication : Application() {
     @AddTrace(name = "onCreateApplication")
     override fun onCreate() {
         super.onCreate()
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        LeakCanary.install(this)
         startKoin(this, listOf(koinModule))
         bindString(R.string.url_comicsdb, SERVER_URL)
         if (BuildConfig.DEBUG) {
