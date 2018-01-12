@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.abstracts
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -26,7 +27,8 @@ abstract class AbstractDetailActivity<Item : Any> : AppCompatActivity() {
 
     val id: Int by lazy {
         if (Intent.ACTION_VIEW == intent.action) {
-            Integer.parseInt(intent.dataString.split("/")[4])
+            val uri = Uri.parse(intent.dataString)
+            Integer.parseInt(uri.pathSegments[1])
         } else {
             intent.getIntExtra(Intent.EXTRA_UID, 0)
         }
