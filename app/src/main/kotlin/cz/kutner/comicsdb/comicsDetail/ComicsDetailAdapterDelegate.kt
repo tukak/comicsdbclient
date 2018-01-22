@@ -36,8 +36,8 @@ class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
     class ComicsViewHolder(val binding: FragmentComicsDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            itemView.authors.movementMethod = LinkMovementMethod.getInstance()
-            itemView.series.movementMethod = LinkMovementMethod.getInstance()
+            /*itemView.authors.movementMethod = LinkMovementMethod.getInstance()
+            itemView.series.movementMethod = LinkMovementMethod.getInstance()*/
         }
 
         fun bind(comics: ComicsDetail) {
