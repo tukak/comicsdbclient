@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comicsDetail"
+            type="cz.kutner.comicsdb.model.ComicsDetail" />
+    </data>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{comicsDetail.genre}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Žánr" />
+
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{comicsDetail.publisher + " " + comicsDetail.published}'
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Vydavatel" />
+
+        <TextView
+            android:id="@+id/pagesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/number_of_pages(comicsDetail.pagesCount)}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Počet stránek" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/price(comicsDetail.price)}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Cena" />
+
+        <TextView
+            android:id="@+id/originalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{comicsDetail.getOriginals()}"
+            tools:text="Původní název" />
+
+        <TextView
+            android:id="@+id/binding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/binding(comicsDetail.binding)}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Vazba" />
+
+        <TextView
+            android:id="@+id/series"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:spannableSeries="@{comicsDetail}"
+            tools:ignore="RtlHardcoded"
+            tools:text="Série" />
+
+        <TextView
+            android:id="@+id/issueNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/issue_and_print(comicsDetail.issueNumber, comicsDetail.print)}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Vydání" />
+
+        <TextView
+            android:id="@+id/format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/format(comicsDetail.format)}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Format" />
+    </LinearLayout>
+</layout>
