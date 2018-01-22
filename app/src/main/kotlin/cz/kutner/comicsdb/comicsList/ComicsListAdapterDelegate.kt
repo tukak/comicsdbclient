@@ -12,7 +12,12 @@ import cz.kutner.comicsdb.model.Item
 class ComicsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is Comics
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh: ComicsViewHolder = holder as ComicsViewHolder
         val comics: Comics = items[position] as Comics
 
@@ -25,7 +30,8 @@ class ComicsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
         return ComicsViewHolder(itemBinding)
     }
 
-    internal class ComicsViewHolder(val binding: ListItemComicsBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class ComicsViewHolder(val binding: ListItemComicsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(comics: Comics) {
             binding.comics = comics
             binding.executePendingBindings()

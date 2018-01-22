@@ -10,7 +10,8 @@ import cz.kutner.comicsdb.authorList.AuthorListFragment
 import cz.kutner.comicsdb.comicsList.ComicsListFragment
 import cz.kutner.comicsdb.seriesList.SeriesListFragment
 
-class SearchPagerAdapter(fm: FragmentManager, private val intent: Intent, val context: Context) : FragmentStatePagerAdapter(fm) {
+class SearchPagerAdapter(fm: FragmentManager, private val intent: Intent, val context: Context) :
+    FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         val fragment: Fragment = when (position) {

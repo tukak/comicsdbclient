@@ -10,7 +10,12 @@ import cz.kutner.comicsdb.model.SeriesDetail
 
 
 class SeriesDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh = holder as SeriesViewHolder
         val series = items[position] as SeriesDetail
         vh.bind(series)
@@ -23,7 +28,8 @@ class SeriesDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is SeriesDetail
 
-    class SeriesViewHolder(val binding: FragmentSeriesDetailBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SeriesViewHolder(val binding: FragmentSeriesDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(series: SeriesDetail) {
             binding.seriesDetail = series
             binding.executePendingBindings()

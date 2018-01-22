@@ -33,7 +33,8 @@ val koinModule = applicationContext {
 const val SERVER_URL = "SERVER_URL"
 
 private fun createOkHttpClient(applicationContext: Context): OkHttpClient {
-    val okHttpClient: OkHttpClient by lazy { OkHttpClient.Builder()
+    val okHttpClient: OkHttpClient by lazy {
+        OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .addInterceptor(ChuckInterceptor(applicationContext))
@@ -43,19 +44,25 @@ private fun createOkHttpClient(applicationContext: Context): OkHttpClient {
 }
 
 private fun createRetrofitModule(okHttpClient: OkHttpClient, baseUrl: String): RetrofitModule =
-        RetrofitModule(okHttpClient, baseUrl)
+    RetrofitModule(okHttpClient, baseUrl)
 
 private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAnalytics {
-    val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(androidApplication) }
+    val firebaseAnalytics: FirebaseAnalytics by lazy {
+        FirebaseAnalytics.getInstance(
+            androidApplication
+        )
+    }
     return firebaseAnalytics
 }
 
-private fun createNetworkModule(androidApplication: Application): NetworkModule = NetworkModule(androidApplication)
+private fun createNetworkModule(androidApplication: Application): NetworkModule =
+    NetworkModule(androidApplication)
 
 /*TODO přesunout*/
 class NetworkModule(private val applicationContext: Context) {
     fun isConnected(): Boolean {
-        val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm =
+            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
@@ -64,14 +71,14 @@ class NetworkModule(private val applicationContext: Context) {
 /*TODO přesunout*/
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     private val gson = GsonBuilder()
-            .setLenient()
-            .setDateFormat("yyyy-MM-dd HH:mm:ss")
-            .create()
+        .setLenient()
+        .setDateFormat("yyyy-MM-dd HH:mm:ss")
+        .create()
     private val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
+        .baseUrl(baseUrl)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
     val seriesListService: SeriesListService by lazy { retrofit.create(SeriesListService::class.java) }
     val seriesDetailService: SeriesDetailService by lazy { retrofit.create(SeriesDetailService::class.java) }
     val authorDetailService: AuthorDetailService by lazy { retrofit.create(AuthorDetailService::class.java) }

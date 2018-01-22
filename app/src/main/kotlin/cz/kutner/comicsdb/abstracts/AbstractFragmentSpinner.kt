@@ -17,19 +17,25 @@ import kotlinx.android.synthetic.main.view_progress.*
 import pl.aprilapps.switcher.Switcher
 
 abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
-    override val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    override val switcher: Switcher by lazy {
+        Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view)
+            .addProgressView(progress_view).addErrorView(error_view).build()
+    }
 
     lateinit var spinnerValues: Array<Filter>
     var filter: Int = 0
     private var spinnerPosition: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_list_spinner, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
+        inflater.inflate(R.layout.fragment_list_spinner, container, false)
 
     override fun setupRecyclerView(view: View) {
         super.setupRecyclerView(view)
-        val spinnerAdapter = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
+        val spinnerAdapter =
+            ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
         spinner.adapter = spinnerAdapter
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setSelection(spinnerPosition)

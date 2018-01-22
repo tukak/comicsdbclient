@@ -10,7 +10,12 @@ import cz.kutner.comicsdb.model.Item
 
 
 class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh = holder as AuthorViewHolder
         val author = items[position] as AuthorDetail
 
@@ -24,7 +29,8 @@ class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is AuthorDetail
 
-    class AuthorViewHolder(val binding: FragmentAuthorDetailBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AuthorViewHolder(val binding: FragmentAuthorDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(author: AuthorDetail) {
             binding.authorDetail = author

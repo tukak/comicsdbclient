@@ -21,8 +21,11 @@ class SeriesListFragment : AbstractFragment<Series>() {
     override fun setupTitleAndSearchText() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
-            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            model.searchText = Normalizer.normalize(args.getString(SearchManager.QUERY), Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" +
+                    args.getString(SearchManager.QUERY) + "\""
+            model.searchText =
+                    Normalizer.normalize(args.getString(SearchManager.QUERY), Normalizer.Form.NFD)
+                        .replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Serie"
             firebase.logVisit(contentName = "Zobrazení seznamu sérií", contentType = "Série")

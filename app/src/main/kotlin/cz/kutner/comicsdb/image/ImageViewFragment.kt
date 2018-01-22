@@ -17,8 +17,12 @@ class ImageViewFragment : Fragment() {
         if (image != null) imageView.loadUrl(image.fullUrl)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_image_view, null)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
+        inflater.inflate(R.layout.fragment_image_view, null)
 
     companion object {
         val IMAGE = "IMAGE"

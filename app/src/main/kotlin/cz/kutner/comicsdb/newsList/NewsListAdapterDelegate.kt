@@ -13,7 +13,12 @@ import kotlinx.android.synthetic.main.list_item_news.view.*
 class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is NewsItem
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh: NewsViewHolder = holder as NewsViewHolder
         val newsItem: NewsItem = items[position] as NewsItem
         vh.bind(newsItem)
@@ -24,7 +29,8 @@ class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<Li
         return NewsViewHolder(newsBinding)
     }
 
-    internal class NewsViewHolder(val binding: ListItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class NewsViewHolder(val binding: ListItemNewsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.newsItemText.movementMethod = LinkMovementMethod.getInstance()

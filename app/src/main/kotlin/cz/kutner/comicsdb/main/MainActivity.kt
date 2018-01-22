@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         LayoutInflaterCompat.setFactory2(layoutInflater, IconicsLayoutInflater2(delegate))
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().add(R.id.container, ComicsListFragment.newInstance()).commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, ComicsListFragment.newInstance()).commit()
         }
         setContentView(R.layout.activity)
         setupToolbar()
@@ -44,20 +45,29 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            toolbar.navigationIcon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_menu).color(Color.WHITE).sizeDp(24)
+            toolbar.navigationIcon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_menu)
+                .color(Color.WHITE).sizeDp(24)
             toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
         }
     }
 
     private fun setDrawerIcons() {
         val menu = navigation_view.menu
-        menu.findItem(R.id.navigation_item_comics).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_book_image).sizeDp(24)
-        menu.findItem(R.id.navigation_item_news).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comment_alert).sizeDp(24)
-        menu.findItem(R.id.navigation_item_series).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_format_list_bulleted).sizeDp(24)
-        menu.findItem(R.id.navigation_item_author).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_edit).sizeDp(24)
-        menu.findItem(R.id.navigation_item_classified).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_money).sizeDp(24)
-        menu.findItem(R.id.navigation_item_forum).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comments).sizeDp(24)
-        menu.findItem(R.id.navigation_item_about).icon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info).sizeDp(24)
+        menu.findItem(R.id.navigation_item_comics).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_book_image).sizeDp(24)
+        menu.findItem(R.id.navigation_item_news).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comment_alert).sizeDp(24)
+        menu.findItem(R.id.navigation_item_series).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_format_list_bulleted)
+                    .sizeDp(24)
+        menu.findItem(R.id.navigation_item_author).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_edit).sizeDp(24)
+        menu.findItem(R.id.navigation_item_classified).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_money).sizeDp(24)
+        menu.findItem(R.id.navigation_item_forum).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_comments).sizeDp(24)
+        menu.findItem(R.id.navigation_item_about).icon =
+                IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info).sizeDp(24)
     }
 
     private fun setActionsForDrawer() {

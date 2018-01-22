@@ -7,8 +7,10 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 
-class ClassifiedListViewModel(application: Application) : AbstractAndroidViewModel<Classified>(application) {
+class ClassifiedListViewModel(application: Application) :
+    AbstractAndroidViewModel<Classified>(application) {
     override fun getJob(): Deferred<List<Classified>?> = async(CommonPool) {
-        retrofitModule.classifiedListService.filteredClassifiedList(start * count, count, filterId).execute().body()
+        retrofitModule.classifiedListService.filteredClassifiedList(start * count, count, filterId)
+            .execute().body()
     }
 }

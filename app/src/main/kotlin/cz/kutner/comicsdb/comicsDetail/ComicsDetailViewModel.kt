@@ -10,7 +10,8 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-class ComicsDetailViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
+class ComicsDetailViewModel(application: Application) : AndroidViewModel(application),
+    KoinComponent {
     val retrofitModule by inject<RetrofitModule>()
 
     private var comicsDetail: ComicsDetail? = null

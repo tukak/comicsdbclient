@@ -19,7 +19,8 @@ class ImageViewSliderActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_images)
         val images = intent.getParcelableArrayListExtra<Image>(IMAGES)
         val position = intent.getIntExtra(POSTITION, 0)
-        val fragmentPagerAdapter: FragmentStatePagerAdapter = ImagePagerAdapter(supportFragmentManager, images)
+        val fragmentPagerAdapter: FragmentStatePagerAdapter =
+            ImagePagerAdapter(supportFragmentManager, images)
         image_pager.adapter = fragmentPagerAdapter
         image_tabs.setupWithViewPager(image_pager)
         image_pager.currentItem = position

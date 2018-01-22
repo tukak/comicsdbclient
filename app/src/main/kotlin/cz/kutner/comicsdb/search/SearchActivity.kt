@@ -17,7 +17,8 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tabbed)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        val fragmentPagerAdapter: FragmentStatePagerAdapter = SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
+        val fragmentPagerAdapter: FragmentStatePagerAdapter =
+            SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)

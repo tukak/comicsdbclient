@@ -6,7 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import cz.kutner.comicsdb.model.Image
 import java.util.*
 
-class ImagePagerAdapter(fm: FragmentManager, private val images: ArrayList<Image>) : FragmentStatePagerAdapter(fm) {
+class ImagePagerAdapter(fm: FragmentManager, private val images: ArrayList<Image>) :
+    FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment = ImageViewFragment.newInstance(images[position])
 

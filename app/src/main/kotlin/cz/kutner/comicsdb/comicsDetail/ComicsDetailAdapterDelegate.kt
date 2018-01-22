@@ -13,7 +13,12 @@ import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 
 
 class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh = holder as ComicsViewHolder
         val comics = items[position] as ComicsDetail
 
@@ -28,7 +33,8 @@ class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is ComicsDetail
 
-    class ComicsViewHolder(val binding: FragmentComicsDetailBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ComicsViewHolder(val binding: FragmentComicsDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.authors.movementMethod = LinkMovementMethod.getInstance()
             itemView.series.movementMethod = LinkMovementMethod.getInstance()

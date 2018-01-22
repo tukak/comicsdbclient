@@ -8,11 +8,10 @@ import com.google.firebase.perf.metrics.AddTrace
 import com.squareup.leakcanary.LeakCanary
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
+import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.android.bindString
 import org.koin.android.ext.android.startKoin
 import timber.log.Timber
-import io.fabric.sdk.android.Fabric
-
 
 
 class ComicsDBApplication : Application() {

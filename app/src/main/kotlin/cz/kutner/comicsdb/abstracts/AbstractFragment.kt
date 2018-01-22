@@ -32,14 +32,19 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     var visibleItemCount: Int = 0
     var totalItemCount: Int = 0
     var preloadCount: Int = 20
-    open val switcher: Switcher by lazy { Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view).addProgressView(progress_view).addErrorView(error_view).build() }
+    open val switcher: Switcher by lazy {
+        Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view)
+            .addProgressView(progress_view).addErrorView(error_view).build()
+    }
 
     private val networkModule by inject<NetworkModule>()
     val firebase by inject<FirebaseAnalytics>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_list, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
+        inflater.inflate(R.layout.fragment_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -87,7 +92,8 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
                     if (newList != null) {
                         val oldData = adapter.items
                         adapter.items = newList
-                        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
+                        val diffResult =
+                            DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
                         diffResult.dispatchUpdatesTo(adapter)
                         loading = false
                         if (firstLoad) {

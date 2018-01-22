@@ -20,8 +20,11 @@ class ComicsListFragment : AbstractFragment<Comics>() {
     override fun setupTitleAndSearchText() {
         val args = this.arguments
         if (args != null && args.containsKey(SearchManager.QUERY)) {
-            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" + args.getString(SearchManager.QUERY) + "\""
-            model.searchText = Normalizer.normalize(args.getString(SearchManager.QUERY), Normalizer.Form.NFD).replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+            (activity as AppCompatActivity).supportActionBar?.title = "Výsledek pro \"" +
+                    args.getString(SearchManager.QUERY) + "\""
+            model.searchText =
+                    Normalizer.normalize(args.getString(SearchManager.QUERY), Normalizer.Form.NFD)
+                        .replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Comicsy"
             firebase.logVisit(contentName = "Zobrazení seznamu comicsů", contentType = "Comics")

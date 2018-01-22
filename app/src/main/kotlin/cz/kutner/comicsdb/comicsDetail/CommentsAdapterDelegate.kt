@@ -10,7 +10,12 @@ import cz.kutner.comicsdb.model.Item
 
 
 class CommentsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh = holder as CommentsViewHolder
         val comment = items[position] as Comment
         vh.bind(comment)
@@ -23,7 +28,8 @@ class CommentsAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<Li
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is Comment
 
-    class CommentsViewHolder(val binding: ListItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CommentsViewHolder(val binding: ListItemCommentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {
             binding.comment = comment
             binding.executePendingBindings()

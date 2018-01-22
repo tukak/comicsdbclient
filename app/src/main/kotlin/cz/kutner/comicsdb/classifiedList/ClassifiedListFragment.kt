@@ -11,11 +11,13 @@ import cz.kutner.comicsdb.utils.logVisit
 
 class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
     init {
-        spinnerValues = arrayOf(Filter(0, "Všechny inzeráty"),
-                Filter(1, "Prodám"),
-                Filter(2, "Koupím"),
-                Filter(3, "Vyměním"),
-                Filter(10, "Ostatní"))
+        spinnerValues = arrayOf(
+            Filter(0, "Všechny inzeráty"),
+            Filter(1, "Prodám"),
+            Filter(2, "Koupím"),
+            Filter(3, "Vyměním"),
+            Filter(10, "Ostatní")
+        )
     }
 
     override fun setupRecyclerView(view: View) {

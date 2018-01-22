@@ -12,7 +12,8 @@ import kotlinx.coroutines.experimental.async
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-abstract class AbstractAndroidViewModel<Data : Item>(application: Application) : AndroidViewModel(application), KoinComponent {
+abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
+    AndroidViewModel(application), KoinComponent {
     val retrofitModule by inject<RetrofitModule>()
     var start = 0
     var count = 20
@@ -26,7 +27,7 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
         return data
     }
 
-    abstract fun getJob():Deferred<List<Data>?>
+    abstract fun getJob(): Deferred<List<Data>?>
 
     fun loadNewData() = async(UI) {
         start = 0

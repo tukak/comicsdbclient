@@ -18,7 +18,11 @@ class AuthorDetailActivity : AbstractDetailActivity<AuthorDetail>() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        firebase.logVisit(contentName = "Zobrazení detailu autora", contentType = "Autor", contentId = result.name)
+        firebase.logVisit(
+            contentName = "Zobrazení detailu autora",
+            contentType = "Autor",
+            contentId = result.name
+        )
 
     }
 }

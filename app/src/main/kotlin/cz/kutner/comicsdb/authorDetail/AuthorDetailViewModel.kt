@@ -10,7 +10,8 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-class AuthorDetailViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
+class AuthorDetailViewModel(application: Application) : AndroidViewModel(application),
+    KoinComponent {
     val retrofitModule by inject<RetrofitModule>()
 
     private var authorDetail: AuthorDetail? = null

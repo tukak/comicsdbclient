@@ -13,7 +13,12 @@ class AuthorListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is Author
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh: AuthorViewHolder = holder as AuthorViewHolder
         val author: Author = items[position] as Author
 
@@ -26,7 +31,8 @@ class AuthorListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
         return AuthorViewHolder(authorBinding)
     }
 
-    internal class AuthorViewHolder(val binding: ListItemAuthorsBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class AuthorViewHolder(val binding: ListItemAuthorsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(author: Author) {
             binding.author = author
             binding.executePendingBindings()

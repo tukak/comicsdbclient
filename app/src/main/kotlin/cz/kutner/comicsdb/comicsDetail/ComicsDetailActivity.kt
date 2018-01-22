@@ -18,7 +18,11 @@ class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         switcher.showContentView()
-        firebase.logVisit(contentName = "Zobrazení detailu komiksu", contentType = "Comics", contentId = result.name)
+        firebase.logVisit(
+            contentName = "Zobrazení detailu komiksu",
+            contentType = "Comics",
+            contentId = result.name
+        )
     }
 
 }

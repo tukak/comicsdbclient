@@ -13,7 +13,12 @@ class ClassifiedListAdapterDelegate(val inflater: LayoutInflater) : AdapterDeleg
 
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is Classified
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh: ClassifiedViewHolder = holder as ClassifiedViewHolder
         val classified: Classified = items[position] as Classified
 
@@ -25,7 +30,8 @@ class ClassifiedListAdapterDelegate(val inflater: LayoutInflater) : AdapterDeleg
         return ClassifiedViewHolder(classifiedBinding)
     }
 
-    internal class ClassifiedViewHolder(val binding: ListItemClassifiedBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class ClassifiedViewHolder(val binding: ListItemClassifiedBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(classified: Classified) {
             binding.classified = classified
             binding.executePendingBindings()

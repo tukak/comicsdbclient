@@ -12,7 +12,12 @@ import cz.kutner.comicsdb.model.Item
 class ForumListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is ForumEntry
 
-    override fun onBindViewHolder(items: List<Item>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        items: List<Item>,
+        position: Int,
+        holder: RecyclerView.ViewHolder,
+        payloads: MutableList<Any>
+    ) {
         val vh: ForumEntryViewHolder = holder as ForumEntryViewHolder
         val forumEntry: ForumEntry = items[position] as ForumEntry
         vh.bind(forumEntry)
@@ -23,7 +28,8 @@ class ForumListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<L
         return ForumEntryViewHolder(forumBinding)
     }
 
-    internal class ForumEntryViewHolder(val binding: ListItemForumBinding) : RecyclerView.ViewHolder(binding.root) {
+    internal class ForumEntryViewHolder(val binding: ListItemForumBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(forumEntry: ForumEntry) {
             binding.forumEntry = forumEntry
             binding.executePendingBindings()

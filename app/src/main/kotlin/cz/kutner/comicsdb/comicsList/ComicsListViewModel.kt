@@ -7,8 +7,10 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 
-class ComicsListViewModel(application: Application) : AbstractAndroidViewModel<Comics>(application) {
+class ComicsListViewModel(application: Application) :
+    AbstractAndroidViewModel<Comics>(application) {
     override fun getJob(): Deferred<List<Comics>?> = async(CommonPool) {
-        retrofitModule.comicsListService.comicsList(start * count, count, searchText).execute().body()
+        retrofitModule.comicsListService.comicsList(start * count, count, searchText).execute()
+            .body()
     }
 }
