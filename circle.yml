@@ -155,5 +155,5 @@ workflows:
       - build_debug
       #- test_unit
       - test_instrumented:
-        requires:
-          - build_debug
+          requires:
+            - build_debug
