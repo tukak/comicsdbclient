@@ -86,7 +86,7 @@ jobs:
       - *restore_cache
       - run:
           name: Download dependencies
-          command: ./gradlew androidDependencies
+          command: chmod a+x gradlew; ./gradlew androidDependencies
       - *save_cache
       - *export_gservices_key
       - *decode_gservices_key
