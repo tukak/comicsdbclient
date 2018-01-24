@@ -148,11 +148,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
 
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
