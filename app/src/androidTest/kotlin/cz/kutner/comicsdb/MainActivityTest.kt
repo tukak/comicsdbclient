@@ -127,8 +127,8 @@ class MainActivityTest : KoinTest {
 
     @Test
     fun search() {
-        onView(withId(R.id.searchView)).perform(click()).perform(ViewActions.typeText("Batman #1"), ViewActions.pressKey(66))
-        onView(allOf(withId(R.id.comics_name), ViewMatchers.withText("Batman #1"))).check(matches(ViewMatchers.withText("Batman #1")))
+        onView(withId(R.id.searchView)).perform(click()).perform(ViewActions.typeText("Batman #01"), ViewActions.pressKey(66))
+        onView(allOf(withId(R.id.comics_name), ViewMatchers.withText("Batman #01"))).check(matches(ViewMatchers.withText("Batman #01")))
     }
 
     @Test
