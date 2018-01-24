@@ -130,13 +130,13 @@ jobs:
       - *decode_gcloud_key
       - run:
           name: Set Google Cloud target project
-          command: gcloud config set project newspaper-84169
+          command: gcloud config set project comicsdbclient-a3fa8
       - run:
           name: Authenticate with Google Cloud
-          command: gcloud auth activate-service-account firebase-adminsdk-p9qvk@newspaper-84169.iam.gserviceaccount.com --key-file ${HOME}/client-secret.json
+          command: gcloud auth activate-service-account firebase-adminsdk-0x8cx@comicsdbclient-a3fa8.iam.gserviceaccount.com --key-file ${HOME}/client-secret.json
       - run:
           name: Run instrumented test on Firebase Test Lab
-          command: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/mobile-debug.apk --test app/build/outputs/apk/androidTest/debug/mobile-debug-androidTest.apk --device model=Nexus5X,version=26,locale=en_US,orientation=portrait --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec --directories-to-pull=/sdcard/tmp --timeout 20m
+          command: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk --device model=Nexus5X,version=26,locale=en_US,orientation=portrait --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec --directories-to-pull=/sdcard/tmp --timeout 20m
       - run:
           name: Create directory to store test results
           command: mkdir firebase
