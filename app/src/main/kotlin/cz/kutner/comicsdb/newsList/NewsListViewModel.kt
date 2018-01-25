@@ -9,7 +9,6 @@ import kotlinx.coroutines.experimental.async
 
 class NewsListViewModel(application: Application) :
     AbstractAndroidViewModel<NewsItem>(application) {
-    override fun getJob(): Deferred<List<NewsItem>?> = async(CommonPool) {
-        retrofitModule.newsListService.listNews(start * count, count).execute().body()
-    }
+    override fun getJob(): Deferred<List<NewsItem>?> =
+        retrofitModule.newsListService.listNews(start * count, count)
 }

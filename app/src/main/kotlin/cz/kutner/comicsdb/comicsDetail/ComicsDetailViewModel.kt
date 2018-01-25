@@ -23,11 +23,12 @@ class ComicsDetailViewModel(application: Application) : AndroidViewModel(applica
         return comicsDetail!!
     }
 
-    private fun loadcomicsDetail(id: Int): ComicsDetail? {
-        return runBlocking {
+    private fun loadcomicsDetail(id: Int): ComicsDetail? =
+        runBlocking { retrofitModule.comicsDetailService.getComics(id).await() }
+        /*return runBlocking {
             async(CommonPool) {
                 return@async retrofitModule.comicsDetailService.getComics(id).execute().body()
             }.await()
         }
-    }
+    }*/
 }

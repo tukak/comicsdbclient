@@ -9,8 +9,6 @@ import kotlinx.coroutines.experimental.async
 
 class ForumListViewModel(application: Application) :
     AbstractAndroidViewModel<ForumEntry>(application) {
-    override fun getJob(): Deferred<List<ForumEntry>?> = async(CommonPool) {
-        retrofitModule.forumListService.filteredForumList(start * count, count, filterId).execute()
-            .body()
-    }
+    override fun getJob(): Deferred<List<ForumEntry>?> =
+        retrofitModule.forumListService.filteredForumList(start * count, count, filterId)
 }

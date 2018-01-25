@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.readystatesoftware.chuck.ChuckInterceptor
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
@@ -78,6 +79,7 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
     val seriesListService: SeriesListService by lazy { retrofit.create(SeriesListService::class.java) }
     val seriesDetailService: SeriesDetailService by lazy { retrofit.create(SeriesDetailService::class.java) }

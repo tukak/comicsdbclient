@@ -23,11 +23,13 @@ class AuthorDetailViewModel(application: Application) : AndroidViewModel(applica
         return authorDetail!!
     }
 
-    private fun loadAuthorDetail(id: Int): AuthorDetail? {
-        return runBlocking {
-            async(CommonPool) {
-                return@async retrofitModule.authorDetailService.authorDetail(id).execute().body()
-            }.await()
-        }
+    private fun loadAuthorDetail(id: Int): AuthorDetail? =
+        runBlocking { retrofitModule.authorDetailService.authorDetail(id).await() }
+
+    /*return runBlocking {
+        async(CommonPool) {
+            return@async retrofitModule.authorDetailService.authorDetail(id).execute().body()
+        }.await()
     }
+}*/
 }
