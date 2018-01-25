@@ -20,6 +20,7 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
     private val data = MutableLiveData<List<Data>>()
     var filterId = 0
     var searchText = ""
+
     fun getData(): LiveData<List<Data>> {
         if (data.value == null) {
             loadData()
@@ -29,20 +30,21 @@ abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
 
     abstract fun getJob(): Deferred<List<Data>?>
 
-    fun loadNewData() = async(UI) {
+    fun loadNewData() {
         start = 0
         data.value = null
         loadData()
     }
 
-    open fun loadData() = async(UI) {
+
+    fun loadData() = async(UI) {
         val newData = getJob().await()
         start++
         if (newData != null) {
             if (data.value == null) {
-                data.value = newData
+                data.postValue(newData)
             } else {
-                data.value = data.value?.plus(newData)
+                data.postValue(data.value?.plus(newData))
             }
         }
     }

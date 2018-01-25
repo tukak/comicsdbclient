@@ -5,7 +5,6 @@ import android.arch.lifecycle.AndroidViewModel
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.AuthorDetail
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.runBlocking
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
@@ -16,20 +15,7 @@ class AuthorDetailViewModel(application: Application) : AndroidViewModel(applica
 
     private var authorDetail: AuthorDetail? = null
 
-    fun getAuthorDetail(id: Int): AuthorDetail {
-        if (authorDetail == null) {
-            authorDetail = loadAuthorDetail(id)
-        }
-        return authorDetail!!
+    fun getAuthorDetail(id: Int): AuthorDetail = authorDetail ?: runBlocking(CommonPool) {
+        retrofitModule.authorDetailService.authorDetail(id).await()
     }
-
-    private fun loadAuthorDetail(id: Int): AuthorDetail? =
-        runBlocking { retrofitModule.authorDetailService.authorDetail(id).await() }
-
-    /*return runBlocking {
-        async(CommonPool) {
-            return@async retrofitModule.authorDetailService.authorDetail(id).execute().body()
-        }.await()
-    }
-}*/
 }

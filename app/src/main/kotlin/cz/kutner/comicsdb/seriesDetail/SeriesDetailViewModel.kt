@@ -5,8 +5,6 @@ import android.arch.lifecycle.AndroidViewModel
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.SeriesDetail
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.runBlocking
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
@@ -17,19 +15,8 @@ class SeriesDetailViewModel(application: Application) : AndroidViewModel(applica
 
     private var seriesDetail: SeriesDetail? = null
 
-    fun getSeriesDetail(id: Int): SeriesDetail {
-        if (seriesDetail == null) {
-            seriesDetail = loadSeriesDetail(id)
-        }
-        return seriesDetail!!
+    fun getSeriesDetail(id: Int): SeriesDetail = seriesDetail ?: runBlocking(CommonPool) {
+        retrofitModule.seriesDetailService.seriesDetail(id).await()
     }
 
-    private fun loadSeriesDetail(id: Int): SeriesDetail? =
-        runBlocking { retrofitModule.seriesDetailService.seriesDetail(id).await() }
-    /*  return runBlocking {
-            async(CommonPool) {
-                return@async retrofitModule.seriesDetailService.seriesDetail(id).execute().body()
-            }.await()
-        }
-    }*/
 }
