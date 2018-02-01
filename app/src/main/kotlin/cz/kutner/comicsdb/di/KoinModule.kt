@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
-import com.readystatesoftware.chuck.ChuckInterceptor
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
 import cz.kutner.comicsdb.classifiedList.ClassifiedListService
@@ -25,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 
 val koinModule = applicationContext {
-    provide { createOkHttpClient(androidApplication()) }
+    provide { createOkHttpClient() }
     provide { createRetrofitModule(get(), getProperty(SERVER_URL)) }
     provide { createFirebaseAnalytics(androidApplication()) }
     provide { createNetworkModule(androidApplication()) }
@@ -33,12 +32,11 @@ val koinModule = applicationContext {
 
 const val SERVER_URL = "SERVER_URL"
 
-private fun createOkHttpClient(applicationContext: Context): OkHttpClient {
+private fun createOkHttpClient(): OkHttpClient {
     val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
-            .addInterceptor(ChuckInterceptor(applicationContext))
             .build()
     }
     return okHttpClient
