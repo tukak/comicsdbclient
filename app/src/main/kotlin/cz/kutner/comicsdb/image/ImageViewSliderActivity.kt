@@ -28,7 +28,7 @@ class ImageViewSliderActivity : AppCompatActivity() {
     }
 
     companion object {
-        val IMAGES: String = "cz.kutner.comicsdbclient.comicsdbclient.images"
-        val POSTITION: String = "cz.kutner.comicsdbclient.comicsdbclient.image_position"
+        const val IMAGES: String = "cz.kutner.comicsdbclient.comicsdbclient.images"
+        const val POSTITION: String = "cz.kutner.comicsdbclient.comicsdbclient.image_position"
     }
 }

@@ -25,7 +25,7 @@ class ImageViewFragment : Fragment() {
         inflater.inflate(R.layout.fragment_image_view, null)
 
     companion object {
-        val IMAGE = "IMAGE"
+        const val IMAGE = "IMAGE"
         fun newInstance(image: Image): ImageViewFragment {
             val args = Bundle()
             args.putParcelable(IMAGE, image)
