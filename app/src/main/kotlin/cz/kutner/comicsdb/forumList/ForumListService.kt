@@ -2,7 +2,6 @@ package cz.kutner.comicsdb.forumList
 
 import cz.kutner.comicsdb.model.ForumEntry
 import kotlinx.coroutines.experimental.Deferred
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
