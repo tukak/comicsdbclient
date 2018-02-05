@@ -1,18 +1,19 @@
 package cz.kutner.comicsdb.forumList
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
 class ForumListFragment : AbstractFragmentSpinner<ForumEntry>() {
     val retrofitModule by inject<RetrofitModule>()
+    override val model: ForumListViewModel by viewModel()
+    override val adapter by lazy { ForumListAdapter(layoutInflater, data) }
 
     init {
         spinnerValues = arrayOf(
@@ -30,12 +31,6 @@ class ForumListFragment : AbstractFragmentSpinner<ForumEntry>() {
             Filter(8, "Srazy, cony, festivaly"),
             Filter(7, "Stripy, jouky, fejky :)")
         )
-    }
-
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(ForumListViewModel::class.java)
-        adapter = ForumListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
     }
 
     override fun setupTitleAndSearchText() {

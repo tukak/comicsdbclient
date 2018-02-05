@@ -1,20 +1,15 @@
 package cz.kutner.comicsdb.newsList
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 
 class NewsListFragment : AbstractFragment<NewsItem>() {
-
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
-        adapter = NewsListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
-    }
+    override val model: NewsListViewModel by viewModel()
+    override val adapter by lazy { NewsListAdapter(layoutInflater, data) }
 
     override fun setupTitleAndSearchText() {
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"

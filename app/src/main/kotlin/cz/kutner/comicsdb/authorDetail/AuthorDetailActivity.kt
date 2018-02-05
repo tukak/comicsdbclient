@@ -1,15 +1,15 @@
 package cz.kutner.comicsdb.authorDetail
 
-import android.arch.lifecycle.ViewModelProviders
 import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.koin.android.architecture.ext.viewModel
 
 class AuthorDetailActivity : AbstractDetailActivity<AuthorDetail>() {
 
-    val model by lazy { ViewModelProviders.of(this).get(AuthorDetailViewModel::class.java) }
+    val model: AuthorDetailViewModel by viewModel()
 
     override fun loadData() {
         val result = model.getAuthorDetail(id)

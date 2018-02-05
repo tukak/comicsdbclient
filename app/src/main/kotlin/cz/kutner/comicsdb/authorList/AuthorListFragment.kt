@@ -8,15 +8,12 @@ import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 import java.text.Normalizer
 
 class AuthorListFragment : AbstractFragment<Author>() {
-
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(AuthorListViewModel::class.java)
-        adapter = AuthorListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
-    }
+    override val model: AuthorListViewModel by viewModel()
+    override val adapter by lazy { AuthorListAdapter(layoutInflater, data) }
 
     override fun setupTitleAndSearchText() {
         val args = this.arguments

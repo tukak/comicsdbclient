@@ -1,15 +1,17 @@
 package cz.kutner.comicsdb.classifiedList
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 
 class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
+    override val model: ClassifiedListViewModel by viewModel()
+    override val adapter by lazy { ClassifiedListAdapter(layoutInflater, data) }
+
     init {
         spinnerValues = arrayOf(
             Filter(0, "Všechny inzeráty"),
@@ -18,12 +20,6 @@ class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
             Filter(3, "Vyměním"),
             Filter(10, "Ostatní")
         )
-    }
-
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(ClassifiedListViewModel::class.java)
-        adapter = ClassifiedListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
     }
 
     override fun setupTitleAndSearchText() {

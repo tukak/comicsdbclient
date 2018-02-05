@@ -24,8 +24,8 @@ import timber.log.Timber
 
 abstract class AbstractFragment<Data : Item> : Fragment() {
     var data: MutableList<Data> = ArrayList()
-    lateinit var adapter: AbstractListAdapter
-    lateinit var model: AbstractAndroidViewModel<Data>
+    abstract val adapter: AbstractListAdapter
+    abstract val model: AbstractAndroidViewModel<Data>
     var loading = true
     var firstLoad = true
     var pastVisibleItems: Int = 0

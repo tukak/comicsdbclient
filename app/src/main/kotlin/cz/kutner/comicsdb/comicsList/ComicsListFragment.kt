@@ -1,21 +1,17 @@
 package cz.kutner.comicsdb.comicsList
 
 import android.app.SearchManager
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Comics
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 import java.text.Normalizer
 
 class ComicsListFragment : AbstractFragment<Comics>() {
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(ComicsListViewModel::class.java)
-        adapter = ComicsListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
-    }
+    override val model: ComicsListViewModel by viewModel()
+    override val adapter by lazy { ComicsListAdapter(layoutInflater, data) }
 
     override fun setupTitleAndSearchText() {
         val args = this.arguments

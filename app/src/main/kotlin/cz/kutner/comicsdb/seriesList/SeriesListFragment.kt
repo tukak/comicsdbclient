@@ -1,22 +1,17 @@
 package cz.kutner.comicsdb.seriesList
 
 import android.app.SearchManager
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.logVisit
+import org.koin.android.architecture.ext.viewModel
 import java.text.Normalizer
 
 class SeriesListFragment : AbstractFragment<Series>() {
-
-    override fun setupRecyclerView(view: View) {
-        model = ViewModelProviders.of(this).get(SeriesListViewModel::class.java)
-        adapter = SeriesListAdapter(layoutInflater, data)
-        super.setupRecyclerView(view)
-    }
+    override val model: SeriesListViewModel by viewModel()
+    override val adapter by lazy { SeriesListAdapter(layoutInflater, data) }
 
     override fun setupTitleAndSearchText() {
         val args = this.arguments
