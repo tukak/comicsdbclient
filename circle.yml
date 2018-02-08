@@ -12,6 +12,7 @@ references:
       paths:
         - ~/.gradle
         - ~/.m2
+        - ~/.android
 
   ## Workspace
   workspace: &workspace
