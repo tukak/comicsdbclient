@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
+import androidx.os.bundleOf
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import kotlinx.android.synthetic.main.activity_tabbed.*
@@ -23,8 +24,7 @@ class SearchActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(pager)
         val query = intent.getStringExtra(SearchManager.QUERY)
 
-        val bundle = Bundle()
-        bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, query)
+        val bundle = bundleOf(FirebaseAnalytics.Param.SEARCH_TERM to query)
         firebase.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
 
     }

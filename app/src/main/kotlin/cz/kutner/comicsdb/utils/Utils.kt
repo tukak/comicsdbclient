@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
+import androidx.os.bundleOf
 import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 
@@ -12,10 +13,11 @@ fun ImageView.loadUrl(url: String) {
 }
 
 fun FirebaseAnalytics.logVisit(contentName: String, contentType: String, contentId: String = "") {
-    val bundle = Bundle()
-    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, contentId)
-    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType)
-    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, contentName)
+    val bundle = bundleOf(
+        FirebaseAnalytics.Param.ITEM_ID to contentId,
+        FirebaseAnalytics.Param.CONTENT_TYPE to contentType,
+        FirebaseAnalytics.Param.ITEM_NAME to contentName
+    )
     this.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
 }
 

@@ -147,6 +147,8 @@ dependencies {
     implementation "org.koin:koin-android-architecture:$koin_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
 
+    implementation 'androidx.core:core-ktx:0.1'
+
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     implementation 'com.jakewharton.timber:timber:4.6.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'

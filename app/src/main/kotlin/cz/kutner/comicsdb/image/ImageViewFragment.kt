@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.loadUrl
@@ -27,8 +28,7 @@ class ImageViewFragment : Fragment() {
     companion object {
         const val IMAGE = "IMAGE"
         fun newInstance(image: Image): ImageViewFragment {
-            val args = Bundle()
-            args.putParcelable(IMAGE, image)
+            val args = bundleOf(IMAGE to image)
             val fragment = ImageViewFragment()
             fragment.arguments = args
             return fragment

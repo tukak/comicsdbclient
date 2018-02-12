@@ -19,9 +19,7 @@ class NewsListFragment : AbstractFragment<NewsItem>() {
     companion object {
 
         fun newInstance(): NewsListFragment {
-
             val args = Bundle()
-
             val fragment = NewsListFragment()
             fragment.arguments = args
             return fragment
