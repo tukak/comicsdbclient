@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.forumList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
-import cz.kutner.comicsdb.di.RetrofitModule
+import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit

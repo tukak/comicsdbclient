@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.utils.NetworkModule
+import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.ItemDiffCallback
 import kotlinx.android.synthetic.main.fragment_list.*

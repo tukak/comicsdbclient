@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.authorDetail
 
 import android.arch.lifecycle.ViewModel
-import cz.kutner.comicsdb.di.RetrofitModule
+import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.AuthorDetail
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.runBlocking

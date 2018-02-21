@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.seriesList
 
 import cz.kutner.comicsdb.abstracts.AbstractAndroidViewModel
-import cz.kutner.comicsdb.di.RetrofitModule
+import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Series
 import kotlinx.coroutines.experimental.Deferred
 

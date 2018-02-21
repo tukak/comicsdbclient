@@ -22,7 +22,8 @@ import cz.kutner.comicsdb.seriesDetail.SeriesDetailService
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailViewModel
 import cz.kutner.comicsdb.seriesList.SeriesListService
 import cz.kutner.comicsdb.seriesList.SeriesListViewModel
-import cz.kutner.comicsdb.utils.NetworkModule
+import cz.kutner.comicsdb.network.NetworkModule
+import cz.kutner.comicsdb.network.RetrofitModule
 import okhttp3.OkHttpClient
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeUnit
 
 val koinModule = applicationContext {
     provide { createOkHttpClient() }
-    provide { createRetrofitModule(get(), getProperty(SERVER_URL)) }
+    provide { RetrofitModule(get(), getProperty(SERVER_URL)) }
     provide { createFirebaseAnalytics(get()) }
     provide { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
@@ -59,9 +60,6 @@ private fun createOkHttpClient(): OkHttpClient {
     return okHttpClient
 }
 
-private fun createRetrofitModule(okHttpClient: OkHttpClient, baseUrl: String): RetrofitModule =
-    RetrofitModule(okHttpClient, baseUrl)
-
 private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAnalytics {
     val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(
@@ -69,27 +67,4 @@ private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAn
         )
     }
     return firebaseAnalytics
-}
-
-/*TODO přesunout*/
-class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
-    private val gson = GsonBuilder()
-        .setLenient()
-        .setDateFormat("yyyy-MM-dd HH:mm:ss")
-        .create()
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .build()
-    val seriesListService: SeriesListService by lazy { retrofit.create(SeriesListService::class.java) }
-    val seriesDetailService: SeriesDetailService by lazy { retrofit.create(SeriesDetailService::class.java) }
-    val authorDetailService: AuthorDetailService by lazy { retrofit.create(AuthorDetailService::class.java) }
-    val authorListService: AuthorListService by lazy { retrofit.create(AuthorListService::class.java) }
-    val classifiedListService: ClassifiedListService by lazy { retrofit.create(ClassifiedListService::class.java) }
-    val comicsDetailService: ComicsDetailService by lazy { retrofit.create(ComicsDetailService::class.java) }
-    val comicsListService: ComicsListService by lazy { retrofit.create(ComicsListService::class.java) }
-    val forumListService: ForumListService by lazy { retrofit.create(ForumListService::class.java) }
-    val newsListService: NewsListService by lazy { retrofit.create(NewsListService::class.java) }
 }
