@@ -1,8 +1,6 @@
 package cz.kutner.comicsdb.di
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
@@ -24,9 +22,9 @@ import cz.kutner.comicsdb.seriesDetail.SeriesDetailService
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailViewModel
 import cz.kutner.comicsdb.seriesList.SeriesListService
 import cz.kutner.comicsdb.seriesList.SeriesListViewModel
+import cz.kutner.comicsdb.utils.NetworkModule
 import okhttp3.OkHttpClient
 import org.koin.android.architecture.ext.viewModel
-import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module.applicationContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -71,16 +69,6 @@ private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAn
         )
     }
     return firebaseAnalytics
-}
-
-/*TODO přesunout*/
-class NetworkModule(private val applicationContext: Context) {
-    fun isConnected(): Boolean {
-        val cm =
-            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork = cm.activeNetworkInfo
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
-    }
 }
 
 /*TODO přesunout*/

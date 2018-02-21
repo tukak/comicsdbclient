@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.di.NetworkModule
+import cz.kutner.comicsdb.utils.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
