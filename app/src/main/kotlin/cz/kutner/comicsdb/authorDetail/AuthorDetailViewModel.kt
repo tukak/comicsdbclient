@@ -1,17 +1,12 @@
 package cz.kutner.comicsdb.authorDetail
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.ViewModel
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.AuthorDetail
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.runBlocking
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
 
-class AuthorDetailViewModel(application: Application) : AndroidViewModel(application),
-    KoinComponent {
-    val retrofitModule by inject<RetrofitModule>()
+class AuthorDetailViewModel(val retrofitModule: RetrofitModule) : ViewModel() {
 
     private var authorDetail: AuthorDetail? = null
 

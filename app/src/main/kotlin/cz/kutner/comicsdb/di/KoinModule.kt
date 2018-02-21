@@ -36,8 +36,8 @@ import java.util.concurrent.TimeUnit
 val koinModule = applicationContext {
     provide { createOkHttpClient() }
     provide { createRetrofitModule(get(), getProperty(SERVER_URL)) }
-    provide { createFirebaseAnalytics(androidApplication()) }
-    provide { createNetworkModule(androidApplication()) }
+    provide { createFirebaseAnalytics(get()) }
+    provide { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
     viewModel { AuthorListViewModel(get()) }
     viewModel { ClassifiedListViewModel(get()) }
@@ -72,9 +72,6 @@ private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAn
     }
     return firebaseAnalytics
 }
-
-private fun createNetworkModule(androidApplication: Application): NetworkModule =
-    NetworkModule(androidApplication)
 
 /*TODO přesunout*/
 class NetworkModule(private val applicationContext: Context) {

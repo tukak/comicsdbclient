@@ -1,20 +1,16 @@
 package cz.kutner.comicsdb.abstracts
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import cz.kutner.comicsdb.di.RetrofitModule
 import cz.kutner.comicsdb.model.Item
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
 
-abstract class AbstractAndroidViewModel<Data : Item>(application: Application) :
-    AndroidViewModel(application), KoinComponent {
-    val retrofitModule by inject<RetrofitModule>()
+abstract class AbstractAndroidViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
+    ViewModel() {
     var start = 0
     var count = 20
     private val data = MutableLiveData<List<Data>>()
