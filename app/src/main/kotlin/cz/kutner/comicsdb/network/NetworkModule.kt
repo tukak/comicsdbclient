@@ -3,7 +3,6 @@ package cz.kutner.comicsdb.network
 import android.content.Context
 import android.net.ConnectivityManager
 
-/*TODO přesunout*/
 class NetworkModule(private val applicationContext: Context) {
     fun isConnected(): Boolean {
         val cm =
