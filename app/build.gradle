@@ -100,14 +100,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.3"
 
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
     implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 
