@@ -24,16 +24,18 @@ import cz.kutner.comicsdb.seriesList.SeriesListService
 import cz.kutner.comicsdb.seriesList.SeriesListViewModel
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.network.RetrofitModule
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 
 val koinModule = applicationContext {
-    provide { createOkHttpClient() }
+    provide { createOkHttpClient(get()) }
     provide { RetrofitModule(get(), getProperty(SERVER_URL)) }
     provide { createFirebaseAnalytics(get()) }
     provide { NetworkModule(get()) }
@@ -50,11 +52,14 @@ val koinModule = applicationContext {
 
 const val SERVER_URL = "SERVER_URL"
 
-private fun createOkHttpClient(): OkHttpClient {
+private fun createOkHttpClient(androidApplication: Application): OkHttpClient {
+    val cacheSize = 10L * 1024L * 1024L
+    val cache = Cache(androidApplication.cacheDir, cacheSize)
     val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .cache(cache)
             .build()
     }
     return okHttpClient
