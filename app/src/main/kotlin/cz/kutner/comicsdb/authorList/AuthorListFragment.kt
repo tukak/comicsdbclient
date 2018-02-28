@@ -1,10 +1,8 @@
 package cz.kutner.comicsdb.authorList
 
 import android.app.SearchManager
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.logVisit

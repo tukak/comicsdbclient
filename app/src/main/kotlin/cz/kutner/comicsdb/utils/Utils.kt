@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.utils
 
-import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
