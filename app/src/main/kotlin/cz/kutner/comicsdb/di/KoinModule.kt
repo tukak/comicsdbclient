@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit
 
 
 val koinModule = applicationContext {
-    provide { createOkHttpClient(get()) }
-    provide { RetrofitModule(get(), getProperty(SERVER_URL)) }
-    provide { createFirebaseAnalytics(get()) }
-    provide { NetworkModule(get()) }
+    bean { createOkHttpClient(get()) }
+    bean { RetrofitModule(get(), getProperty(SERVER_URL)) }
+    bean { createFirebaseAnalytics(get()) }
+    bean { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
     viewModel { AuthorListViewModel(get()) }
     viewModel { ClassifiedListViewModel(get()) }
