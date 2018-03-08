@@ -94,8 +94,6 @@ dependencies {
         transitive = true
     }
 
-
-   // implementation 'com.github.jkwiecien:Switcher:2.1.5'
     implementation 'com.github.tukak:Switcher:2.3.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
