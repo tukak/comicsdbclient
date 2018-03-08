@@ -2,17 +2,24 @@ package cz.kutner.comicsdb.helpers
 
 import android.content.Intent
 import android.databinding.BindingAdapter
+import android.text.Html
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ImageSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import cz.kutner.comicsdb.authorDetail.AuthorDetailActivity
+import cz.kutner.comicsdb.image.ImageViewSliderActivity
 import cz.kutner.comicsdb.model.ComicsDetail
+import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
+import cz.kutner.comicsdb.utils.PicassoImageGetter
 import cz.kutner.comicsdb.utils.fromHtml
 import cz.kutner.comicsdb.utils.loadUrl
+import java.util.*
 
 
 @BindingAdapter("imageUrl")
@@ -20,6 +27,40 @@ fun bitmapSource(view: ImageView, uri: String?) {
     if (uri != null) {
         view.loadUrl(uri)
     }
+}
+
+@BindingAdapter("htmlWithImage")
+fun htmlWithImage(textView: TextView, string: String) {
+    val html: Spannable =
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Html.fromHtml(
+                string,
+                Html.FROM_HTML_MODE_LEGACY,
+                PicassoImageGetter(textView),
+                null
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            Html.fromHtml(string, PicassoImageGetter(textView), null)
+        } as Spannable
+    for (span in html.getSpans(0, html.length, ImageSpan::class.java)) {
+        val flags = html.getSpanFlags(span)
+        val start = html.getSpanStart(span)
+        val end = html.getSpanEnd(span)
+        html.setSpan(object : ClickableSpan() {
+            override fun onClick(view: View) {
+                val allImages: ArrayList<Image> = ArrayList()
+                allImages.add(Image(span.source, span.source, "Obrázek"))
+                val intent = Intent(view.context, ImageViewSliderActivity::class.java)
+                intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
+                intent.putExtra(ImageViewSliderActivity.POSTITION, 0)
+                view.context.startActivity(intent)
+            }
+        }, start, end, flags)
+    }
+    textView.text = html
+    textView.isClickable = true
+    textView.movementMethod = LinkMovementMethod.getInstance()
 }
 
 @BindingAdapter("spannableSeries")

@@ -4,11 +4,11 @@ import android.text.Html
 import android.text.Spanned
 import android.widget.ImageView
 import androidx.os.bundleOf
-import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.squareup.picasso.Picasso
 
 fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load(url).into(this)
+    if (url.isNotBlank()) Picasso.get().load(url).into(this)
 }
 
 fun FirebaseAnalytics.logVisit(contentName: String, contentType: String, contentId: String = "") {
