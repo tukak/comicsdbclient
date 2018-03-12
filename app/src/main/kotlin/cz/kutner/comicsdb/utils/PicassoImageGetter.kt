@@ -1,5 +1,6 @@
 package cz.kutner.comicsdb.utils
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -17,18 +18,18 @@ class PicassoImageGetter(val textView: TextView) :
 
     override fun getDrawable(source: String): Drawable {
 
-        val drawable = BitmapDrawablePlaceHolder()
+        val drawable = BitmapDrawablePlaceHolder(textView.context.resources, IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(64).toBitmap())
 
         Picasso.get()
             .load(source)
             .placeholder(
                 IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(
-                    40
+                    64
                 )
             )
             .error(
                 IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_broken_image).sizeDp(
-                    40
+                    64
                 )
             )
             .into(drawable)
@@ -36,7 +37,7 @@ class PicassoImageGetter(val textView: TextView) :
         return drawable
     }
 
-    private inner class BitmapDrawablePlaceHolder : BitmapDrawable(), Target {
+    private inner class BitmapDrawablePlaceHolder(resources:Resources, bitmap: Bitmap) : BitmapDrawable(resources, bitmap), Target {
 
         private var drawable: Drawable? = null
             set(value) {
@@ -63,13 +64,10 @@ class PicassoImageGetter(val textView: TextView) :
 
                 setBounds(0, 0, textView.width, height) //set to full width
 
-                val halfOfPlaceHolderWidth = (bounds.right.toFloat() / 2f).toInt()
-                val halfOfImageWidth = (width.toFloat() / 2f).toInt()
-
                 drawable!!.setBounds(
-                    halfOfPlaceHolderWidth - halfOfImageWidth, //centering an image
                     0,
-                    halfOfPlaceHolderWidth + halfOfImageWidth,
+                    0,
+                    width,
                     height
                 )
 
