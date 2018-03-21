@@ -4,7 +4,7 @@ buildscript {
     ext.kotlin_version = '1.2.30'
     ext.support_library_version = '27.1.0'
     ext.firebase_version = '11.8.0'
-    ext.gradle_plugin_version = '3.1.0-rc02'
+    ext.gradle_plugin_version = '3.1.0-rc03'
     ext.koin_version = '0.9.1'
     repositories {
         jcenter()
