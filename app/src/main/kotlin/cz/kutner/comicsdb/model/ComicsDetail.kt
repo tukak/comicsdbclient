@@ -30,7 +30,7 @@ data class ComicsDetail(
 ) : Item {
     fun getNotesFromHtml(): Spanned = notes.fromHtml()
     fun getDescriptionFromHtml(): Spanned = description.fromHtml()
-    fun getOriginals(): String {
+    fun getOriginals(): Spanned {
         var text = ""
         if (originalName != "") {
             text = "Původně: $originalName"
@@ -38,6 +38,7 @@ data class ComicsDetail(
                 text = "$text - $originalPublisher"
             }
         }
-        return text
+        return text.fromHtml()
     }
+    fun getNameFromHtml(): Spanned? = name.fromHtml()
 }

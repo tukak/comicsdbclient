@@ -48,7 +48,7 @@
             android:layout_marginTop="0dp"
             android:paddingEnd="5dp"
             android:paddingTop="5dp"
-            android:text="@{comicsDetail.name}"
+            android:text="@{comicsDetail.getNameFromHtml()}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#808080"
             app:layout_constraintHorizontal_bias="0.0"
