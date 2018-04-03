@@ -146,8 +146,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:0.2'
 
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
-    implementation 'com.jakewharton.timber:timber:4.6.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
+    implementation 'com.jakewharton.timber:timber:4.7.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta6'
 
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
 }
