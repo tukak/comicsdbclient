@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.model
 
 import android.text.Spanned
-import cz.kutner.comicsdb.utils.fromHtml
+import androidx.core.text.parseAsHtml
 import java.util.*
 
 data class AuthorDetail(
@@ -13,7 +13,7 @@ data class AuthorDetail(
     private val notes: String,
     val photoUrl: String
 ) : Item {
-    fun getNameFromHtml(): Spanned? = name.fromHtml()
-    fun getBioFromHtml(): Spanned? = bio.fromHtml()
-    fun getNotesFromHtml(): Spanned? = notes.fromHtml()
+    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
+    fun getBioFromHtml(): Spanned? = bio.parseAsHtml()
+    fun getNotesFromHtml(): Spanned? = notes.parseAsHtml()
 }

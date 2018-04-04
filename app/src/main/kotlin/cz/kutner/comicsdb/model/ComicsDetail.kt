@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.model
 
 import android.text.Spanned
-import cz.kutner.comicsdb.utils.fromHtml
+import androidx.core.text.parseAsHtml
 import java.util.*
 
 data class ComicsDetail(
@@ -28,8 +28,8 @@ data class ComicsDetail(
     val cover: Image,
     val samples: ArrayList<Image>
 ) : Item {
-    fun getNotesFromHtml(): Spanned = notes.fromHtml()
-    fun getDescriptionFromHtml(): Spanned = description.fromHtml()
+    fun getNotesFromHtml(): Spanned = notes.parseAsHtml()
+    fun getDescriptionFromHtml(): Spanned = description.parseAsHtml()
     fun getOriginals(): Spanned {
         var text = ""
         if (originalName != "") {
@@ -38,7 +38,7 @@ data class ComicsDetail(
                 text = "$text - $originalPublisher"
             }
         }
-        return text.fromHtml()
+        return text.parseAsHtml()
     }
-    fun getNameFromHtml(): Spanned? = name.fromHtml()
+    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
 }

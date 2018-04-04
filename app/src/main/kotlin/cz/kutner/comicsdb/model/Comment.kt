@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.model
 
 import android.text.Spanned
-import cz.kutner.comicsdb.utils.fromHtml
+import androidx.core.text.parseAsHtml
 import java.util.*
 
 data class Comment(
@@ -11,5 +11,5 @@ data class Comment(
     val time: Date,
     val iconUrl: String
 ) : Item {
-    fun getTextFromHtml(): Spanned = text.fromHtml()
+    fun getTextFromHtml(): Spanned = text.parseAsHtml()
 }

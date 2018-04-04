@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.os.bundleOf
+import androidx.core.os.bundleOf
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.loadUrl
