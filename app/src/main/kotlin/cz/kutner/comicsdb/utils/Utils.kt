@@ -1,9 +1,7 @@
 package cz.kutner.comicsdb.utils
 
-import android.text.Html
-import android.text.Spanned
 import android.widget.ImageView
-import androidx.os.bundleOf
+import androidx.core.os.bundleOf
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.picasso.Picasso
 
@@ -18,13 +16,4 @@ fun FirebaseAnalytics.logVisit(contentName: String, contentType: String, content
         FirebaseAnalytics.Param.ITEM_NAME to contentName
     )
     this.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
-}
-
-fun String.fromHtml(): Spanned {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-        return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
-    } else {
-        @Suppress("DEPRECATION")
-        return Html.fromHtml(this)
-    }
 }

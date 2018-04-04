@@ -85,8 +85,8 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$support_library_version"
     implementation "com.android.support:design:$support_library_version"
 
-    implementation "android.arch.lifecycle:livedata:1.1.0"
-    implementation "android.arch.lifecycle:viewmodel:1.1.0"
+    implementation "android.arch.lifecycle:livedata:1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
 
     implementation "com.google.firebase:firebase-core:$firebase_version"
     implementation "com.google.firebase:firebase-perf:$firebase_version"
@@ -143,7 +143,7 @@ dependencies {
     implementation "org.koin:koin-android-architecture:$koin_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
 
-    implementation 'androidx.core:core-ktx:0.2'
+    implementation 'androidx.core:core-ktx:0.3'
 
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     implementation 'com.jakewharton.timber:timber:4.7.0'
