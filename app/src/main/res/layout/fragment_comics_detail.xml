@@ -169,13 +169,12 @@
             android:id="@+id/sample6"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 6)}"
             app:imageUrl='@{comicsDetail.samples.size > 5 ? comicsDetail.samples[5].previewUrl : ""}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sample5"
-            app:layout_constraintTop_toBottomOf="@+id/cover"
+            app:layout_constraintTop_toTopOf="@+id/barrier"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -227,6 +226,14 @@
             app:spannableAuthors="@{comicsDetail}"
             tools:ignore="RtlHardcoded"
             tools:text="Autoři" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="cover,include"
+            tools:layout_editor_absoluteX="376dp" />
 
 
     </android.support.constraint.ConstraintLayout>
