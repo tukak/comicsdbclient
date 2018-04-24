@@ -99,12 +99,12 @@
             android:id="@+id/sample1"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 1)}"
             app:imageUrl='@{comicsDetail.samples.size > 0 ? comicsDetail.samples[0].previewUrl : ""}'
-            app:layout_constraintEnd_toStartOf="@+id/sample2"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/sample2"
+            app:layout_constraintTop_toBottomOf="@+id/cover"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -113,12 +113,11 @@
             android:id="@+id/sample2"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginStart="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 2)}"
             app:imageUrl='@{comicsDetail.samples.size > 1 ? comicsDetail.samples[1].previewUrl : ""}'
-            app:layout_constraintEnd_toStartOf="@+id/sample3"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sample1"
-            app:layout_constraintTop_toTopOf="@+id/sample3"
+            app:layout_constraintTop_toTopOf="@+id/sample1"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -127,12 +126,11 @@
             android:id="@+id/sample3"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginStart="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 3)}"
             app:imageUrl='@{comicsDetail.samples.size > 2 ? comicsDetail.samples[2].previewUrl : ""}'
-            app:layout_constraintEnd_toStartOf="@+id/sample4"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sample2"
-            app:layout_constraintTop_toTopOf="@+id/sample4"
+            app:layout_constraintTop_toTopOf="@+id/sample2"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -141,12 +139,11 @@
             android:id="@+id/sample4"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginTop="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 4)}"
             app:imageUrl='@{comicsDetail.samples.size > 3 ? comicsDetail.samples[3].previewUrl : ""}'
-            app:layout_constraintEnd_toStartOf="@+id/sample5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/sample3"
-            app:layout_constraintTop_toTopOf="@+id/sample5"
+            app:layout_constraintStart_toStartOf="@+id/sample1"
+            app:layout_constraintTop_toBottomOf="@+id/sample1"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -155,12 +152,11 @@
             android:id="@+id/sample5"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginStart="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 5)}"
             app:imageUrl='@{comicsDetail.samples.size > 4 ? comicsDetail.samples[4].previewUrl : ""}'
-            app:layout_constraintEnd_toStartOf="@+id/sample6"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sample4"
-            app:layout_constraintTop_toTopOf="@+id/sample6"
+            app:layout_constraintTop_toTopOf="@+id/sample4"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -169,12 +165,11 @@
             android:id="@+id/sample6"
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginStart="8dp"
             android:onClick="@{(view) -> handlers.onClickImage(view, comicsDetail, 6)}"
             app:imageUrl='@{comicsDetail.samples.size > 5 ? comicsDetail.samples[5].previewUrl : ""}'
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sample5"
-            app:layout_constraintTop_toTopOf="@+id/barrier"
+            app:layout_constraintTop_toTopOf="@+id/sample5"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:minHeight="10dp"
             tools:minWidth="10dp" />
@@ -191,7 +186,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sample1"
+            app:layout_constraintTop_toBottomOf="@+id/barrier"
             tools:ignore="RtlHardcoded"
             tools:text="„BATMAN A ROBIN nemohou umřít!“  Temný rytíř padl, když se obětoval." />
 
@@ -232,8 +227,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="cover,include"
-            tools:layout_editor_absoluteX="376dp" />
+            app:constraint_referenced_ids="sample4,include"
+            tools:layout_editor_absoluteX="376dp"
+            tools:ignore="MissingConstraints" />
 
 
     </android.support.constraint.ConstraintLayout>
