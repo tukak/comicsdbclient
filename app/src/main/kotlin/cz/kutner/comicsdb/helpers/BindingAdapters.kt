@@ -22,8 +22,10 @@ import java.util.*
 
 
 @BindingAdapter("imageUrl")
-fun bitmapSource(view: ImageView, uri: String?) {
-    if (uri != null) {
+fun bitmapSource(view: ImageView, uri: String) {
+    if (uri.isEmpty()) {
+        view.visibility = View.GONE
+    } else {
         view.loadUrl(uri)
     }
 }
