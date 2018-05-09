@@ -68,7 +68,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
         recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 visibleItemCount = llm.childCount
                 totalItemCount = llm.itemCount
                 pastVisibleItems = llm.findFirstVisibleItemPosition()

@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb
 
-import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.IdlingPolicies
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -45,8 +45,7 @@ class MainActivityTest : KoinTest {
     fun registerIdlingResource() {
         IdlingPolicies.setIdlingResourceTimeout(120, TimeUnit.MINUTES)
         IdlingPolicies.setMasterPolicyTimeout(120, TimeUnit.MINUTES)
-        Espresso.registerIdlingResources(idlingResource)
-        //IdlingRegistry.getInstance().register(idlingResource)
+        IdlingRegistry.getInstance().register(idlingResource)
     }
 
     @Before
@@ -153,7 +152,6 @@ class MainActivityTest : KoinTest {
 
     @After
     fun unregisterIdlingResource() {
-        Espresso.unregisterIdlingResources(idlingResource)
-        //IdlingRegistry.getInstance().unregister(idlingResource)
+        IdlingRegistry.getInstance().unregister(idlingResource)
     }
 }

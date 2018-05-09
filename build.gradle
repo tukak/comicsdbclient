@@ -1,15 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.40'
+    ext.kotlin_version = '1.2.41'
     ext.support_library_version = '27.1.1'
-    ext.firebase_version = '15.0.0'
     ext.gradle_plugin_version = '3.1.2'
     ext.koin_version = '0.9.2'
     repositories {
         jcenter()
         google()
-        maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
     }
 
@@ -28,7 +26,9 @@ allprojects {
         jcenter()
         google()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
+        maven() {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
     }
 }
 
