@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/newsItemTime"
                     android:paddingTop="5dp"
-                    android:text="@{newsItem.getTextFromHtml()}"
+                    app:htmlWithImage="@{newsItem.getTextWithUrl()}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     tools:text="Vlastní text zprávy, který může být docela dost dlouhý, ale to nevadí, protože se to docela pěkně zalomí" />
 
