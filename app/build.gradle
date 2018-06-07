@@ -46,11 +46,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode getVersionCode()
         versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -152,7 +152,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
 
-    kapt "com.android.databinding:compiler:$gradle_plugin_version"
+    //kapt "com.android.databinding:compiler:$gradle_plugin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
