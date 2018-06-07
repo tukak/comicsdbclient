@@ -152,7 +152,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
 
-    //kapt "com.android.databinding:compiler:$gradle_plugin_version"
+    //annotationProcessor "com.android.databinding:compiler:$gradle_plugin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
