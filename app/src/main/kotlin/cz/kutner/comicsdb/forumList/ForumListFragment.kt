@@ -7,7 +7,7 @@ import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.android.ext.android.inject
 
 class ForumListFragment : AbstractFragmentSpinner<ForumEntry>() {

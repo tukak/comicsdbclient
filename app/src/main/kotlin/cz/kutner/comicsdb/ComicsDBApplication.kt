@@ -9,7 +9,6 @@ import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
 import io.fabric.sdk.android.Fabric
-import org.koin.android.ext.android.bindString
 import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 
@@ -19,8 +18,7 @@ class ComicsDBApplication : Application() {
     @AddTrace(name = "onCreateApplication")
     override fun onCreate() {
         super.onCreate()
-        startKoin(this, listOf(koinModule))
-        bindString(R.string.url_comicsdb, SERVER_URL)
+        startKoin(this, listOf(koinModule), extraProperties = mapOf(Pair(SERVER_URL, "https://comicsdb.cz")))
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
             Picasso.get().setIndicatorsEnabled(true)

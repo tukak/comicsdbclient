@@ -5,7 +5,7 @@ import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
 

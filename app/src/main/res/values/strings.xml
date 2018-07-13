@@ -10,7 +10,6 @@
     <string name="about_signature">Lukáš Kutner (tukak)</string>
     <string name="title_activity_comics_search">ComicsSearchActivity</string>
     <string name="cover_content_description">Obálka</string>
-    <string name="url_comicsdb">"https://comicsdb.cz"</string>
     <string name="loading_error">Nepodařilo se načíst data. Jste připojeni k Internetu?</string>
     <string name="try_again_button_text">Zkusit znovu</string>
     <string name="comics">Comicsy</string>

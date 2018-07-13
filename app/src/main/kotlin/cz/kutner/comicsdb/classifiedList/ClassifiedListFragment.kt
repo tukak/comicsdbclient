@@ -6,7 +6,7 @@ import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
     override val model: ClassifiedListViewModel by viewModel()

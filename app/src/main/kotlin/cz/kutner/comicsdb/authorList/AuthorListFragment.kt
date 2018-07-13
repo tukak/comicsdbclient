@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Author
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.Normalizer
 
 class AuthorListFragment : AbstractFragment<Author>() {

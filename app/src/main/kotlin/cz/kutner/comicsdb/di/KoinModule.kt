@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.di
 
-import android.app.Application
+import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.authorDetail.AuthorDetailViewModel
 import cz.kutner.comicsdb.authorList.AuthorListViewModel
@@ -15,16 +15,17 @@ import cz.kutner.comicsdb.seriesDetail.SeriesDetailViewModel
 import cz.kutner.comicsdb.seriesList.SeriesListViewModel
 import okhttp3.Cache
 import okhttp3.OkHttpClient
-import org.koin.android.architecture.ext.viewModel
-import org.koin.dsl.module.applicationContext
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.ext.koin.viewModel
+import org.koin.dsl.module.module
 import java.util.concurrent.TimeUnit
 
 
-val koinModule = applicationContext {
-    bean { createOkHttpClient(get()) }
-    bean { RetrofitModule(get(), getProperty(SERVER_URL)) }
-    bean { createFirebaseAnalytics(get()) }
-    bean { NetworkModule(get()) }
+val koinModule = module {
+    single { createOkHttpClient(androidContext()) }
+    single { RetrofitModule(get(), getProperty(SERVER_URL)) }
+    single { createFirebaseAnalytics(androidContext()) }
+    single { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
     viewModel { AuthorListViewModel(get()) }
     viewModel { ClassifiedListViewModel(get()) }
@@ -38,9 +39,9 @@ val koinModule = applicationContext {
 
 const val SERVER_URL = "SERVER_URL"
 
-private fun createOkHttpClient(androidApplication: Application): OkHttpClient {
+private fun createOkHttpClient(context: Context): OkHttpClient {
     val cacheSize = 10L * 1024L * 1024L
-    val cache = Cache(androidApplication.cacheDir, cacheSize)
+    val cache = Cache(context.cacheDir, cacheSize)
     val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
@@ -51,10 +52,10 @@ private fun createOkHttpClient(androidApplication: Application): OkHttpClient {
     return okHttpClient
 }
 
-private fun createFirebaseAnalytics(androidApplication: Application): FirebaseAnalytics {
+private fun createFirebaseAnalytics(context: Context): FirebaseAnalytics {
     val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(
-            androidApplication
+            context
         )
     }
     return firebaseAnalytics
