@@ -5,7 +5,7 @@ import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.SeriesDetail
 import cz.kutner.comicsdb.utils.logVisit
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeriesDetailActivity : AbstractDetailActivity<SeriesDetail>() {
     val model: SeriesDetailViewModel by viewModel()

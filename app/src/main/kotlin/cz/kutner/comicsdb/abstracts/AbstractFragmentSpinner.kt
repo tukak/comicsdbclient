@@ -34,12 +34,15 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
 
     override fun setupRecyclerView(view: View) {
         super.setupRecyclerView(view)
-        val spinnerAdapter =
-            ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, spinnerValues)
-        spinner.adapter = spinnerAdapter
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.setSelection(spinnerPosition)
-        spinner.onItemSelectedListener = ItemSelectedListener()
+        val context = this.context
+        if (context != null) {
+            val spinnerAdapter =
+                ArrayAdapter(context, android.R.layout.simple_spinner_item, spinnerValues)
+            spinner.adapter = spinnerAdapter
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.setSelection(spinnerPosition)
+            spinner.onItemSelectedListener = ItemSelectedListener()
+        }
     }
 
 

@@ -1,11 +1,11 @@
 package cz.kutner.comicsdb.newsList
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.NewsItem
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsListFragment : AbstractFragment<NewsItem>() {
     override val model: NewsListViewModel by viewModel()

@@ -5,10 +5,10 @@ import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v4.view.LayoutInflaterCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.core.view.GravityCompat
+import androidx.core.view.LayoutInflaterCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
 import com.mikepenz.iconics.IconicsDrawable

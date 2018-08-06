@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.comicsDetail
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.ComicsDetail
 import kotlinx.coroutines.experimental.CommonPool

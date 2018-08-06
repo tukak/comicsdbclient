@@ -3,8 +3,8 @@ package cz.kutner.comicsdb.abstracts
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R

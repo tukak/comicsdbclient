@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.helpers
 
 import android.content.Intent
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
@@ -38,16 +38,18 @@ fun htmlWithImage(textView: TextView, string: String) {
         val flags = html.getSpanFlags(span)
         val start = html.getSpanStart(span)
         val end = html.getSpanEnd(span)
-        html.setSpan(object : ClickableSpan() {
-            override fun onClick(view: View) {
-                val allImages: ArrayList<Image> = ArrayList()
-                allImages.add(Image(span.source, span.source, "Obrázek"))
-                val intent = Intent(view.context, ImageViewSliderActivity::class.java)
-                intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
-                intent.putExtra(ImageViewSliderActivity.POSTITION, 0)
-                view.context.startActivity(intent)
-            }
-        }, start, end, flags)
+        val source = span.source
+        if (source != null) {
+            html.setSpan(object : ClickableSpan() {
+                override fun onClick(view: View) {
+                    val allImages: ArrayList<Image> = arrayListOf(Image(source, source, "Obrázek"))
+                    val intent = Intent(view.context, ImageViewSliderActivity::class.java)
+                    intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
+                    intent.putExtra(ImageViewSliderActivity.POSTITION, 0)
+                    view.context.startActivity(intent)
+                }
+            }, start, end, flags)
+        }
     }
     textView.text = html
     textView.isClickable = true

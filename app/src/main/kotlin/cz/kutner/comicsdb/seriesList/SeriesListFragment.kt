@@ -2,11 +2,11 @@ package cz.kutner.comicsdb.seriesList
 
 import android.app.SearchManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Series
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.Normalizer
 
 class SeriesListFragment : AbstractFragment<Series>() {

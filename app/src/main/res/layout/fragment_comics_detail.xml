@@ -15,7 +15,7 @@
             type="cz.kutner.comicsdb.helpers.ClickHandlers" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -222,7 +222,7 @@
             tools:ignore="RtlHardcoded"
             tools:text="Autoři" />
 
-        <android.support.constraint.Barrier
+        <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -232,5 +232,5 @@
             tools:ignore="MissingConstraints" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

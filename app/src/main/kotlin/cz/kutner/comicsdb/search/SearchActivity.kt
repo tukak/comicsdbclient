@@ -2,8 +2,8 @@ package cz.kutner.comicsdb.search
 
 import android.app.SearchManager
 import android.os.Bundle
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R

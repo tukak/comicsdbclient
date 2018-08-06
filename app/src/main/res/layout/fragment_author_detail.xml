@@ -9,7 +9,7 @@
             type="cz.kutner.comicsdb.model.AuthorDetail" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -107,5 +107,5 @@
             tools:layout_conversion_absoluteX="0dp"
             tools:layout_conversion_absoluteY="64dp"
             tools:text="Poznámky" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

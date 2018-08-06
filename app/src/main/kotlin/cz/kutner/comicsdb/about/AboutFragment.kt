@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
@@ -57,11 +57,11 @@ class AboutFragment : MaterialAboutFragment() {
                         18
                     )
                 )
-                .setOnClickAction({
+                .setOnClickAction {
                     val i = Intent(Intent.ACTION_VIEW)
                     i.data = Uri.parse("http://comicsdb.cz/user.php?id=5953")
                     startActivity(i)
-                })
+                }
                 .build()
         )
 

@@ -1,6 +1,6 @@
 package cz.kutner.comicsdb.utils
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import cz.kutner.comicsdb.model.Item
 
 class ItemDiffCallback(private val oldList: List<Item>, private val newList: List<Item>) :

@@ -1,12 +1,12 @@
 package cz.kutner.comicsdb.classifiedList
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
     override val model: ClassifiedListViewModel by viewModel()

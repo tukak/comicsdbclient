@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.image
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import cz.kutner.comicsdb.model.Image
 import java.util.*
 
