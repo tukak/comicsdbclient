@@ -9,7 +9,7 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 
-abstract class AbstractAndroidViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
+abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {
     var start = 0
     var count = 20
