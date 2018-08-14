@@ -8,16 +8,13 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthorDetailActivity : AbstractDetailActivity<AuthorDetail>() {
+    override val model: AuthorDetailViewModel by viewModel()
 
-    val model: AuthorDetailViewModel by viewModel()
-
-    override fun loadData() {
-        val result = model.getAuthorDetail(id)
+    override fun processResult(result: AuthorDetail) {
         supportActionBar?.title = result.name.parseAsHtml()
         val adapter = AuthorDetailAdapter(layoutInflater, listOf(result) + result.comicses)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
-        switcher.showContentView()
         firebase.logVisit(
             contentName = "Zobrazení detailu autora",
             contentType = "Autor",

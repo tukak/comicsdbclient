@@ -4,25 +4,25 @@ import androidx.core.text.parseAsHtml
 import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.utils.logVisit
-import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.fragment_list.*
+
 
 class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
+    override val model: ComicsDetailViewModel by viewModel()
 
-    val model: ComicsDetailViewModel by viewModel()
-
-    override fun loadData() {
-        val result = model.getComicsDetail(id)
+    override fun processResult(result: ComicsDetail) {
         supportActionBar?.title = result.name.parseAsHtml()
-        val adapter = ComicsDetailAdapter(layoutInflater, listOf(result) + result.comments)
+        val adapter =
+            ComicsDetailAdapter(layoutInflater, listOf(result) + result.comments)
         recycler_view.adapter = adapter
         recycler_view.setHasFixedSize(true)
-        switcher.showContentView()
         firebase.logVisit(
             contentName = "Zobrazení detailu komiksu",
             contentType = "Comics",
             contentId = result.name
         )
     }
+
 
 }

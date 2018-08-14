@@ -1,17 +1,12 @@
 package cz.kutner.comicsdb.seriesDetail
 
-import androidx.lifecycle.ViewModel
-import cz.kutner.comicsdb.network.RetrofitModule
+import cz.kutner.comicsdb.abstracts.AbstractViewModel
 import cz.kutner.comicsdb.model.SeriesDetail
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.runBlocking
+import cz.kutner.comicsdb.network.RetrofitModule
+import kotlinx.coroutines.experimental.Deferred
 
-class SeriesDetailViewModel(val retrofitModule: RetrofitModule) : ViewModel() {
-
-    private var seriesDetail: SeriesDetail? = null
-
-    fun getSeriesDetail(id: Int): SeriesDetail = seriesDetail ?: runBlocking(CommonPool) {
-        retrofitModule.seriesDetailService.seriesDetail(id).await()
-    }
-
+class SeriesDetailViewModel(retrofitModule: RetrofitModule) :
+    AbstractViewModel<SeriesDetail>(retrofitModule) {
+    override fun getJob(id: Int): Deferred<SeriesDetail> =
+        retrofitModule.seriesDetailService.seriesDetail(id)
 }

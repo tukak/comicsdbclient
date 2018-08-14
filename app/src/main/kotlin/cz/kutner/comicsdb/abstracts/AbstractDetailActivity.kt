@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
+import cz.kutner.comicsdb.model.Item
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
@@ -17,11 +19,12 @@ import kotlinx.android.synthetic.main.view_error.*
 import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
+import timber.log.Timber
 
-abstract class AbstractDetailActivity<Item : Any> : AppCompatActivity() {
+abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
+    abstract val model: AbstractViewModel<Data>
 
-    lateinit var result: Item
-    val switcher: Switcher by lazy {
+    private val switcher: Switcher by lazy {
         Switcher.Builder(this).addContentView(content).addEmptyView(empty_view)
             .addProgressView(progress_view).addErrorView(error_view).build()
     }
@@ -76,9 +79,18 @@ abstract class AbstractDetailActivity<Item : Any> : AppCompatActivity() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            loadData()
+            model.getData(id).observe(this, Observer<Data> { result ->
+                try {
+                    if (result != null) {
+                        processResult(result)
+                        switcher.showContentView()
+                    }
+                } catch (e: Exception) {
+                    Timber.e(e)
+                }
+            })
         }
     }
 
-    abstract fun loadData()
+    abstract fun processResult(result: Data)
 }

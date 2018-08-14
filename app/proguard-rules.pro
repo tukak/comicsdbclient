@@ -65,8 +65,3 @@
 -keep class cz.kutner.comicsdb.model.** { *; }
 
 -dontwarn cz.kutner.comicsdb.model.**
-
-# The Android pre-handler for exceptions is loaded reflectively (via ServiceLoader).
--keep class kotlinx.coroutines.experimental.android.AndroidExceptionPreHandler { *; }
-
--keep,allowshrinking,allowoptimization class android.arch.lifecycle.*
