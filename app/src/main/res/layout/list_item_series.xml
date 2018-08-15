@@ -41,6 +41,7 @@
                     android:layout_alignParentTop="true"
                     android:text="@{series.name}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold"
                     tools:text="name" />
 
                 <TextView

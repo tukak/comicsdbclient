@@ -49,6 +49,7 @@
             android:paddingTop="5dp"
             android:text="@{comicsDetail.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
             android:textColor="#808080"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

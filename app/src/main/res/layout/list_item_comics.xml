@@ -43,6 +43,7 @@
                     android:layout_toStartOf="@+id/comics_rating"
                     android:text="@{comics.getNameFromHtml()}"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold"
                     tools:text="name" />
 
                 <TextView
