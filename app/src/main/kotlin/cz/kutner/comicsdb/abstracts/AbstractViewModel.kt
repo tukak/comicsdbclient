@@ -21,7 +21,7 @@ abstract class AbstractViewModel<Data : Item>(val retrofitModule: RetrofitModule
 
     abstract fun getJob(id: Int): Deferred<Data>
 
-    fun loadData(id: Int) = async(UI) {
+    private fun loadData(id: Int) = async(UI) {
         val newData = getJob(id).await()
         data.postValue(newData)
     }
