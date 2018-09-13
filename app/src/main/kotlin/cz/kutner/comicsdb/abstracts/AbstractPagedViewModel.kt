@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Item
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.android.Main
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
 
 abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {
@@ -33,7 +33,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     }
 
 
-    fun loadData() = async(UI) {
+    fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT, null, {
         val newData = getJob().await()
         start++
         if (newData != null) {
@@ -43,5 +43,5 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
                 data.postValue(data.value?.plus(newData))
             }
         }
-    }
+    })
 }
