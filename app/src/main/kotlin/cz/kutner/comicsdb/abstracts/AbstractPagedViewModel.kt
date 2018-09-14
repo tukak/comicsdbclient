@@ -7,7 +7,6 @@ import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Item
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.Main
-import kotlinx.coroutines.experimental.android.UI
 
 abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {
