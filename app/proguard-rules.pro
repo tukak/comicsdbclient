@@ -65,3 +65,8 @@
 -keep class cz.kutner.comicsdb.model.** { *; }
 
 -dontwarn cz.kutner.comicsdb.model.**
+
+# coroutines
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}

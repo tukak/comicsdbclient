@@ -39,12 +39,6 @@ androidExtensions {
     experimental = true
 }
 
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -100,9 +94,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.26.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.26.0-eap13"
 
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.1'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "androidx.exifinterface:exifinterface:$support_library_version"

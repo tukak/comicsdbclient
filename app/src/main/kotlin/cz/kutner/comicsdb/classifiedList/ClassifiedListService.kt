@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.classifiedList
 
 import cz.kutner.comicsdb.model.Classified
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 

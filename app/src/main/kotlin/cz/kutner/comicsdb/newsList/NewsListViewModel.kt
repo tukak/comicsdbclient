@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.newsList
 import cz.kutner.comicsdb.abstracts.AbstractPagedViewModel
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.NewsItem
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 
 class NewsListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<NewsItem>(retrofitModule) {

@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.seriesDetail
 import cz.kutner.comicsdb.abstracts.AbstractViewModel
 import cz.kutner.comicsdb.model.SeriesDetail
 import cz.kutner.comicsdb.network.RetrofitModule
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 
 class SeriesDetailViewModel(retrofitModule: RetrofitModule) :
     AbstractViewModel<SeriesDetail>(retrofitModule) {

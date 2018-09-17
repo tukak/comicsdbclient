@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.network
 
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
 import cz.kutner.comicsdb.classifiedList.ClassifiedListService

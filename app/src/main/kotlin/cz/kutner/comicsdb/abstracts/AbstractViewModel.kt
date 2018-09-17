@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.network.RetrofitModule
-import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.Main
+import kotlinx.coroutines.*
+import kotlinx.coroutines.android.Main
 
 abstract class AbstractViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {

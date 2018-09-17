@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.authorDetail
 import cz.kutner.comicsdb.abstracts.AbstractViewModel
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.network.RetrofitModule
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 
 class AuthorDetailViewModel(retrofitModule: RetrofitModule) :
     AbstractViewModel<AuthorDetail>(retrofitModule) {

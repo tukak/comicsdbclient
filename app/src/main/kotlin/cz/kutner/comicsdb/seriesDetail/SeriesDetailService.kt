@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb.seriesDetail
 
 import cz.kutner.comicsdb.model.SeriesDetail
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
