@@ -49,7 +49,7 @@ references:
   gcloud_config: &gcloud_config
     working_directory: *workspace
     docker:
-      - image: google/cloud-sdk:latest
+      - image: google/cloud-sdk@sha256:e5e691e48b47a9976c2183edae53531b642ca59f93706c9ef1ff28ecb7e04022K
     environment:
       TERM: dumb
 
