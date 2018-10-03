@@ -6,7 +6,6 @@
     <string name="about_free">Aplikace je a bude poskytována zdarma, bez reklam a bez nákupů v aplikaci. Je vytvářena ve volném čase a je poskytována bez jakýchkoliv záruk.</string>
     <string name="about_first">Neoficiální klient pro Android na prohlížení <a href="http://comicsdb.cz/">ComicsDB</a>. Veškeré zobrazované údaje pocházejí z <a href="http://comicsdb.cz/">ComicsDB</a>.</string>
     <string name="about_donate">Pokud chcete, můžete přispět na samotnou <a href="http://comicsdb.cz/prispevek">ComicsDB</a>.</string>
-    <string name="about_firebase">Aplikace používá ke shromažďování dat o používání a o pádech službu <a href="https://firebase.google.com/">Firebase</a>. Jejím používáním souhlasíte s odesíláním dat do služby <a href="https://firebase.google.com/">Firebase</a>.</string>
     <string name="about_signature">Lukáš Kutner (tukak)</string>
     <string name="title_activity_comics_search">ComicsSearchActivity</string>
     <string name="cover_content_description">Obálka</string>

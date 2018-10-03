@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.NewsItem
-import cz.kutner.comicsdb.utils.logVisit
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsListFragment : AbstractFragment<NewsItem>() {
@@ -13,7 +12,6 @@ class NewsListFragment : AbstractFragment<NewsItem>() {
 
     override fun setupTitleAndSearchText() {
         (activity as AppCompatActivity).supportActionBar?.title = "Novinky"
-        firebase.logVisit(contentName = "Zobrazení novinek", contentType = "Novinky")
     }
 
     companion object {

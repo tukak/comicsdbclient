@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.model.Item
@@ -38,7 +37,6 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     }
 
     private val networkModule by inject<NetworkModule>()
-    val firebase by inject<FirebaseAnalytics>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

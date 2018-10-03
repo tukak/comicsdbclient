@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragment
 import cz.kutner.comicsdb.model.Series
-import cz.kutner.comicsdb.utils.logVisit
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.Normalizer
 
@@ -23,7 +22,6 @@ class SeriesListFragment : AbstractFragment<Series>() {
                         .replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
         } else {
             (activity as AppCompatActivity).supportActionBar?.title = "Serie"
-            firebase.logVisit(contentName = "Zobrazení seznamu sérií", contentType = "Série")
         }
     }
 

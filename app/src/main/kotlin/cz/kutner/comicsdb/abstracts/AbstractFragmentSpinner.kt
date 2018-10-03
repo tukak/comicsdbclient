@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.crashlytics.android.Crashlytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.Item
@@ -49,11 +48,6 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     private inner class ItemSelectedListener : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-            if (view == null) {
-                Crashlytics.log("Parameters are parent : $parent, pos : $pos, id : $id")
-                Crashlytics.log("Class is ${this.javaClass.canonicalName}")
-                Crashlytics.logException(Exception("View is null"))
-            }
             if (spinnerPosition != pos) {
                 model.filterId = (spinner.selectedItem as Filter).id
                 firstLoad = true

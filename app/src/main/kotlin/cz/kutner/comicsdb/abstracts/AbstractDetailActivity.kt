@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
 import androidx.lifecycle.Observer
-import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
@@ -28,7 +27,6 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
         Switcher.Builder(this).addContentView(content).addEmptyView(empty_view)
             .addProgressView(progress_view).addErrorView(error_view).build()
     }
-    val firebase by inject<FirebaseAnalytics>()
     private val networkModule by inject<NetworkModule>()
 
     val id: Int by lazy {

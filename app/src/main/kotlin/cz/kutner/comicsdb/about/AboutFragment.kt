@@ -11,16 +11,12 @@ import com.danielstone.materialaboutlibrary.MaterialAboutFragment
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.utils.logVisit
-import org.koin.android.ext.android.inject
 
 class AboutFragment : MaterialAboutFragment() {
 
-    val firebase by inject<FirebaseAnalytics>()
     override fun getMaterialAboutList(context: Context?): MaterialAboutList {
         val appCardBuilder = MaterialAboutCard.Builder()
         appCardBuilder.addItem(ConvenienceBuilder.createAppTitleItem(context))
@@ -140,24 +136,6 @@ class AboutFragment : MaterialAboutFragment() {
                 .build())
         )
 
-
-        aboutCardBuilder.addItem(
-            (MaterialAboutActionItem.Builder()
-                .text(getString(R.string.about_firebase))
-                .setOnClickAction(
-                    ConvenienceBuilder.createWebsiteOnClickAction(
-                        context,
-                        Uri.parse("https://firebase.google.com/")
-                    )
-                )
-                .icon(
-                    IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_alert_circle_o).sizeDp(
-                        18
-                    )
-                )
-                .build())
-        )
-
         return MaterialAboutList(
             appCardBuilder.build(),
             aboutCardBuilder.build(),
@@ -169,7 +147,6 @@ class AboutFragment : MaterialAboutFragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "O aplikaci"
-        firebase.logVisit(contentName = "Zobrazení O aplikaci", contentType = "Aplikace")
     }
 
     companion object {

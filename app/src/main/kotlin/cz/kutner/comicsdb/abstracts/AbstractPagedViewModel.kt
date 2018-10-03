@@ -32,7 +32,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     }
 
 
-    fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT, null, {
+    fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
         val newData = getJob().await()
         start++
         if (newData != null) {
@@ -42,5 +42,5 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
                 data.postValue(data.value?.plus(newData))
             }
         }
-    })
+    }
 }

@@ -6,7 +6,6 @@ import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.network.RetrofitModule
-import cz.kutner.comicsdb.utils.logVisit
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +34,6 @@ class ForumListFragment : AbstractFragmentSpinner<ForumEntry>() {
 
     override fun setupTitleAndSearchText() {
         (activity as AppCompatActivity).supportActionBar?.title = "Forum"
-        firebase.logVisit(contentName = "Zobrazení fór", contentType = "Fórum")
     }
 
     companion object {

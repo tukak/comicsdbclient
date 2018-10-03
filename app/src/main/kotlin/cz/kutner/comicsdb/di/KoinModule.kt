@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.di
 
 import android.content.Context
-import com.google.firebase.analytics.FirebaseAnalytics
 import cz.kutner.comicsdb.authorDetail.AuthorDetailViewModel
 import cz.kutner.comicsdb.authorList.AuthorListViewModel
 import cz.kutner.comicsdb.classifiedList.ClassifiedListViewModel
@@ -24,7 +23,6 @@ import java.util.concurrent.TimeUnit
 val koinModule = module {
     single { createOkHttpClient(androidContext()) }
     single { RetrofitModule(get(), getProperty(SERVER_URL)) }
-    single { createFirebaseAnalytics(androidContext()) }
     single { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
     viewModel { AuthorListViewModel(get()) }
@@ -50,13 +48,4 @@ private fun createOkHttpClient(context: Context): OkHttpClient {
             .build()
     }
     return okHttpClient
-}
-
-private fun createFirebaseAnalytics(context: Context): FirebaseAnalytics {
-    val firebaseAnalytics: FirebaseAnalytics by lazy {
-        FirebaseAnalytics.getInstance(
-            context
-        )
-    }
-    return firebaseAnalytics
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import cz.kutner.comicsdb.abstracts.AbstractFragmentSpinner
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Filter
-import cz.kutner.comicsdb.utils.logVisit
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
@@ -24,7 +23,6 @@ class ClassifiedListFragment : AbstractFragmentSpinner<Classified>() {
 
     override fun setupTitleAndSearchText() {
         (activity as AppCompatActivity).supportActionBar?.title = "Bazar"
-        firebase.logVisit(contentName = "Zobrazení inzerátů", contentType = "Inzerát")
     }
 
     companion object {
