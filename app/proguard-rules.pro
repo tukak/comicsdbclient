@@ -25,14 +25,6 @@
 
 -keepattributes *Annotation*
 
-#Crashlytics
--keepattributes SourceFile,LineNumberTable
--keep public class * extends java.lang.Exception
--keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
-
--dontwarn com.google.android.gms.**
-
 -dontwarn java.lang.invoke.*
 
 -dontwarn rx.internal.util.unsafe.*
