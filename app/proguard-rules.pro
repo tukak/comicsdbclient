@@ -62,3 +62,6 @@
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
+
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
