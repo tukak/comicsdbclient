@@ -21,7 +21,7 @@ class SeriesDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
         vh.bind(series)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val seriesBinding = FragmentSeriesDetailBinding.inflate(inflater, parent, false)
         return SeriesViewHolder(seriesBinding)
     }

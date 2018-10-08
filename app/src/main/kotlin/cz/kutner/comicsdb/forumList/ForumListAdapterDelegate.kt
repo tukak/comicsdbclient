@@ -23,7 +23,7 @@ class ForumListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<L
         vh.bind(forumEntry)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val forumBinding = ListItemForumBinding.inflate(inflater, parent, false)
         return ForumEntryViewHolder(forumBinding)
     }

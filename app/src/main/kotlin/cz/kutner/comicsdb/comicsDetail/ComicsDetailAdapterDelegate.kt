@@ -26,7 +26,7 @@ class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
         vh.bind(comics)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val comicsBinding = FragmentComicsDetailBinding.inflate(inflater, parent, false)
         comicsBinding.handlers = ClickHandlers()
         return ComicsViewHolder(comicsBinding)

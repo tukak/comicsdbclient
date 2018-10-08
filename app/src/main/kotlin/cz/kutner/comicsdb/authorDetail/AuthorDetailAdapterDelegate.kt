@@ -24,7 +24,7 @@ class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
         vh.bind(author)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val authorBinding = FragmentAuthorDetailBinding.inflate(inflater, parent, false)
         return AuthorViewHolder(authorBinding)
     }

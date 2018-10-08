@@ -24,7 +24,7 @@ class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<Li
         vh.bind(newsItem)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val newsBinding = ListItemNewsBinding.inflate(inflater, parent, false)
         return NewsViewHolder(newsBinding)
     }

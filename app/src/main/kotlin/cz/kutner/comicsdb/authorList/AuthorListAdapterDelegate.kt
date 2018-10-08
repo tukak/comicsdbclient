@@ -25,7 +25,7 @@ class AuthorListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
         vh.bind(author)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val authorBinding = ListItemAuthorsBinding.inflate(inflater, parent, false)
         authorBinding.handlers = ClickHandlers()
         return AuthorViewHolder(authorBinding)

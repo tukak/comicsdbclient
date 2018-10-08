@@ -25,7 +25,7 @@ class ClassifiedListAdapterDelegate(val inflater: LayoutInflater) : AdapterDeleg
         vh.bind(classified)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val classifiedBinding = ListItemClassifiedBinding.inflate(inflater, parent, false)
         return ClassifiedViewHolder(classifiedBinding)
     }

@@ -101,7 +101,7 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 
-    implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
+    implementation 'com.hannesdorfmann:adapterdelegates3:3.1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
@@ -138,7 +138,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
 
-    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation 'com.github.chrisbanes:PhotoView:2.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 }

@@ -24,7 +24,7 @@ class ComicsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
         vh.bind(comics)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val itemBinding = ListItemComicsBinding.inflate(inflater, parent, false)
         itemBinding.handlers = ClickHandlers()
         return ComicsViewHolder(itemBinding)

@@ -24,7 +24,7 @@ class SeriesListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<
         vh.bind(series)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val seriesBinding = ListItemSeriesBinding.inflate(inflater, parent, false)
         seriesBinding.handlers = ClickHandlers()
         return SeriesViewHolder(seriesBinding)
