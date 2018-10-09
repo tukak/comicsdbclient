@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.forumList
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import cz.kutner.comicsdb.databinding.ListItemForumBinding
 import cz.kutner.comicsdb.model.ForumEntry
 import cz.kutner.comicsdb.model.Item

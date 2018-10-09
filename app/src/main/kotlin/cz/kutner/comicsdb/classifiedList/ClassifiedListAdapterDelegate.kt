@@ -3,7 +3,7 @@ package cz.kutner.comicsdb.classifiedList
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import cz.kutner.comicsdb.databinding.ListItemClassifiedBinding
 import cz.kutner.comicsdb.model.Classified
 import cz.kutner.comicsdb.model.Item
