@@ -14,7 +14,7 @@ class SearchActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         val fragmentPagerAdapter: FragmentStatePagerAdapter =
-                SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
+            SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
         pager.adapter = fragmentPagerAdapter
         sliding_tabs.setupWithViewPager(pager)
     }

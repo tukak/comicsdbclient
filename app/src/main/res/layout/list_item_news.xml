@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="newsItem"
             type="cz.kutner.comicsdb.model.NewsItem" />

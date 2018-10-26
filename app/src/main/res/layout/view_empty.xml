@@ -6,4 +6,4 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    android:visibility="invisible"/>
+    android:visibility="invisible" />

@@ -21,7 +21,7 @@
             android:textStyle="bold"
             android:textColor="#808080"
             tools:text="Název série"
-            android:text="@{seriesDetail.name}"/>
+            android:text="@{seriesDetail.name}" />
 
     </LinearLayout>
 </layout>

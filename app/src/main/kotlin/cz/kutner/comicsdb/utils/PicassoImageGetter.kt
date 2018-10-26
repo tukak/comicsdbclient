@@ -18,7 +18,10 @@ class PicassoImageGetter(val textView: TextView) :
 
     override fun getDrawable(source: String): Drawable {
 
-        val drawable = BitmapDrawablePlaceHolder(textView.context.resources, IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(64).toBitmap())
+        val drawable = BitmapDrawablePlaceHolder(
+            textView.context.resources,
+            IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(64).toBitmap()
+        )
 
         Picasso.get()
             .load(source)
@@ -37,7 +40,8 @@ class PicassoImageGetter(val textView: TextView) :
         return drawable
     }
 
-    private inner class BitmapDrawablePlaceHolder(resources:Resources, bitmap: Bitmap) : BitmapDrawable(resources, bitmap), Target {
+    private inner class BitmapDrawablePlaceHolder(resources: Resources, bitmap: Bitmap) :
+        BitmapDrawable(resources, bitmap), Target {
 
         private var drawable: Drawable? = null
             set(value) {
