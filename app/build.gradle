@@ -93,7 +93,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0-RC1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0"
 
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
@@ -105,7 +105,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation 'com.github.daniel-stoneuk:material-about-library:2.3.0'
+    implementation 'com.github.daniel-stoneuk:material-about-library:2.4.2'
     implementation "com.mikepenz:iconics-core:3.1.0"
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
 
