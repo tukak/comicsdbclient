@@ -2,6 +2,16 @@ package cz.kutner.comicsdb
 
 import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingPolicies
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
@@ -17,6 +27,7 @@ import org.junit.runner.RunWith
 import org.koin.standalone.inject
 import org.koin.test.KoinTest
 import java.util.concurrent.TimeUnit
+import com.jakewharton.espresso.OkHttp3IdlingResource
 
 
 @LargeTest
