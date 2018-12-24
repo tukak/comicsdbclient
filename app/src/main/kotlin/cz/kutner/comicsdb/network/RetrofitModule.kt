@@ -14,6 +14,7 @@ import cz.kutner.comicsdb.seriesList.SeriesListService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     private val gson = GsonBuilder()
@@ -26,41 +27,13 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
-    val seriesListService: SeriesListService by lazy {
-        retrofit.create(
-            SeriesListService::class.java
-        )
-    }
-    val seriesDetailService: SeriesDetailService by lazy {
-        retrofit.create(
-            SeriesDetailService::class.java
-        )
-    }
-    val authorDetailService: AuthorDetailService by lazy {
-        retrofit.create(
-            AuthorDetailService::class.java
-        )
-    }
-    val authorListService: AuthorListService by lazy {
-        retrofit.create(
-            AuthorListService::class.java
-        )
-    }
-    val classifiedListService: ClassifiedListService by lazy {
-        retrofit.create(
-            ClassifiedListService::class.java
-        )
-    }
-    val comicsDetailService: ComicsDetailService by lazy {
-        retrofit.create(
-            ComicsDetailService::class.java
-        )
-    }
-    val comicsListService: ComicsListService by lazy {
-        retrofit.create(
-            ComicsListService::class.java
-        )
-    }
-    val forumListService: ForumListService by lazy { retrofit.create(ForumListService::class.java) }
-    val newsListService: NewsListService by lazy { retrofit.create(NewsListService::class.java) }
+    val seriesListService: SeriesListService by lazy { retrofit.create<SeriesListService>() }
+    val seriesDetailService: SeriesDetailService by lazy { retrofit.create<SeriesDetailService>() }
+    val authorDetailService: AuthorDetailService by lazy { retrofit.create<AuthorDetailService>() }
+    val authorListService: AuthorListService by lazy { retrofit.create<AuthorListService>() }
+    val classifiedListService: ClassifiedListService by lazy { retrofit.create<ClassifiedListService>() }
+    val comicsDetailService: ComicsDetailService by lazy { retrofit.create<ComicsDetailService>() }
+    val comicsListService: ComicsListService by lazy { retrofit.create<ComicsListService>() }
+    val forumListService: ForumListService by lazy { retrofit.create<ForumListService>() }
+    val newsListService: NewsListService by lazy { retrofit.create<NewsListService>() }
 }
