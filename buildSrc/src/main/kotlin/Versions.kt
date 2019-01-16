@@ -21,11 +21,9 @@ object Versions {
 
     const val recyclerview: String = "1.0.0" 
 
-    const val androidx_test_espresso: String = "3.1.0-alpha4" // available: "3.1.1"
+    const val androidx_test_espresso: String = "3.1.1" 
 
-    const val androidx_test_rules: String = "1.1.1" 
-
-    const val androidx_test_runner: String = "1.1.0-alpha4" // available: "1.1.1"
+    const val androidx_test: String = "1.1.1" 
 
     const val com_android_tools_build_gradle: String = "3.4.0-beta01" 
 
@@ -63,11 +61,11 @@ object Versions {
 
     const val hamcrest_library: String = "2.1" 
 
-    const val org_jetbrains_kotlin: String = "1.3.11" // available: "1.3.20-eap-100"
+    const val org_jetbrains_kotlin: String = "1.3.11" 
 
     const val kotlinx_coroutines_android: String = "1.1.0" 
 
-    const val org_koin: String = "1.0.1" // available: "1.0.2"
+    const val org_koin: String = "1.0.2" 
 
     const val mockito_core: String = "2.23.4" 
 

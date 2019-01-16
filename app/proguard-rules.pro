@@ -2,7 +2,7 @@
 # By default, the flags in this file are appended to flags specified
 # in C:\Program Files (x86)\Android\android-sdk/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
+# directive in _build.gradlee.
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
@@ -43,7 +43,7 @@
 #-keepclassmembernames,allowobfuscation interface * {
 #    @retrofit2.http.* <methods>;
 #}
-# Ignore annotation used for build tooling.
+# Ignore annotation used for _build tooling.
 #-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 # OkHttp
