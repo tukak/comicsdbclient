@@ -8,13 +8,13 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.0-beta01")
-        classpath(kotlin("gradle-plugin", version = "1.3.11"))
+        classpath(Libs.com_android_tools_build_gradle)
+        classpath(Libs.kotlin_gradle_plugin)
     }
 }
 
 plugins {
-    id("de.fayard.buildSrcVersions") version "0.3.2"
+    id("de.fayard.buildSrcVersions") version Versions.de_fayard_buildsrcversions_gradle_plugin
 }
 
 

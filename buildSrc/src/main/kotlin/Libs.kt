@@ -160,6 +160,12 @@ object Libs {
 
     /**
      * https://kotlinlang.org/ */
+    const val kotlin_android_extensions_runtime: String =
+            "org.jetbrains.kotlin:kotlin-android-extensions-runtime:" +
+            Versions.org_jetbrains_kotlin
+
+    /**
+     * https://kotlinlang.org/ */
     const val kotlin_android_extensions: String =
             "org.jetbrains.kotlin:kotlin-android-extensions:" + Versions.org_jetbrains_kotlin
 
@@ -189,6 +195,8 @@ object Libs {
 
     const val koin_androidx_viewmodel: String = "org.koin:koin-androidx-viewmodel:" +
             Versions.org_koin
+
+    const val koin_test: String = "org.koin:koin-test:" + Versions.org_koin
 
     /**
      * https://github.com/mockito/mockito */
