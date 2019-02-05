@@ -17,7 +17,7 @@ import cz.kutner.comicsdb.R
 
 class AboutFragment : MaterialAboutFragment() {
 
-    override fun getMaterialAboutList(context: Context?): MaterialAboutList {
+    override fun getMaterialAboutList(context: Context): MaterialAboutList {
         val appCardBuilder = MaterialAboutCard.Builder()
         appCardBuilder.addItem(ConvenienceBuilder.createAppTitleItem(context))
 
@@ -32,7 +32,7 @@ class AboutFragment : MaterialAboutFragment() {
         appCardBuilder.addItem(
             ConvenienceBuilder.createWebsiteActionItem(
                 context,
-                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_time_restore).sizeDp(
+                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_time_restore).sizeDp(
                     18
                 ),
                 "Historie změn",
@@ -49,7 +49,7 @@ class AboutFragment : MaterialAboutFragment() {
                 .text("Lukáš Kutner")
                 .subText("tukak")
                 .icon(
-                    IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_account).sizeDp(
+                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_account).sizeDp(
                         18
                     )
                 )
@@ -64,7 +64,7 @@ class AboutFragment : MaterialAboutFragment() {
         authorCardBuilder.addItem(
             ConvenienceBuilder.createEmailItem(
                 context,
-                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_email).sizeDp(18),
+                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_email).sizeDp(18),
                 "Hlašte chyby nebo pište nápady",
                 true,
                 "lukas@kutner.cz",
@@ -75,7 +75,7 @@ class AboutFragment : MaterialAboutFragment() {
         authorCardBuilder.addItem(
             ConvenienceBuilder.createWebsiteActionItem(
                 context,
-                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_twitter).sizeDp(18),
+                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_twitter).sizeDp(18),
                 "@tukak",
                 false,
                 Uri.parse("https://twitter.com/tukak")
@@ -85,7 +85,7 @@ class AboutFragment : MaterialAboutFragment() {
         authorCardBuilder.addItem(
             ConvenienceBuilder.createWebsiteActionItem(
                 context,
-                IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_github).sizeDp(18),
+                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_github).sizeDp(18),
                 "Zdrojový kód",
                 true,
                 Uri.parse("https://github.com/tukak/comicsdbclient")
@@ -112,7 +112,7 @@ class AboutFragment : MaterialAboutFragment() {
             (MaterialAboutActionItem.Builder()
                 .text(R.string.about_free)
                 .icon(
-                    IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_money_off).sizeDp(
+                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_money_off).sizeDp(
                         18
                     )
                 )
@@ -123,7 +123,7 @@ class AboutFragment : MaterialAboutFragment() {
             (MaterialAboutActionItem.Builder()
                 .text(R.string.about_donate)
                 .icon(
-                    IconicsDrawable(this.context).icon(MaterialDesignIconic.Icon.gmi_money_box).sizeDp(
+                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_money_box).sizeDp(
                         18
                     )
                 )

@@ -15,6 +15,7 @@ androidExtensions {
 
 android {
     compileSdkVersion(28)
+
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion(21)
@@ -43,6 +44,11 @@ android {
         getByName("androidTest").apply {
             java.srcDirs("src/androidTest/kotlin")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     lintOptions {
