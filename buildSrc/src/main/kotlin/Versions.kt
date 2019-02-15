@@ -15,7 +15,7 @@ object Versions {
 
     const val core_ktx: String = "1.0.1" 
 
-    const val androidx_databinding: String = "3.4.0-beta03" 
+    const val androidx_databinding: String = "3.4.0-beta04" 
 
     const val androidx_lifecycle: String = "2.0.0" 
 
@@ -25,9 +25,9 @@ object Versions {
 
     const val androidx_test: String = "1.1.1" 
 
-    const val com_android_tools_build_gradle: String = "3.4.0-beta03" 
+    const val com_android_tools_build_gradle: String = "3.4.0-beta04" 
 
-    const val lint_gradle: String = "26.4.0-beta03" 
+    const val lint_gradle: String = "26.4.0-beta04" 
 
     const val photoview: String = "2.3.0" 
 
@@ -49,7 +49,7 @@ object Versions {
 
     const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
 
-    const val okhttp: String = "3.13.1"
+    const val okhttp: String = "3.13.1" 
 
     const val picasso: String = "2.71828" 
 
@@ -75,7 +75,7 @@ object Versions {
      *      ./gradle/wrapper/gradle-wrapper.properties
      */
     object Gradle {
-        const val runningVersion: String = "5.2"
+        const val runningVersion: String = "5.2.1"
 
         const val currentVersion: String = "5.2.1"
 
