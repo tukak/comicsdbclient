@@ -97,4 +97,13 @@ class MainActivity : AppCompatActivity() {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
         return true
     }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(navigation_view)) {
+            super.onBackPressed()
+        } else {
+            drawer_layout.openDrawer(navigation_view)
+        }
+
+    }
 }
