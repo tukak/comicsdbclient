@@ -15,7 +15,7 @@ object Versions {
 
     const val core_ktx: String = "1.0.1" 
 
-    const val androidx_databinding: String = "3.4.0-beta05" 
+    const val androidx_databinding: String = "3.4.0-rc01"
 
     const val androidx_lifecycle: String = "2.0.0" 
 
@@ -25,9 +25,9 @@ object Versions {
 
     const val androidx_test: String = "1.1.1" 
 
-    const val com_android_tools_build_gradle: String = "3.4.0-beta05" 
+    const val com_android_tools_build_gradle: String = "3.4.0-rc01"
 
-    const val lint_gradle: String = "26.4.0-beta05" 
+    const val lint_gradle: String = "26.4.0-rc01"
 
     const val photoview: String = "2.3.0" 
 
