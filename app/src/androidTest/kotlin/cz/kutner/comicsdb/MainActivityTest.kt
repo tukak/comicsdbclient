@@ -24,10 +24,10 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.standalone.inject
 import org.koin.test.KoinTest
 import java.util.concurrent.TimeUnit
 import com.jakewharton.espresso.OkHttp3IdlingResource
+import org.koin.test.inject
 
 
 @LargeTest
