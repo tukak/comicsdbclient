@@ -65,7 +65,7 @@ object Versions {
 
     const val kotlinx_coroutines_android: String = "1.1.1" 
 
-    const val org_koin: String = "1.0.2" 
+    const val org_koin: String = "2.0.0-rc-1"
 
     const val mockito_core: String = "2.25.1"
 

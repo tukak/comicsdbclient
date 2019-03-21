@@ -4,7 +4,9 @@ import android.app.Application
 import com.squareup.picasso.Picasso
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
 
@@ -12,11 +14,19 @@ class ComicsDBApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(
-            this,
-            listOf(koinModule),
-            extraProperties = mapOf(Pair(SERVER_URL, "https://comicsdb.cz"))
-        )
+
+        startKoin {
+            // use AndroidLogger as Koin Logger - default Level.INFO
+            androidLogger()
+
+            // use the Android context given there
+            androidContext(this@ComicsDBApplication)
+
+            properties( mapOf (SERVER_URL to "https://comicsdb.cz") )
+
+            modules(koinModule)
+        }
+
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
             Picasso.get().setIndicatorsEnabled(true)

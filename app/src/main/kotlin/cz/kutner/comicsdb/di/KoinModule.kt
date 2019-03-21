@@ -15,8 +15,8 @@ import cz.kutner.comicsdb.seriesList.SeriesListViewModel
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 import java.util.concurrent.TimeUnit
 
 
