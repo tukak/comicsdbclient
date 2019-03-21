@@ -80,8 +80,6 @@ object Libs {
      * https://developer.android.com/studio */
     const val lint_gradle: String = "com.android.tools.lint:lint-gradle:" + Versions.lint_gradle
 
-    /**
-     * https://github.com/chrisbanes/PhotoView */
     const val photoview: String = "com.github.chrisbanes:PhotoView:" + Versions.photoview
 
     /**
@@ -175,8 +173,6 @@ object Libs {
             "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:" +
             Versions.org_jetbrains_kotlin
 
-    /**
-     * https://kotlinlang.org/ */
     const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:" +
             Versions.org_jetbrains_kotlin
 

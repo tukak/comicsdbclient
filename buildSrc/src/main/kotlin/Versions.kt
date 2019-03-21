@@ -15,7 +15,7 @@ object Versions {
 
     const val core_ktx: String = "1.0.1" 
 
-    const val androidx_databinding: String = "3.4.0-rc01"
+    const val androidx_databinding: String = "3.4.0-rc02" 
 
     const val androidx_lifecycle: String = "2.0.0" 
 
@@ -25,9 +25,9 @@ object Versions {
 
     const val androidx_test: String = "1.1.1" 
 
-    const val com_android_tools_build_gradle: String = "3.4.0-rc01"
+    const val com_android_tools_build_gradle: String = "3.4.0-rc02" 
 
-    const val lint_gradle: String = "26.4.0-rc01"
+    const val lint_gradle: String = "26.4.0-rc02" 
 
     const val photoview: String = "2.3.0" 
 
@@ -49,7 +49,7 @@ object Versions {
 
     const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
 
-    const val okhttp: String = "3.13.1" 
+    const val okhttp: String = "3.14.0"
 
     const val picasso: String = "2.71828" 
 
@@ -67,7 +67,7 @@ object Versions {
 
     const val org_koin: String = "1.0.2" 
 
-    const val mockito_core: String = "2.24.5" 
+    const val mockito_core: String = "2.25.1"
 
     /**
      *
@@ -75,11 +75,11 @@ object Versions {
      *      ./gradle/wrapper/gradle-wrapper.properties
      */
     object Gradle {
-        const val runningVersion: String = "5.2.1"
+        const val runningVersion: String = "5.3"
 
-        const val currentVersion: String = "5.2.1"
+        const val currentVersion: String = "5.3"
 
-        const val nightlyVersion: String = "5.4-20190305000052+0000"
+        const val nightlyVersion: String = "5.4-20190321000037+0000"
 
         const val releaseCandidate: String = ""
     }
