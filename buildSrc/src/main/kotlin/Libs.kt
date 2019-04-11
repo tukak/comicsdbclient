@@ -173,6 +173,8 @@ object Libs {
             "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:" +
             Versions.org_jetbrains_kotlin
 
+    /**
+     * https://kotlinlang.org/ */
     const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:" +
             Versions.org_jetbrains_kotlin
 
