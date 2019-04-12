@@ -8,9 +8,9 @@ plugins {
 }
 
 androidExtensions {
-    configure(delegateClosureOf<AndroidExtensionsExtension> {
+    configure<AndroidExtensionsExtension> {
         isExperimental = true
-    })
+    }
 }
 
 android {

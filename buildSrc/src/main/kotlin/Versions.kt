@@ -11,7 +11,7 @@ object Versions {
 
     const val cardview: String = "1.0.0" 
 
-    const val constraintlayout: String = "2.0.0-alpha4"
+    const val constraintlayout: String = "2.0.0-alpha4" 
 
     const val core_ktx: String = "1.0.1" 
 
@@ -49,7 +49,7 @@ object Versions {
 
     const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
 
-    const val okhttp: String = "3.14.1"
+    const val okhttp: String = "3.14.1" 
 
     const val picasso: String = "2.71828" 
 
@@ -61,13 +61,13 @@ object Versions {
 
     const val hamcrest_library: String = "2.1" 
 
-    const val org_jetbrains_kotlin: String = "1.3.21" 
+    const val org_jetbrains_kotlin: String = "1.3.30"
 
     const val kotlinx_coroutines_android: String = "1.1.1" 
 
     const val org_koin: String = "2.0.0-rc-1" 
 
-    const val mockito_core: String = "2.27.0"
+    const val mockito_core: String = "2.27.0" 
 
     /**
      *
@@ -79,7 +79,7 @@ object Versions {
 
         const val currentVersion: String = "5.3.1"
 
-        const val nightlyVersion: String = "5.5-20190410000104+0000"
+        const val nightlyVersion: String = "5.5-20190412000044+0000"
 
         const val releaseCandidate: String = "5.4-rc-1"
     }
