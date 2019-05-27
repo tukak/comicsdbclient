@@ -47,7 +47,7 @@ object Versions {
 
     const val timber: String = "4.7.1" 
 
-    const val iconics_core: String = "3.2.1" // available: "4.0.0-b1"
+    const val iconics_core: String = "3.2.5"
 
     const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
 
