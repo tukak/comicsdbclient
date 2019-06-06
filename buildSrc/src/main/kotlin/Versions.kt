@@ -15,21 +15,21 @@ object Versions {
 
     const val core_ktx: String = "1.0.2" 
 
-    const val androidx_databinding: String = "3.5.0-beta02" 
+    const val androidx_databinding: String = "3.5.0-beta03" 
 
     const val androidx_lifecycle: String = "2.0.0" 
 
     const val recyclerview: String = "1.0.0" 
 
-    const val androidx_test_espresso: String = "3.1.1" 
+    const val androidx_test_espresso: String = "3.2.0" 
 
-    const val androidx_test: String = "1.1.1" 
+    const val androidx_test: String = "1.2.0" 
 
-    const val aapt2: String = "3.5.0-beta02-5435860" 
+    const val aapt2: String = "3.5.0-beta03-5435860" 
 
-    const val com_android_tools_build_gradle: String = "3.5.0-beta02" 
+    const val com_android_tools_build_gradle: String = "3.5.0-beta03" 
 
-    const val lint_gradle: String = "26.5.0-beta02" 
+    const val lint_gradle: String = "26.5.0-beta03" 
 
     const val photoview: String = "2.3.0" 
 
@@ -47,11 +47,11 @@ object Versions {
 
     const val timber: String = "4.7.1" 
 
-    const val iconics_core: String = "3.2.5"
+    const val iconics_core: String = "3.2.5" // available: "4.0.0-b1"
 
     const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
 
-    const val okhttp: String = "3.14.2"
+    const val okhttp: String = "3.14.2" 
 
     const val picasso: String = "2.71828" 
 
@@ -65,11 +65,11 @@ object Versions {
 
     const val org_jetbrains_kotlin: String = "1.3.31" 
 
-    const val kotlinx_coroutines_android: String = "1.2.1" 
+    const val kotlinx_coroutines_android: String = "1.2.1" // available: "1.2.1-1.3.40-eap-67"
 
-    const val org_koin: String = "2.0.0-GA6"
+    const val org_koin: String = "2.0.1" 
 
-    const val mockito_core: String = "2.27.0" 
+    const val mockito_core: String = "2.28.2" 
 
     /**
      *
@@ -81,8 +81,8 @@ object Versions {
 
         const val currentVersion: String = "5.4.1"
 
-        const val nightlyVersion: String = "5.6-20190527000106+0000"
+        const val nightlyVersion: String = "5.6-20190606000038+0000"
 
-        const val releaseCandidate: String = ""
+        const val releaseCandidate: String = "5.5-rc-1"
     }
 }
