@@ -8,7 +8,8 @@ import android.graphics.drawable.Drawable
 import android.text.Html
 import android.widget.TextView
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
+import com.mikepenz.iconics.sizeDp
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 

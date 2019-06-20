@@ -12,7 +12,8 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
+import com.mikepenz.iconics.sizeDp
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import cz.kutner.comicsdb.R
 
 class AboutFragment : MaterialAboutFragment() {

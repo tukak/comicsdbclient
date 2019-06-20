@@ -13,7 +13,9 @@ import android.view.Menu
 import android.widget.SearchView
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.context.IconicsLayoutInflater2
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
+import com.mikepenz.iconics.sizeDp
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.toIconicsColor
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.about.AboutFragment
 import cz.kutner.comicsdb.authorList.AuthorListFragment
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         if (toolbar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             toolbar.navigationIcon = IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_menu)
-                .color(Color.WHITE).sizeDp(24)
+                    .color(Color.WHITE.toIconicsColor()).sizeDp(24)
             toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
         }
     }

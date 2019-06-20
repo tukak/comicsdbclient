@@ -7,7 +7,7 @@ import kotlin.String
  *
  * YOU are responsible for updating manually the dependency version. */
 object Versions {
-    const val appcompat: String = "1.0.2" 
+    const val appcompat: String = "1.1.0-beta01"
 
     const val cardview: String = "1.0.0" 
 
@@ -47,9 +47,9 @@ object Versions {
 
     const val timber: String = "4.7.1" 
 
-    const val iconics_core: String = "3.2.5" // available: "4.0.0"
+    const val iconics_core: String = "4.0.0"
 
-    const val material_design_iconic_typeface: String = "2.2.0.5" // available: "2.2.0.6-kotlin"
+    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin"
 
     const val okhttp: String = "3.14.2" 
 
