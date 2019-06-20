@@ -110,12 +110,6 @@ object Libs {
             "com.jakewharton.espresso:okhttp3-idling-resource:" + Versions.okhttp3_idling_resource
 
     /**
-     * https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter/ */
-    const val retrofit2_kotlin_coroutines_adapter: String =
-            "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:" +
-            Versions.retrofit2_kotlin_coroutines_adapter
-
-    /**
      * https://github.com/JakeWharton/timber */
     const val timber: String = "com.jakewharton.timber:timber:" + Versions.timber
 

@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface ComicsListService {
     @GET("/api.php?get=comics_list")
-    fun comicsList(@Query("start") start: Int, @Query("records") records: Int, @Query("search") keyword: String): Deferred<List<Comics>>
+    suspend fun comicsList(@Query("start") start: Int, @Query("records") records: Int, @Query("search") keyword: String): List<Comics>
 }

@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class ComicsDetailViewModel(retrofitModule: RetrofitModule) :
     AbstractViewModel<ComicsDetail>(retrofitModule) {
-    override fun getJob(id: Int): Deferred<ComicsDetail> =
+    override suspend fun getJob(id: Int): ComicsDetail =
         retrofitModule.comicsDetailService.getComics(id)
 }

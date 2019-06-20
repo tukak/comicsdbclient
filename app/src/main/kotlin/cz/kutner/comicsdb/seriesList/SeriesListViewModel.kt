@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class SeriesListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<Series>(retrofitModule) {
-    override fun getJob(): Deferred<List<Series>?> =
+    override suspend fun getJob(): List<Series>? =
         retrofitModule.seriesListService.getSeriesList(start * count, count, searchText)
 }

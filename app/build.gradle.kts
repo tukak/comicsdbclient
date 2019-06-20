@@ -81,7 +81,6 @@ dependencies {
     implementation(Libs.retrofit)
     implementation(Libs.converter_gson)
     implementation(Libs.kotlinx_coroutines_android)
-    implementation(Libs.retrofit2_kotlin_coroutines_adapter)
     implementation(Libs.picasso)
     implementation(Libs.okhttp)
     implementation(Libs.adapterdelegates4)

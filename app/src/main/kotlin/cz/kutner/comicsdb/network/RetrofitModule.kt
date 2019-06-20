@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.network
 
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
 import cz.kutner.comicsdb.classifiedList.ClassifiedListService
@@ -25,7 +24,6 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
     val seriesListService: SeriesListService by lazy { retrofit.create<SeriesListService>() }
     val seriesDetailService: SeriesDetailService by lazy { retrofit.create<SeriesDetailService>() }

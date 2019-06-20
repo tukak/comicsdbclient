@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class ForumListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<ForumEntry>(retrofitModule) {
-    override fun getJob(): Deferred<List<ForumEntry>?> =
+    override suspend fun getJob(): List<ForumEntry>? =
         retrofitModule.forumListService.filteredForumList(start * count, count, filterId)
 }

@@ -43,9 +43,7 @@ object Versions {
 
     const val okhttp3_idling_resource: String = "1.0.1-SNAPSHOT" 
 
-    const val retrofit2_kotlin_coroutines_adapter: String = "0.9.2" 
-
-    const val timber: String = "4.7.1" 
+    const val timber: String = "4.7.1"
 
     const val iconics_core: String = "4.0.0"
 

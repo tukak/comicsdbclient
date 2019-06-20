@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface NewsListService {
     @GET("/api.php?get=news")
-    fun listNews(@Query("start") start: Int, @Query("records") records: Int): Deferred<List<NewsItem>>
+    suspend fun listNews(@Query("start") start: Int, @Query("records") records: Int): List<NewsItem>
 }

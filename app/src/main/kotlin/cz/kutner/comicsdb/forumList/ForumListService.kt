@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface ForumListService {
     @GET("/api.php?get=forum")
-    fun filteredForumList(@Query("start") start: Int, @Query("records") records: Int, @Query("id") forumId: Int): Deferred<List<ForumEntry>>
+    suspend fun filteredForumList(@Query("start") start: Int, @Query("records") records: Int, @Query("id") forumId: Int): List<ForumEntry>
 }
