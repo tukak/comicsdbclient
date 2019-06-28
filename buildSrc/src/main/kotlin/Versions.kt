@@ -7,7 +7,7 @@ import kotlin.String
  *
  * YOU are responsible for updating manually the dependency version. */
 object Versions {
-    const val appcompat: String = "1.1.0-beta01"
+    const val appcompat: String = "1.1.0-beta01" 
 
     const val cardview: String = "1.0.0" 
 
@@ -15,7 +15,7 @@ object Versions {
 
     const val core_ktx: String = "1.0.2" 
 
-    const val androidx_databinding: String = "3.5.0-beta04" 
+    const val androidx_databinding: String = "3.5.0-beta05" 
 
     const val androidx_lifecycle: String = "2.0.0" 
 
@@ -25,11 +25,11 @@ object Versions {
 
     const val androidx_test: String = "1.2.0" 
 
-    const val aapt2: String = "3.5.0-beta04-5435860" 
+    const val aapt2: String = "3.5.0-beta05-5435860" 
 
-    const val com_android_tools_build_gradle: String = "3.5.0-beta04" 
+    const val com_android_tools_build_gradle: String = "3.5.0-beta05" 
 
-    const val lint_gradle: String = "26.5.0-beta04" 
+    const val lint_gradle: String = "26.5.0-beta05" 
 
     const val photoview: String = "2.3.0" 
 
@@ -43,13 +43,13 @@ object Versions {
 
     const val okhttp3_idling_resource: String = "1.0.1-SNAPSHOT" 
 
-    const val timber: String = "4.7.1"
+    const val timber: String = "4.7.1" 
 
-    const val iconics_core: String = "4.0.0"
+    const val iconics_core: String = "4.0.0" 
 
-    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin"
+    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin" 
 
-    const val okhttp: String = "3.14.2" 
+    const val okhttp: String = "4.0.0"
 
     const val picasso: String = "2.71828" 
 
@@ -79,8 +79,8 @@ object Versions {
 
         const val currentVersion: String = "5.4.1"
 
-        const val nightlyVersion: String = "5.6-20190620000427+0000"
+        const val nightlyVersion: String = "5.6-20190628000203+0000"
 
-        const val releaseCandidate: String = "5.5-rc-3"
+        const val releaseCandidate: String = "5.5-rc-4"
     }
 }
