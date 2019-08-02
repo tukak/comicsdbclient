@@ -15,7 +15,7 @@ object Versions {
 
     const val core_ktx: String = "1.0.2" 
 
-    const val androidx_databinding: String = "3.5.0-rc01" 
+    const val androidx_databinding: String = "3.5.0-rc02" 
 
     const val androidx_lifecycle: String = "2.0.0" 
 
@@ -25,11 +25,11 @@ object Versions {
 
     const val androidx_test: String = "1.2.0" 
 
-    const val aapt2: String = "3.5.0-rc01-5435860" 
+    const val aapt2: String = "3.5.0-rc02-5435860" 
 
-    const val com_android_tools_build_gradle: String = "3.5.0-rc01" 
+    const val com_android_tools_build_gradle: String = "3.5.0-rc02" 
 
-    const val lint_gradle: String = "26.5.0-rc01" 
+    const val lint_gradle: String = "26.5.0-rc02" 
 
     const val photoview: String = "2.3.0" 
 
@@ -39,21 +39,21 @@ object Versions {
 
     const val material: String = "1.0.0" 
 
-    const val adapterdelegates4: String = "4.0.0" 
+    const val adapterdelegates4: String = "4.1.1"
 
     const val okhttp3_idling_resource: String = "1.0.1-SNAPSHOT" 
 
     const val timber: String = "4.7.1" 
 
-    const val iconics_core: String = "4.0.1-b01"
+    const val iconics_core: String = "4.0.1-b01" 
 
     const val material_design_iconic_typeface: String = "2.2.0.6-kotlin" 
 
-    const val okhttp: String = "4.0.1"
+    const val okhttp: String = "4.0.1" 
 
     const val picasso: String = "2.71828" 
 
-    const val com_squareup_retrofit2: String = "2.6.0" 
+    const val com_squareup_retrofit2: String = "2.6.1"
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.3.2" 
 
@@ -61,13 +61,13 @@ object Versions {
 
     const val hamcrest_library: String = "2.1" 
 
-    const val org_jetbrains_kotlin: String = "1.3.41"
+    const val org_jetbrains_kotlin: String = "1.3.41" 
 
-    const val kotlinx_coroutines_android: String = "1.2.2" 
+    const val kotlinx_coroutines_android: String = "1.2.2" // available: "1.3.0-RC-1.3.50-eap-5"
 
     const val org_koin: String = "2.0.1" 
 
-    const val mockito_core: String = "3.0.0"
+    const val mockito_core: String = "3.0.0" 
 
     /**
      *
@@ -75,12 +75,12 @@ object Versions {
      *      ./gradle/wrapper/gradle-wrapper.properties
      */
     object Gradle {
-        const val runningVersion: String = "5.5.1"
+        const val runningVersion: String = "5.4.1"
 
         const val currentVersion: String = "5.5.1"
 
-        const val nightlyVersion: String = "5.6-20190717220000+0000"
+        const val nightlyVersion: String = "5.7-20190801220042+0000"
 
-        const val releaseCandidate: String = ""
+        const val releaseCandidate: String = "5.6-rc-1"
     }
 }
