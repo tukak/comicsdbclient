@@ -49,6 +49,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        kotlinOptions.jvmTarget = "1.8"
     }
 
     lintOptions {
@@ -93,6 +94,7 @@ dependencies {
     implementation(Libs.photoview)
     implementation(Libs.timber)
     implementation(Libs.constraintlayout)
+    implementation(Libs.busybee_android)
 
     testImplementation(Libs.junit)
     testImplementation(Libs.mockito_core)
@@ -103,6 +105,4 @@ dependencies {
     androidTestImplementation(Libs.androidx_test_runner)
     androidTestImplementation(Libs.espresso_core)
     androidTestImplementation(Libs.espresso_contrib)
-    androidTestImplementation(Libs.okhttp3_idling_resource)
-
 }

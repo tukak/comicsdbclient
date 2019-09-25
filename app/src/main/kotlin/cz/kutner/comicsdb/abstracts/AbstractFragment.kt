@@ -13,6 +13,7 @@ import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.ItemDiffCallback
+import io.americanexpress.busybee.BusyBee
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.view_empty.*
 import kotlinx.android.synthetic.main.view_error.*
@@ -22,6 +23,7 @@ import pl.aprilapps.switcher.Switcher
 import timber.log.Timber
 
 abstract class AbstractFragment<Data : Item> : Fragment() {
+    private val busyBee = BusyBee.singleton()
     var data: MutableList<Data> = ArrayList()
     abstract val adapter: AbstractListAdapter
     abstract val model: AbstractPagedViewModel<Data>
@@ -85,6 +87,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
+            busyBee.busyWith(this::class.java.name)
             model.getData().observe(this, Observer<List<Data>?> { newList ->
                 try {
                     if (newList != null) {
@@ -101,6 +104,8 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
                     }
                 } catch (e: Exception) {
                     Timber.e(e)
+                } finally {
+                    busyBee.completed(this::class.java.name)
                 }
             })
         }

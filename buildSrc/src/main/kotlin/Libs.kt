@@ -32,12 +32,6 @@ object Libs {
             Versions.kotlinx_coroutines_android
 
     /**
-     * http://github.com/JakeWharton/okhttp-idling-resource/
-     */
-    const val okhttp3_idling_resource: String =
-            "com.jakewharton.espresso:okhttp3-idling-resource:" + Versions.okhttp3_idling_resource
-
-    /**
      * https://developer.android.com/testing
      */
     const val espresso_contrib: String = "androidx.test.espresso:espresso-contrib:" +
@@ -146,6 +140,9 @@ object Libs {
      */
     const val hamcrest_library: String = "org.hamcrest:hamcrest-library:" +
             Versions.hamcrest_library
+
+    const val busybee_android: String = "io.americanexpress.busybee:busybee-android:" +
+            Versions.busybee_android
 
     /**
      * https://developer.android.com/testing

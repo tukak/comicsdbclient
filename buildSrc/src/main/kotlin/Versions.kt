@@ -20,8 +20,6 @@ object Versions {
 
     const val kotlinx_coroutines_android: String = "1.3.1"
 
-    const val okhttp3_idling_resource: String = "1.0.1-SNAPSHOT"
-
     const val androidx_test_espresso: String = "3.2.0"
 
     const val com_squareup_retrofit2: String = "2.6.2"
@@ -40,9 +38,11 @@ object Versions {
 
     const val hamcrest_library: String = "2.1"
 
+    const val busybee_android: String = "0.0.2"
+
     const val androidx_test: String = "1.2.0"
 
-    const val iconics_core: String = "4.0.1-b01"
+    const val iconics_core: String = "4.0.1-b02"
 
     const val mockito_core: String = "3.0.0"
 
@@ -75,7 +75,7 @@ object Versions {
     const val junit: String = "4.12"
 
     /**
-     * Current version: "5.6"
+     * Current version: "5.6.2"
      * See issue 19: How to update Gradle itself?
      * https://github.com/jmfayard/buildSrcVersions/issues/19
      */

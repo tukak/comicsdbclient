@@ -3,8 +3,6 @@ package cz.kutner.comicsdb
 import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingPolicies
-import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -16,19 +14,13 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import cz.kutner.comicsdb.main.MainActivity
-import okhttp3.OkHttpClient
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.test.KoinTest
-import java.util.concurrent.TimeUnit
-import com.jakewharton.espresso.OkHttp3IdlingResource
-import org.koin.test.inject
-
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -37,15 +29,6 @@ class MainActivityTest : KoinTest {
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
-    private val client by inject<OkHttpClient>()
-    private val idlingResource by lazy { OkHttp3IdlingResource.create("okhttp", client) }
-
-    @Before
-    fun registerIdlingResource() {
-        IdlingPolicies.setIdlingResourceTimeout(120, TimeUnit.MINUTES)
-        IdlingPolicies.setMasterPolicyTimeout(120, TimeUnit.MINUTES)
-        IdlingRegistry.getInstance().register(idlingResource)
-    }
 
     @Before
     fun setUp() {
@@ -227,8 +210,4 @@ class MainActivityTest : KoinTest {
         appCompatCheckedTextView.perform(click())
     }
 
-    @After
-    fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(idlingResource)
-    }
 }
