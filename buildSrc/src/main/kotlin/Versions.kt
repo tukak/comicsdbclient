@@ -12,25 +12,29 @@ import org.gradle.plugin.use.PluginDependencySpec
  * YOU are responsible for updating manually the dependency version.
  */
 object Versions {
-    const val de_fayard_buildsrcversions_gradle_plugin: String = "0.6.1"
-
-    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin"
-
-    const val com_android_tools_build_gradle: String = "3.5.0"
-
-    const val kotlinx_coroutines_android: String = "1.3.1"
+    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.2"
 
     const val androidx_test_espresso: String = "3.2.0"
 
     const val com_squareup_retrofit2: String = "2.6.2"
 
-    const val material_about_library: String = "2.4.2"
-
-    const val androidx_databinding: String = "3.5.0"
+    const val androidx_databinding: String = "3.5.1"
 
     const val org_jetbrains_kotlin: String = "1.3.50"
 
     const val androidx_lifecycle: String = "2.1.0"
+
+    const val androidx_test: String = "1.2.0"
+
+    const val org_koin: String = "2.0.1"
+
+    const val com_android_tools_build_gradle: String = "3.5.1"
+
+    const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
+
+    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin"
+
+    const val material_about_library: String = "2.4.2"
 
     const val adapterdelegates4: String = "4.2.0"
 
@@ -40,15 +44,13 @@ object Versions {
 
     const val busybee_android: String = "0.0.2"
 
-    const val androidx_test: String = "1.2.0"
-
     const val iconics_core: String = "4.0.1-b02"
 
-    const val mockito_core: String = "3.0.0"
+    const val mockito_core: String = "3.1.0"
 
     const val recyclerview: String = "1.0.0"
 
-    const val lint_gradle: String = "26.5.0"
+    const val lint_gradle: String = "26.5.1"
 
     const val appcompat: String = "1.1.0"
 
@@ -60,17 +62,15 @@ object Versions {
 
     const val material: String = "1.0.0"
 
-    const val org_koin: String = "2.0.1"
-
     const val switcher: String = "2.4.0"
 
     const val picasso: String = "2.71828"
 
-    const val okhttp: String = "4.2.0"
+    const val okhttp: String = "4.2.2"
 
     const val timber: String = "4.7.1"
 
-    const val aapt2: String = "3.5.0-5435860"
+    const val aapt2: String = "3.5.1-5435860"
 
     const val junit: String = "4.12"
 

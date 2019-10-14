@@ -7,29 +7,12 @@ import kotlin.String
  *   `$ ./gradlew buildSrcVersions`
  */
 object Libs {
-    const val de_fayard_buildsrcversions_gradle_plugin: String =
-            "de.fayard.buildSrcVersions:de.fayard.buildSrcVersions.gradle.plugin:" +
-            Versions.de_fayard_buildsrcversions_gradle_plugin
-
-    /**
-     * https://github.com/mikepenz/Android-Iconics
-     */
-    const val material_design_iconic_typeface: String =
-            "com.mikepenz:material-design-iconic-typeface:" +
-            Versions.material_design_iconic_typeface
-
-    /**
-     * https://developer.android.com/studio
-     */
-    const val com_android_tools_build_gradle: String = "com.android.tools.build:gradle:" +
-            Versions.com_android_tools_build_gradle
-
     /**
      * https://github.com/Kotlin/kotlinx.coroutines
      */
     const val kotlinx_coroutines_android: String =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:" +
-            Versions.kotlinx_coroutines_android
+            Versions.org_jetbrains_kotlinx_kotlinx_coroutines
 
     /**
      * https://developer.android.com/testing
@@ -54,12 +37,6 @@ object Libs {
      */
     const val retrofit: String = "com.squareup.retrofit2:retrofit:" +
             Versions.com_squareup_retrofit2
-
-    /**
-     * https://github.com/daniel-stoneuk/material-about-library
-     */
-    const val material_about_library: String = "com.github.daniel-stoneuk:material-about-library:" +
-            Versions.material_about_library
 
     const val databinding_adapters: String = "androidx.databinding:databinding-adapters:" +
             Versions.androidx_databinding
@@ -124,6 +101,46 @@ object Libs {
             Versions.androidx_lifecycle
 
     /**
+     * https://developer.android.com/testing
+     */
+    const val androidx_test_rules: String = "androidx.test:rules:" + Versions.androidx_test
+
+    /**
+     * https://developer.android.com/testing
+     */
+    const val androidx_test_runner: String = "androidx.test:runner:" + Versions.androidx_test
+
+    const val koin_android: String = "org.koin:koin-android:" + Versions.org_koin
+
+    const val koin_androidx_viewmodel: String = "org.koin:koin-androidx-viewmodel:" +
+            Versions.org_koin
+
+    const val koin_test: String = "org.koin:koin-test:" + Versions.org_koin
+
+    /**
+     * https://developer.android.com/studio
+     */
+    const val com_android_tools_build_gradle: String = "com.android.tools.build:gradle:" +
+            Versions.com_android_tools_build_gradle
+
+    const val de_fayard_buildsrcversions_gradle_plugin: String =
+            "de.fayard.buildSrcVersions:de.fayard.buildSrcVersions.gradle.plugin:" +
+            Versions.de_fayard_buildsrcversions_gradle_plugin
+
+    /**
+     * https://github.com/mikepenz/Android-Iconics
+     */
+    const val material_design_iconic_typeface: String =
+            "com.mikepenz:material-design-iconic-typeface:" +
+            Versions.material_design_iconic_typeface
+
+    /**
+     * https://github.com/daniel-stoneuk/material-about-library
+     */
+    const val material_about_library: String = "com.github.daniel-stoneuk:material-about-library:" +
+            Versions.material_about_library
+
+    /**
      * https://github.com/sockeqwe/AdapterDelegates
      */
     const val adapterdelegates4: String = "com.hannesdorfmann:adapterdelegates4:" +
@@ -143,16 +160,6 @@ object Libs {
 
     const val busybee_android: String = "io.americanexpress.busybee:busybee-android:" +
             Versions.busybee_android
-
-    /**
-     * https://developer.android.com/testing
-     */
-    const val androidx_test_rules: String = "androidx.test:rules:" + Versions.androidx_test
-
-    /**
-     * https://developer.android.com/testing
-     */
-    const val androidx_test_runner: String = "androidx.test:runner:" + Versions.androidx_test
 
     /**
      * https://github.com/mikepenz/Android-Iconics
@@ -195,13 +202,6 @@ object Libs {
      * http://developer.android.com/tools/extras/support-library.html
      */
     const val material: String = "com.google.android.material:material:" + Versions.material
-
-    const val koin_android: String = "org.koin:koin-android:" + Versions.org_koin
-
-    const val koin_androidx_viewmodel: String = "org.koin:koin-androidx-viewmodel:" +
-            Versions.org_koin
-
-    const val koin_test: String = "org.koin:koin-test:" + Versions.org_koin
 
     /**
      * https://github.com/tukak/Switcher
