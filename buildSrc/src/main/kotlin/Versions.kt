@@ -12,23 +12,23 @@ import org.gradle.plugin.use.PluginDependencySpec
  * YOU are responsible for updating manually the dependency version.
  */
 object Versions {
-    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.2"
+    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.3"
 
     const val androidx_test_espresso: String = "3.2.0"
 
-    const val com_squareup_retrofit2: String = "2.6.2"
+    const val com_squareup_retrofit2: String = "2.7.1"
 
-    const val androidx_databinding: String = "3.5.1"
+    const val androidx_databinding: String = "4.0.0-alpha09"
 
-    const val org_jetbrains_kotlin: String = "1.3.50"
+    const val org_jetbrains_kotlin: String = "1.3.61"
 
-    const val androidx_lifecycle: String = "2.1.0"
+    const val androidx_lifecycle: String = "2.2.0"
 
     const val androidx_test: String = "1.2.0"
 
-    const val org_koin: String = "2.0.1"
+    const val org_koin: String = "2.1.0"
 
-    const val com_android_tools_build_gradle: String = "3.5.1"
+    const val com_android_tools_build_gradle: String = "4.0.0-alpha09"
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 
@@ -38,19 +38,19 @@ object Versions {
 
     const val adapterdelegates4: String = "4.2.0"
 
-    const val constraintlayout: String = "2.0.0-beta2"
+    const val constraintlayout: String = "2.0.0-beta4"
 
-    const val hamcrest_library: String = "2.1"
+    const val hamcrest_library: String = "2.2"
 
     const val busybee_android: String = "0.0.2"
 
-    const val iconics_core: String = "4.0.1-b02"
+    const val iconics_core: String = "4.0.2"
 
-    const val mockito_core: String = "3.1.0"
+    const val mockito_core: String = "3.3.0"
 
-    const val recyclerview: String = "1.0.0"
+    const val recyclerview: String = "1.1.0"
 
-    const val lint_gradle: String = "26.5.1"
+    const val lint_gradle: String = "27.0.0-alpha09"
 
     const val appcompat: String = "1.1.0"
 
@@ -58,28 +58,28 @@ object Versions {
 
     const val cardview: String = "1.0.0"
 
-    const val core_ktx: String = "1.1.0"
+    const val core_ktx: String = "1.2.0"
 
-    const val material: String = "1.0.0"
+    const val material: String = "1.1.0"
 
     const val switcher: String = "2.4.0"
 
     const val picasso: String = "2.71828"
 
-    const val okhttp: String = "4.2.2"
+    const val okhttp: String = "4.4.0"
 
     const val timber: String = "4.7.1"
 
-    const val aapt2: String = "3.5.1-5435860"
+    const val aapt2: String = "4.0.0-alpha09-6051327"
 
-    const val junit: String = "4.12"
+    const val junit: String = "4.13"
 
     /**
-     * Current version: "5.6.2"
+     * Current version: "6.2.1"
      * See issue 19: How to update Gradle itself?
      * https://github.com/jmfayard/buildSrcVersions/issues/19
      */
-    const val gradleLatestVersion: String = "5.6.2"
+    const val gradleLatestVersion: String = "6.2.1"
 }
 
 /**

@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -49,7 +50,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-        kotlinOptions.jvmTarget = "1.8"
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 
     lintOptions {

@@ -172,7 +172,7 @@ object Libs {
     const val mockito_core: String = "org.mockito:mockito-core:" + Versions.mockito_core
 
     /**
-     * http://developer.android.com/tools/extras/support-library.html
+     * https://developer.android.com/jetpack/androidx
      */
     const val recyclerview: String = "androidx.recyclerview:recyclerview:" + Versions.recyclerview
 
@@ -194,7 +194,7 @@ object Libs {
     const val cardview: String = "androidx.cardview:cardview:" + Versions.cardview
 
     /**
-     * http://developer.android.com/tools/extras/support-library.html
+     * https://developer.android.com/jetpack/androidx
      */
     const val core_ktx: String = "androidx.core:core-ktx:" + Versions.core_ktx
 
@@ -214,7 +214,7 @@ object Libs {
     const val picasso: String = "com.squareup.picasso:picasso:" + Versions.picasso
 
     /**
-     * https://github.com/square/okhttp
+     * https://square.github.io/okhttp/
      */
     const val okhttp: String = "com.squareup.okhttp3:okhttp:" + Versions.okhttp
 
