@@ -12,8 +12,8 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.sizeDp
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.sizeDp
 import cz.kutner.comicsdb.R
 
 class AboutFragment : MaterialAboutFragment() {
@@ -23,74 +23,81 @@ class AboutFragment : MaterialAboutFragment() {
         appCardBuilder.addItem(ConvenienceBuilder.createAppTitleItem(context))
 
         appCardBuilder.addItem(
-            ConvenienceBuilder.createVersionActionItem(
-                context,
-                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_info_outline).sizeDp(18),
-                "Verze",
-                false
-            )
+                ConvenienceBuilder.createVersionActionItem(
+                        context,
+                        IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_info_outline).apply {
+                            sizeDp = 18
+                        }, "Verze",
+                        false
+                )
         )
         appCardBuilder.addItem(
-            ConvenienceBuilder.createWebsiteActionItem(
-                context,
-                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_time_restore).sizeDp(
-                    18
-                ),
-                "Historie změn",
-                false,
-                Uri.parse("https://github.com/tukak/comicsdbclient/releases")
-            )
+                ConvenienceBuilder.createWebsiteActionItem(
+                        context,
+                        IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_time_restore).apply {
+                            sizeDp = 18
+                        },
+                        "Historie změn",
+                        false,
+                        Uri.parse("https://github.com/tukak/comicsdbclient/releases")
+                )
         )
 
         val authorCardBuilder = MaterialAboutCard.Builder()
         authorCardBuilder.title("Autor")
 
         authorCardBuilder.addItem(
-            MaterialAboutActionItem.Builder()
-                .text("Lukáš Kutner")
-                .subText("tukak")
-                .icon(
-                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_account).sizeDp(
-                        18
-                    )
+                MaterialAboutActionItem.Builder()
+                        .text("Lukáš Kutner")
+                        .subText("tukak")
+                        .icon(
+                                IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_account).apply {
+                                    sizeDp = 18
+                                }
+                        )
+                        .setOnClickAction {
+                            val i = Intent(Intent.ACTION_VIEW)
+                            i.data = Uri.parse("http://comicsdb.cz/user.php?id=5953")
+                            startActivity(i)
+                        }
+                        .build()
+        )
+
+        authorCardBuilder.addItem(
+                ConvenienceBuilder.createEmailItem(
+                        context,
+                        IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_email).apply {
+                            sizeDp = 18
+                        },
+                        "Hlašte chyby nebo pište nápady",
+                        true,
+                        "lukas@kutner.cz",
+                        "Komentář k aplikaci ComicsDB"
                 )
-                .setOnClickAction {
-                    val i = Intent(Intent.ACTION_VIEW)
-                    i.data = Uri.parse("http://comicsdb.cz/user.php?id=5953")
-                    startActivity(i)
-                }
-                .build()
         )
 
         authorCardBuilder.addItem(
-            ConvenienceBuilder.createEmailItem(
-                context,
-                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_email).sizeDp(18),
-                "Hlašte chyby nebo pište nápady",
-                true,
-                "lukas@kutner.cz",
-                "Komentář k aplikaci ComicsDB"
-            )
+                ConvenienceBuilder.createWebsiteActionItem(
+                        context,
+                        IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_twitter).apply {
+                            sizeDp = 18
+                        },
+                        "@tukak",
+                        false,
+                        Uri.parse("https://twitter.com/tukak")
+                )
         )
 
         authorCardBuilder.addItem(
-            ConvenienceBuilder.createWebsiteActionItem(
-                context,
-                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_twitter).sizeDp(18),
-                "@tukak",
-                false,
-                Uri.parse("https://twitter.com/tukak")
-            )
-        )
-
-        authorCardBuilder.addItem(
-            ConvenienceBuilder.createWebsiteActionItem(
-                context,
-                IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_github).sizeDp(18),
-                "Zdrojový kód",
-                true,
-                Uri.parse("https://github.com/tukak/comicsdbclient")
-            )
+                ConvenienceBuilder.createWebsiteActionItem(
+                        context,
+                        IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_github).apply {
+                            sizeDp = 18
+                        },
+                        "Zdrojový kód",
+                        true,
+                        Uri.parse("https://github.com/tukak/comicsdbclient")
+                )
         )
 
 
@@ -98,49 +105,49 @@ class AboutFragment : MaterialAboutFragment() {
         aboutCardBuilder.title(R.string.about)
 
         aboutCardBuilder.addItem(
-            (MaterialAboutActionItem.Builder()
-                .text(R.string.about_first)
-                .showIcon(false)
-                .setOnClickAction(
-                    ConvenienceBuilder.createWebsiteOnClickAction(
-                        context,
-                        Uri.parse("http://www.comicsdb.cz")
-                    )
-                )
-                .build())
+                (MaterialAboutActionItem.Builder()
+                        .text(R.string.about_first)
+                        .showIcon(false)
+                        .setOnClickAction(
+                                ConvenienceBuilder.createWebsiteOnClickAction(
+                                        context,
+                                        Uri.parse("http://www.comicsdb.cz")
+                                )
+                        )
+                        .build())
         )
         aboutCardBuilder.addItem(
-            (MaterialAboutActionItem.Builder()
-                .text(R.string.about_free)
-                .icon(
-                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_money_off).sizeDp(
-                        18
-                    )
-                )
-                .build())
+                (MaterialAboutActionItem.Builder()
+                        .text(R.string.about_free)
+                        .icon(
+                                IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_money_off).apply {
+                                    sizeDp = 18
+                                }
+                        )
+                        .build())
         )
 
         aboutCardBuilder.addItem(
-            (MaterialAboutActionItem.Builder()
-                .text(R.string.about_donate)
-                .icon(
-                    IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_money_box).sizeDp(
-                        18
-                    )
-                )
-                .setOnClickAction(
-                    ConvenienceBuilder.createWebsiteOnClickAction(
-                        context,
-                        Uri.parse("http://comicsdb.cz/donate.php")
-                    )
-                )
-                .build())
+                (MaterialAboutActionItem.Builder()
+                        .text(R.string.about_donate)
+                        .icon(
+                                IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_money_box).apply {
+                                    sizeDp = 18
+                                }
+                        )
+                        .setOnClickAction(
+                                ConvenienceBuilder.createWebsiteOnClickAction(
+                                        context,
+                                        Uri.parse("http://comicsdb.cz/donate.php")
+                                )
+                        )
+                        .build())
         )
 
         return MaterialAboutList(
-            appCardBuilder.build(),
-            aboutCardBuilder.build(),
-            authorCardBuilder.build()
+                appCardBuilder.build(),
+                aboutCardBuilder.build(),
+                authorCardBuilder.build()
         )
     }
 

@@ -134,9 +134,6 @@ object Libs {
             "com.mikepenz:material-design-iconic-typeface:" +
             Versions.material_design_iconic_typeface
 
-    /**
-     * https://github.com/daniel-stoneuk/material-about-library
-     */
     const val material_about_library: String = "com.github.daniel-stoneuk:material-about-library:" +
             Versions.material_about_library
 
@@ -203,9 +200,6 @@ object Libs {
      */
     const val material: String = "com.google.android.material:material:" + Versions.material
 
-    /**
-     * https://github.com/tukak/Switcher
-     */
     const val switcher: String = "com.github.tukak:Switcher:" + Versions.switcher
 
     /**

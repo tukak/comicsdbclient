@@ -12,23 +12,24 @@ import org.gradle.plugin.use.PluginDependencySpec
  * YOU are responsible for updating manually the dependency version.
  */
 object Versions {
-    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.3"
+    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.5"
+             // available: "1.3.5-1.4-M1-release-99"
 
     const val androidx_test_espresso: String = "3.2.0"
 
-    const val com_squareup_retrofit2: String = "2.7.2"
+    const val com_squareup_retrofit2: String = "2.8.1"
 
-    const val androidx_databinding: String = "4.0.0-beta01"
+    const val androidx_databinding: String = "4.0.0-beta04"
 
-    const val org_jetbrains_kotlin: String = "1.3.61"
+    const val org_jetbrains_kotlin: String = "1.3.71"
 
     const val androidx_lifecycle: String = "2.2.0"
 
     const val androidx_test: String = "1.2.0"
 
-    const val org_koin: String = "2.1.0"
+    const val org_koin: String = "2.1.5"
 
-    const val com_android_tools_build_gradle: String = "4.0.0-beta01"
+    const val com_android_tools_build_gradle: String = "4.0.0-beta04"
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 
@@ -36,7 +37,7 @@ object Versions {
 
     const val material_about_library: String = "2.4.2"
 
-    const val adapterdelegates4: String = "4.2.0"
+    const val adapterdelegates4: String = "4.3.0"
 
     const val constraintlayout: String = "2.0.0-beta4"
 
@@ -44,13 +45,13 @@ object Versions {
 
     const val busybee_android: String = "0.0.2"
 
-    const val iconics_core: String = "4.0.2"
+    const val iconics_core: String = "5.0.2"
 
-    const val mockito_core: String = "3.3.0"
+    const val mockito_core: String = "3.3.3"
 
     const val recyclerview: String = "1.1.0"
 
-    const val lint_gradle: String = "27.0.0-beta01"
+    const val lint_gradle: String = "27.0.0-beta04"
 
     const val appcompat: String = "1.1.0"
 
@@ -66,20 +67,20 @@ object Versions {
 
     const val picasso: String = "2.71828"
 
-    const val okhttp: String = "4.4.0"
+    const val okhttp: String = "4.5.0"
 
     const val timber: String = "4.7.1"
 
-    const val aapt2: String = "4.0.0-beta01-6051327"
+    const val aapt2: String = "4.0.0-beta04-6051327"
 
     const val junit: String = "4.13"
 
     /**
-     * Current version: "6.2.1"
+     * Current version: "6.3"
      * See issue 19: How to update Gradle itself?
      * https://github.com/jmfayard/buildSrcVersions/issues/19
      */
-    const val gradleLatestVersion: String = "6.2.1"
+    const val gradleLatestVersion: String = "6.3"
 }
 
 /**

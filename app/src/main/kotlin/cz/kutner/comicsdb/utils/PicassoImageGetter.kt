@@ -8,41 +8,43 @@ import android.graphics.drawable.Drawable
 import android.text.Html
 import android.widget.TextView
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.sizeDp
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.sizeDp
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 
 
 class PicassoImageGetter(val textView: TextView) :
-    Html.ImageGetter {
+        Html.ImageGetter {
 
     override fun getDrawable(source: String): Drawable {
 
         val drawable = BitmapDrawablePlaceHolder(
-            textView.context.resources,
-            IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(64).toBitmap()
+                textView.context.resources,
+                IconicsDrawable(textView.context, MaterialDesignIconic.Icon.gmi_image_o).apply {
+                    sizeDp = 64
+                }.toBitmap()
         )
 
         Picasso.get()
-            .load(source)
-            .placeholder(
-                IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_image_o).sizeDp(
-                    64
+                .load(source)
+                .placeholder(
+                        IconicsDrawable(textView.context, MaterialDesignIconic.Icon.gmi_image_o).apply {
+                            sizeDp = 64
+                        }
                 )
-            )
-            .error(
-                IconicsDrawable(textView.context).icon(MaterialDesignIconic.Icon.gmi_broken_image).sizeDp(
-                    64
+                .error(
+                        IconicsDrawable(textView.context, MaterialDesignIconic.Icon.gmi_broken_image).apply {
+                            sizeDp = 64
+                        }
                 )
-            )
-            .into(drawable)
+                .into(drawable)
 
         return drawable
     }
 
     private inner class BitmapDrawablePlaceHolder(resources: Resources, bitmap: Bitmap) :
-        BitmapDrawable(resources, bitmap), Target {
+            BitmapDrawable(resources, bitmap), Target {
 
         private var drawable: Drawable? = null
             set(value) {
@@ -61,7 +63,7 @@ class PicassoImageGetter(val textView: TextView) :
 
         private fun checkBounds() {
             val defaultProportion =
-                drawable!!.intrinsicWidth.toFloat() / drawable!!.intrinsicHeight.toFloat()
+                    drawable!!.intrinsicWidth.toFloat() / drawable!!.intrinsicHeight.toFloat()
             val width = Math.min(textView.width, drawable!!.intrinsicWidth)
             val height = (width.toFloat() / defaultProportion).toInt()
 
@@ -70,10 +72,10 @@ class PicassoImageGetter(val textView: TextView) :
                 setBounds(0, 0, textView.width, height) //set to full width
 
                 drawable!!.setBounds(
-                    0,
-                    0,
-                    width,
-                    height
+                        0,
+                        0,
+                        width,
+                        height
                 )
 
                 textView.text = textView.text //refresh text
