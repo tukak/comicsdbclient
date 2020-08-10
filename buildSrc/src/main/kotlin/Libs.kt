@@ -27,13 +27,13 @@ object Libs {
             Versions.androidx_test_espresso
 
     /**
-     * https://github.com/square/retrofit/
+     * https://github.com/square/retrofit
      */
     const val converter_gson: String = "com.squareup.retrofit2:converter-gson:" +
             Versions.com_squareup_retrofit2
 
     /**
-     * https://github.com/square/retrofit/
+     * https://github.com/square/retrofit
      */
     const val retrofit: String = "com.squareup.retrofit2:retrofit:" +
             Versions.com_squareup_retrofit2
@@ -59,12 +59,6 @@ object Libs {
     /**
      * https://kotlinlang.org/
      */
-    const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:" +
-            Versions.org_jetbrains_kotlin
-
-    /**
-     * https://kotlinlang.org/
-     */
     const val kotlin_android_extensions: String =
             "org.jetbrains.kotlin:kotlin-android-extensions:" + Versions.org_jetbrains_kotlin
 
@@ -80,6 +74,12 @@ object Libs {
      */
     const val kotlin_annotation_processing_gradle: String =
             "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:" +
+            Versions.org_jetbrains_kotlin
+
+    /**
+     * https://kotlinlang.org/
+     */
+    const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:" +
             Versions.org_jetbrains_kotlin
 
     /**
@@ -196,10 +196,13 @@ object Libs {
     const val core_ktx: String = "androidx.core:core-ktx:" + Versions.core_ktx
 
     /**
-     * http://developer.android.com/tools/extras/support-library.html
+     * https://github.com/material-components/material-components-android
      */
     const val material: String = "com.google.android.material:material:" + Versions.material
 
+    /**
+     * https://github.com/tukak/Switcher
+     */
     const val switcher: String = "com.github.tukak:Switcher:" + Versions.switcher
 
     /**

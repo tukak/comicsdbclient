@@ -23,6 +23,6 @@ allprojects {
         jcenter()
         google()
         maven(url = "https://jitpack.io")
-        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+        //maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
     }
 }
