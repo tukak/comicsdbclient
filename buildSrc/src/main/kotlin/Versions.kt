@@ -18,7 +18,7 @@ object Versions {
 
     const val com_squareup_retrofit2: String = "2.9.0"
 
-    const val androidx_databinding: String = "4.0.2"
+    const val androidx_databinding: String = "4.1.0"
 
     const val org_jetbrains_kotlin: String = "1.4.10"
 
@@ -26,9 +26,9 @@ object Versions {
 
     const val androidx_test: String = "1.3.0"
 
-    const val org_koin: String = "2.2.0-beta-2"
+    const val org_koin: String = "2.2.0-rc-1"
 
-    const val com_android_tools_build_gradle: String = "4.0.2"
+    const val com_android_tools_build_gradle: String = "4.1.0"
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 
@@ -50,7 +50,7 @@ object Versions {
 
     const val recyclerview: String = "1.1.0"
 
-    const val lint_gradle: String = "27.0.2"
+    const val lint_gradle: String = "27.1.0"
 
     const val appcompat: String = "1.2.0"
 
@@ -70,7 +70,7 @@ object Versions {
 
     const val timber: String = "4.7.1"
 
-    const val aapt2: String = "4.0.2-6197926"
+    const val aapt2: String = "4.1.0-6503028"
 
     const val junit: String = "4.13.1"
 
