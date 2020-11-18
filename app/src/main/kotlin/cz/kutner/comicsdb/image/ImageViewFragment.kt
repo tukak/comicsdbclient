@@ -27,7 +27,7 @@ class ImageViewFragment : Fragment() {
 
     companion object {
         const val IMAGE = "IMAGE"
-        fun newInstance(image: Image): ImageViewFragment {
+        fun newInstance(image: Image?): ImageViewFragment {
             val args = bundleOf(IMAGE to image)
             val fragment = ImageViewFragment()
             fragment.arguments = args
