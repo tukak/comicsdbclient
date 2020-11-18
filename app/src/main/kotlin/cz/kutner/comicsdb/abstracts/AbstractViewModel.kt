@@ -17,10 +17,10 @@ abstract class AbstractViewModel<Data : Item>(val retrofitModule: RetrofitModule
         return data
     }
 
-    abstract fun getJob(id: Int): Deferred<Data>
+    abstract suspend fun getJob(id: Int): Data
 
     private fun loadData(id: Int) = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
-        val newData = getJob(id).await()
+        val newData = getJob(id)
         data.postValue(newData)
     }
 }

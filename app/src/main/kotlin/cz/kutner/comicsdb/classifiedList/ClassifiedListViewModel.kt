@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class ClassifiedListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<Classified>(retrofitModule) {
-    override fun getJob(): Deferred<List<Classified>?> =
+    override suspend fun getJob(): List<Classified>? =
         retrofitModule.classifiedListService.filteredClassifiedList(start * count, count, filterId)
 }

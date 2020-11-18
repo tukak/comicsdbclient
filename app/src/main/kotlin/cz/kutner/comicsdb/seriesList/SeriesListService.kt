@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface SeriesListService {
     @GET("/api.php?get=serie")
-    fun getSeriesList(@Query("start") start: Int, @Query("records") records: Int, @Query("search") keyword: String): Deferred<List<Series>>
+    suspend fun getSeriesList(@Query("start") start: Int, @Query("records") records: Int, @Query("search") keyword: String): List<Series>
 }

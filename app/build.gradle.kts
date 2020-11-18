@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -14,12 +15,12 @@ androidExtensions {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(30)
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion(21)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -51,12 +52,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        setLintConfig(file("lint.xml"))
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 
-    dataBinding {
-        isEnabled = true
+    lintOptions {
+        lintConfig = file("lint.xml")
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
     kapt {
@@ -81,7 +88,6 @@ dependencies {
     implementation(Libs.retrofit)
     implementation(Libs.converter_gson)
     implementation(Libs.kotlinx_coroutines_android)
-    implementation(Libs.retrofit2_kotlin_coroutines_adapter)
     implementation(Libs.picasso)
     implementation(Libs.okhttp)
     implementation(Libs.adapterdelegates4)
@@ -94,6 +100,7 @@ dependencies {
     implementation(Libs.photoview)
     implementation(Libs.timber)
     implementation(Libs.constraintlayout)
+    implementation(Libs.busybee_android)
 
     testImplementation(Libs.junit)
     testImplementation(Libs.mockito_core)
@@ -104,6 +111,4 @@ dependencies {
     androidTestImplementation(Libs.androidx_test_runner)
     androidTestImplementation(Libs.espresso_core)
     androidTestImplementation(Libs.espresso_contrib)
-    androidTestImplementation(Libs.okhttp3_idling_resource)
-
 }

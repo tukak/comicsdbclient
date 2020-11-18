@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class NewsListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<NewsItem>(retrofitModule) {
-    override fun getJob(): Deferred<List<NewsItem>?> =
+    override suspend fun getJob(): List<NewsItem>? =
         retrofitModule.newsListService.listNews(start * count, count)
 }

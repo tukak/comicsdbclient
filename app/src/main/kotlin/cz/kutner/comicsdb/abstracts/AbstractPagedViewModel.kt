@@ -22,7 +22,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
         return data
     }
 
-    abstract fun getJob(): Deferred<List<Data>?>
+    abstract suspend fun getJob(): List<Data>?
 
     fun loadNewData() {
         start = 0
@@ -32,7 +32,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
 
 
     fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
-        val newData = getJob().await()
+        val newData = getJob()
         start++
         if (newData != null) {
             if (data.value == null) {

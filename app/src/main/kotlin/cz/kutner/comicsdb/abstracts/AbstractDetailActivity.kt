@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.network.NetworkModule

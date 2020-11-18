@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface ClassifiedListService {
     @GET("/api.php?get=bazar")
-    fun filteredClassifiedList(@Query("start") start: Int, @Query("records") records: Int, @Query("id") categoryId: Int): Deferred<List<Classified>>
+    suspend fun filteredClassifiedList(@Query("start") start: Int, @Query("records") records: Int, @Query("id") categoryId: Int): List<Classified>
 }

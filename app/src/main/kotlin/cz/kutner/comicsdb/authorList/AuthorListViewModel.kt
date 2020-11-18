@@ -7,6 +7,6 @@ import kotlinx.coroutines.Deferred
 
 class AuthorListViewModel(retrofitModule: RetrofitModule) :
     AbstractPagedViewModel<Author>(retrofitModule) {
-    override fun getJob(): Deferred<List<Author>?> =
+    override suspend fun getJob(): List<Author> =
         retrofitModule.authorListService.listAuthors(start * count, count, searchText)
 }
