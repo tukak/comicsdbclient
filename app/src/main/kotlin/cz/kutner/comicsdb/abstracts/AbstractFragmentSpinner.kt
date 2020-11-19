@@ -17,7 +17,7 @@ import pl.aprilapps.switcher.Switcher
 
 abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     override val switcher: Switcher by lazy {
-        Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view)
+        Switcher.Builder(requireContext()).addContentView(content).addEmptyView(empty_view)
             .addProgressView(progress_view).addErrorView(error_view).build()
     }
 

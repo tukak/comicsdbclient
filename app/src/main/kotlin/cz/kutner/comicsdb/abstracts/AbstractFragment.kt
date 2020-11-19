@@ -34,7 +34,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     var totalItemCount: Int = 0
     var preloadCount: Int = 20
     open val switcher: Switcher by lazy {
-        Switcher.Builder(context!!).addContentView(content).addEmptyView(empty_view)
+        Switcher.Builder(requireContext()).addContentView(content).addEmptyView(empty_view)
             .addProgressView(progress_view).addErrorView(error_view).build()
     }
 
@@ -88,7 +88,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
         } else {
             switcher.showProgressView()
             busyBee.busyWith(this::class.java.name)
-            model.getData().observe(this, Observer<List<Data>?> { newList ->
+            model.getData().observe(viewLifecycleOwner, Observer<List<Data>?> { newList ->
                 try {
                     if (newList != null) {
                         val oldData = adapter.items
