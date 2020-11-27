@@ -12,7 +12,7 @@ import org.gradle.plugin.use.PluginDependencySpec
  * YOU are responsible for updating manually the dependency version.
  */
 object Versions {
-    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.4.1"
+    const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.4.2"
 
     const val androidx_test_espresso: String = "3.3.0"
 
@@ -20,7 +20,7 @@ object Versions {
 
     const val androidx_databinding: String = "4.1.1"
 
-    const val org_jetbrains_kotlin: String = "1.4.10"
+    const val org_jetbrains_kotlin: String = "1.4.20"
 
     const val androidx_lifecycle: String = "2.2.0"
 
@@ -44,9 +44,9 @@ object Versions {
 
     const val busybee_android: String = "0.0.3"
 
-    const val iconics_core: String = "5.1.0"
+    const val iconics_core: String = "5.1.1"
 
-    const val mockito_core: String = "3.6.0"
+    const val mockito_core: String = "3.6.28"
 
     const val recyclerview: String = "1.1.0"
 
@@ -75,7 +75,7 @@ object Versions {
     const val junit: String = "4.13.1"
 
     /**
-     * Current version: "6.7"
+     * Current version: "6.7.1"
      * See issue 19: How to update Gradle itself?
      * https://github.com/jmfayard/buildSrcVersions/issues/19
      */
