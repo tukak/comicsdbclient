@@ -25,13 +25,13 @@ class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
-    val seriesListService: SeriesListService by lazy { retrofit.create<SeriesListService>() }
-    val seriesDetailService: SeriesDetailService by lazy { retrofit.create<SeriesDetailService>() }
-    val authorDetailService: AuthorDetailService by lazy { retrofit.create<AuthorDetailService>() }
-    val authorListService: AuthorListService by lazy { retrofit.create<AuthorListService>() }
-    val classifiedListService: ClassifiedListService by lazy { retrofit.create<ClassifiedListService>() }
-    val comicsDetailService: ComicsDetailService by lazy { retrofit.create<ComicsDetailService>() }
-    val comicsListService: ComicsListService by lazy { retrofit.create<ComicsListService>() }
-    val forumListService: ForumListService by lazy { retrofit.create<ForumListService>() }
-    val newsListService: NewsListService by lazy { retrofit.create<NewsListService>() }
+    val seriesListService: SeriesListService by lazy { retrofit.create() }
+    val seriesDetailService: SeriesDetailService by lazy { retrofit.create() }
+    val authorDetailService: AuthorDetailService by lazy { retrofit.create() }
+    val authorListService: AuthorListService by lazy { retrofit.create() }
+    val classifiedListService: ClassifiedListService by lazy { retrofit.create() }
+    val comicsDetailService: ComicsDetailService by lazy { retrofit.create() }
+    val comicsListService: ComicsListService by lazy { retrofit.create() }
+    val forumListService: ForumListService by lazy { retrofit.create() }
+    val newsListService: NewsListService by lazy { retrofit.create() }
 }

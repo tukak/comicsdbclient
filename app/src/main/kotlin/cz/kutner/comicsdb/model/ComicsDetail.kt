@@ -41,5 +41,5 @@ data class ComicsDetail(
         return text.parseAsHtml()
     }
 
-    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
+    fun getNameFromHtml(): Spanned = name.parseAsHtml()
 }

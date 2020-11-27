@@ -3,15 +3,14 @@ package cz.kutner.comicsdb.abstracts
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
-import androidx.lifecycle.LifecycleOwner
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import cz.kutner.comicsdb.R
-import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
 import cz.kutner.comicsdb.model.Item
+import cz.kutner.comicsdb.network.NetworkModule
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.view_empty.*
@@ -78,7 +77,7 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            model.getData(id).observe(this, Observer<Data> { result ->
+            model.getData(id).observe(this, { result ->
                 try {
                     if (result != null) {
                         processResult(result)

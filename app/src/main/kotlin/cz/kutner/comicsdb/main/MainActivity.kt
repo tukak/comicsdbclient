@@ -11,13 +11,11 @@ import androidx.core.view.LayoutInflaterCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
-import com.mikepenz.iconics.IconicsColorInt
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.context.IconicsLayoutInflater2
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
-import com.mikepenz.iconics.utils.toIconicsColor
 import cz.kutner.comicsdb.R
 import cz.kutner.comicsdb.about.AboutFragment
 import cz.kutner.comicsdb.authorList.AuthorListFragment

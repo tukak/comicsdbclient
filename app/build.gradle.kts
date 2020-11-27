@@ -6,6 +6,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    /*id("kotlin-parcelize")*/
 }
 
 androidExtensions {
@@ -64,6 +65,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 
     kapt {

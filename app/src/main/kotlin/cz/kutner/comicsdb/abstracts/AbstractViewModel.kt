@@ -12,14 +12,14 @@ abstract class AbstractViewModel<Data : Item>(val retrofitModule: RetrofitModule
     private val data = MutableLiveData<Data>()
     fun getData(id: Int): LiveData<Data> {
         if (data.value == null) {
-            loadData(id)
+            loadDataAsync(id)
         }
         return data
     }
 
     abstract suspend fun getJob(id: Int): Data
 
-    private fun loadData(id: Int) = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
+    private fun loadDataAsync(id: Int) = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
         val newData = getJob(id)
         data.postValue(newData)
     }

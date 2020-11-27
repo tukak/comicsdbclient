@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.newsList
 
 import cz.kutner.comicsdb.model.NewsItem
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 

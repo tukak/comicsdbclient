@@ -13,7 +13,7 @@ data class AuthorDetail(
     private val notes: String,
     val photoUrl: String
 ) : Item {
-    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
-    fun getBioFromHtml(): Spanned? = bio.parseAsHtml()
-    fun getNotesFromHtml(): Spanned? = notes.parseAsHtml()
+    fun getNameFromHtml(): Spanned = name.parseAsHtml()
+    fun getBioFromHtml(): Spanned = bio.parseAsHtml()
+    fun getNotesFromHtml(): Spanned = notes.parseAsHtml()
 }

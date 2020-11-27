@@ -12,6 +12,7 @@ import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesign
 import com.mikepenz.iconics.utils.sizeDp
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
+import kotlin.math.min
 
 
 class PicassoImageGetter(val textView: TextView) :
@@ -64,7 +65,7 @@ class PicassoImageGetter(val textView: TextView) :
         private fun checkBounds() {
             val defaultProportion =
                     drawable!!.intrinsicWidth.toFloat() / drawable!!.intrinsicHeight.toFloat()
-            val width = Math.min(textView.width, drawable!!.intrinsicWidth)
+            val width = min(textView.width, drawable!!.intrinsicWidth)
             val height = (width.toFloat() / defaultProportion).toInt()
 
             if (bounds.right != textView.width || bounds.bottom != height) {

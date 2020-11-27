@@ -1,9 +1,8 @@
 package cz.kutner.comicsdb.comicsDetail
 
 import cz.kutner.comicsdb.abstracts.AbstractViewModel
-import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.ComicsDetail
-import kotlinx.coroutines.Deferred
+import cz.kutner.comicsdb.network.RetrofitModule
 
 class ComicsDetailViewModel(retrofitModule: RetrofitModule) :
     AbstractViewModel<ComicsDetail>(retrofitModule) {

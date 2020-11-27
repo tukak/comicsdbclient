@@ -74,7 +74,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
                 pastVisibleItems = llm.findFirstVisibleItemPosition()
                 if ((visibleItemCount + pastVisibleItems) >= totalItemCount - preloadCount && !loading && !firstLoad) {
                     loading = true
-                    model.loadData()
+                    model.loadDataAsync()
                 }
             }
         })
@@ -88,7 +88,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
         } else {
             switcher.showProgressView()
             busyBee.busyWith(this::class.java.name)
-            model.getData().observe(viewLifecycleOwner, Observer<List<Data>?> { newList ->
+            model.getData().observe(viewLifecycleOwner, { newList ->
                 try {
                     if (newList != null) {
                         val oldData = adapter.items

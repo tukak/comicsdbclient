@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.authorDetail
 
 import cz.kutner.comicsdb.model.AuthorDetail
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 

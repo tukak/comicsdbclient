@@ -56,6 +56,9 @@ object Libs {
     const val databinding_runtime: String = "androidx.databinding:databinding-runtime:" +
             Versions.androidx_databinding
 
+    const val viewbinding: String = "androidx.databinding:viewbinding:" +
+            Versions.androidx_databinding
+
     /**
      * https://kotlinlang.org/
      */

@@ -17,7 +17,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
 
     fun getData(): LiveData<List<Data>> {
         if (data.value == null) {
-            loadData()
+            loadDataAsync()
         }
         return data
     }
@@ -27,11 +27,11 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     fun loadNewData() {
         start = 0
         data.value = null
-        loadData()
+        loadDataAsync()
     }
 
 
-    fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
+    fun loadDataAsync() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
         val newData = getJob()
         start++
         if (newData != null) {
