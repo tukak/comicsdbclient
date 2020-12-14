@@ -20,7 +20,7 @@ object Versions {
 
     const val androidx_databinding: String = "4.1.1"
 
-    const val org_jetbrains_kotlin: String = "1.4.20"
+    const val org_jetbrains_kotlin: String = "1.4.21"
 
     const val androidx_lifecycle: String = "2.2.0"
 
@@ -32,7 +32,7 @@ object Versions {
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 
-    const val material_design_iconic_typeface: String = "2.2.0.6-kotlin"
+    const val material_design_iconic_typeface: String = "2.2.0.8-kotlin"
 
     const val material_about_library: String = "3.1.2"
 
@@ -44,7 +44,7 @@ object Versions {
 
     const val busybee_android: String = "0.0.3"
 
-    const val iconics_core: String = "5.1.1"
+    const val iconics_core: String = "5.2.1"
 
     const val mockito_core: String = "3.6.28"
 
