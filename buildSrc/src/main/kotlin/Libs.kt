@@ -92,13 +92,13 @@ object Libs {
             Versions.org_jetbrains_kotlin
 
     /**
-     * https://developer.android.com/topic/libraries/architecture/index.html
+     * https://developer.android.com/jetpack/androidx/releases/lifecycle#2.3.1
      */
     const val lifecycle_livedata: String = "androidx.lifecycle:lifecycle-livedata:" +
             Versions.androidx_lifecycle
 
     /**
-     * https://developer.android.com/topic/libraries/architecture/index.html
+     * https://developer.android.com/jetpack/androidx/releases/lifecycle#2.3.1
      */
     const val lifecycle_viewmodel: String = "androidx.lifecycle:lifecycle-viewmodel:" +
             Versions.androidx_lifecycle
@@ -172,7 +172,7 @@ object Libs {
     const val mockito_core: String = "org.mockito:mockito-core:" + Versions.mockito_core
 
     /**
-     * https://developer.android.com/jetpack/androidx
+     * https://developer.android.com/jetpack/androidx/releases/recyclerview#1.2.0
      */
     const val recyclerview: String = "androidx.recyclerview:recyclerview:" + Versions.recyclerview
 

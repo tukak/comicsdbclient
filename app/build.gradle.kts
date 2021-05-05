@@ -75,6 +75,8 @@ android {
             option("-Xmaxerrs", 500)
         }
     }
+
+    kotlinOptions.useIR = true
 }
 
 dependencies {
