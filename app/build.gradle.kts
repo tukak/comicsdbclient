@@ -16,12 +16,12 @@ androidExtensions {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 31
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = 21
+        targetSdk =31
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -32,7 +32,6 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            isZipAlignEnabled = true
         }
     }
 
@@ -49,13 +48,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "11"
         }
     }
 
@@ -75,8 +74,6 @@ android {
             option("-Xmaxerrs", 500)
         }
     }
-
-    kotlinOptions.useIR = true
 }
 
 dependencies {
@@ -88,6 +85,7 @@ dependencies {
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.liveData)
     implementation(AndroidX.lifecycle.viewModel)
+    implementation(AndroidX.lifecycle.viewModelKtx)
     implementation("com.github.tukak:Switcher:_")
     implementation(Square.retrofit2.retrofit)
     implementation(Square.retrofit2.converter.gson)
