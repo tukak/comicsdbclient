@@ -15,12 +15,12 @@ androidExtensions {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(33)
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdkVersion(21)
-        targetSdkVersion(30)
+        targetSdkVersion(33)
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -84,6 +84,7 @@ dependencies {
     implementation(Libs.core_ktx)
     implementation(Libs.lifecycle_livedata)
     implementation(Libs.lifecycle_viewmodel)
+    implementation(Libs.lifecycle_viewmodel_ktx)
     implementation(Libs.switcher)
     implementation(Libs.retrofit)
     implementation(Libs.converter_gson)

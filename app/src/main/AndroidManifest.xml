@@ -17,7 +17,8 @@
         <activity
             android:name="cz.kutner.comicsdb.main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppThemeMainActivity">
+            android:theme="@style/AppThemeMainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +32,8 @@
         <activity
             android:name="cz.kutner.comicsdb.comicsDetail.ComicsDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity">
+            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.main.MainActivity" />
@@ -67,7 +69,8 @@
         <activity
             android:name="cz.kutner.comicsdb.authorDetail.AuthorDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity">
+            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.main.MainActivity" />
@@ -103,7 +106,8 @@
         <activity
             android:name="cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity">
+            android:parentActivityName="cz.kutner.comicsdb.main.MainActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.main.MainActivity" />
@@ -140,7 +144,8 @@
             android:name=".search.SearchActivity"
             android:label="@string/title_activity_comics_search"
             android:parentActivityName="cz.kutner.comicsdb.main.MainActivity"
-            android:theme="@style/AppThemeActionBar">
+            android:theme="@style/AppThemeActionBar"
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.kutner.comicsdb.main.MainActivity" />

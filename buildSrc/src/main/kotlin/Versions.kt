@@ -20,15 +20,15 @@ object Versions {
 
     const val androidx_databinding: String = "4.1.1"
 
-    const val org_jetbrains_kotlin: String = "1.4.10"
+    const val org_jetbrains_kotlin: String = "1.7.20"
 
-    const val androidx_lifecycle: String = "2.2.0"
+    const val androidx_lifecycle: String = "2.4.0"
 
     const val androidx_test: String = "1.3.0"
 
     const val org_koin: String = "2.2.1"
 
-    const val com_android_tools_build_gradle: String = "4.1.1"
+    const val com_android_tools_build_gradle: String = "7.4.2"
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 

@@ -101,6 +101,12 @@ object Libs {
             Versions.androidx_lifecycle
 
     /**
+     * https://developer.android.com/topic/libraries/architecture/index.html
+     */
+    const val lifecycle_viewmodel_ktx: String = "androidx.lifecycle:lifecycle-viewmodel-ktx:" +
+            Versions.androidx_lifecycle
+
+    /**
      * https://developer.android.com/testing
      */
     const val androidx_test_rules: String = "androidx.test:rules:" + Versions.androidx_test
