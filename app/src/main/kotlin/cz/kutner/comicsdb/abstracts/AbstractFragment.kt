@@ -94,7 +94,9 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
                         val oldData = adapter.items
                         adapter.items = newList
                         val diffResult =
-                            DiffUtil.calculateDiff(ItemDiffCallback(oldData, adapter.items))
+                            DiffUtil.calculateDiff(ItemDiffCallback(oldData!!,
+                                adapter.items as List<Data>
+                            ))
                         diffResult.dispatchUpdatesTo(adapter)
                         loading = false
                         if (firstLoad) {
