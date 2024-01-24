@@ -65,3 +65,5 @@
 
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+
+-keep class kotlin.coroutines.** { *; }
