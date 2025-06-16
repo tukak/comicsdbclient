@@ -102,11 +102,11 @@ public object Libs {
     public const val kotlinx_coroutines_android: String =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
 
-    public const val koin_android: String = "org.koin:koin-android:_"
+    public const val koin_android: String = "io.insert-koin:koin-android:_"
 
-    public const val koin_androidx_viewmodel: String = "org.koin:koin-androidx-viewmodel:_"
+    public const val koin_androidx_viewmodel: String = "io.insert-koin:koin-androidx-viewmodel:_"
 
-    public const val koin_test: String = "org.koin:koin-test:_"
+    public const val koin_test: String = "io.insert-koin:koin-test:_"
 
     public const val mockito_core: String = "org.mockito:mockito-core:_"
 }
