@@ -15,12 +15,12 @@ androidExtensions {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
