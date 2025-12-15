@@ -62,12 +62,6 @@ class MainActivityTest : KoinTest {
         val imageButton = onView(
             allOf(
                 ViewMatchers.withContentDescription("Navigate up"),
-                ViewMatchers.withParent(
-                    allOf(
-                        withId(R.id.toolbar),
-                        ViewMatchers.withParent(withId(R.id.appbar))
-                    )
-                ),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -75,7 +69,6 @@ class MainActivityTest : KoinTest {
 
         val appCompatCheckedTextView = onView(
             allOf(
-                withId(R.id.design_menu_item_text),
                 ViewMatchers.withText("Autoři"),
                 ViewMatchers.isDisplayed()
             )
@@ -88,12 +81,6 @@ class MainActivityTest : KoinTest {
         val imageButton = onView(
             allOf(
                 ViewMatchers.withContentDescription("Navigate up"),
-                ViewMatchers.withParent(
-                    allOf(
-                        withId(R.id.toolbar),
-                        ViewMatchers.withParent(withId(R.id.appbar))
-                    )
-                ),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -101,7 +88,6 @@ class MainActivityTest : KoinTest {
 
         val appCompatCheckedTextView = onView(
             allOf(
-                withId(R.id.design_menu_item_text),
                 ViewMatchers.withText("Bazar"),
                 ViewMatchers.isDisplayed()
             )
@@ -114,12 +100,6 @@ class MainActivityTest : KoinTest {
         val imageButton = onView(
             allOf(
                 ViewMatchers.withContentDescription("Navigate up"),
-                ViewMatchers.withParent(
-                    allOf(
-                        withId(R.id.toolbar),
-                        ViewMatchers.withParent(withId(R.id.appbar))
-                    )
-                ),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -127,7 +107,6 @@ class MainActivityTest : KoinTest {
 
         val appCompatCheckedTextView = onView(
             allOf(
-                withId(R.id.design_menu_item_text),
                 ViewMatchers.withText("Forum"),
                 ViewMatchers.isDisplayed()
             )
@@ -140,12 +119,6 @@ class MainActivityTest : KoinTest {
         val imageButton = onView(
             allOf(
                 ViewMatchers.withContentDescription("Navigate up"),
-                ViewMatchers.withParent(
-                    allOf(
-                        withId(R.id.toolbar),
-                        ViewMatchers.withParent(withId(R.id.appbar))
-                    )
-                ),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -153,7 +126,6 @@ class MainActivityTest : KoinTest {
 
         val appCompatCheckedTextView = onView(
             allOf(
-                withId(R.id.design_menu_item_text),
                 ViewMatchers.withText("Novinky"),
                 ViewMatchers.isDisplayed()
             )
@@ -189,12 +161,6 @@ class MainActivityTest : KoinTest {
         val imageButton = onView(
             allOf(
                 ViewMatchers.withContentDescription("Navigate up"),
-                ViewMatchers.withParent(
-                    allOf(
-                        withId(R.id.toolbar),
-                        ViewMatchers.withParent(withId(R.id.appbar))
-                    )
-                ),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -202,7 +168,6 @@ class MainActivityTest : KoinTest {
 
         val appCompatCheckedTextView = onView(
             allOf(
-                withId(R.id.design_menu_item_text),
                 ViewMatchers.withText("Serie"),
                 ViewMatchers.isDisplayed()
             )

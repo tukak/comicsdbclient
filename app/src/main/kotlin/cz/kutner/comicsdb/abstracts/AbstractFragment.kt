@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.FragmentListBinding
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.ItemDiffCallback
 import io.americanexpress.busybee.BusyBee
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.view_empty.*
-import kotlinx.android.synthetic.main.view_error.*
-import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
 import timber.log.Timber
@@ -33,29 +29,46 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     var visibleItemCount: Int = 0
     var totalItemCount: Int = 0
     var preloadCount: Int = 20
-    open val switcher: Switcher by lazy {
-        Switcher.Builder(requireContext()).addContentView(content).addEmptyView(empty_view)
-            .addProgressView(progress_view).addErrorView(error_view).build()
-    }
 
-    private val networkModule by inject<NetworkModule>()
+    private var _binding: FragmentListBinding? = null
+    protected val binding get() = _binding!!
+
+    protected open lateinit var switcher: Switcher
+    protected open val recyclerView: RecyclerView get() = binding.recyclerView
+
+    protected val networkModule by inject<NetworkModule>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_list, container, false)
+    ): View {
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (!::switcher.isInitialized) {
+            switcher = Switcher.Builder(requireContext())
+                .addContentView(binding.content)
+                .addEmptyView(binding.viewEmptyInclude.root)
+                .addProgressView(binding.viewProgressInclude.root)
+                .addErrorView(binding.viewErrorInclude.root)
+                .build()
+        }
         setupTryAgainButton()
         setupRecyclerView(view)
         setupTitleAndSearchText()
         checkConnectionAndLoadData()
     }
 
-    private fun setupTryAgainButton() {
-        try_again.setOnClickListener {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    protected open fun setupTryAgainButton() {
+        binding.viewErrorInclude.tryAgain.setOnClickListener {
             if (networkModule.isConnected()) {
                 checkConnectionAndLoadData()
             }
@@ -64,10 +77,10 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
 
     open fun setupRecyclerView(view: View) {
         val llm = LinearLayoutManager(view.context)
-        recycler_view.layoutManager = llm
-        recycler_view.adapter = adapter
-        recycler_view.setHasFixedSize(true)
-        recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recyclerView.layoutManager = llm
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 visibleItemCount = llm.childCount
                 totalItemCount = llm.itemCount
@@ -82,7 +95,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
 
     abstract fun setupTitleAndSearchText()
 
-    private fun checkConnectionAndLoadData() {
+    protected fun checkConnectionAndLoadData() {
         if (!networkModule.isConnected()) {
             switcher.showErrorView()
         } else {

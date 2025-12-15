@@ -4,7 +4,6 @@ import androidx.core.text.parseAsHtml
 import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlinx.android.synthetic.main.fragment_list.*
 
 
 class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
@@ -14,9 +13,7 @@ class ComicsDetailActivity : AbstractDetailActivity<ComicsDetail>() {
         supportActionBar?.title = result.name.parseAsHtml()
         val adapter =
             ComicsDetailAdapter(layoutInflater, listOf(result) + result.comments)
-        recycler_view.adapter = adapter
-        recycler_view.setHasFixedSize(true)
+        binding.fragmentListInclude.recyclerView.adapter = adapter
+        binding.fragmentListInclude.recyclerView.setHasFixedSize(true)
     }
-
-
 }

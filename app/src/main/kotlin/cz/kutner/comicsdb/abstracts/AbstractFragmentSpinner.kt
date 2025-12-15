@@ -6,20 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import cz.kutner.comicsdb.R
+import androidx.recyclerview.widget.RecyclerView
+import cz.kutner.comicsdb.databinding.FragmentListSpinnerBinding
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.Item
-import kotlinx.android.synthetic.main.fragment_list_spinner.*
-import kotlinx.android.synthetic.main.view_empty.*
-import kotlinx.android.synthetic.main.view_error.*
-import kotlinx.android.synthetic.main.view_progress.*
 import pl.aprilapps.switcher.Switcher
 
 abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
-    override val switcher: Switcher by lazy {
-        Switcher.Builder(requireContext()).addContentView(content).addEmptyView(empty_view)
-            .addProgressView(progress_view).addErrorView(error_view).build()
-    }
+    private var _spinnerBinding: FragmentListSpinnerBinding? = null
+    private val spinnerBinding get() = _spinnerBinding!!
+
+    override val recyclerView: RecyclerView get() = spinnerBinding.recyclerView
 
     lateinit var spinnerValues: Array<Filter>
     var filter: Int = 0
@@ -28,8 +25,33 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_list_spinner, container, false)
+    ): View {
+        _spinnerBinding = FragmentListSpinnerBinding.inflate(inflater, container, false)
+        return spinnerBinding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _spinnerBinding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        switcher = Switcher.Builder(requireContext())
+            .addContentView(spinnerBinding.content)
+            .addEmptyView(spinnerBinding.viewEmptyInclude.root)
+            .addProgressView(spinnerBinding.viewProgressInclude.root)
+            .addErrorView(spinnerBinding.viewErrorInclude.root)
+            .build()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun setupTryAgainButton() {
+        spinnerBinding.viewErrorInclude.tryAgain.setOnClickListener {
+            if (networkModule.isConnected()) {
+                checkConnectionAndLoadData()
+            }
+        }
+    }
 
     override fun setupRecyclerView(view: View) {
         super.setupRecyclerView(view)
@@ -37,10 +59,10 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
         if (context != null) {
             val spinnerAdapter =
                 ArrayAdapter(context, android.R.layout.simple_spinner_item, spinnerValues)
-            spinner.adapter = spinnerAdapter
+            spinnerBinding.spinner.adapter = spinnerAdapter
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.setSelection(spinnerPosition)
-            spinner.onItemSelectedListener = ItemSelectedListener()
+            spinnerBinding.spinner.setSelection(spinnerPosition)
+            spinnerBinding.spinner.onItemSelectedListener = ItemSelectedListener()
         }
     }
 
@@ -49,7 +71,7 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
             if (spinnerPosition != pos) {
-                model.filterId = (spinner.selectedItem as Filter).id
+                model.filterId = (spinnerBinding.spinner.selectedItem as Filter).id
                 firstLoad = true
                 switcher.showProgressView()
                 model.loadNewData()

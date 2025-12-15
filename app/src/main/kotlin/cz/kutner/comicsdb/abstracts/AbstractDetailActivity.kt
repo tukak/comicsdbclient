@@ -6,17 +6,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.ActivityDetailBinding
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
 import cz.kutner.comicsdb.model.Item
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.toolbar.*
-import kotlinx.android.synthetic.main.view_empty.*
-import kotlinx.android.synthetic.main.view_error.*
-import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import pl.aprilapps.switcher.Switcher
 import timber.log.Timber
@@ -24,9 +18,11 @@ import timber.log.Timber
 abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
     abstract val model: AbstractViewModel<Data>
 
+    protected lateinit var binding: ActivityDetailBinding
+
     private val switcher: Switcher by lazy {
-        Switcher.Builder(this).addContentView(content).addEmptyView(empty_view)
-            .addProgressView(progress_view).addErrorView(error_view).build()
+        Switcher.Builder(this).addContentView(binding.fragmentListInclude.content).addEmptyView(binding.fragmentListInclude.viewEmptyInclude.root)
+            .addProgressView(binding.fragmentListInclude.viewProgressInclude.root).addErrorView(binding.fragmentListInclude.viewErrorInclude.root).build()
     }
     private val networkModule by inject<NetworkModule>()
 
@@ -41,26 +37,24 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupToolbar()
 
         val llm = LinearLayoutManager(this)
-        try_again.setOnClickListener {
+        binding.fragmentListInclude.viewErrorInclude.tryAgain.setOnClickListener {
             if (networkModule.isConnected()) {
                 onResume()
             }
         }
 
-        recycler_view.layoutManager = llm
+        binding.fragmentListInclude.recyclerView.layoutManager = llm
         switcher.showProgressView()
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        if (toolbar != null) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            //searchView.visibility = View.GONE
-        }
+        setSupportActionBar(binding.toolbarInclude.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -11,11 +11,11 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     ViewModel() {
     var start = 0
     var count = 20
-    private val data = MutableLiveData<List<Data>>()
+    private val data = MutableLiveData<List<Data>?>()
     var filterId = 0
     var searchText = ""
 
-    fun getData(): LiveData<List<Data>> {
+    fun getData(): LiveData<List<Data>?> {
         if (data.value == null) {
             loadData()
         }

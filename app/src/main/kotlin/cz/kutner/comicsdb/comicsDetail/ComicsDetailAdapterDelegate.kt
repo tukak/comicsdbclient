@@ -9,8 +9,6 @@ import cz.kutner.comicsdb.databinding.FragmentComicsDetailBinding
 import cz.kutner.comicsdb.helpers.ClickHandlers
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.model.Item
-import kotlinx.android.synthetic.main.comics_info.view.*
-import kotlinx.android.synthetic.main.fragment_comics_detail.view.*
 
 
 class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
@@ -37,9 +35,9 @@ class ComicsDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
     class ComicsViewHolder(val binding: FragmentComicsDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            itemView.authors.movementMethod = LinkMovementMethod.getInstance()
-            itemView.series.movementMethod = LinkMovementMethod.getInstance()
-            itemView.description.movementMethod = LinkMovementMethod.getInstance()
+            binding.authors.movementMethod = LinkMovementMethod.getInstance()
+            binding.include.series.movementMethod = LinkMovementMethod.getInstance()
+            binding.description.movementMethod = LinkMovementMethod.getInstance()
         }
 
         fun bind(comics: ComicsDetail) {

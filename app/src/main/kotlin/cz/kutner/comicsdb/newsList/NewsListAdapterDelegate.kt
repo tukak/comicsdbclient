@@ -8,7 +8,6 @@ import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import cz.kutner.comicsdb.databinding.ListItemNewsBinding
 import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.model.NewsItem
-import kotlinx.android.synthetic.main.list_item_news.view.*
 
 class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
     override fun isForViewType(items: List<Item>, position: Int) = items[position] is NewsItem
@@ -33,7 +32,7 @@ class NewsListAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<Li
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.newsItemText.movementMethod = LinkMovementMethod.getInstance()
+            binding.newsItemText.movementMethod = LinkMovementMethod.getInstance()
         }
 
         fun bind(newsItem: NewsItem) {

@@ -8,7 +8,6 @@ import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import cz.kutner.comicsdb.databinding.FragmentAuthorDetailBinding
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.model.Item
-import kotlinx.android.synthetic.main.fragment_author_detail.view.*
 
 
 class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegate<List<Item>>() {
@@ -35,8 +34,8 @@ class AuthorDetailAdapterDelegate(val inflater: LayoutInflater) : AdapterDelegat
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.bio.movementMethod = LinkMovementMethod.getInstance()
-            itemView.notes.movementMethod = LinkMovementMethod.getInstance()
+            binding.bio.movementMethod = LinkMovementMethod.getInstance()
+            binding.notes.movementMethod = LinkMovementMethod.getInstance()
         }
 
         fun bind(author: AuthorDetail) {

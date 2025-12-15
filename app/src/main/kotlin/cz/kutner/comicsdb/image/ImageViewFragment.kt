@@ -6,24 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.FragmentImageViewBinding
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.utils.loadUrl
-import kotlinx.android.synthetic.main.fragment_image_view.*
 
 class ImageViewFragment : Fragment() {
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val image: Image? = arguments?.getParcelable(IMAGE)
-        if (image != null) imageView.loadUrl(image.fullUrl)
-    }
+    private var _binding: FragmentImageViewBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_image_view, null)
+    ): View {
+        _binding = FragmentImageViewBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val image: Image? = arguments?.getParcelable(IMAGE)
+        if (image != null) binding.imageView.loadUrl(image.fullUrl)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     companion object {
         const val IMAGE = "IMAGE"

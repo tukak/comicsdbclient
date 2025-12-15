@@ -3,7 +3,6 @@ package cz.kutner.comicsdb.seriesDetail
 import androidx.core.text.parseAsHtml
 import cz.kutner.comicsdb.abstracts.AbstractDetailActivity
 import cz.kutner.comicsdb.model.SeriesDetail
-import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeriesDetailActivity : AbstractDetailActivity<SeriesDetail>() {
@@ -12,7 +11,7 @@ class SeriesDetailActivity : AbstractDetailActivity<SeriesDetail>() {
     override fun processResult(result: SeriesDetail) {
         supportActionBar?.title = result.name.parseAsHtml()
         val adapter = SeriesDetailAdapter(layoutInflater, listOf(result) + result.comicses)
-        recycler_view.adapter = adapter
-        recycler_view.setHasFixedSize(true)
+        binding.fragmentListInclude.recyclerView.adapter = adapter
+        binding.fragmentListInclude.recyclerView.setHasFixedSize(true)
     }
 }

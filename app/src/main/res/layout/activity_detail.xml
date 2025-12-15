@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include layout="@layout/toolbar" />
+        <include
+            android:id="@+id/toolbar_include"
+            layout="@layout/toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -23,7 +25,9 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:ignore="MergeRootFrame">
 
-        <include layout="@layout/fragment_list" />
+        <include
+            android:id="@+id/fragment_list_include"
+            layout="@layout/fragment_list" />
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

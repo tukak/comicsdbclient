@@ -3,22 +3,23 @@ package cz.kutner.comicsdb.image
 import android.os.Bundle
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.appcompat.app.AppCompatActivity
-import cz.kutner.comicsdb.R
+import cz.kutner.comicsdb.databinding.ActivityViewImagesBinding
 import cz.kutner.comicsdb.model.Image
-import kotlinx.android.synthetic.main.activity_view_images.*
 
 class ImageViewSliderActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityViewImagesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_images)
+        binding = ActivityViewImagesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val images = intent.getParcelableArrayListExtra<Image>(IMAGES)
         val position = intent.getIntExtra(POSTITION, 0)
         val fragmentPagerAdapter: FragmentStatePagerAdapter =
             ImagePagerAdapter(supportFragmentManager, images)
-        image_pager.adapter = fragmentPagerAdapter
-        image_tabs.setupWithViewPager(image_pager)
-        image_pager.currentItem = position
+        binding.imagePager.adapter = fragmentPagerAdapter
+        binding.imageTabs.setupWithViewPager(binding.imagePager)
+        binding.imagePager.currentItem = position
     }
 
     companion object {

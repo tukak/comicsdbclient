@@ -1,20 +1,14 @@
-import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
-}
-
-androidExtensions {
-    configure<AndroidExtensionsExtension> {
-        isExperimental = true
-    }
+    id("kotlin-parcelize")
 }
 
 android {
+    namespace = "cz.kutner.comicsdb"
     compileSdk = 34
 
     defaultConfig {
@@ -31,7 +25,6 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            isZipAlignEnabled = true
         }
     }
 
@@ -58,12 +51,14 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         lintConfig = file("lint.xml")
     }
 
     buildFeatures {
         dataBinding = true
+        viewBinding = true
+        buildConfig = true
     }
 
     kapt {
