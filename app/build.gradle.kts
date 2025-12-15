@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 34
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
