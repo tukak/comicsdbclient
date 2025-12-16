@@ -104,12 +104,9 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
             model.getData().observe(viewLifecycleOwner, Observer<List<Data>?> { newList ->
                 try {
                     if (newList != null) {
-                        val oldData = adapter.items
+                        val oldData = adapter.items ?: emptyList()
                         adapter.items = newList
-                        val diffResult =
-                            DiffUtil.calculateDiff(ItemDiffCallback(oldData!!,
-                                adapter.items as List<Data>
-                            ))
+                        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(oldData, newList))
                         diffResult.dispatchUpdatesTo(adapter)
                         loading = false
                         if (firstLoad) {

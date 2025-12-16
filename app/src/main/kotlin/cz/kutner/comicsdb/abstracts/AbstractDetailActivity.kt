@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import cz.kutner.comicsdb.databinding.ActivityDetailBinding
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
@@ -72,16 +71,14 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
             switcher.showErrorView()
         } else {
             switcher.showProgressView()
-            model.getData(id).observe(this, Observer<Data> { result ->
+            model.getData(id).observe(this) { result ->
                 try {
-                    if (result != null) {
-                        processResult(result)
-                        switcher.showContentView()
-                    }
+                    processResult(result)
+                    switcher.showContentView()
                 } catch (e: Exception) {
                     Timber.e(e)
                 }
-            })
+            }
         }
     }
 
