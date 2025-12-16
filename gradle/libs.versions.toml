@@ -1,6 +1,6 @@
 [versions]
-kotlin = "1.9.22"
-agp = "8.7.3"
+kotlin = "2.1.21"
+agp = "8.13.2"
 koin = "3.5.6"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
