@@ -92,7 +92,6 @@ dependencies {
     implementation(Libs.iconics_core)
     implementation(Libs.material_design_iconic_typeface)
     implementation(Libs.koin_android)
-    implementation(Libs.koin_androidx_viewmodel)
     implementation(Libs.photoview)
     implementation(Libs.timber)
     implementation(Libs.constraintlayout)

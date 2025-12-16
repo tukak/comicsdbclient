@@ -104,8 +104,6 @@ public object Libs {
 
     public const val koin_android: String = "io.insert-koin:koin-android:_"
 
-    public const val koin_androidx_viewmodel: String = "io.insert-koin:koin-androidx-viewmodel:_"
-
     public const val koin_test: String = "io.insert-koin:koin-test:_"
 
     public const val mockito_core: String = "org.mockito:mockito-core:_"

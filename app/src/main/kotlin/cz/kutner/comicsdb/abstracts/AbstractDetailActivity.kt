@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.abstracts
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import androidx.core.net.toUri
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
@@ -27,8 +27,7 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
 
     val id: Int by lazy {
         if (Intent.ACTION_VIEW == intent.action) {
-            val uri = Uri.parse(intent.dataString)
-            Integer.parseInt(uri.pathSegments[1])
+            intent.dataString?.toUri()?.pathSegments?.get(1)?.toInt() ?: 0
         } else {
             intent.getIntExtra(Intent.EXTRA_UID, 0)
         }
