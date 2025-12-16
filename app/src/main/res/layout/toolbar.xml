@@ -5,9 +5,10 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
     android:elevation="8dp"
     android:minHeight="?attr/actionBarSize"
-    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
     app:layout_scrollFlags="scroll|enterAlways|snap">
 
 </androidx.appcompat.widget.Toolbar>
