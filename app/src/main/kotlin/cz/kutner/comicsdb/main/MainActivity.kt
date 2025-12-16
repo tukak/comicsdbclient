@@ -2,7 +2,6 @@ package cz.kutner.comicsdb.main
 
 import android.app.SearchManager
 import android.content.ComponentName
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
@@ -120,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
         val cn = ComponentName(this, SearchActivity::class.java)
         val searchView = menu.findItem(R.id.searchView).actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn))
