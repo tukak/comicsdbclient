@@ -18,12 +18,12 @@ fun getVersionName(): String = providers.exec {
 
 android {
     namespace = "cz.kutner.comicsdb"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = getVersionCode()
         versionName = getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -89,7 +89,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.coroutines.android)
-    implementation(libs.picasso)
+    implementation(libs.coil)
+    implementation(libs.coil.network)
     implementation(libs.okhttp)
     implementation(libs.adapterdelegates)
     implementation(libs.material.about)

@@ -16,7 +16,7 @@ import cz.kutner.comicsdb.image.ImageViewSliderActivity
 import cz.kutner.comicsdb.model.ComicsDetail
 import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
-import cz.kutner.comicsdb.utils.PicassoImageGetter
+import cz.kutner.comicsdb.utils.CoilImageGetter
 import cz.kutner.comicsdb.utils.loadUrl
 import java.util.*
 
@@ -33,7 +33,7 @@ fun bitmapSource(view: ImageView, uri: String) {
 @BindingAdapter("htmlWithImage")
 fun htmlWithImage(textView: TextView, string: String) {
     val html: Spannable =
-        string.parseAsHtml(imageGetter = PicassoImageGetter(textView)) as Spannable
+        string.parseAsHtml(imageGetter = CoilImageGetter(textView)) as Spannable
     for (span in html.getSpans(0, html.length, ImageSpan::class.java)) {
         val flags = html.getSpanFlags(span)
         val start = html.getSpanStart(span)

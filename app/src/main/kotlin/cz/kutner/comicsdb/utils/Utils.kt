@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.utils
 
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
+import coil3.load
 
 fun ImageView.loadUrl(url: String) {
-    if (url.isNotBlank()) Picasso.get().load(url).into(this)
+    if (url.isNotBlank()) load(url)
 }
