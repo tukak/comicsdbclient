@@ -85,7 +85,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.switcher)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.coroutines.android)

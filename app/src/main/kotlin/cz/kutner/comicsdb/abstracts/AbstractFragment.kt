@@ -15,7 +15,7 @@ import cz.kutner.comicsdb.model.Item
 import cz.kutner.comicsdb.utils.ItemDiffCallback
 import io.americanexpress.busybee.BusyBee
 import org.koin.android.ext.android.inject
-import pl.aprilapps.switcher.Switcher
+import cz.kutner.comicsdb.utils.ViewStateSwitcher
 import timber.log.Timber
 
 abstract class AbstractFragment<Data : Item> : Fragment() {
@@ -33,7 +33,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     private var _binding: FragmentListBinding? = null
     protected val binding get() = _binding!!
 
-    protected open lateinit var switcher: Switcher
+    protected open lateinit var switcher: ViewStateSwitcher
     protected open val recyclerView: RecyclerView get() = binding.recyclerView
 
     protected val networkModule by inject<NetworkModule>()
@@ -49,7 +49,7 @@ abstract class AbstractFragment<Data : Item> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (!::switcher.isInitialized) {
-            switcher = Switcher.Builder(requireContext())
+            switcher = ViewStateSwitcher.Builder(requireContext())
                 .addContentView(binding.content)
                 .addEmptyView(binding.viewEmptyInclude.root)
                 .addProgressView(binding.viewProgressInclude.root)

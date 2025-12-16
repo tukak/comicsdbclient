@@ -18,7 +18,6 @@ iconics = "5.4.0"
 iconics-typeface = "2.2.0.8-kotlin"
 adapterdelegates = "4.3.2"
 photoview = "1.0.2"
-switcher = "2.4.0"
 material-about = "3.1.2"
 busybee = "0.0.4"
 junit = "4.13.2"
@@ -53,7 +52,6 @@ iconics-core = { module = "com.mikepenz:iconics-core", version.ref = "iconics" }
 iconics-material-typeface = { module = "com.mikepenz:material-design-iconic-typeface", version.ref = "iconics-typeface" }
 adapterdelegates = { module = "com.hannesdorfmann:adapterdelegates4", version.ref = "adapterdelegates" }
 photoview = { module = "io.getstream:photoview", version.ref = "photoview" }
-switcher = { module = "com.github.tukak:Switcher", version.ref = "switcher" }
 material-about = { module = "com.github.daniel-stoneuk:material-about-library", version.ref = "material-about" }
 busybee = { module = "io.americanexpress.busybee:busybee-android", version.ref = "busybee" }
 junit = { module = "junit:junit", version.ref = "junit" }

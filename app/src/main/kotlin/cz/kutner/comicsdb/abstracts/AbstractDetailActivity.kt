@@ -10,8 +10,8 @@ import cz.kutner.comicsdb.databinding.ActivityDetailBinding
 import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.main.MainActivity
 import cz.kutner.comicsdb.model.Item
+import cz.kutner.comicsdb.utils.ViewStateSwitcher
 import org.koin.android.ext.android.inject
-import pl.aprilapps.switcher.Switcher
 import timber.log.Timber
 
 abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
@@ -19,8 +19,8 @@ abstract class AbstractDetailActivity<Data : Item> : AppCompatActivity() {
 
     protected lateinit var binding: ActivityDetailBinding
 
-    private val switcher: Switcher by lazy {
-        Switcher.Builder(this).addContentView(binding.fragmentListInclude.content).addEmptyView(binding.fragmentListInclude.viewEmptyInclude.root)
+    private val switcher: ViewStateSwitcher by lazy {
+        ViewStateSwitcher.Builder(this).addContentView(binding.fragmentListInclude.content).addEmptyView(binding.fragmentListInclude.viewEmptyInclude.root)
             .addProgressView(binding.fragmentListInclude.viewProgressInclude.root).addErrorView(binding.fragmentListInclude.viewErrorInclude.root).build()
     }
     private val networkModule by inject<NetworkModule>()

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.kutner.comicsdb.databinding.FragmentListSpinnerBinding
 import cz.kutner.comicsdb.model.Filter
 import cz.kutner.comicsdb.model.Item
-import pl.aprilapps.switcher.Switcher
+import cz.kutner.comicsdb.utils.ViewStateSwitcher
 
 abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     private var _spinnerBinding: FragmentListSpinnerBinding? = null
@@ -36,7 +36,7 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        switcher = Switcher.Builder(requireContext())
+        switcher = ViewStateSwitcher.Builder(requireContext())
             .addContentView(spinnerBinding.content)
             .addEmptyView(spinnerBinding.viewEmptyInclude.root)
             .addProgressView(spinnerBinding.viewProgressInclude.root)
