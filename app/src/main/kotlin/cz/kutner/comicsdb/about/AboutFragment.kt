@@ -3,8 +3,8 @@ package cz.kutner.comicsdb.about
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import androidx.core.net.toUri
 import androidx.appcompat.app.AppCompatActivity
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment
@@ -39,7 +39,7 @@ class AboutFragment : MaterialAboutFragment() {
                         },
                         "Historie změn",
                         false,
-                        Uri.parse("https://github.com/tukak/comicsdbclient/releases")
+                        "https://github.com/tukak/comicsdbclient/releases".toUri()
                 )
         )
 
@@ -57,7 +57,7 @@ class AboutFragment : MaterialAboutFragment() {
                         )
                         .setOnClickAction {
                             val i = Intent(Intent.ACTION_VIEW)
-                            i.data = Uri.parse("http://comicsdb.cz/user.php?id=5953")
+                            i.data = "http://comicsdb.cz/user.php?id=5953".toUri()
                             startActivity(i)
                         }
                         .build()
@@ -84,7 +84,7 @@ class AboutFragment : MaterialAboutFragment() {
                         },
                         "@tukak",
                         false,
-                        Uri.parse("https://twitter.com/tukak")
+                        "https://twitter.com/tukak".toUri()
                 )
         )
 
@@ -96,7 +96,7 @@ class AboutFragment : MaterialAboutFragment() {
                         },
                         "Zdrojový kód",
                         true,
-                        Uri.parse("https://github.com/tukak/comicsdbclient")
+                        "https://github.com/tukak/comicsdbclient".toUri()
                 )
         )
 
@@ -111,7 +111,7 @@ class AboutFragment : MaterialAboutFragment() {
                         .setOnClickAction(
                                 ConvenienceBuilder.createWebsiteOnClickAction(
                                         context,
-                                        Uri.parse("http://www.comicsdb.cz")
+                                        "http://www.comicsdb.cz".toUri()
                                 )
                         )
                         .build())
@@ -138,7 +138,7 @@ class AboutFragment : MaterialAboutFragment() {
                         .setOnClickAction(
                                 ConvenienceBuilder.createWebsiteOnClickAction(
                                         context,
-                                        Uri.parse("http://comicsdb.cz/donate.php")
+                                        "http://comicsdb.cz/donate.php".toUri()
                                 )
                         )
                         .build())

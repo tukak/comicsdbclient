@@ -20,7 +20,7 @@ import timber.log.Timber
 
 abstract class AbstractFragment<Data : Item> : Fragment() {
     private val busyBee = BusyBee.singleton()
-    var data: MutableList<Data> = ArrayList()
+    val data: MutableList<Data> = ArrayList()
     abstract val adapter: AbstractListAdapter
     abstract val model: AbstractPagedViewModel<Data>
     var loading = true
