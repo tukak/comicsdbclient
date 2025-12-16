@@ -5,6 +5,17 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
 }
 
+fun getVersionCode(): Int {
+    val result = providers.exec {
+        commandLine("git", "rev-list", "--first-parent", "--count", "origin/master")
+    }.standardOutput.asText.get().trim()
+    return result.toInt() * 100 + 4000000
+}
+
+fun getVersionName(): String = providers.exec {
+    commandLine("git", "describe", "--tags", "--dirty")
+}.standardOutput.asText.get().trim()
+
 android {
     namespace = "cz.kutner.comicsdb"
     compileSdk = 34
@@ -13,8 +24,8 @@ android {
         applicationId = "cz.kutner.comicsdbclient.comicsdbclient"
         minSdk = 24
         targetSdk = 34
-        versionCode = Tools.getVersionCode()
-        versionName = Tools.getVersionName()
+        versionCode = getVersionCode()
+        versionName = getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
