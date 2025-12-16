@@ -19,7 +19,6 @@ abstract class AbstractFragmentSpinner<Data : Item> : AbstractFragment<Data>() {
     override val recyclerView: RecyclerView get() = spinnerBinding.recyclerView
 
     lateinit var spinnerValues: Array<Filter>
-    var filter: Int = 0
     private var spinnerPosition: Int = 0
 
     override fun onCreateView(

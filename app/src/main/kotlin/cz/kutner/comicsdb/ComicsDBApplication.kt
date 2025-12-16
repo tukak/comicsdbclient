@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb
 
 import android.app.Application
-import cz.kutner.comicsdb.BuildConfig
 import cz.kutner.comicsdb.di.SERVER_URL
 import cz.kutner.comicsdb.di.koinModule
 import org.koin.android.ext.koin.androidContext
