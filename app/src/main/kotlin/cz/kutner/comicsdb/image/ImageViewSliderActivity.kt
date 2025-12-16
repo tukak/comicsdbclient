@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.image
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import cz.kutner.comicsdb.databinding.ActivityViewImagesBinding
 import cz.kutner.comicsdb.model.Image
 
@@ -15,11 +15,12 @@ class ImageViewSliderActivity : AppCompatActivity() {
         setContentView(binding.root)
         val images = intent.getParcelableArrayListExtra<Image>(IMAGES)
         val position = intent.getIntExtra(POSTITION, 0)
-        val fragmentPagerAdapter: FragmentStatePagerAdapter =
-            ImagePagerAdapter(supportFragmentManager, images)
-        binding.imagePager.adapter = fragmentPagerAdapter
-        binding.imageTabs.setupWithViewPager(binding.imagePager)
-        binding.imagePager.currentItem = position
+        val adapter = ImagePagerAdapter(this, images)
+        binding.imagePager.adapter = adapter
+        TabLayoutMediator(binding.imageTabs, binding.imagePager) { tab, pos ->
+            tab.text = adapter.getPageTitle(pos)
+        }.attach()
+        binding.imagePager.setCurrentItem(position, false)
     }
 
     companion object {

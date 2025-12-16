@@ -1,17 +1,16 @@
 package cz.kutner.comicsdb.image
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import cz.kutner.comicsdb.model.Image
-import java.util.*
 
-class ImagePagerAdapter(fm: FragmentManager, private val images: ArrayList<Image>?) :
-    FragmentStatePagerAdapter(fm) {
+class ImagePagerAdapter(activity: FragmentActivity, private val images: ArrayList<Image>?) :
+    FragmentStateAdapter(activity) {
 
-    override fun getItem(position: Int): Fragment = ImageViewFragment.newInstance(images?.get(position))
+    override fun createFragment(position: Int): Fragment = ImageViewFragment.newInstance(images?.get(position))
 
-    override fun getPageTitle(position: Int): CharSequence = images?.get(position)?.caption.toString()
+    override fun getItemCount(): Int = images?.size ?: 0
 
-    override fun getCount(): Int = images!!.count()
+    fun getPageTitle(position: Int): CharSequence = images?.get(position)?.caption.toString()
 }

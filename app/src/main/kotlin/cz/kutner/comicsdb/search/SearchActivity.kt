@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.search
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import cz.kutner.comicsdb.databinding.ActivityTabbedBinding
 
 class SearchActivity : AppCompatActivity() {
@@ -14,9 +14,10 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        val fragmentPagerAdapter: FragmentStatePagerAdapter =
-            SearchPagerAdapter(supportFragmentManager, intent, applicationContext)
-        binding.pager.adapter = fragmentPagerAdapter
-        binding.slidingTabs.setupWithViewPager(binding.pager)
+        val adapter = SearchPagerAdapter(this, intent, applicationContext)
+        binding.pager.adapter = adapter
+        TabLayoutMediator(binding.slidingTabs, binding.pager) { tab, position ->
+            tab.text = adapter.getPageTitle(position)
+        }.attach()
     }
 }
