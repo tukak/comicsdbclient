@@ -8,12 +8,10 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.core.view.GravityCompat
-import androidx.core.view.LayoutInflaterCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.widget.SearchView
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.context.IconicsLayoutInflater2
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        LayoutInflaterCompat.setFactory2(layoutInflater, IconicsLayoutInflater2(delegate))
         super.onCreate(savedInstanceState)
         binding = ActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)

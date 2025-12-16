@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.image
 
 import android.os.Bundle
+import androidx.core.os.BundleCompat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ class ImageViewFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val image: Image? = arguments?.getParcelable(IMAGE)
+        val image: Image? = arguments?.let { BundleCompat.getParcelable(it, IMAGE, Image::class.java) }
         if (image != null) binding.imageView.loadUrl(image.fullUrl)
     }
 
