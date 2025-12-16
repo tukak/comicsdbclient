@@ -92,7 +92,6 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.okhttp)
     implementation(libs.adapterdelegates)
-    implementation(libs.kotlin.stdlib)
     implementation(libs.material.about)
     implementation(libs.iconics.core)
     implementation(libs.iconics.material.typeface)
@@ -107,8 +106,10 @@ dependencies {
     testImplementation(libs.hamcrest)
 
     androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.contrib)
 }

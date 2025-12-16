@@ -1,7 +1,7 @@
 package cz.kutner.comicsdb
 
-import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
@@ -10,14 +10,13 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import cz.kutner.comicsdb.main.MainActivity
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.notNullValue
+import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.test.KoinTest
@@ -26,26 +25,20 @@ import org.koin.test.KoinTest
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {
 
-    @Rule
-    @JvmField
-    var activityRule = ActivityTestRule(MainActivity::class.java)
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     @Before
     fun setUp() {
-        val activity = activityRule.activity
-        val wakeUpDevice = Runnable {
-            activity.window.addFlags(
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-            )
-        }
-        activity.runOnUiThread(wakeUpDevice)
+        scenario = ActivityScenario.launch(MainActivity::class.java)
+    }
+
+    @After
+    fun tearDown() {
+        scenario.close()
     }
 
     @Test
     fun comicsListandDetail() {
-
         onView(
             allOf(
                 withId(R.id.recycler_view),
@@ -174,5 +167,4 @@ class MainActivityTest : KoinTest {
         )
         appCompatCheckedTextView.perform(click())
     }
-
 }
