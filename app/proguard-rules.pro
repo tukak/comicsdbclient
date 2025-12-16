@@ -28,6 +28,3 @@
 
 # Koin
 -keepnames class * extends org.koin.core.module.Module
-
-# DataBinding
--keep class androidx.databinding.** { *; }
