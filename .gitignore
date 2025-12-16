@@ -54,7 +54,6 @@ gradlew.bat
 Thumbs.db
 
 # Signing files
-*.jks
 signing.properties
 
 # Release builds
