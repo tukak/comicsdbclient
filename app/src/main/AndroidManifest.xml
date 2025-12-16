@@ -40,28 +40,17 @@
                 android:name="android.app.default_searchable"
                 android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
 
-            <intent-filter>
+            <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/comics/"
-                    android:scheme="http" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/comics/"
-                    android:scheme="http" />
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/comics/"
-                    android:scheme="https" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/comics/"
-                    android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="comicsdb.cz" />
+                <data android:host="www.comicsdb.cz" />
+                <data android:pathPrefix="/comics/" />
             </intent-filter>
         </activity>
 
@@ -76,28 +65,18 @@
                 android:name="android.app.default_searchable"
                 android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
 
-            <intent-filter>
+            <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/author/"
-                    android:scheme="http" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/autor/"
-                    android:scheme="http" />
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/author/"
-                    android:scheme="https" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/autor/"
-                    android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="comicsdb.cz" />
+                <data android:host="www.comicsdb.cz" />
+                <data android:pathPrefix="/author/" />
+                <data android:pathPrefix="/autor/" />
             </intent-filter>
         </activity>
 
@@ -112,28 +91,17 @@
                 android:name="android.app.default_searchable"
                 android:value="cz.kutner.comicsdb.activity.ComicsSearchActivity" />
 
-            <intent-filter>
+            <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/serie/"
-                    android:scheme="http" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/serie/"
-                    android:scheme="http" />
-                <data
-                    android:host="comicsdb.cz"
-                    android:pathPrefix="/serie/"
-                    android:scheme="https" />
-                <data
-                    android:host="www.comicsdb.cz"
-                    android:pathPrefix="/serie/"
-                    android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="comicsdb.cz" />
+                <data android:host="www.comicsdb.cz" />
+                <data android:pathPrefix="/serie/" />
             </intent-filter>
         </activity>
 
