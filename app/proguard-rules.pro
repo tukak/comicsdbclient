@@ -26,5 +26,3 @@
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 
-# Koin
--keepnames class * extends org.koin.core.module.Module
