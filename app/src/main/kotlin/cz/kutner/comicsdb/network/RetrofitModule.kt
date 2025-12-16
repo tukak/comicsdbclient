@@ -1,6 +1,7 @@
 package cz.kutner.comicsdb.network
 
 import com.google.gson.GsonBuilder
+import com.google.gson.Strictness
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
 import cz.kutner.comicsdb.classifiedList.ClassifiedListService
@@ -17,7 +18,7 @@ import retrofit2.create
 
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
     private val gson = GsonBuilder()
-        .setLenient()
+        .setStrictness(Strictness.LENIENT)
         .setDateFormat("yyyy-MM-dd HH:mm:ss")
         .create()
     private val retrofit = Retrofit.Builder()
