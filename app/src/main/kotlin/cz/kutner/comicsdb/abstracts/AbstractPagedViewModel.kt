@@ -3,9 +3,10 @@ package cz.kutner.comicsdb.abstracts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Item
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 
 abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {
@@ -31,14 +32,16 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     }
 
 
-    fun loadData() = GlobalScope.async(Dispatchers.Main, CoroutineStart.DEFAULT) {
-        val newData = getJob()
-        start++
-        if (newData != null) {
-            if (data.value == null) {
-                data.postValue(newData)
-            } else {
-                data.postValue(data.value?.plus(newData))
+    fun loadData() {
+        viewModelScope.launch {
+            val newData = getJob()
+            start++
+            if (newData != null) {
+                if (data.value == null) {
+                    data.postValue(newData)
+                } else {
+                    data.postValue(data.value?.plus(newData))
+                }
             }
         }
     }

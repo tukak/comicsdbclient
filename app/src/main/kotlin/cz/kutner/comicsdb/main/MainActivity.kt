@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.core.view.GravityCompat
 import androidx.core.view.LayoutInflaterCompat
@@ -45,6 +46,19 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setDrawerIcons()
         setActionsForDrawer()
+        setupBackPressedHandler()
+    }
+
+    private fun setupBackPressedHandler() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
+                    binding.drawerLayout.closeDrawer(binding.navigationView)
+                } else {
+                    binding.drawerLayout.openDrawer(binding.navigationView)
+                }
+            }
+        })
     }
 
     private fun setupToolbar() {
@@ -118,11 +132,4 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
-            super.onBackPressed()
-        } else {
-            binding.drawerLayout.openDrawer(binding.navigationView)
-        }
-    }
 }
