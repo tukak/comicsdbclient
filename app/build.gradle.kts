@@ -78,7 +78,6 @@ kotlin {
 
 dependencies {
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.cardview)
     implementation(libs.androidx.recyclerview)
     implementation(libs.material)
     implementation(libs.androidx.core.ktx)
