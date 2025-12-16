@@ -1,69 +1,33 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in C:\Program Files (x86)\Android\android-sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in _build.gradlee.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# ComicsDB ProGuard Rules
 
-# Add any project specific keep options here:
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-#-dontobfuscate
-#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
-
--keep class org.jetbrains.annotations.** {
-    public protected *;
-}
-
--keepattributes *Annotation*
-
--dontwarn java.lang.invoke.*
-
--dontwarn rx.internal.util.unsafe.*
-
-
--dontwarn kotlin.**
--dontwarn org.w3c.dom.events.*
--dontwarn org.jetbrains.annotations.NonNls
-
-# Retrofit 2.X
-## https://square.github.io/retrofit/ ##
-
-# Retain generic type information for use by reflection by converters and adapters.
-#-keepattributes Signature
-# Retain service method parameters.
-#-keepclassmembernames,allowobfuscation interface * {
-#    @retrofit2.http.* <methods>;
-#}
-# Ignore annotation used for _build tooling.
-#-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
-# OkHttp
--dontwarn okhttp3.**
--dontwarn okio.**
--dontwarn javax.annotation.**
--dontwarn org.conscrypt.**
-# A resource is loaded with a relative path so the package of this class must be preserved.
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
-
+# Keep model classes for Gson serialization
 -keep class cz.kutner.comicsdb.model.** { *; }
 
--dontwarn cz.kutner.comicsdb.model.**
+# Retrofit
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepattributes Exceptions
+-keep,allowobfuscation,allowshrinking interface retrofit2.Call
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
-# coroutines
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
-}
+# OkHttp
+-dontwarn okhttp3.internal.platform.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
 
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+# Gson
+-keepattributes Signature
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class * extends com.google.gson.reflect.TypeToken
+
+# Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 
--keep class kotlin.coroutines.** { *; }
+# Koin
+-keepnames class * extends org.koin.core.module.Module
+
+# DataBinding
+-keep class androidx.databinding.** { *; }
