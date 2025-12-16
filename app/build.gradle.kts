@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    id("kotlin-parcelize")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -18,7 +18,6 @@ android {
         versionCode = Tools.getVersionCode()
         versionName = Tools.getVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-   /*    DdmPreferences.setTimeOut(60000)*/
     }
     buildTypes {
         getByName("release") {
@@ -63,47 +62,44 @@ android {
 
     kapt {
         javacOptions {
-            // Increase the max count of errors from annotation processors.
-            // Default is 100.
             option("-Xmaxerrs", 500)
         }
     }
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Libs.appcompat)
-    implementation(Libs.cardview)
-    implementation(Libs.recyclerview)
-    implementation(Libs.material)
-    implementation(Libs.core_ktx)
-    implementation(Libs.lifecycle_livedata)
-    implementation(Libs.lifecycle_viewmodel)
-    implementation(Libs.lifecycle_viewmodel_ktx)
-    implementation(Libs.switcher)
-    implementation(Libs.retrofit)
-    implementation(Libs.converter_gson)
-    implementation(Libs.kotlinx_coroutines_android)
-    implementation(Libs.picasso)
-    implementation(Libs.okhttp)
-    implementation(Libs.adapterdelegates4)
-    implementation(Libs.kotlin_stdlib)
-    implementation(Libs.material_about_library)
-    implementation(Libs.iconics_core)
-    implementation(Libs.material_design_iconic_typeface)
-    implementation(Libs.koin_android)
-    implementation(Libs.photoview)
-    implementation(Libs.timber)
-    implementation(Libs.constraintlayout)
-    implementation(Libs.busybee_android)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.material)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.switcher)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.coroutines.android)
+    implementation(libs.picasso)
+    implementation(libs.okhttp)
+    implementation(libs.adapterdelegates)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.material.about)
+    implementation(libs.iconics.core)
+    implementation(libs.iconics.material.typeface)
+    implementation(libs.koin.android)
+    implementation(libs.photoview)
+    implementation(libs.timber)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.busybee)
 
-    testImplementation(Libs.junit)
-    testImplementation(Libs.mockito_core)
-    testImplementation(Libs.hamcrest_library)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.hamcrest)
 
-    androidTestImplementation(Libs.koin_test)
-    androidTestImplementation(Libs.androidx_test_rules)
-    androidTestImplementation(Libs.androidx_test_runner)
-    androidTestImplementation(Libs.espresso_core)
-    androidTestImplementation(Libs.espresso_contrib)
+    androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
 }

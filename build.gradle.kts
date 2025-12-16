@@ -1,23 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-
-    repositories {
-        mavenCentral()
-        google()
-    }
-
-    dependencies {
-        classpath(Libs.com_android_tools_build_gradle)
-        classpath(Libs.kotlin_gradle_plugin)
-    }
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        maven(url = "https://jitpack.io")
-        //maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
 }

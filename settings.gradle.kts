@@ -1,23 +1,20 @@
 rootProject.buildFileName = "build.gradle.kts"
+rootProject.name = "comicsdbclient"
 include(":app")
 
 pluginManagement {
     repositories {
+        google()
+        mavenCentral()
         gradlePluginPortal()
     }
 }
 
-plugins {
-    // See https://jmfayard.github.io/refreshVersions
-    id("de.fayard.refreshVersions") version "0.51.0"
-////                            # available:"0.60.0"
-////                            # available:"0.60.1"
-////                            # available:"0.60.2"
-////                            # available:"0.60.3"
-////                            # available:"0.60.4"
-////                            # available:"0.60.5"
-}
-
-refreshVersions {
-    enableBuildSrcLibs()
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
 }
