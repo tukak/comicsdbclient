@@ -1,3 +1,5 @@
+@file:Suppress("unused") // Functions are used via @BindingAdapter in XML layouts
+
 package cz.kutner.comicsdb.helpers
 
 import android.content.Intent
