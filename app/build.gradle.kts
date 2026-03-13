@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -53,53 +52,35 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    lint {
-        lintConfig = file("lint.xml")
-    }
-
-    buildFeatures {
-        dataBinding = true
-        viewBinding = true
+buildFeatures {
         buildConfig = true
-    }
-
-    kapt {
-        javacOptions {
-            option("-Xmaxerrs", "500")
-        }
-    }
-}
-
-kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        compose = true
     }
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.material)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.coroutines.android)
     implementation(libs.coil)
     implementation(libs.coil.network)
+    implementation(libs.coil.compose)
     implementation(libs.okhttp)
-    implementation(libs.adapterdelegates)
-    implementation(libs.material.about)
-    implementation(libs.iconics.core)
-    implementation(libs.iconics.material.typeface)
     implementation(libs.koin.android)
-    implementation(libs.photoview)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.telephoto)
     implementation(libs.timber)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.busybee)
+
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.activity.compose)
+    implementation(libs.compose.material.icons.extended)
+    debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockito)

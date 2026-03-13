@@ -1,50 +1,11 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppThemeActionBar" parent="Theme.Material3.DayNight">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorPrimaryContainer">@color/primary</item>
-        <item name="colorOnPrimaryContainer">@android:color/white</item>
-
-        <!-- Secondary/accent color -->
-        <item name="colorSecondary">@color/accent</item>
-        <item name="colorOnSecondary">@android:color/white</item>
-
-        <!-- For backward compatibility -->
-        <item name="colorAccent">@color/accent</item>
-
-        <!-- Text colors -->
-        <item name="android:textColorPrimary">@color/text_primary</item>
-        <item name="android:actionMenuTextColor">?android:attr/textColorPrimary</item>
-        <item name="android:itemTextAppearance">@style/menuItemColor</item>
-
-        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#730000</item>
+        <item name="android:navigationBarColor">#730000</item>
     </style>
 
-    <style name="AppTheme" parent="AppThemeActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
-    </style>
-
-    <style name="AppThemeMainActivity" parent="AppThemeActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppThemeMainActivity" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
-    <style name="menuItemColor">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-    <style name="SpinnerItem" parent="android:Widget.TextView.SpinnerItem">
-        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
-    </style>
-
-    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
-        <item name="android:textColor">@color/textSpinner</item>
     </style>
 </resources>

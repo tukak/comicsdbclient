@@ -6,26 +6,24 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.widget.TextView
+import androidx.core.graphics.drawable.toDrawable
 import coil3.asDrawable
 import coil3.imageLoader
 import coil3.request.ImageRequest
 import coil3.request.error
 import coil3.request.placeholder
 import coil3.target.Target
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
-import com.mikepenz.iconics.utils.sizeDp
 
 class CoilImageGetter(private val textView: TextView) : Html.ImageGetter {
 
     private val imageLoader = textView.context.imageLoader
 
     override fun getDrawable(source: String): Drawable {
-        val placeholderDrawable = IconicsDrawable(textView.context, MaterialDesignIconic.Icon.gmi_image_o).apply {
-            sizeDp = 64
+        val placeholderDrawable = android.graphics.Color.LTGRAY.toDrawable().apply {
+            setBounds(0, 0, 64, 64)
         }
-        val errorDrawable = IconicsDrawable(textView.context, MaterialDesignIconic.Icon.gmi_broken_image).apply {
-            sizeDp = 64
+        val errorDrawable = android.graphics.Color.DKGRAY.toDrawable().apply {
+            setBounds(0, 0, 64, 64)
         }
 
         val drawable = DrawablePlaceholder(textView.resources, placeholderDrawable)
@@ -70,8 +68,16 @@ class CoilImageGetter(private val textView: TextView) : Html.ImageGetter {
         private fun checkBounds() {
             val d = drawable ?: return
             val defaultProportion = d.intrinsicWidth.toFloat() / d.intrinsicHeight.toFloat()
-            val width = minOf(textView.width.takeIf { it > 0 } ?: d.intrinsicWidth, d.intrinsicWidth)
-            val height = (width.toFloat() / defaultProportion).toInt()
+            val width = if (defaultProportion > 0) {
+                minOf(textView.width.takeIf { it > 0 } ?: d.intrinsicWidth, d.intrinsicWidth)
+            } else {
+                textView.width.takeIf { it > 0 } ?: 64
+            }
+            val height = if (defaultProportion > 0) {
+                (width.toFloat() / defaultProportion).toInt()
+            } else {
+                64
+            }
 
             if (bounds.right != textView.width || bounds.bottom != height) {
                 val textViewWidth = textView.width.takeIf { it > 0 } ?: width

@@ -1,31 +1,5 @@
 <resources>
     <string name="app_name">ComicsDB Client</string>
     <string name="comics_name_search_hint">Hledaný text</string>
-    <string name="about_free">Aplikace je a bude poskytována zdarma, bez reklam a bez nákupů v aplikaci. Je vytvářena ve volném čase a je poskytována bez jakýchkoliv záruk.</string>
-    <string name="about_first">Neoficiální klient pro Android na prohlížení <a href="http://comicsdb.cz/">ComicsDB</a>. Veškeré zobrazované údaje pocházejí z <a href="http://comicsdb.cz/">ComicsDB</a>.</string>
-    <string name="about_donate">Pokud chcete, můžete přispět na samotnou <a href="http://comicsdb.cz/prispevek">ComicsDB</a>.</string>
     <string name="title_activity_comics_search">ComicsSearchActivity</string>
-    <string name="cover_content_description">Obálka</string>
-    <string name="loading_error">Nepodařilo se načíst data. Jste připojeni k Internetu?</string>
-    <string name="try_again_button_text">Zkusit znovu</string>
-    <string name="comics">Comicsy</string>
-    <string name="classified">Bazar</string>
-    <string name="forum">Forum</string>
-    <string name="about">O aplikaci</string>
-    <string name="filter">Filtruj :</string>
-    <string name="series">Serie</string>
-    <string name="author">Autoři</string>
-    <string name="news">Novinky</string>
-    <string name="author_photo_description">Fotka autora</string>
-    <string name="picture">Obrázek</string>
-    <string name="number_of_pages">Počet stran: %s</string>
-    <string name="price">Cena: %s</string>
-    <string name="binding">Vazba: %s</string>
-    <string name="issue_and_print">Vydání: %1$s tisk: %2$s</string>
-    <string name="format">Formát: %s</string>
-    <string name="rating">%1$s (%2$s hlasů)</string>
-    <string name="norating">&lt; 5 hodnocení</string>
-    <string name="date_format">%1$td.%1$tm.%1$tY %1$tH:%1$tM:%1$tS</string>
-    <string name="icon_description">Ikona</string>
-
 </resources>

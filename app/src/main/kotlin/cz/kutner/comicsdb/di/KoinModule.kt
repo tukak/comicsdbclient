@@ -7,7 +7,6 @@ import cz.kutner.comicsdb.classifiedList.ClassifiedListViewModel
 import cz.kutner.comicsdb.comicsDetail.ComicsDetailViewModel
 import cz.kutner.comicsdb.comicsList.ComicsListViewModel
 import cz.kutner.comicsdb.forumList.ForumListViewModel
-import cz.kutner.comicsdb.network.NetworkModule
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.newsList.NewsListViewModel
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailViewModel
@@ -23,7 +22,6 @@ import java.util.concurrent.TimeUnit
 val koinModule = module {
     single { createOkHttpClient(androidContext()) }
     single { RetrofitModule(get(), getProperty(SERVER_URL)) }
-    single { NetworkModule(get()) }
     viewModel { AuthorDetailViewModel(get()) }
     viewModel { AuthorListViewModel(get()) }
     viewModel { ClassifiedListViewModel(get()) }

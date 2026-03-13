@@ -1,47 +1,57 @@
 package cz.kutner.comicsdb.abstracts
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Item
+import cz.kutner.comicsdb.ui.components.ViewState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitModule) :
     ViewModel() {
-    var start = 0
-    var count = 20
-    private val data = MutableLiveData<List<Data>?>()
+    protected var start = 0
+    protected var count = 20
     var filterId = 0
     var searchText = ""
 
-    fun getData(): LiveData<List<Data>?> {
-        if (data.value == null) {
-            loadData()
-        }
-        return data
-    }
+    private val _state = MutableStateFlow<ViewState<List<Data>>>(ViewState.Loading)
+    val state: StateFlow<ViewState<List<Data>>> = _state.asStateFlow()
 
     abstract suspend fun getJob(): List<Data>?
 
     fun loadNewData() {
         start = 0
-        data.value = null
+        isLoading = false
+        _state.value = ViewState.Loading
         loadData()
     }
 
+    private var isLoading = false
 
     fun loadData() {
+        if (isLoading) return
+        isLoading = true
         viewModelScope.launch {
-            val newData = getJob()
-            start++
-            if (newData != null) {
-                if (data.value == null) {
-                    data.postValue(newData)
-                } else {
-                    data.postValue(data.value?.plus(newData))
+            try {
+                val newData = getJob()
+                start++
+                if (newData != null) {
+                    val currentData = (_state.value as? ViewState.Content)?.data
+                    if (currentData == null) {
+                        _state.value = ViewState.Content(newData)
+                    } else {
+                        _state.value = ViewState.Content(currentData + newData)
+                    }
                 }
+            } catch (e: Exception) {
+                if ((_state.value as? ViewState.Content)?.data == null) {
+                    _state.value = ViewState.Error(e.message)
+                }
+            } finally {
+                isLoading = false
             }
         }
     }

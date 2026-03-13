@@ -1,27 +1,23 @@
 package cz.kutner.comicsdb.image
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.compose.setContent
+import androidx.activity.ComponentActivity
 import androidx.core.content.IntentCompat
-import com.google.android.material.tabs.TabLayoutMediator
-import cz.kutner.comicsdb.databinding.ActivityViewImagesBinding
 import cz.kutner.comicsdb.model.Image
+import cz.kutner.comicsdb.ui.theme.ComicsDBTheme
 
-class ImageViewSliderActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityViewImagesBinding
+class ImageViewSliderActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityViewImagesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val images = IntentCompat.getParcelableArrayListExtra(intent, IMAGES, Image::class.java)
+        val images = IntentCompat.getParcelableArrayListExtra(intent, IMAGES, Image::class.java) ?: arrayListOf()
         val position = intent.getIntExtra(POSTITION, 0)
-        val adapter = ImagePagerAdapter(this, images)
-        binding.imagePager.adapter = adapter
-        TabLayoutMediator(binding.imageTabs, binding.imagePager) { tab, pos ->
-            tab.text = adapter.getPageTitle(pos)
-        }.attach()
-        binding.imagePager.setCurrentItem(position, false)
+        setContent {
+            ComicsDBTheme {
+                ImageViewerScreen(images = images, initialPosition = position)
+            }
+        }
     }
 
     companion object {
