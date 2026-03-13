@@ -13,6 +13,7 @@ telephoto = "0.18.0"
 timber = "5.0.1"
 compose-bom = "2025.06.00"
 activity-compose = "1.10.1"
+navigation-compose = "2.9.0"
 junit = "4.13.2"
 mockito = "5.23.0"
 hamcrest = "3.0"
@@ -44,7 +45,10 @@ compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 hamcrest = { module = "org.hamcrest:hamcrest-library", version.ref = "hamcrest" }

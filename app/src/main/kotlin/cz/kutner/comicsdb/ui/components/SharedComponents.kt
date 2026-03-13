@@ -73,7 +73,7 @@ fun <T> ViewStateContainer(
         is ViewState.Loading -> LoadingView(modifier)
         is ViewState.Error -> ErrorView(onRetry = onRetry, modifier = modifier, message = state.message)
         is ViewState.Empty -> EmptyView(modifier)
-        is ViewState.Content -> Box(modifier = modifier) { content(state.data) }
+        is ViewState.Content -> Box(modifier = modifier.fillMaxSize()) { content(state.data) }
     }
 }
 

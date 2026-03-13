@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">ComicsDB Client</string>
-    <string name="comics_name_search_hint">Hledaný text</string>
-    <string name="title_activity_comics_search">ComicsSearchActivity</string>
 </resources>

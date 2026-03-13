@@ -22,7 +22,10 @@ import kotlinx.coroutines.launch
 fun SearchScreen(
     comicsViewModel: ComicsListViewModel,
     seriesViewModel: SeriesListViewModel,
-    authorViewModel: AuthorListViewModel
+    authorViewModel: AuthorListViewModel,
+    onComicsClick: (Int) -> Unit = {},
+    onSeriesClick: (Int) -> Unit = {},
+    onAuthorClick: (Int) -> Unit = {}
 ) {
     val tabs = listOf("Comicsy", "Serie", "Autoři")
     val pagerState = rememberPagerState { tabs.size }
@@ -44,9 +47,9 @@ fun SearchScreen(
             modifier = Modifier.fillMaxSize()
         ) { page ->
             when (page) {
-                0 -> ComicsListScreen(viewModel = comicsViewModel)
-                1 -> SeriesListScreen(viewModel = seriesViewModel)
-                2 -> AuthorListScreen(viewModel = authorViewModel)
+                0 -> ComicsListScreen(viewModel = comicsViewModel, onComicsClick = onComicsClick)
+                1 -> SeriesListScreen(viewModel = seriesViewModel, onSeriesClick = onSeriesClick)
+                2 -> AuthorListScreen(viewModel = authorViewModel, onAuthorClick = onAuthorClick)
             }
         }
     }

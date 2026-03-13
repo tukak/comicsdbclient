@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.main
 
-import android.app.SearchManager
-import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -36,8 +34,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import cz.kutner.comicsdb.about.AboutScreen
 import cz.kutner.comicsdb.authorList.AuthorListScreen
 import cz.kutner.comicsdb.authorList.AuthorListViewModel
@@ -48,9 +46,9 @@ import cz.kutner.comicsdb.comicsList.ComicsListViewModel
 import cz.kutner.comicsdb.forumList.ForumListScreen
 import cz.kutner.comicsdb.forumList.ForumListViewModel
 import cz.kutner.comicsdb.model.Filter
+import cz.kutner.comicsdb.navigation.Routes
 import cz.kutner.comicsdb.newsList.NewsListScreen
 import cz.kutner.comicsdb.newsList.NewsListViewModel
-import cz.kutner.comicsdb.search.SearchActivity
 import cz.kutner.comicsdb.seriesList.SeriesListScreen
 import cz.kutner.comicsdb.seriesList.SeriesListViewModel
 import kotlinx.coroutines.launch
@@ -92,11 +90,10 @@ enum class Screen(val title: String, val icon: ImageVector) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var currentScreen by remember { mutableStateOf(Screen.Comics) }
-    val context = LocalContext.current
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -135,10 +132,7 @@ fun MainScreen() {
                     actions = {
                         if (currentScreen != Screen.About) {
                             IconButton(onClick = {
-                                val intent = Intent(context, SearchActivity::class.java)
-                                intent.action = Intent.ACTION_SEARCH
-                                intent.putExtra(SearchManager.QUERY, "")
-                                context.startActivity(intent)
+                                navController.navigate(Routes.search(""))
                             }) {
                                 Icon(Icons.Default.Search, contentDescription = "Hledat")
                             }
@@ -157,7 +151,10 @@ fun MainScreen() {
                 when (currentScreen) {
                     Screen.Comics -> {
                         val vm = koinViewModel<ComicsListViewModel>()
-                        ComicsListScreen(viewModel = vm)
+                        ComicsListScreen(
+                            viewModel = vm,
+                            onComicsClick = { id -> navController.navigate(Routes.comicsDetail(id)) }
+                        )
                     }
                     Screen.News -> {
                         val vm = koinViewModel<NewsListViewModel>()
@@ -165,11 +162,17 @@ fun MainScreen() {
                     }
                     Screen.Series -> {
                         val vm = koinViewModel<SeriesListViewModel>()
-                        SeriesListScreen(viewModel = vm)
+                        SeriesListScreen(
+                            viewModel = vm,
+                            onSeriesClick = { id -> navController.navigate(Routes.seriesDetail(id)) }
+                        )
                     }
                     Screen.Authors -> {
                         val vm = koinViewModel<AuthorListViewModel>()
-                        AuthorListScreen(viewModel = vm)
+                        AuthorListScreen(
+                            viewModel = vm,
+                            onAuthorClick = { id -> navController.navigate(Routes.authorDetail(id)) }
+                        )
                     }
                     Screen.Classified -> {
                         val vm = koinViewModel<ClassifiedListViewModel>()

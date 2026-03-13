@@ -3,6 +3,8 @@ package cz.kutner.comicsdb.main
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.ComponentActivity
+import androidx.navigation.compose.rememberNavController
+import cz.kutner.comicsdb.navigation.AppNavHost
 import cz.kutner.comicsdb.ui.theme.ComicsDBTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +13,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComicsDBTheme {
-                MainScreen()
+                val navController = rememberNavController()
+                AppNavHost(navController = navController)
             }
         }
     }

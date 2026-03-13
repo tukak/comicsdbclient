@@ -1,9 +1,7 @@
 package cz.kutner.comicsdb.authorDetail
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -14,11 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.text.parseAsHtml
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import cz.kutner.comicsdb.comicsDetail.ComicsDetailActivity
 import cz.kutner.comicsdb.comicsList.ComicsListItem
 import cz.kutner.comicsdb.model.AuthorDetail
 import cz.kutner.comicsdb.ui.components.CoilImage
@@ -27,23 +23,18 @@ import cz.kutner.comicsdb.ui.components.ViewStateContainer
 import cz.kutner.comicsdb.ui.theme.HeaderTextColor
 
 @Composable
-fun AuthorDetailScreen(viewModel: AuthorDetailViewModel, modifier: Modifier = Modifier) {
+fun AuthorDetailScreen(
+    viewModel: AuthorDetailViewModel,
+    modifier: Modifier = Modifier,
+    onComicsClick: (Int) -> Unit = {}
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val context = LocalContext.current
 
     ViewStateContainer(
         state = state,
-        modifier = modifier,
-        onRetry = { /* detail screens load once via ID */ }
+        modifier = modifier
     ) { author ->
-        AuthorDetailContent(
-            author = author,
-            onComicsClick = { comicsId ->
-                val intent = Intent(context, ComicsDetailActivity::class.java)
-                intent.putExtra(Intent.EXTRA_UID, comicsId)
-                context.startActivity(intent)
-            }
-        )
+        AuthorDetailContent(author = author, onComicsClick = onComicsClick)
     }
 }
 

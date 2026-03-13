@@ -1,6 +1,5 @@
 package cz.kutner.comicsdb.comicsDetail
 
-import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
@@ -29,11 +27,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.text.parseAsHtml
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import cz.kutner.comicsdb.authorDetail.AuthorDetailActivity
-import cz.kutner.comicsdb.image.ImageViewSliderActivity
 import cz.kutner.comicsdb.model.Comment
 import cz.kutner.comicsdb.model.ComicsDetail
-import cz.kutner.comicsdb.seriesDetail.SeriesDetailActivity
+import cz.kutner.comicsdb.model.Image
 import cz.kutner.comicsdb.ui.components.CoilImage
 import cz.kutner.comicsdb.ui.components.HtmlText
 import cz.kutner.comicsdb.ui.components.ViewStateContainer
@@ -41,23 +37,36 @@ import cz.kutner.comicsdb.ui.components.formatDate
 import cz.kutner.comicsdb.ui.theme.HeaderTextColor
 
 @Composable
-fun ComicsDetailScreen(viewModel: ComicsDetailViewModel, modifier: Modifier = Modifier) {
+fun ComicsDetailScreen(
+    viewModel: ComicsDetailViewModel,
+    modifier: Modifier = Modifier,
+    onNavigateToAuthor: (Int) -> Unit = {},
+    onNavigateToSeries: (Int) -> Unit = {},
+    onNavigateToImages: (List<Image>, Int) -> Unit = { _, _ -> }
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ViewStateContainer(
         state = state,
-        modifier = modifier,
-        onRetry = { /* detail screens load once via ID */ }
+        modifier = modifier
     ) { comics ->
-        ComicsDetailContent(comics = comics)
+        ComicsDetailContent(
+            comics = comics,
+            onNavigateToAuthor = onNavigateToAuthor,
+            onNavigateToSeries = onNavigateToSeries,
+            onNavigateToImages = onNavigateToImages
+        )
     }
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ComicsDetailContent(comics: ComicsDetail) {
-    val context = LocalContext.current
-
+fun ComicsDetailContent(
+    comics: ComicsDetail,
+    onNavigateToAuthor: (Int) -> Unit,
+    onNavigateToSeries: (Int) -> Unit,
+    onNavigateToImages: (List<Image>, Int) -> Unit
+) {
     val allImages = remember(comics) { arrayListOf(comics.cover).apply { addAll(comics.samples) } }
 
     LazyColumn(modifier = Modifier.padding(horizontal = 8.dp)) {
@@ -80,12 +89,7 @@ fun ComicsDetailContent(comics: ComicsDetail) {
                     modifier = Modifier
                         .width(200.dp)
                         .height(300.dp)
-                        .clickable {
-                            val intent = Intent(context, ImageViewSliderActivity::class.java)
-                            intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
-                            intent.putExtra(ImageViewSliderActivity.POSTITION, 0)
-                            context.startActivity(intent)
-                        }
+                        .clickable { onNavigateToImages(allImages, 0) }
                 )
                 Column(
                     modifier = Modifier
@@ -118,11 +122,7 @@ fun ComicsDetailContent(comics: ComicsDetail) {
                             }
                         },
                         style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.clickable {
-                            val intent = Intent(context, SeriesDetailActivity::class.java)
-                            intent.putExtra(Intent.EXTRA_UID, comics.series.id)
-                            context.startActivity(intent)
-                        }
+                        modifier = Modifier.clickable { onNavigateToSeries(comics.series.id) }
                     )
 
                     if (comics.issueNumber.isNotEmpty() || comics.print.isNotEmpty()) {
@@ -148,12 +148,7 @@ fun ComicsDetailContent(comics: ComicsDetail) {
                             modifier = Modifier
                                 .width(40.dp)
                                 .height(60.dp)
-                                .clickable {
-                                    val intent = Intent(context, ImageViewSliderActivity::class.java)
-                                    intent.putParcelableArrayListExtra(ImageViewSliderActivity.IMAGES, allImages)
-                                    intent.putExtra(ImageViewSliderActivity.POSTITION, index + 1)
-                                    context.startActivity(intent)
-                                }
+                                .clickable { onNavigateToImages(allImages, index + 1) }
                         )
                     }
                 }
@@ -197,11 +192,7 @@ fun ComicsDetailContent(comics: ComicsDetail) {
                                 }
                             },
                             style = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.clickable {
-                                val intent = Intent(context, AuthorDetailActivity::class.java)
-                                intent.putExtra(Intent.EXTRA_UID, author.id)
-                                context.startActivity(intent)
-                            }
+                            modifier = Modifier.clickable { onNavigateToAuthor(author.id) }
                         )
                     }
                 }
