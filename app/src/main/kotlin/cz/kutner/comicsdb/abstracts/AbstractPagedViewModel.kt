@@ -20,7 +20,7 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
     private val _state = MutableStateFlow<ViewState<List<Data>>>(ViewState.Loading)
     val state: StateFlow<ViewState<List<Data>>> = _state.asStateFlow()
 
-    abstract suspend fun getJob(): List<Data>?
+    abstract suspend fun getJob(): List<Data>
 
     fun loadNewData() {
         start = 0
@@ -38,13 +38,11 @@ abstract class AbstractPagedViewModel<Data : Item>(val retrofitModule: RetrofitM
             try {
                 val newData = getJob()
                 start++
-                if (newData != null) {
-                    val currentData = (_state.value as? ViewState.Content)?.data
-                    if (currentData == null) {
-                        _state.value = ViewState.Content(newData)
-                    } else {
-                        _state.value = ViewState.Content(currentData + newData)
-                    }
+                val currentData = (_state.value as? ViewState.Content)?.data
+                if (currentData == null) {
+                    _state.value = ViewState.Content(newData)
+                } else {
+                    _state.value = ViewState.Content(currentData + newData)
                 }
             } catch (e: Exception) {
                 if ((_state.value as? ViewState.Content)?.data == null) {

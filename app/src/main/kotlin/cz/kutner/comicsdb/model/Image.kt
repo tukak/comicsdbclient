@@ -1,9 +1,8 @@
 package cz.kutner.comicsdb.model
 
-import android.annotation.SuppressLint
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.compose.runtime.Immutable
+import kotlinx.serialization.Serializable
 
-@SuppressLint("ParcelCreator")
-@Parcelize
-data class Image(val previewUrl: String, val fullUrl: String, val caption: String) : Parcelable
+@Immutable
+@Serializable
+data class Image(val previewUrl: String, val fullUrl: String, val caption: String)

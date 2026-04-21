@@ -46,7 +46,10 @@ import cz.kutner.comicsdb.comicsList.ComicsListViewModel
 import cz.kutner.comicsdb.forumList.ForumListScreen
 import cz.kutner.comicsdb.forumList.ForumListViewModel
 import cz.kutner.comicsdb.model.Filter
-import cz.kutner.comicsdb.navigation.Routes
+import cz.kutner.comicsdb.navigation.AuthorDetailRoute
+import cz.kutner.comicsdb.navigation.ComicsDetailRoute
+import cz.kutner.comicsdb.navigation.SearchRoute
+import cz.kutner.comicsdb.navigation.SeriesDetailRoute
 import cz.kutner.comicsdb.newsList.NewsListScreen
 import cz.kutner.comicsdb.newsList.NewsListViewModel
 import cz.kutner.comicsdb.seriesList.SeriesListScreen
@@ -132,7 +135,7 @@ fun MainScreen(navController: NavController) {
                     actions = {
                         if (currentScreen != Screen.About) {
                             IconButton(onClick = {
-                                navController.navigate(Routes.search(""))
+                                navController.navigate(SearchRoute())
                             }) {
                                 Icon(Icons.Default.Search, contentDescription = "Hledat")
                             }
@@ -153,7 +156,7 @@ fun MainScreen(navController: NavController) {
                         val vm = koinViewModel<ComicsListViewModel>()
                         ComicsListScreen(
                             viewModel = vm,
-                            onComicsClick = { id -> navController.navigate(Routes.comicsDetail(id)) }
+                            onComicsClick = { id -> navController.navigate(ComicsDetailRoute(id)) }
                         )
                     }
                     Screen.News -> {
@@ -164,14 +167,14 @@ fun MainScreen(navController: NavController) {
                         val vm = koinViewModel<SeriesListViewModel>()
                         SeriesListScreen(
                             viewModel = vm,
-                            onSeriesClick = { id -> navController.navigate(Routes.seriesDetail(id)) }
+                            onSeriesClick = { id -> navController.navigate(SeriesDetailRoute(id)) }
                         )
                     }
                     Screen.Authors -> {
                         val vm = koinViewModel<AuthorListViewModel>()
                         AuthorListScreen(
                             viewModel = vm,
-                            onAuthorClick = { id -> navController.navigate(Routes.authorDetail(id)) }
+                            onAuthorClick = { id -> navController.navigate(AuthorDetailRoute(id)) }
                         )
                     }
                     Screen.Classified -> {

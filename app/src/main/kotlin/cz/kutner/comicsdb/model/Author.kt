@@ -1,8 +1,8 @@
 package cz.kutner.comicsdb.model
 
-import android.text.Spanned
-import androidx.core.text.parseAsHtml
+import androidx.compose.runtime.Immutable
+import kotlinx.serialization.Serializable
 
-data class Author(val name: String, val country: String?, val id: Int, val role: String) : Item {
-    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
-}
+@Immutable
+@Serializable
+data class Author(val name: String, val country: String? = null, val id: Int, val role: String = "") : Item

@@ -1,9 +1,12 @@
 package cz.kutner.comicsdb.model
 
 import android.text.Spanned
+import androidx.compose.runtime.Immutable
 import androidx.core.text.parseAsHtml
-import java.util.*
+import kotlinx.serialization.Serializable
 
+@Immutable
+@Serializable
 data class ComicsDetail(
     val name: String,
     val id: Int,
@@ -15,18 +18,18 @@ data class ComicsDetail(
     val issueNumber: String = "",
     val binding: String,
     val format: String,
-    val pagesCount: String,
+    val pagesCount: Int = 0,
     val print: String,
     private val originalName: String,
     private val originalPublisher: String,
     val price: String,
     private val description: String,
     private val notes: String,
-    val authors: ArrayList<Author>,
+    val authors: List<Author>,
     val series: Series,
-    val comments: ArrayList<Comment>,
+    val comments: List<Comment>,
     val cover: Image,
-    val samples: ArrayList<Image>
+    val samples: List<Image>
 ) : Item {
     fun getNotesFromHtml(): Spanned = notes.parseAsHtml()
     fun getDescriptionFromHtml(): Spanned = description.parseAsHtml()
@@ -41,5 +44,4 @@ data class ComicsDetail(
         return text.parseAsHtml()
     }
 
-    fun getNameFromHtml(): Spanned? = name.parseAsHtml()
 }

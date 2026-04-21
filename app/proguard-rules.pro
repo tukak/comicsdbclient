@@ -1,11 +1,24 @@
 # ComicsDB ProGuard Rules
 
-# Keep model classes for Gson serialization
--keep class cz.kutner.comicsdb.model.** { *; }
+# Keep kotlinx.serialization generated serializers
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-keep,includedescriptorclasses class cz.kutner.comicsdb.model.**$$serializer { *; }
+-keepclassmembers class cz.kutner.comicsdb.model.** {
+    *** Companion;
+}
+-keepclasseswithmembers class cz.kutner.comicsdb.model.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
 
 # Retrofit
 -keepattributes Signature
--keepattributes *Annotation*
 -keepattributes Exceptions
 -keep,allowobfuscation,allowshrinking interface retrofit2.Call
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
@@ -17,12 +30,6 @@
 -dontwarn org.bouncycastle.**
 -dontwarn org.openjsse.**
 
-# Gson
--keepattributes Signature
--keep class com.google.gson.reflect.TypeToken { *; }
--keep class * extends com.google.gson.reflect.TypeToken
-
 # Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
-

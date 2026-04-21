@@ -44,12 +44,6 @@ fun AuthorDetailContent(author: AuthorDetail, onComicsClick: (Int) -> Unit) {
         item {
             Row(modifier = Modifier.padding(8.dp)) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = author.name.parseAsHtml().toString(),
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = HeaderTextColor,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
                     if (!author.country.isNullOrEmpty()) {
                         Text(
                             text = author.country,
@@ -57,14 +51,14 @@ fun AuthorDetailContent(author: AuthorDetail, onComicsClick: (Int) -> Unit) {
                         )
                     }
                     val bio = author.getBioFromHtml()
-                    if (bio != null && bio.isNotEmpty()) {
+                    if (bio.isNotEmpty()) {
                         HtmlText(
                             html = bio.toString(),
                             modifier = Modifier.padding(top = 4.dp)
                         )
                     }
                     val notes = author.getNotesFromHtml()
-                    if (notes != null && notes.isNotEmpty()) {
+                    if (notes.isNotEmpty()) {
                         HtmlText(
                             html = notes.toString(),
                             modifier = Modifier.padding(top = 4.dp)

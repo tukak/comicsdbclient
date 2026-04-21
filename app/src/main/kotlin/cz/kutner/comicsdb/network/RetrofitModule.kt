@@ -1,7 +1,5 @@
 package cz.kutner.comicsdb.network
 
-import com.google.gson.GsonBuilder
-import com.google.gson.Strictness
 import cz.kutner.comicsdb.authorDetail.AuthorDetailService
 import cz.kutner.comicsdb.authorList.AuthorListService
 import cz.kutner.comicsdb.classifiedList.ClassifiedListService
@@ -11,20 +9,23 @@ import cz.kutner.comicsdb.forumList.ForumListService
 import cz.kutner.comicsdb.newsList.NewsListService
 import cz.kutner.comicsdb.seriesDetail.SeriesDetailService
 import cz.kutner.comicsdb.seriesList.SeriesListService
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
 class RetrofitModule(okHttpClient: OkHttpClient, baseUrl: String) {
-    private val gson = GsonBuilder()
-        .setStrictness(Strictness.LENIENT)
-        .setDateFormat("yyyy-MM-dd HH:mm:ss")
-        .create()
+    private val json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
     val seriesListService: SeriesListService by lazy { retrofit.create<SeriesListService>() }
     val seriesDetailService: SeriesDetailService by lazy { retrofit.create<SeriesDetailService>() }
