@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 fun getVersionCode(): Int {
@@ -56,6 +56,14 @@ buildFeatures {
         buildConfig = true
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.addAll(
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi"
+            )
+        }
+    }
 }
 
 dependencies {
@@ -63,7 +71,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.coroutines.android)
     implementation(libs.coil)
     implementation(libs.coil.network)
@@ -72,6 +81,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
     implementation(libs.telephoto)
+    implementation(libs.profileinstaller)
     implementation(libs.timber)
 
     implementation(platform(libs.compose.bom))

@@ -35,14 +35,6 @@ fun SeriesDetailScreen(
 @Composable
 fun SeriesDetailContent(series: SeriesDetail, onComicsClick: (Int) -> Unit) {
     LazyColumn {
-        item {
-            Text(
-                text = series.name.parseAsHtml().toString(),
-                style = MaterialTheme.typography.headlineMedium,
-                color = HeaderTextColor,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
         items(series.comicses, key = { it.id }) { comics ->
             ComicsListItem(comics = comics, onClick = { onComicsClick(comics.id) })
         }

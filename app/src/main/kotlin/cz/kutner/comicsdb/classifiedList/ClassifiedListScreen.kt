@@ -114,7 +114,7 @@ fun ClassifiedListItem(classified: Classified) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = classified.nick, style = MaterialTheme.typography.titleSmall)
                 Text(
-                    text = "${classified.category} - ${formatDate(classified.time)}",
+                    text = "${classified.fixedCategory} - ${formatDate(classified.time)}",
                     style = MaterialTheme.typography.bodySmall
                 )
                 HtmlText(

@@ -61,3 +61,6 @@ app/release/
 
 # Kotlin build cache
 .kotlin/
+
+# IDE inspection cache
+.descriptions.xml

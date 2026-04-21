@@ -70,16 +70,6 @@ fun ComicsDetailContent(
     val allImages = remember(comics) { arrayListOf(comics.cover).apply { addAll(comics.samples) } }
 
     LazyColumn(modifier = Modifier.padding(horizontal = 8.dp)) {
-        // Title
-        item {
-            Text(
-                text = comics.name.parseAsHtml().toString(),
-                style = MaterialTheme.typography.headlineMedium,
-                color = HeaderTextColor,
-                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
-            )
-        }
-
         // Cover + rating + info
         item {
             Row(modifier = Modifier.fillMaxWidth()) {
@@ -108,22 +98,24 @@ fun ComicsDetailContent(
                     // Info fields
                     if (comics.genre.isNotEmpty()) Text(text = comics.genre, style = MaterialTheme.typography.bodySmall)
                     if (comics.publisher.isNotEmpty()) Text(text = "${comics.publisher} ${comics.published}", style = MaterialTheme.typography.bodySmall)
-                    if (comics.pagesCount.isNotEmpty()) Text(text = "Počet stran: ${comics.pagesCount}", style = MaterialTheme.typography.bodySmall)
+                    if (comics.pagesCount > 0) Text(text = "Počet stran: ${comics.pagesCount}", style = MaterialTheme.typography.bodySmall)
                     if (comics.price.isNotEmpty()) Text(text = "Cena: ${comics.price}", style = MaterialTheme.typography.bodySmall)
                     val originals = comics.getOriginals()
                     if (originals.isNotEmpty()) Text(text = originals.toString(), style = MaterialTheme.typography.bodySmall)
                     if (comics.binding.isNotEmpty()) Text(text = "Vazba: ${comics.binding}", style = MaterialTheme.typography.bodySmall)
 
                     // Clickable series
-                    Text(
-                        text = buildAnnotatedString {
-                            withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline, color = MaterialTheme.colorScheme.primary)) {
-                                append(comics.series.name)
-                            }
-                        },
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.clickable { onNavigateToSeries(comics.series.id) }
-                    )
+                    if (comics.series.name.isNotEmpty()) {
+                        Text(
+                            text = buildAnnotatedString {
+                                withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline, color = MaterialTheme.colorScheme.primary)) {
+                                    append(comics.series.name)
+                                }
+                            },
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = if (comics.series.id > 0) Modifier.clickable { onNavigateToSeries(comics.series.id) } else Modifier
+                        )
+                    }
 
                     if (comics.issueNumber.isNotEmpty() || comics.print.isNotEmpty()) {
                         Text(text = "Vydání: ${comics.issueNumber} tisk: ${comics.print}", style = MaterialTheme.typography.bodySmall)

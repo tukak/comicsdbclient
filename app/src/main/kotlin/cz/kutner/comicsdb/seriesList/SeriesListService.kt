@@ -1,7 +1,6 @@
 package cz.kutner.comicsdb.seriesList
 
 import cz.kutner.comicsdb.model.Series
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -30,17 +30,18 @@ ComicsDBClient is an Android app (Kotlin) for browsing the Czech comics database
 
 ## Build Details
 
-- **Gradle**: Kotlin DSL, version catalog at `gradle/libs.versions.toml`
+- **Gradle**: Kotlin DSL, version catalog at `gradle/libs.versions.toml`, configuration cache enabled
 - **AGP**: 9.x with built-in Kotlin support (no separate `kotlin.android` plugin)
 - **Compile/Target SDK**: 36, **Min SDK**: 24, **Java**: 17
 - Version code/name derived from git (`git rev-list` count and `git describe --tags`)
 - Compose enabled via `kotlin.compose` plugin
+- kotlinx.serialization via `kotlin.serialization` plugin
 - No KAPT, no data binding, no view binding
 - R8/ProGuard enabled for release builds
 
 ## Architecture
 
-**MVVM with StateFlow + Jetpack Compose** — no Navigation Component, no repository layer.
+**Single-Activity MVVM with StateFlow + Jetpack Compose + Navigation Compose**
 
 Data flow: Composable Screen → ViewModel (StateFlow) → Retrofit Service → comicsdb.cz REST API
 
@@ -55,10 +56,11 @@ All screens use `ViewState<T>` sealed class (`ui/components/ViewState.kt`) with 
 
 ### Code organization
 
-Feature-per-package: each feature (e.g. `comicsList/`, `comicsDetail/`, `authorList/`) contains its Activity (if detail screen), ViewModel, and `*Screen.kt` composable. Shared code lives in `abstracts/`, `model/`, `network/`, `ui/`, `utils/`.
+Feature-per-package: each feature (e.g. `comicsList/`, `comicsDetail/`, `authorList/`) contains its ViewModel and `*Screen.kt` composable. Shared code lives in `abstracts/`, `model/`, `network/`, `navigation/`, `ui/`, `utils/`.
 
 - `ui/theme/` — `ComicsDBTheme`, `Color.kt` (primary=#C00000)
 - `ui/components/` — `ViewState`, `ViewStateContainer`, `LoadingView`, `ErrorView`, `EmptyView`, `CoilImage`, `HtmlText`
+- `navigation/` — `AppNavHost`, type-safe route classes (`Routes.kt`), `ImageCache`
 - `main/` — `MainActivity` + `MainScreen` with `ModalNavigationDrawer` and screen switching
 
 ### Key libraries
@@ -66,21 +68,24 @@ Feature-per-package: each feature (e.g. `comicsList/`, `comicsDetail/`, `authorL
 | Library | Purpose |
 |---------|---------|
 | Compose BOM + Material 3 | UI framework and design system |
+| Navigation Compose | Type-safe navigation with `@Serializable` route classes |
 | Koin 4.x | DI — modules in `di/`, initialized in `ComicsDBApplication`, `koinViewModel` in Compose |
-| Retrofit 3.0 + GSON | REST client — services in `network/` package, base URL `https://comicsdb.cz` |
+| Retrofit 3.0 + kotlinx.serialization | REST client — services in feature packages, base URL `https://comicsdb.cz` |
 | OkHttp 5.x | HTTP client with 10MB cache, 120s timeouts |
 | Coil 3.x + coil-compose | Image loading in Compose (`AsyncImage`) and HTML (`CoilImageGetter`) |
 | Telephoto | Pinch-to-zoom image viewing (`ZoomableAsyncImage`) |
+| ProfileInstaller | Baseline profile support for startup optimization |
 | Timber | Logging (debug builds only) |
 
 ### Navigation
 
-- `MainActivity` with Compose `ModalNavigationDrawer` hosts list screens (Comics, News, Series, Authors, Classified, Forum, About)
-- Detail screens are separate Activities with Compose `setContent` (Comics, Series, Author)
-- All Activities extend `ComponentActivity`
-- Deep links: `https://comicsdb.cz/comics/{id}`, `/author/{id}`, `/serie/{id}`
-- Search via `SearchActivity` with `HorizontalPager` tabs
-- Image viewer via `ImageViewSliderActivity` with `HorizontalPager` + `ZoomableAsyncImage`
+- Single-Activity architecture with `NavHost` in `AppNavHost.kt`
+- Type-safe routes using `@Serializable` data classes/objects in `Routes.kt`
+- Deep links via `navDeepLink<T>()`: `comicsdb.cz/comics/{id}`, `/author/{id}`, `/autor/{id}`, `/serie/{id}`
+- `MainScreen` with `ModalNavigationDrawer` hosts list screens (Comics, News, Series, Authors, Classified, Forum, About)
+- `DetailScaffold` composable provides consistent back-navigation top bar for detail screens
+- Search with debounced text input in TopAppBar, results via `SearchScreen` with 3 tabs
+- Image viewer with `HorizontalPager` + `ZoomableAsyncImage`, images passed via `ImageCache` singleton
 
 ### HTML rendering
 
@@ -88,4 +93,4 @@ Feature-per-package: each feature (e.g. `comicsList/`, `comicsDetail/`, `authorL
 
 ### Models
 
-All data models implement the `Item` marker interface. List models (e.g. `Comics`, `Series`) and detail models (e.g. `ComicsDetail`, `SeriesDetail`) are separate classes. Some models parse HTML content via `parseAsHtml()`.
+All data models are `@Serializable` (kotlinx.serialization) and `@Immutable` (Compose). They implement the `Item` marker interface. List models (e.g. `Comics`, `Series`) and detail models (e.g. `ComicsDetail`, `SeriesDetail`) are separate classes. Date fields use custom `DateSerializer`. Some models parse HTML content via `parseAsHtml()`.
