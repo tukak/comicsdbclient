@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -89,7 +90,7 @@ fun ComicsDetailContent(
                     // Rating
                     if (comics.rating > 0) {
                         Text(
-                            text = "${String.format(java.util.Locale.getDefault(), "%.1f", comics.rating)} (${comics.voteCount} hlasů)",
+                            text = "${String.format(Locale.current.platformLocale, "%.1f", comics.rating)} (${comics.voteCount} hlasů)",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     } else {

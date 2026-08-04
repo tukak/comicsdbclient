@@ -1,11 +1,10 @@
 package cz.kutner.comicsdb.classifiedList
 
 import cz.kutner.comicsdb.abstracts.AbstractPagedViewModel
-import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Classified
 
-class ClassifiedListViewModel(retrofitModule: RetrofitModule) :
-    AbstractPagedViewModel<Classified>(retrofitModule) {
+class ClassifiedListViewModel(private val service: ClassifiedListService) :
+    AbstractPagedViewModel<Classified>() {
     override suspend fun getJob(): List<Classified> =
-        retrofitModule.classifiedListService.filteredClassifiedList(start * count, count, filterId)
+        service.filteredClassifiedList(start * count, count, filterId)
 }

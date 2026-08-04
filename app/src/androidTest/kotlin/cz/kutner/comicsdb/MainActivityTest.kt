@@ -1,7 +1,12 @@
 package cz.kutner.comicsdb
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -64,5 +69,38 @@ class MainActivityTest : KoinTest {
         openDrawer()
         composeTestRule.onNodeWithText("Serie").performClick()
         composeTestRule.waitForIdle()
+    }
+
+    @Test
+    fun backFromDetailRestoresMainScreen() {
+        composeTestRule.waitForIdle()
+        composeTestRule.waitUntil(timeoutMillis = 15_000) {
+            composeTestRule.onAllNodes(
+                hasClickAction() and hasAnyAncestor(hasScrollAction())
+            ).fetchSemanticsNodes().isNotEmpty()
+        }
+        composeTestRule.onAllNodes(
+            hasClickAction() and hasAnyAncestor(hasScrollAction())
+        )[0].performClick()
+        composeTestRule.waitForIdle()
+        composeTestRule.waitUntil(timeoutMillis = 10_000) {
+            composeTestRule.onAllNodes(
+                androidx.compose.ui.test.hasContentDescription("Zpět")
+            ).fetchSemanticsNodes().isNotEmpty()
+        }
+        composeTestRule.mainClock.autoAdvance = false
+        composeTestRule.onNodeWithContentDescription("Zpět").performClick()
+        composeTestRule.mainClock.advanceTimeBy(16)
+        composeTestRule.onAllNodes(
+            androidx.compose.ui.test.hasContentDescription("Zpět")
+        ).onFirst().performClick()
+        composeTestRule.mainClock.autoAdvance = true
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithContentDescription("Menu").assertIsDisplayed()
+        composeTestRule.onNodeWithContentDescription("Menu").performClick()
+        composeTestRule.waitForIdle()
+        composeTestRule.onAllNodesWithText("Novinky").fetchSemanticsNodes().let {
+            assert(it.isNotEmpty()) { "Drawer not visible — white screen reproduced" }
+        }
     }
 }

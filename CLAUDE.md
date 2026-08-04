@@ -24,7 +24,7 @@ ComicsDBClient is an Android app (Kotlin) for browsing the Czech comics database
 # Run instrumented tests (requires device/emulator)
 ./gradlew connectedAndroidTest
 
-# Check for dependency updates (note: currently broken with Gradle 9.4)
+# Check for dependency updates
 ./gradlew dependencyUpdates --no-parallel
 ```
 
@@ -47,7 +47,7 @@ Data flow: Composable Screen → ViewModel (StateFlow) → Retrofit Service → 
 
 ### ViewState pattern
 
-All screens use `ViewState<T>` sealed class (`ui/components/ViewState.kt`) with Loading, Content, Error, Empty states. `ViewStateContainer` composable switches on the state to show the appropriate UI.
+All screens use `ViewState<T>` sealed class (`ui/components/ViewState.kt`) with Loading, Content, Error states. `ViewStateContainer` composable switches on the state to show the appropriate UI.
 
 ### Base classes in `abstracts/` package
 

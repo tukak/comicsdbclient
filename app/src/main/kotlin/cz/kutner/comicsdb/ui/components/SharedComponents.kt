@@ -4,11 +4,16 @@ import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -57,11 +62,6 @@ fun ErrorView(
 }
 
 @Composable
-fun EmptyView(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize())
-}
-
-@Composable
 fun <T> ViewStateContainer(
     state: ViewState<T>,
     modifier: Modifier = Modifier,
@@ -71,7 +71,6 @@ fun <T> ViewStateContainer(
     when (state) {
         is ViewState.Loading -> LoadingView(modifier)
         is ViewState.Error -> ErrorView(onRetry = onRetry, modifier = modifier, message = state.message)
-        is ViewState.Empty -> EmptyView(modifier)
         is ViewState.Content -> Box(modifier = modifier.fillMaxSize()) { content(state.data) }
     }
 }
@@ -137,3 +136,30 @@ fun InfiniteScrollEffect(
 
 fun formatDate(date: Date): String =
     SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault()).format(date)
+
+@Composable
+fun UserPostCard(nick: String, iconUrl: String, subtitle: String, htmlText: String) {
+    ElevatedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp)
+    ) {
+        Row(modifier = Modifier.padding(16.dp)) {
+            CoilImage(
+                url = iconUrl,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(end = 8.dp)
+            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = nick, style = MaterialTheme.typography.titleSmall)
+                Text(text = subtitle, style = MaterialTheme.typography.bodySmall)
+                HtmlText(
+                    html = htmlText,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+        }
+    }
+}

@@ -1,11 +1,10 @@
 package cz.kutner.comicsdb.authorList
 
 import cz.kutner.comicsdb.abstracts.AbstractPagedViewModel
-import cz.kutner.comicsdb.network.RetrofitModule
 import cz.kutner.comicsdb.model.Author
 
-class AuthorListViewModel(retrofitModule: RetrofitModule) :
-    AbstractPagedViewModel<Author>(retrofitModule) {
+class AuthorListViewModel(private val service: AuthorListService) :
+    AbstractPagedViewModel<Author>() {
     override suspend fun getJob(): List<Author> =
-        retrofitModule.authorListService.listAuthors(start * count, count, searchText)
+        service.listAuthors(start * count, count, searchText)
 }

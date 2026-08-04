@@ -2,10 +2,9 @@ package cz.kutner.comicsdb.seriesDetail
 
 import cz.kutner.comicsdb.abstracts.AbstractViewModel
 import cz.kutner.comicsdb.model.SeriesDetail
-import cz.kutner.comicsdb.network.RetrofitModule
 
-class SeriesDetailViewModel(retrofitModule: RetrofitModule) :
-    AbstractViewModel<SeriesDetail>(retrofitModule) {
+class SeriesDetailViewModel(private val service: SeriesDetailService) :
+    AbstractViewModel<SeriesDetail>() {
     override suspend fun getJob(id: Int): SeriesDetail =
-        retrofitModule.seriesDetailService.seriesDetail(id)
+        service.seriesDetail(id)
 }

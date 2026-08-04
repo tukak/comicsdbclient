@@ -69,6 +69,16 @@ private inline fun <reified T : Any> deepLinksFor(vararg paths: String): List<Na
 private fun removeDiacritics(text: String): String =
     Normalizer.normalize(text, Normalizer.Form.NFD).replace(DIACRITICS_REGEX, "")
 
+internal fun NavController.safeNavigate(route: Any) {
+    if (currentBackStackEntry?.lifecycle?.currentState == androidx.lifecycle.Lifecycle.State.RESUMED) {
+        navigate(route)
+    }
+}
+
+internal fun NavController.safePopBackStack() {
+    if (previousBackStackEntry != null) popBackStack()
+}
+
 @Composable
 fun AppNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = MainRoute) {
@@ -108,7 +118,7 @@ fun AppNavHost(navController: NavHostController) {
             ImageViewerScreen(
                 images = images,
                 initialPosition = route.position,
-                onClose = { navController.popBackStack() }
+                onClose = { navController.safePopBackStack() }
             )
         }
     }
@@ -130,7 +140,7 @@ private fun DetailScaffold(
                 title = title,
                 subtitle = subtitle,
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.safePopBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                     }
                 },
@@ -169,11 +179,11 @@ private fun ComicsDetailContent(id: Int, navController: NavController) {
         ComicsDetailScreen(
             viewModel = model,
             modifier = modifier,
-            onNavigateToAuthor = { authorId -> navController.navigate(AuthorDetailRoute(authorId)) },
-            onNavigateToSeries = { seriesId -> navController.navigate(SeriesDetailRoute(seriesId)) },
+            onNavigateToAuthor = { authorId -> navController.safeNavigate(AuthorDetailRoute(authorId)) },
+            onNavigateToSeries = { seriesId -> navController.safeNavigate(SeriesDetailRoute(seriesId)) },
             onNavigateToImages = { images, position ->
                 ImageCache.images = images
-                navController.navigate(ImageViewerRoute(position))
+                navController.safeNavigate(ImageViewerRoute(position))
             }
         )
     }
@@ -193,7 +203,7 @@ private fun SeriesDetailContent(id: Int, navController: NavController) {
         SeriesDetailScreen(
             viewModel = model,
             modifier = modifier,
-            onComicsClick = { comicsId -> navController.navigate(ComicsDetailRoute(comicsId)) }
+            onComicsClick = { comicsId -> navController.safeNavigate(ComicsDetailRoute(comicsId)) }
         )
     }
 }
@@ -212,7 +222,7 @@ private fun AuthorDetailContent(id: Int, navController: NavController) {
         AuthorDetailScreen(
             viewModel = model,
             modifier = modifier,
-            onComicsClick = { comicsId -> navController.navigate(ComicsDetailRoute(comicsId)) }
+            onComicsClick = { comicsId -> navController.safeNavigate(ComicsDetailRoute(comicsId)) }
         )
     }
 }
@@ -276,9 +286,9 @@ private fun SearchContent(query: String, navController: NavController) {
                     comicsViewModel = comicsViewModel,
                     seriesViewModel = seriesViewModel,
                     authorViewModel = authorViewModel,
-                    onComicsClick = { id -> navController.navigate(ComicsDetailRoute(id)) },
-                    onSeriesClick = { id -> navController.navigate(SeriesDetailRoute(id)) },
-                    onAuthorClick = { id -> navController.navigate(AuthorDetailRoute(id)) }
+                    onComicsClick = { id -> navController.safeNavigate(ComicsDetailRoute(id)) },
+                    onSeriesClick = { id -> navController.safeNavigate(SeriesDetailRoute(id)) },
+                    onAuthorClick = { id -> navController.safeNavigate(AuthorDetailRoute(id)) }
                 )
             }
         }

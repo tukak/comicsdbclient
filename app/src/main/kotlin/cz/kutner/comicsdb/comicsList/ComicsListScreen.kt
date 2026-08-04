@@ -6,43 +6,24 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.core.text.parseAsHtml
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kutner.comicsdb.model.Comics
-import cz.kutner.comicsdb.ui.components.InfiniteScrollEffect
-import cz.kutner.comicsdb.ui.components.ViewStateContainer
+import cz.kutner.comicsdb.ui.components.PagedListScreen
 
 @Composable
 fun ComicsListScreen(
     viewModel: ComicsListViewModel,
     onComicsClick: (Int) -> Unit = {}
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val listState = rememberLazyListState()
-
-    LaunchedEffect(Unit) { viewModel.loadData() }
-    InfiniteScrollEffect(listState, state) { viewModel.loadData() }
-
-    ViewStateContainer(
-        state = state,
-        onRetry = { viewModel.loadNewData() }
-    ) { comicsList ->
-        LazyColumn(state = listState, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            items(comicsList, key = { it.id }) { comics ->
-                ComicsListItem(comics = comics, onClick = { onComicsClick(comics.id) })
-            }
-        }
+    PagedListScreen(viewModel = viewModel, key = { it.id }) { comics ->
+        ComicsListItem(comics = comics, onClick = { onComicsClick(comics.id) })
     }
 }
 
@@ -66,7 +47,7 @@ fun ComicsListItem(comics: Comics, onClick: () -> Unit) {
                 Text(text = comics.published, style = MaterialTheme.typography.bodyMedium)
                 if (comics.rating > 0) {
                     Text(
-                        text = String.format(java.util.Locale.getDefault(), "%.1f", comics.rating),
+                        text = String.format(Locale.current.platformLocale, "%.1f", comics.rating),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
