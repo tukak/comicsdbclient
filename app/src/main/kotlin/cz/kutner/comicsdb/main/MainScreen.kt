@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -29,8 +30,8 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -50,6 +51,7 @@ import cz.kutner.comicsdb.navigation.AuthorDetailRoute
 import cz.kutner.comicsdb.navigation.ComicsDetailRoute
 import cz.kutner.comicsdb.navigation.SearchRoute
 import cz.kutner.comicsdb.navigation.SeriesDetailRoute
+import cz.kutner.comicsdb.navigation.safeNavigate
 import cz.kutner.comicsdb.newsList.NewsListScreen
 import cz.kutner.comicsdb.newsList.NewsListViewModel
 import cz.kutner.comicsdb.seriesList.SeriesListScreen
@@ -96,7 +98,7 @@ enum class Screen(val title: String, val icon: ImageVector) {
 fun MainScreen(navController: NavController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    var currentScreen by remember { mutableStateOf(Screen.Comics) }
+    var currentScreen by rememberSaveable { mutableStateOf(Screen.Comics) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -117,6 +119,11 @@ fun MainScreen(navController: NavController) {
                             currentScreen = screen
                             scope.launch { drawerState.close() }
                         },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        ),
                         modifier = Modifier.padding(horizontal = 12.dp)
                     )
                 }
@@ -135,7 +142,7 @@ fun MainScreen(navController: NavController) {
                     actions = {
                         if (currentScreen != Screen.About) {
                             IconButton(onClick = {
-                                navController.navigate(SearchRoute())
+                                navController.safeNavigate(SearchRoute())
                             }) {
                                 Icon(Icons.Default.Search, contentDescription = "Hledat")
                             }
@@ -156,7 +163,7 @@ fun MainScreen(navController: NavController) {
                         val vm = koinViewModel<ComicsListViewModel>()
                         ComicsListScreen(
                             viewModel = vm,
-                            onComicsClick = { id -> navController.navigate(ComicsDetailRoute(id)) }
+                            onComicsClick = { id -> navController.safeNavigate(ComicsDetailRoute(id)) }
                         )
                     }
                     Screen.News -> {
@@ -167,14 +174,14 @@ fun MainScreen(navController: NavController) {
                         val vm = koinViewModel<SeriesListViewModel>()
                         SeriesListScreen(
                             viewModel = vm,
-                            onSeriesClick = { id -> navController.navigate(SeriesDetailRoute(id)) }
+                            onSeriesClick = { id -> navController.safeNavigate(SeriesDetailRoute(id)) }
                         )
                     }
                     Screen.Authors -> {
                         val vm = koinViewModel<AuthorListViewModel>()
                         AuthorListScreen(
                             viewModel = vm,
-                            onAuthorClick = { id -> navController.navigate(AuthorDetailRoute(id)) }
+                            onAuthorClick = { id -> navController.safeNavigate(AuthorDetailRoute(id)) }
                         )
                     }
                     Screen.Classified -> {
